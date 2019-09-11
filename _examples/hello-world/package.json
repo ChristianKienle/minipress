@@ -4,13 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minpress dev --port 8080 --config .minpress/config.js",
-    "dev": "minpress dev --port 8080 --config .minpress/config.js",
-    "serve": "minpress serve",
-    "gen": "minpress generate --config .minpress/config.js",
-    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minpress generate --config .minpress/config.js"
+    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev --port 8080 --config .minipress/config.js",
+    "dev": "minipress dev --port 8080 --config .minipress/config.js",
+    "serve": "minipress serve",
+    "gen": "minipress generate --config .minipress/config.js",
+    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate --config .minipress/config.js"
   },
   "dependencies": {
-    "@minpress/minpress2": "^0.1.0"
+    "@minipress/minipress2": "^0.1.0"
   }
 }

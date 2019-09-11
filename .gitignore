@@ -6,6 +6,7 @@ dist/
 /**/.minpress/.temp/
 docs/public
 _examples/hello-world/public
+*.lerna_backup
 
 # Logs
 *.log

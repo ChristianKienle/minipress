@@ -1,9 +1,9 @@
 {
-  "name": "minpress",
+  "name": "minipress",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "homepage": "https://christiankienle.github.io/minpress/",
+  "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
     "bs": "lerna bootstrap",
     "clean": "lerna clean -y",
