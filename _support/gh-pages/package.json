@@ -1,0 +1,17 @@
+{
+  "name": "@minipress/gh-pages",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ora": "^3.4.0",
+    "gh-pages": "^2.1.1",
+    "execa": "^2.0.4"
+  }
+}

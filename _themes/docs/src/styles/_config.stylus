@@ -1,0 +1,12 @@
+$accentColor = #4299e1
+$horizontalLineColor = #efefef
+$textColor = black
+$leftBarWidth = 320px
+$leftBarPaddingX = 2rem
+$leftBarPaddingY = 2rem
+
+$navHeight = 3.6rem
+$navItemLinkColor = darken(desaturate($accentColor, 50%), 50%)
+$navItemLinkUnderlineColor = $accentColor
+$navItemLinkUnderlineWidth = 2.5px
+$navItemLinkUnderlineDistance = 8px

@@ -1,0 +1,15 @@
+{
+  "name": "@minpress/eslint-config-node",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": "^6.1.0"
+  },
+  "dependencies": {
+    "@zeit/eslint-config-node": "^0.3.0"
+  },
+  "resolutions": {
+    "portfinder": "1.0.21"
+  }
+}

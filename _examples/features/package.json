@@ -1,0 +1,19 @@
+{
+  "name": "@minpress/examples-features",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minpress dev --config .minpress/config.js",
+    "dev": "minpress dev --config .minpress/config.js",
+    "gen": "minpress generate --config .minpress/config.js",
+    "serve": "minpress serve",
+    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minpress generate --config .minpress/config.js"
+  },
+  "dependencies": {
+    "@minpress/minpress-theme-docs": "^0.1.0",
+    "express": "^4.17.1",
+    "serve-static": "^1.14.1",
+    "@minpress/minpress2": "^0.1.0"
+  }
+}

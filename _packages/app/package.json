@@ -1,0 +1,48 @@
+{
+  "name": "@minpress/app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve demo",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src/**/*.js",
+    "src/**/*.vue",
+    "!**/*.test.js",
+    "!**/__*__/**"
+  ],
+  "dependencies": {
+    "prismjs": "^1.17.1",
+    "@minpress/built-in-components": "^0.1.0"
+  },
+  "peerDependencies": {
+    "vue-router-prefetch": "^1.6.0",
+    "vuex": "^3.1.1",
+    "vue-router": "^3.1.3",
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@minpress/eslint-config-client": "^0.1.0",
+    "vue-router-prefetch": "^1.6.0",
+    "vuex": "^3.1.1",
+    "vue-router": "^3.1.3",
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

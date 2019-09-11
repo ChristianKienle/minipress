@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "_packages/*",
+    "_examples/*",
+    "_support/*",
+    "_plugins/*",
+    "_themes/*",
+    "docs"
+  ],
+  "parallel": false,
+  "npmClient": "npm",
+  "version": "0.1.0"
+}

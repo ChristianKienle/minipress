@@ -1,0 +1,11 @@
+{
+  "name": "@minpress/log",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "ora": "^3.4.0",
+    "chalk": "^2.4.2"
+  },
+  "files": ["src/index.js", "src/logger.js"]
+}

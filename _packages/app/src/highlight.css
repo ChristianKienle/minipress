@@ -1,0 +1,17 @@
+.saber-highlight {
+  border-radius: 4px;
+  background: #011627;
+}
+
+.saber-highlight:before {
+  background: rgba(201, 167, 255, 0.2);
+  color: #4a5568;
+  border-radius: 0 0 4px 4px;
+  top: 0;
+  padding: 0 10px;
+}
+
+.code-line.highlighted {
+  background: rgba(201, 167, 255, 0.2);
+  box-shadow: inset 3px 0 0 0 rgb(201, 167, 255);
+}
