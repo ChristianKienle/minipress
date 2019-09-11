@@ -45,10 +45,10 @@ export default {
     color #222
     &:active
     &:hover
-      color $accentColor
+      color saturation(lightness($accentColor, 50%), 80%)
     &--active
       font-weight 600
-      color $accentColor
+      color saturation(lightness($accentColor, 50%), 80%)
 
 .mp-toc__item[data-toc-item-level="1"]
   margin-left 0

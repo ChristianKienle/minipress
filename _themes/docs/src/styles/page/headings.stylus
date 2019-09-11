@@ -69,6 +69,7 @@ heading($level) {
   }
 
   {$level} {
+    color $headingsAccentColor
     font-size: headings[$level].font.size;
     font-weight: headings[$level].font.weight;
     margin-top: headings[$level].margin.top;

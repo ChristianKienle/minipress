@@ -57,7 +57,7 @@ $navbar-horizontal-padding = 1.5rem;
   background-color white
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navHeight - 1.4rem
-  border-bottom: 1px solid #efefef
+  border-bottom: 1px solid $borderColor //#efefef
 
 .mp-nav__items
   display flex

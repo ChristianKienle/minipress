@@ -60,9 +60,10 @@ export default {
   overflow-y scroll
   position fixed
   width $leftBarWidth
-  top 65px
+  top 64px
   bottom 0
   left 0
+  border-right 1px solid $borderColor
 
 .mp-layout__left
   padding-left $leftBarPaddingX

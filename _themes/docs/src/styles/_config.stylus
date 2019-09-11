@@ -1,6 +1,8 @@
-$accentColor = #4299e1
+$accentColor = #728798 //#4299e1
+$borderColor = lighten($accentColor, 75%)
 $horizontalLineColor = #efefef
 $textColor = black
+$headingsAccentColor = lighten($textColor, 40%)
 $leftBarWidth = 320px
 $leftBarPaddingX = 2rem
 $leftBarPaddingY = 2rem
