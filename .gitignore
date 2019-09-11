@@ -2,10 +2,11 @@
 node_modules/
 dist/
 .DS_Store
-/**/.minpress/dist/
-/**/.minpress/.temp/
+/**/.minipress/dist/
+/**/.minipress/.temp/
 docs/public
 _examples/hello-world/public
+_examples/features/public
 *.lerna_backup
 
 # Logs

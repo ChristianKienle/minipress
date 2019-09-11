@@ -6,7 +6,7 @@ const assert = require('assert').strict
 /** @typedef {"debug" | "info" | "warn" | "error"} Level */
 /** @typedef {ora.PersistOptions} PersistOptions */
 
-const prefix = " minpress ";
+const prefix = " minipress ";
 const _log = message => console.log;
 
 class Logger {

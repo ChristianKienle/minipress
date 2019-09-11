@@ -33,7 +33,7 @@ export default $site => {
             return this.$pageMeta.key
           },
           $page() {
-            // return this.$root.$options.$minpress.page
+            // return this.$root.$options.$minipress.page
             // @ts-ignore
             return this.$pageForKey(this.$pageMetaKey)
           },

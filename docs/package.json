@@ -14,7 +14,7 @@
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
   "dependencies": {
-    "@minipress/minipress2": "^0.1.0",
+    "@minipress/minipress": "^0.1.0",
     "@minipress/minipress-theme-docs": "^0.1.0"
   }
 }

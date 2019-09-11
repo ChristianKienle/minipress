@@ -12,7 +12,7 @@ const install = vue => {
   vue.use(VueRoutePrefetch, {
     componentName: 'MpLink',
     // @ts-ignore
-    prefetch: process.minpress.mode === 'production'
+    prefetch: process.minipress.mode === 'production'
   })
 }
 

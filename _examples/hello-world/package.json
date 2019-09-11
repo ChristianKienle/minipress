@@ -11,6 +11,6 @@
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate --config .minipress/config.js"
   },
   "dependencies": {
-    "@minipress/minipress2": "^0.1.0"
+    "@minipress/minipress": "^0.1.0"
   }
 }

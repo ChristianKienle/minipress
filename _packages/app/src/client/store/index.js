@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default function createStore() {
   return new Vuex.Store({
-    strict: process.minpress.mode === 'production',
+    strict: process.minipress.mode === 'production',
     modules: {
       main,
     },

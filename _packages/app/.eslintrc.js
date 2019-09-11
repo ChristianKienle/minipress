@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@minpress/eslint-config-client'
+  extends: '@minipress/eslint-config-client'
 }

@@ -1,12 +1,13 @@
 // @ts-check
-const { join } = require("path")
 const docsTheme = require('@minipress/minipress-theme-docs')
 
 module.exports = {
   theme: docsTheme,
-  dest: join(__dirname, 'dist'),
   build: {
-    base: '/'
+    base: '/minipress/'
+  },
+  configureSiteData(site) {
+    site.productName = 'miniPress'
   },
   themeConfig: {
     navbar: {
@@ -17,6 +18,5 @@ module.exports = {
         { text: 'GitHub', link: '/404' },
       ]
     }
-  },
-  pages: join(__dirname, '..', 'pages'),
+  }
 }

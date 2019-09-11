@@ -1,8 +1,11 @@
+// @ts-check
+
 const execa = require('execa')
 const ghpages = require('gh-pages')
 const { resolve } = require('path')
 const Process = require('process')
 const ora = require('ora')()
+const fs = require('fs')
 
 ;(async () => {
   ora.info(`The following things will happen now:`)
@@ -35,5 +38,7 @@ const ora = require('ora')()
       ora.warn(`Error: ${error && error.toString()}`)
     }
     ora.succeed(`Published!`)
+    const pgk = JSON.parse(fs.readFileSync(resolve(Process.cwd(), 'package.json'), 'utf-8'))
+    ora.succeed(`Visit: ${pgk.homepage}`)
   })
 })();

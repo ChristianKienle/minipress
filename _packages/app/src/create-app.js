@@ -2,14 +2,14 @@ import Vue from 'vue'
 import createRouter from './router'
 import createStore from './client/store'
 import CreateClientMixinPlugin from './minipress-plugin'
-import Layouts from '#minpress/layouts'
-import SiteData from '#minpress/site-data'
-import Components from '#minpress/components'
+import Layouts from '#minipress/layouts'
+import SiteData from '#minipress/site-data'
+import Components from '#minipress/components'
 
-import BuiltInMinpressComponents from '@minpress/built-in-components'
+import MinipressComponents from '@minipress/built-in-components'
 Vue.config.devtools = true;
 
-Vue.use(BuiltInMinpressComponents)
+Vue.use(MinipressComponents)
 
 
 

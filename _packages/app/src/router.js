@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import _routes from '#minpress/routes'
+import _routes from '#minipress/routes'
 
 Vue.use(Router)
 
