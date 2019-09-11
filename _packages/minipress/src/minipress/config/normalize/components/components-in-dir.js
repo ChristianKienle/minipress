@@ -12,10 +12,10 @@ const EVENTS = Object.freeze({
   ready: 'mp:components:ready'
 })
 
-/** @typedef {import('./../types').Component} Component */
-/** @typedef {import('./../types').Components} Components */
-/** @typedef {import('./../types').ComponentPath} ComponentPath */
-/** @typedef {import('./../types').ComponentNameContext} ComponentNameContext */
+/** @typedef {import('./../../types').Component} Component */
+/** @typedef {import('./../../types').Components} Components */
+/** @typedef {import('./../../types').ComponentPath} ComponentPath */
+/** @typedef {import('./../../types').ComponentNameContext} ComponentNameContext */
 
 class ComponentsProvider {
   /** @param {string} componentsDir */

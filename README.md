@@ -1,3 +1,3 @@
-# minpress
+# minipress
 
-[Docs](https://christiankienle.github.io/minpress/)
+[Docs](https://christiankienle.github.io/minipress/)

@@ -28,7 +28,7 @@ export interface _BuildConfig {
   base: string;
 }
 
-import Minpress from './../core/minpress'
+import Minipress from './../core/minipress'
 
 export type BuildConfig = Partial<_BuildConfig>
 export type DynamicModules = { [name: string]: string }
@@ -48,7 +48,7 @@ export interface Config {
   theme?: Theme
   themeConfig?: object
   configureSiteData?: SiteDataConfigurator
-  dynamicModules?(options: { context: Minpress }): DynamicModules
+  dynamicModules?(options: { context: Minipress }): DynamicModules
 }
 
 
@@ -115,5 +115,5 @@ export interface _Config {
   theme: _Theme
   themeConfig: object
   configureSiteData: _SiteDataConfigurator
-  dynamicModules(options: { context: Minpress }): DynamicModules
+  dynamicModules(options: { context: Minipress }): DynamicModules
 }

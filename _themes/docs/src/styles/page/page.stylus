@@ -1,11 +1,12 @@
 @require './headings.stylus'
 
 .page-content
+  line-height 1.9rem
   color $textColor
   img
     max-width 100%
   p
-    margin 2rem 0
+    margin 1rem 0
     line-height 1.9rem
   hr
     border none
@@ -15,6 +16,7 @@
   p
   td
   blockquote
+  li
     code
       background-color rgba(188,216,255,0.2)
       padding-left 0.3rem
@@ -25,8 +27,8 @@
       border-radius 4px
       color saturate(darken(rgba(188,216,255,0.9), 70%), 70%)
   pre
-    padding-top 1rem
-    padding-bottom 1rem
+    padding-top 2rem
+    padding-bottom 2rem
     code
       margin 0
       padding 0

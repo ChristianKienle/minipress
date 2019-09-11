@@ -1,73 +1,111 @@
 
 headings = {
   h1: {
+    font: {
+      size: 2.2rem,
+      weight: 600
+    }
     margin: {
       top: 40px,
       bottom: 40px
     }
   },
   h2: {
+    font: {
+      size: 1.65rem,
+      weight: 600
+    },
     margin: {
       top: 40px,
       bottom: 20px
     }
   },
   h3: {
+    font: {
+      size: 1.35rem,
+      weight: 600
+    },
     margin: {
       top: 40px,
       bottom: 20px
     }
   },
   h4: {
+    font: {
+      size: 1.35rem,
+      weight: 600
+    },
     margin: {
       top: 40px,
       bottom: 20px
     }
   },
   h5: {
+    font: {
+      size: 1.35rem,
+      weight: 600
+    },
     margin: {
       top: 40px,
       bottom: 20px
     }
   },
   h6: {
+    font: {
+      size: 1.35rem,
+      weight: 600
+    },
     margin: {
       top: 40px,
       bottom: 20px
     }
   }
-}
+};
 
 // Mixin that can be used to generate the styling for headings
-heading($level)
-  {$level} code
+heading($level) {
+  {$level} code {
     font-size: inherit;
-  {$level}
-    font-weight: 500;
-    margin-top: headings[$level].margin.top
-    margin-bottom: headings[$level].margin.bottom
+  }
+
+  {$level} {
+    font-size: headings[$level].font.size;
+    font-weight: headings[$level].font.weight;
+    margin-top: headings[$level].margin.top;
+    margin-bottom: headings[$level].margin.bottom;
+
     // style the '#'-shown beside every heading
-    a.header-anchor
-      color $accentColor
-      font-size 1em
-      float left
-      margin-left -1em
-      padding-right 0.23em
-      margin-top 0
-      opacity 0
-    &:hover
-      a.header-anchor
-        opacity 1
-  {$level}
+    a.header-anchor {
+      color: $accentColor;
+      font-size: 1em;
+      float: left;
+      margin-left: -1em;
+      padding-right: 0.23em;
+      margin-top: 0;
+      opacity: 0;
+    }
+
+    &:hover {
+      a.header-anchor {
+        opacity: 1;
+      }
+    }
+  }
+
+  {$level} {
     // If the heading is the first thing that appears on a page
     // remove the margin.
-    &:first-child
-      margin 0
+    &:first-child {
+      margin: 0;
+    }
+  }
+}
 
-.page-content
-  heading(h1)
-  heading(h2)
-  heading(h3)
-  heading(h4)
-  heading(h5)
-  heading(h6)
+.page-content {
+  heading(h1);
+  heading(h2);
+  heading(h3);
+  heading(h4);
+  heading(h5);
+  heading(h6);
+}

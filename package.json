@@ -5,6 +5,7 @@
   "license": "MIT",
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
+    "gh-pages": "node _support/gh-pages",
     "bs": "lerna bootstrap",
     "clean": "lerna clean -y",
     "docs": "cd docs && npm run dev",

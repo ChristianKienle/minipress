@@ -1,5 +1,5 @@
 // @ts-check
-const { fileToPath } = require('./../../utils')
+const { fileToPath } = require('./../../../utils')
 const { resolve } = require('path')
 const hash = require('hash-sum')
 const EventEmitter = require('events')
@@ -13,9 +13,9 @@ const EVENTS = Object.freeze({
   ready: 'mp:pages:ready'
 })
 
-/** @typedef {import('./../types')._Page} _Page */
-/** @typedef {import('./../types').Pages} Pages */
-/** @typedef {import('./../types').PagePath} PagePath */
+/** @typedef {import('./../../types')._Page} _Page */
+/** @typedef {import('./../../types').Pages} Pages */
+/** @typedef {import('./../../types').PagePath} PagePath */
 
 /**
  * @param {PagePath} pagePath
