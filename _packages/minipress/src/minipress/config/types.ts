@@ -5,6 +5,7 @@ export interface _Page {
   regularPath: string; // current page's default link (follow the file hierarchy)
   path: string; // current page's default link (follow the file hierarchy)
   createKey(): string;
+  relativePath: string; // relative to the pages dir
 }
 
 export interface Navbar {
@@ -49,6 +50,7 @@ export interface Config {
   themeConfig?: object
   configureSiteData?: SiteDataConfigurator
   dynamicModules?(options: { context: Minipress }): DynamicModules
+  cleanUrls?: boolean
 }
 
 
@@ -116,4 +118,5 @@ export interface _Config {
   themeConfig: object
   configureSiteData: _SiteDataConfigurator
   dynamicModules(options: { context: Minipress }): DynamicModules
+  cleanUrls: boolean
 }

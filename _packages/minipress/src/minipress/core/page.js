@@ -4,6 +4,7 @@ const { fileToPath, stringify } = require('./../utils')
 const { join } = require('path')
 const renderMarkdown = require('./../markdown/utils/render-markdown')
 const fs = require('fs-extra')
+
 /**
  * @typedef {object} MarkdownHeading
  * @prop {string} text
@@ -22,6 +23,7 @@ module.exports = class Page {
    * @prop {object=} frontmatter
    * @prop {string} _filePath
    * @prop {string} regularPath
+   * @prop {string} relativePath
    * @prop {string=} path
    * @prop {PageRoute=} route
    * @prop {MarkdownHeading[]=} headings
@@ -32,6 +34,7 @@ module.exports = class Page {
     key,
     _filePath,
     regularPath,
+    relativePath,
     path,
     route,
     headings = [],
@@ -41,20 +44,23 @@ module.exports = class Page {
     this.frontmatter = frontmatter
     this._filePath = _filePath
     this.regularPath = regularPath
+    this.relativePath = relativePath
     this._path = path
     this._route = route
     this.headings = headings
   }
 
-  async process() {
+  /**
+   * @typedef {object} ProcessOptions
+   * @prop {import('./../markdown/renderer')} renderer
+   */
+  /** @param {ProcessOptions} options */
+  async process({ renderer }) {
     const env = {
       page: this
     }
     const source = await fs.readFile(this._filePath, 'utf-8')
-    renderMarkdown({
-      source,
-      env
-    })
+    renderer.render(source, env)
   }
 
   get permalink() {
@@ -73,18 +79,14 @@ module.exports = class Page {
       key: this.key,
       frontmatter: this.frontmatter,
       layout: this.layout,
-      headings: this.headings
+      headings: this.headings,
+      relativePath: this.relativePath
     }
   }
 
   stringified() {
     return stringify(this.toJSON())
   }
-
-  // get frontmatter() {
-  //   const { _frontmatter, _filePath } = this
-  //   return _frontmatter == null ? {} : _frontmatter
-  // }
 
   /** @returns {string} */
   get path() {
@@ -97,6 +99,9 @@ module.exports = class Page {
     }
     return fileToPath(regularPath)
   }
+  // set path(path) {
+  //   this._path = path
+  // }
 
   get route() {
     if (this._route != null) {
@@ -108,7 +113,8 @@ module.exports = class Page {
       meta: {
         $type: 'page',
         $page: {
-          key: this.key
+          key: this.key,
+          relativePath: this.relativePath
         }
       }
     })

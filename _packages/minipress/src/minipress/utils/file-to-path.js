@@ -20,5 +20,6 @@ module.exports = file => {
   // foo.vue -> /foo.html
   // foo/bar.md -> /foo/bar.html
   // foo/bar.vue -> /foo/bar.html
-  return `/${file.replace(extRE, '').replace(/\\/g, '/')}.html`
+  // return `/${file.replace(extRE, '').replace(/\\/g, '/')}.html`
+  return `/${file.replace(extRE, '').replace(/\\/g, '/')}`
 }

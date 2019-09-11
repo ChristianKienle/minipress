@@ -3,7 +3,7 @@ const getFrontmatterFromSource = require('gray-matter')
 const qs = require('querystring')
 const loaderUtils = require('loader-utils')
 const { prettifyJs } = require('./../../utils')
-const renderMarkdown = require('./../../markdown/utils/render-markdown')
+
 /**
  * @typedef {object} PreprocessResult
  * @prop {string} processedSource
@@ -40,18 +40,21 @@ module.exports = function load(_source, map) {
     minipress
   } = options
   const callback = this.callback
-  const preprocessResult = defaultPreprocess(source)
+  // const preprocessResult = defaultPreprocess(source)
   const page = minipress.pages.get(pageKey)
   if (page == null) {
-    console.warn(`Unable to find page with key '${pageKey}'`)
-  } else {
-    page.frontmatter = preprocessResult.frontmatter || {}
+    throw Error(`Unable to find page with key '${pageKey}'`)
   }
+  // else {
+  //   page.frontmatter = preprocessResult.frontmatter || {}
+  // }
+  const { html, frontmatter } = minipress.markdownRenderer.render(source, { page })
+  page.frontmatter = frontmatter
 
-  const { html } = renderMarkdown({
-    source: preprocessResult.processedSource,
-    env: { page }
-  })
+  // const { html } = renderMarkdown({
+  //   source: preprocessResult.processedSource,
+  //   env: { page }
+  // })
   const pageStringified = page != null ? page.stringified() : '{}'
   const code = [
     '<template>',

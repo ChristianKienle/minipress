@@ -1,5 +1,6 @@
 // @ts-check
 const url = require('url')
+const { stringify } = require('./../../utils')
 
 // markdown-it plugin for:
 // 1. adding target="_blank" to external links
@@ -16,14 +17,15 @@ function ensureBeginningDotSlash(path) {
   return `./${path}`
 }
 
-module.exports = (md, externalAttrs) => {
+module.exports = (md, {cleanUrls, externalAttrs}) => {
   function toRouterLink(token, link, relativePath) {
-    link[0] = 'to'
+    link[0] = ':to'
     let to = link[1]
 
     // convert link to filename and export it for existence check
     // const links = md.$data.links || (md.$data.links = [])
     // links.push(to)
+
 
     // relative path usage.
     if (!to.startsWith('/')) {
@@ -37,20 +39,24 @@ module.exports = (md, externalAttrs) => {
       const [, path, , hash] = indexMatch
       to = path + hash
     } else {
+      const replaceWith = cleanUrls ? ['', '$1'] : ['.html', 'html$1']
+
       to = to
+        .replace(/\.md$/, replaceWith[0])
+        .replace(/\.md(#.*)$/, replaceWith[1])
         .replace(/\.md$/, '.html')
         .replace(/\.md(#.*)$/, '.html$1')
     }
 
     // markdown-it encodes the uri
-    link[1] = decodeURI(to)
+    link[1] = `$minipressPageLink(${stringify(decodeURI(to))})`
 
     // export the router links for testing
     // const routerLinks = md.$data.routerLinks || (md.$data.routerLinks = [])
     // routerLinks.push(to)
 
     return Object.create(token, {
-      tag: { value: 'router-link' }
+      tag: { value: 'mp-link' }
     })
   }
   let hasOpenRouterLink = false
@@ -58,7 +64,8 @@ module.exports = (md, externalAttrs) => {
 
   // eslint-disable-next-line camelcase
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-    const { relativePath } = env
+    const { page } = env
+    const relativePath = page.relativePath
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('href')
     if (hrefIndex >= 0) {
@@ -85,7 +92,7 @@ module.exports = (md, externalAttrs) => {
   md.renderer.rules.link_close = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     if (hasOpenRouterLink) {
-      token.tag = 'router-link'
+      token.tag = 'mp-link'
       hasOpenRouterLink = false
     }
     if (hasOpenExternalLink) {

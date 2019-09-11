@@ -31,8 +31,10 @@ const md = new SaberMarkdown({
 md.use(taskListPlugin, { disabled: false })
 md.use(headingsPlugin)
 md.use(linkPlugin, {
-  target: '_blank',
-  rel: 'noopener noreferrer'
+  externalAttrs: {
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  },
 })
 md.use(highlightPlugin)
 

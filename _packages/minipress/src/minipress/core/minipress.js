@@ -5,6 +5,8 @@ const TempDir = require('./temp-dir')
 const Pages = require('./pages')
 const Components = require('./components')
 const { prettifyJs } = require('./../utils')
+const MarkdownRenderer = require('./../markdown/renderer')
+
 /**
  * @typedef {import('./../config/types')._Page} _Page
  * @typedef {import('./../config/types').Component} Component
@@ -28,6 +30,8 @@ class Minipress {
     this.components = new Components()
     /** @type {Map<string, DynamicModuleFn>} */
     this.dynamicModules = new Map()
+    this.markdownRenderer = new MarkdownRenderer()
+    this.markdownRenderer.init({ cleanUrls: config.cleanUrls })
   }
 
 
@@ -60,7 +64,7 @@ class Minipress {
 
     enableMarkdownSupport({ webpack: this.webpack, minipress: this })
 
-    const aliases = ['pages', 'layouts', 'routes', 'components', 'site-data']
+    const aliases = ['config', 'pages', 'layouts', 'routes', 'components', 'site-data']
     aliases.forEach(alias => {
       const name = `#minipress/${alias}`
       const path = `${alias}/index.js`
@@ -94,7 +98,7 @@ class Minipress {
   /** @param {_Page} _page */
   async _processPage(_page) {
     const page = await this._pageAdded(_page)
-    return page.process()
+    return page.process({ renderer: this.markdownRenderer })
   }
 
   /**
@@ -107,8 +111,19 @@ class Minipress {
       this._init()
       this._initialized = true
     }
+    this.tempDir.writeTemp('config/index.js', this.config.code)
     await this.resumePages()
-    // await this.pagesWatcher.resume()
+    const cleanUrls = this.config.cleanUrls
+    // this.pages.values().forEach(page => {
+    //   const { relativePath } = page
+    //   if (cleanUrls) {
+    //     page._path = '/' + relativePath.replace('.md', '')
+    //   } else {
+    //     page._path = '/' + relativePath.replace('.md', '.html')
+    //   }
+    //   console.log(page._path)
+    //   // page._path = cleanUrls ?  : page.pa
+    // })
     await this.config.components.resume()
     this._processRoutes()
     this.processSiteData()

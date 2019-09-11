@@ -31,7 +31,8 @@ const pagePathToPage = pagePath => {
     },
     _filePath,
     path,
-    regularPath
+    regularPath,
+    relativePath: pagePath.relative
   }
 }
 

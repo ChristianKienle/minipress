@@ -48,7 +48,8 @@ const normalizeConfig = (config = {}) => {
     themeConfig,
     theme: normalizeTheme(config.theme || defaultTheme, themeConfig),
     dynamicModules,
-    configureSiteData
+    configureSiteData,
+    cleanUrls: config.cleanUrls || false
   }
   return result
 }

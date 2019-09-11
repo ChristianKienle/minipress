@@ -1,5 +1,7 @@
 // @ts-check
 const normalizeConfig = require('./normalize-config')
+const { EOL } = require('os')
+const { stringify, prettifyJs } = require('./../utils')
 
 /** @typedef {import('./types')._Config} __Config */
 /** @typedef {import('./types').Config} _Config */
@@ -26,5 +28,13 @@ module.exports = class Config {
     this.themeConfig = config.themeConfig
     this.dynamicModules = config.dynamicModules
     this.configureSiteData = config.configureSiteData
+    this.cleanUrls = config.cleanUrls
+  }
+
+  get code() {
+    const config = {
+      cleanUrls: this.cleanUrls
+    }
+    return prettifyJs(`export default ${stringify(config)};`)
   }
 }

@@ -33,9 +33,11 @@ module.exports = class Pages {
     return this.pages.get(key)
   }
 
-  /** @param {string} key */
-  /** @param {Page | _Page} page */
-  /** @return {Page}  */
+  /**
+   * @param {string} key
+   * @param {Page | _Page} page
+   * @return {Page}
+   */
   set(key, page) {
     if (page instanceof Page) {
       this._setPage(key, page)
