@@ -216,8 +216,8 @@ code[class*='language-'],
   text-shadow: none !important;
   box-shadow: none !important;
   margin: 0 !important;
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
   white-space: pre;
@@ -338,7 +338,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h1 {
-  font-weight: 500;
+  font-size: 2.2rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -361,7 +362,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h2 {
-  font-weight: 500;
+  font-size: 1.65rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -384,7 +386,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h3 {
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -407,7 +410,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h4 {
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -430,7 +434,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h5 {
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -453,7 +458,8 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h6 {
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -473,13 +479,14 @@ code[class*='language-'],
   margin: 0;
 }
 .page-content {
+  line-height: 1.9rem;
   color: #000;
 }
 .page-content img {
   max-width: 100%;
 }
 .page-content p {
-  margin: 2rem 0;
+  margin: 1rem 0;
   line-height: 1.9rem;
 }
 .page-content hr {
@@ -490,7 +497,8 @@ code[class*='language-'],
 }
 .page-content p code,
 .page-content td code,
-.page-content blockquote code {
+.page-content blockquote code,
+.page-content li code {
   background-color: rgba(188,216,255,0.2);
   padding-left: 0.3rem;
   padding-right: 0.3rem;
@@ -501,8 +509,8 @@ code[class*='language-'],
   color: rgba(0,49,180,0.9);
 }
 .page-content pre {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .page-content pre code {
   margin: 0;
