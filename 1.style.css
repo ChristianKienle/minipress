@@ -7,17 +7,17 @@
   color: inherit;
 }
 .mp-nav__item a.mp-nav__item__link {
-  color: #2f4b63;
+  color: #3e4348;
   padding-bottom: 8px;
 }
 .mp-nav__item a.mp-nav__item__link:hover {
   margin-bottom: -$navItemLinkUnderlineWidth;
-  border-bottom: 2.5px solid #4299e1;
+  border-bottom: 2.5px solid #728798;
   padding-bottom: 8px;
 }
 .mp-nav__item a.mp-nav__item__link--active {
   margin-bottom: -$navItemLinkUnderlineWidth;
-  border-bottom: 2.5px solid #4299e1;
+  border-bottom: 2.5px solid #728798;
 }
 
 .logo__mini {
@@ -31,42 +31,42 @@
 .logo__mini--0 {
   padding: 0;
   margin: 0;
-  color: #bd0303;
+  color: #ccc;
 }
 .logo__mini--1 {
   padding: 0;
   margin: 0;
-  color: #dfde00;
+  color: #ccc;
 }
 .logo__mini--2 {
   padding: 0;
   margin: 0;
-  color: #009a09;
+  color: #ccc;
 }
 .logo__mini--3 {
   padding: 0;
   margin: 0;
-  color: #4e92d9;
+  color: #ccc;
 }
 
-.mp-nav__product[data-v-cbfb38e2] {
+.mp-nav__product[data-v-d4815ca0] {
   font-size: 1.3rem;
   font-weight: 600;
   color: #000;
   line-height: 2.5rem;
 }
-.mp-nav__product__link[data-v-cbfb38e2] {
+.mp-nav__product__link[data-v-d4815ca0] {
   color: #000;
 }
-.mp-nav[data-v-cbfb38e2] {
+.mp-nav[data-v-d4815ca0] {
   z-index: 1000;
   display: flex;
   background-color: #fff;
   padding: 0.7rem 1.5rem;
   line-height: 2.2rem;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid #dce1e5;
 }
-.mp-nav__items[data-v-cbfb38e2] {
+.mp-nav__items[data-v-d4815ca0] {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
@@ -83,11 +83,11 @@
 }
 .mp-toc__item a.mp-toc__item__link:active,
 .mp-toc__item a.mp-toc__item__link:hover {
-  color: #4299e1;
+  color: #198ae6;
 }
 .mp-toc__item a.mp-toc__item__link--active {
   font-weight: 600;
-  color: #4299e1;
+  color: #198ae6;
 }
 .mp-toc__item[data-toc-item-level="1"] {
   margin-left: 0;
@@ -130,10 +130,10 @@ a:visited,
 a:active {
   font-weight: 500;
   text-decoration: none;
-  color: #4299e1;
+  color: #728798;
 }
 a:hover {
-  color: #1c6db0;
+  color: #4f5f6c;
   text-decoration: none;
 }
 pre {
@@ -338,13 +338,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h1 {
+  color: #666;
   font-size: 2.2rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 40px;
 }
 .page-content h1 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -362,13 +363,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h2 {
+  color: #666;
   font-size: 1.65rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 .page-content h2 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -386,13 +388,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h3 {
+  color: #666;
   font-size: 1.35rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 .page-content h3 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -410,13 +413,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h4 {
+  color: #666;
   font-size: 1.35rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 .page-content h4 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -434,13 +438,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h5 {
+  color: #666;
   font-size: 1.35rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 .page-content h5 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -458,13 +463,14 @@ code[class*='language-'],
   font-size: inherit;
 }
 .page-content h6 {
+  color: #666;
   font-size: 1.35rem;
   font-weight: 600;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 .page-content h6 a.header-anchor {
-  color: #4299e1;
+  color: #728798;
   font-size: 1em;
   float: left;
   margin-left: -1em;
@@ -628,9 +634,10 @@ table th:first-child {
   overflow-y: scroll;
   position: fixed;
   width: 320px;
-  top: 65px;
+  top: 64px;
   bottom: 0;
   left: 0;
+  border-right: 1px solid #dce1e5;
 }
 .mp-layout__left {
   padding-left: 2rem;
