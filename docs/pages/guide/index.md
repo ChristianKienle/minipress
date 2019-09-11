@@ -112,3 +112,29 @@ Contains a key uniquely identifying the corresponding page.
 #### `$page.layout`
 
 Contains the name of the layout used to display this page.
+
+## CLI
+
+*miniPress* comes with a CLI. The CLI is part of the `@minipress/minipress` package and thus is installed by default.
+
+```
+minipress --help
+
+Usage:
+  $ minipress <command> [options]
+
+Commands:
+  dev       runs miniPress in dev mode in the current directory
+  generate  generates a static version of your site
+  serve     serves a static version of your site
+
+For more info, run any command with the `--help` flag:
+  $ minipress dev --help
+  $ minipress generate --help
+  $ minipress serve --help
+
+Options:
+  --config <file>  spefify config (default: /Users/d069408/ChristianKienle/minpress/docs/.minipress/config.js)
+  --mode <mode>    spefify mode (default: development)
+  -h, --help       Display this message
+```

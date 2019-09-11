@@ -43,6 +43,7 @@ const run = async () => {
     installDevCommand({ minipress, cli })
     installGenerateCommand({ minipress, cli })
     installServeCommand({ minipress, cli })
+    cli.help()
     cli.parse(Process.argv)
   } catch (error) {
     log.error('Uncaught error:', error)
