@@ -1,0 +1,10 @@
+.mp-flex__item {
+  padding: 1rem;
+}
+.mp-flex__item--top {
+  align-self: flex-start;
+}
+.mp-flex__item--bottom {
+  align-self: flex-end;
+}
+

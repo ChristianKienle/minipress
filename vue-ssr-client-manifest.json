@@ -1,239 +1,240 @@
 {
   "publicPath": "/minipress/",
   "all": [
-    "1.style.css",
-    "1.style.css.map",
-    "assets/js/1.js",
-    "assets/js/1.js.map",
+    "0.style.css",
+    "2.style.css",
+    "3.style.css",
+    "4.style.css",
+    "assets/js/0.js",
+    "assets/js/10.js",
+    "assets/js/11.js",
+    "assets/js/12.js",
+    "assets/js/13.js",
     "assets/js/2.js",
-    "assets/js/2.js.map",
     "assets/js/3.js",
-    "assets/js/3.js.map",
     "assets/js/4.js",
-    "assets/js/4.js.map",
     "assets/js/5.js",
-    "assets/js/5.js.map",
     "assets/js/6.js",
-    "assets/js/6.js.map",
     "assets/js/7.js",
-    "assets/js/7.js.map",
+    "assets/js/8.js",
+    "assets/js/9.js",
     "assets/js/app.js",
-    "assets/js/app.js.map",
-    "style.css",
-    "style.css.map"
+    "style.css"
   ],
   "initial": [
     "style.css",
     "assets/js/app.js"
   ],
   "async": [
-    "1.style.css",
-    "assets/js/1.js",
+    "0.style.css",
+    "2.style.css",
+    "3.style.css",
+    "4.style.css",
+    "assets/js/0.js",
+    "assets/js/10.js",
+    "assets/js/11.js",
+    "assets/js/12.js",
+    "assets/js/13.js",
     "assets/js/2.js",
     "assets/js/3.js",
     "assets/js/4.js",
     "assets/js/5.js",
     "assets/js/6.js",
-    "assets/js/7.js"
+    "assets/js/7.js",
+    "assets/js/8.js",
+    "assets/js/9.js"
   ],
   "modules": {
     "387ccf72": [
       18,
-      16,
-      19,
       17
     ],
     "95a9d01c": [
       18,
-      16,
-      19,
       17
     ],
     "030ce01d": [
       18,
-      16,
-      19,
       17
     ],
     "427a739c": [
       18,
-      16,
-      19,
       17
     ],
     "1260bfba": [
       18,
-      16,
-      19,
       17
     ],
     "bba014b0": [
       18,
-      16,
-      19,
       17
     ],
     "68a06702": [
       18,
-      16,
-      19,
       17
     ],
     "5963f189": [
       18,
-      16,
-      19,
       17
     ],
     "02025afe": [
       18,
-      16,
-      19,
       17
     ],
     "76d094f0": [
       18,
-      16,
-      19,
       17
     ],
     "1581d0f8": [
       18,
-      16,
-      19,
       17
     ],
     "898b6018": [
       18,
-      16,
-      19,
       17
     ],
     "5ea60f50": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "1f9d3886": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "30d631c2": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "097cdd55": [
       0,
-      2,
-      1,
-      3
+      4
     ],
-    "36b8c93d": [
+    "49c05ad8": [
       0,
-      2,
+      4
+    ],
+    "8ed027d4": [
       1,
-      3
+      9
+    ],
+    "10eeb75d": [
+      2,
+      10
+    ],
+    "568c3811": [
+      3,
+      11
+    ],
+    "5fd7cf28": [
+      0,
+      4
     ],
     "c37bb010": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "117b3826": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "3b61537f": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "51dbe616": [
       0,
-      2,
-      1,
-      3
+      4
     ],
-    "2896c8dd": [
+    "66045b98": [
       0,
-      2,
+      4
+    ],
+    "47c52076": [
       1,
-      3
-    ],
-    "378baf95": [
-      0,
-      2,
-      1,
-      3
-    ],
-    "64704c2d": [
-      14,
-      15
-    ],
-    "0e8d2f3c": [
-      8,
       9
     ],
-    "5970166b": [
-      10,
+    "6804f206": [
+      2,
+      10
+    ],
+    "2c222471": [
+      3,
       11
     ],
-    "d08a1c26": [
-      12,
-      13
+    "378baf95": [
+      5
     ],
-    "35e95013": [
-      6,
+    "19776fd6": [
+      6
+    ],
+    "eb155a58": [
+      1,
+      9
+    ],
+    "2ffdc135": [
+      2,
+      10
+    ],
+    "5eb06a9b": [
+      3,
+      11
+    ],
+    "02daa0ec": [
       7
     ],
-    "359fd0ab": [
-      4,
-      5
+    "64704c2d": [
+      8
+    ],
+    "381193bf": [
+      14
+    ],
+    "ce6f7c70": [
+      15
+    ],
+    "74b9b3f0": [
+      16
+    ],
+    "76d8c1b0": [
+      13
+    ],
+    "3a865548": [
+      12
     ],
     "46ad0374": [
       18,
-      16,
-      19,
       17
     ],
-    "bf42975a": [
-      0,
-      2,
+    "06a26080": [
       1,
-      3
+      9
+    ],
+    "49419d73": [
+      2,
+      10
+    ],
+    "79bb5c3b": [
+      3,
+      11
+    ],
+    "44c5bdaa": [
+      0,
+      4
     ],
     "eace396e": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "ed79b8c8": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "5ec92f24": [
       0,
-      2,
-      1,
-      3
+      4
     ],
     "096b4d6b": [
       0,
-      2,
-      1,
-      3
+      4
     ]
   }
 }

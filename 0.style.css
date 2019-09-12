@@ -74,11 +74,11 @@
 
 .mp-toc__item {
   font-size: 1rem;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .mp-toc__item a.mp-toc__item__link {
-  font-weight: 400;
+  font-weight: inherit;
   color: #222;
 }
 .mp-toc__item a.mp-toc__item__link:active,
@@ -86,31 +86,41 @@
   color: #198ae6;
 }
 .mp-toc__item a.mp-toc__item__link--active {
-  font-weight: 600;
+  font-weight: 700;
   color: #198ae6;
 }
 .mp-toc__item[data-toc-item-level="1"] {
   margin-left: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-block-end: 25px;
 }
 .mp-toc__item[data-toc-item-level="2"] {
   margin-left: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-block-end: 0.3rem;
+  margin-block-start: 1rem;
 }
 .mp-toc__item[data-toc-item-level="3"] {
-  margin-left: 20px;
+  margin-block-end: 0.3rem;
+  margin-left: 0;
   font-size: 0.9rem;
 }
 .mp-toc__item[data-toc-item-level="4"] {
-  margin-left: 30px;
+  margin-block-end: 0.3rem;
+  margin-left: 10px;
+  font-size: 0.8rem;
 }
 .mp-toc__item[data-toc-item-level="5"] {
-  margin-left: 40px;
+  margin-block-end: 0.3rem;
+  margin-left: 10px;
+  font-size: 0.8rem;
 }
 .mp-toc__item[data-toc-item-level="6"] {
-  margin-left: 50px;
+  margin-block-end: 0.3rem;
+  margin-left: 10px;
+  font-size: 0.8rem;
 }
 
 body,
@@ -657,6 +667,16 @@ table th:first-child {
   padding-left: 2rem;
   padding-right: 2rem;
 }
+.mp-layout__container--with-sidebar {
+  margin-left: calc(320px + 2rem);
+}
+.mp-layout__container--without-sidebar {
+  margin-left: 0;
+}
+.mp-main__content {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-
-/*# sourceMappingURL=1.style.css.map*/
