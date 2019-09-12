@@ -6,7 +6,7 @@ const entryPointPath = require.resolve('@minipress/app/src/entry-server')
 /**
  * @typedef {object} Options
  * @prop {string} dest
- * @prop {import('./../minipress/config/config')} minipressConfig
+ * @prop {import('./../config/config')} minipressConfig
  */
 
 /**

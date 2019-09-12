@@ -25,10 +25,14 @@ class Md {
   }
 
   /**
-   * @param {string[] | string | null} text
-   * @param {{defaultValue: string}=} options
+   * @typedef {object} CodeOptions
+   * @prop {string=} defaultValue
    */
-  code(text, { defaultValue } = { defaultValue: null }) {
+  /**
+   * @param {string[] | string | null} text
+   * @param {CodeOptions} [options={}]
+   */
+  code(text, { defaultValue } = { }) {
     if (text == null) {
       if (defaultValue != null) {
         return this._code(defaultValue)

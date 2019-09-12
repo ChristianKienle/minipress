@@ -1,7 +1,10 @@
 // @ts-check
-
-const { createClientConfig, createBaseConfig, createServerConfig } = require('./../../webpack')
 const assert = require('assert')
+const {
+  createClientConfig,
+  createBaseConfig,
+  createServerConfig
+} = require('./../webpack')
 
 /**
  * @param {null | import('webpack-chain')}  config

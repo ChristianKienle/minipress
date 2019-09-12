@@ -27,7 +27,7 @@ export default ({ Vue, router, store, $site: _site }) => {
        */
       pageLink(to) {
         const _to = to.startsWith('/') ? to.substring(1) : to
-        const pages = this.$site.pages
+        const pages = this.site.pages
         const page = pages.find(page => page.relativePath === _to)
         if (page != null) {
           return page.path

@@ -7,7 +7,7 @@ const path = require('path')
 /**
  * @typedef {object} Options
  * @prop {any} cli
- * @prop {import('./../../../minipress/core/minipress')} minipress
+ * @prop {import('./../../../core/minipress')} minipress
  */
 /** @param {Options} options */
 module.exports = ({ minipress, cli }) => {

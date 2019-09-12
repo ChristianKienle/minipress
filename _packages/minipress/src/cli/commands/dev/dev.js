@@ -1,12 +1,12 @@
 // @ts-check
 const http = require('http')
-const { VueRenderer } = require('./../../../minipress/vue-renderer')
+const { VueRenderer } = require('./../../../vue-renderer')
 const { setNodeEnv } = require('./../../utils')
 
 /**
  * @typedef {object} Options
  * @prop {any} cli
- * @prop {import('./../../../minipress/core/minipress')} minipress
+ * @prop {import('./../../../core/minipress')} minipress
  */
 /** @param {Options} options */
 module.exports = ({ minipress, cli }) => {

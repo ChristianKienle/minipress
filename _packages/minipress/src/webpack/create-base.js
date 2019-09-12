@@ -4,12 +4,12 @@ const Webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
 const CSSExtractPlugin = require('mini-css-extract-plugin')
-const define = require('./../minipress/utils/webpack/define')
+const define = require('./../utils/webpack/define')
 
 /**
  * @typedef {object} Options
  * @prop {boolean} isServer
- * @prop {import('./../minipress/config/config')} minipressConfig
+ * @prop {import('./../config/config')} minipressConfig
  */
 
 /** @param {Options} options */

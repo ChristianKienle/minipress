@@ -1,7 +1,9 @@
 // @ts-check
 const normalizeConfig = require('./normalize-config')
-const { EOL } = require('os')
-const { stringify, prettifyJs } = require('./../utils')
+const {
+  stringify,
+  prettifyJs
+} = require('./../utils')
 
 /** @typedef {import('./types')._Config} __Config */
 /** @typedef {import('./types').Config} _Config */

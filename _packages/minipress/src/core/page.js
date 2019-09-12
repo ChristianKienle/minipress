@@ -2,7 +2,6 @@
 const PageRoute = require('./page-route')
 const { fileToPath, stringify } = require('./../utils')
 const { join } = require('path')
-const renderMarkdown = require('./../markdown/utils/render-markdown')
 const fs = require('fs-extra')
 
 /**

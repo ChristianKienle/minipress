@@ -1,8 +1,6 @@
 // @ts-check
-const getFrontmatterFromSource = require('gray-matter')
 const qs = require('querystring')
 const loaderUtils = require('loader-utils')
-const { prettifyJs } = require('./../../utils')
 
 /**
  * @typedef {object} PreprocessResult
@@ -14,16 +12,6 @@ const { prettifyJs } = require('./../../utils')
  * @typedef {(source: string) => string} MarkdownRenderer
  *
 */
-/** @type {Preprocessor} */
-const defaultPreprocess = function (source) {
-  const { data, content } = getFrontmatterFromSource(source)
-  const processedSource = content
-  return {
-    frontmatter: data,
-    processedSource,
-    serializedVueMixin: '{}'
-  }
-}
 /** @typedef {import('./../../core/minipress')} Minipress */
 
 /** @type {import("webpack").loader.Loader} */
@@ -40,22 +28,12 @@ module.exports = function load(_source, map) {
     minipress
   } = options
   const callback = this.callback
-  // const preprocessResult = defaultPreprocess(source)
   const page = minipress.pages.get(pageKey)
   if (page == null) {
     throw Error(`Unable to find page with key '${pageKey}'`)
   }
-  // else {
-  //   page.frontmatter = preprocessResult.frontmatter || {}
-  // }
   const { html, frontmatter } = minipress.markdownRenderer.render(source, { page })
   page.frontmatter = frontmatter
-
-  // const { html } = renderMarkdown({
-  //   source: preprocessResult.processedSource,
-  //   env: { page }
-  // })
-  const pageStringified = page != null ? page.stringified() : '{}'
   const code = [
     '<template>',
     '  <MpLayoutManager>',
@@ -64,10 +42,6 @@ module.exports = function load(_source, map) {
     '</template>',
     '<script>',
     'export default {',
-    // 'beforeCreate() {',
-    // `console.log("before create page", ${pageStringified})`,
-    //   `this.$root.$options.minipressOption.page = ${pageStringified};`,
-    // '}',
     '}',
     '</script>'
   ].join('\n')
@@ -75,5 +49,5 @@ module.exports = function load(_source, map) {
   minipress.processSiteData()
 
   callback(null, code, map)
-  return // requires per webpack docs
+  return // required by webpack
 }

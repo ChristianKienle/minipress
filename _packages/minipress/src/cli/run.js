@@ -1,11 +1,11 @@
 // @ts-check
-const Minipress = require('./../minipress/core/minipress')
+const Minipress = require('./../core/minipress')
 const Process = require('process')
 const { cac } = require('cac')
 const { log } = require('@minipress/log')
 const { resolve } = require('path')
 const fs = require('fs')
-const { Config } = require('./../minipress/config')
+const { Config } = require('./../config')
 const installDevCommand = require('./commands/dev')
 const installServeCommand = require('./commands/serve')
 const installGenerateCommand = require('./commands/generate')
