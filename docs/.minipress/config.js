@@ -14,7 +14,6 @@ module.exports = {
   themeConfig: {
     navbar: {
       items: [
-        { text: 'Home', link: '/' },
         { text: 'Guide', link: '/guide/' },
         { text: 'Configuration', link: '/configuration/' },
         { text: 'Themes', link: '/themes/' },

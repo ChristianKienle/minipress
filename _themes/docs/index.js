@@ -3,6 +3,6 @@ const { join } = require('path')
 
 module.exports = function theme() {
   return {
-    layouts: join(__dirname, 'src', 'layouts')
+    layouts: join(__dirname, 'src', 'layouts'),
   }
 }

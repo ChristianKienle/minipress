@@ -2,11 +2,11 @@
   <div class="mp-nav__item">
     <mp-link
       class="mp-nav__item__link"
-      :exact="exact"
       :to="link"
       exact-active-class="mp-nav__item__link--active"
       active-class="mp-nav__item__link--active"
     >
+      <!-- :exact="exact" -->
       <slot>{{ text }}</slot>
     </mp-link>
   </div>
