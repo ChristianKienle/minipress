@@ -1,0 +1,1 @@
+{"version":3,"file":"style.css","sources":["webpack:///../_packages/built-in-components/src/components/outbound-link.vue"],"sourcesContent":["\n.icon.outbound {\n  color: #aaa;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative;\n  top: -1px;\n}\n"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;","sourceRoot":""}
