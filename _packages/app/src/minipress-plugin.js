@@ -1,14 +1,6 @@
 // @ts-check
 // @ts-ignore
 import config from '#minipress/config'
-const indexRE = /(^|.*\/)(index|readme).md(#?.*)$/i
-const beginningSlashRE = /^\.\//
-function ensureBeginningDotSlash(path) {
-  if (beginningSlashRE.test(path)) {
-    return path
-  }
-  return `./${path}`
-}
 export default $site => {
   console.log('config', config)
   return {
@@ -29,15 +21,6 @@ export default $site => {
               return page.path
             }
             return to
-            // return to
-            // const relativePath = this.$page.relativePath
-
-            // // if (!to.startsWith('/')) {
-            // //   to = relativePath
-            // //     ? url.resolve(`/${relativePath}`, to)
-            // //     : ensureBeginningDotSlash(to)
-            // // }
-            // return to.replace('.md', '')
           },
           $pageForKey(key) {
             // @ts-ignore

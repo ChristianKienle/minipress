@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import _routes from '#minipress/routes'
 
-Vue.use(Router)
 
 export default () => {
   const createRouter = routes => {
@@ -54,7 +53,7 @@ export default () => {
           if (to.path === from.path) {
             fulfill()
           } else {
-            router.app.$once('trigger-scroll', fulfill)
+            // router.app.$once('trigger-scroll', fulfill)
           }
         })
       }

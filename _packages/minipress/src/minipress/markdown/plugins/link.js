@@ -51,7 +51,7 @@ module.exports = (md, {cleanUrls, externalAttrs}) => {
     // }
 
     // markdown-it encodes the uri
-    link[1] = `$minipressPageLink(${stringify(decodeURI(to))})`
+    link[1] = `$minipress.pageLink(${stringify(decodeURI(to))})`
 
     // export the router links for testing
     // const routerLinks = md.$data.routerLinks || (md.$data.routerLinks = [])

@@ -1,4 +1,4 @@
-import { createApp } from './index'
+import { createApp } from './create-app'
 
 export default async context => {
   const { app, router } = createApp()

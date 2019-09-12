@@ -1,34 +1,30 @@
 import Vue from 'vue'
 import createRouter from './router'
 import createStore from './client/store'
-import CreateClientMixinPlugin from './minipress-plugin'
 import Layouts from '#minipress/layouts'
-import SiteData from '#minipress/site-data'
+import $site from '#minipress/site-data'
 import Components from '#minipress/components'
-
+import createRootOptions from './root-options'
 import MinipressComponents from '@minipress/built-in-components'
+import Router from 'vue-router'
+
 Vue.config.devtools = true;
 
-Vue.use(MinipressComponents)
-
-
-
-const RootComponent = {
-  render(h) {
-    return h("div", {}, [h('RouterView')])
+Vue.mixin({
+  beforeCreate() {
+    this.$minipress = this.$root
   }
-}
-Vue.use(CreateClientMixinPlugin(SiteData))
-Vue.use(Components)
+})
+
+Vue.use(Router)
+
 export function createApp() {
+  Vue.use(MinipressComponents)
+  Vue.use(Components)
   Layouts(Vue)
   const router = createRouter()
   const store = createStore()
-  const app = new Vue({
-    // minipressOption: new Minipress(),
-    router,
-    store,
-    render: h => h(RootComponent),
-  })
+  const rootOptions = createRootOptions({ Vue, $site, router, store })
+  const app = new Vue(rootOptions)
   return { app, router, store }
 }

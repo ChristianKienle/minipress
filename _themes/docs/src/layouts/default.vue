@@ -2,7 +2,7 @@
   <div class="mp-layout">
     <MpNav
       class="mp-layout__nav"
-      :items="$site.themeConfig.navbar.items"
+      :items="$minipress.themeConfig.navbar.items"
     />
     <div class="mp-layout__content">
       <div class="mp-layout__left__container">
@@ -36,10 +36,10 @@ export default {
   },
   computed: {
     $_headings() {
-      return (this.$headings || []).filter(isNotTitleHeading)
+      return (this.$minipress.headings || []).filter(isNotTitleHeading)
     },
     $_titleHeading() {
-      const titleHeadings = (this.$headings || []).filter(isTitleHeading)
+      const titleHeadings = (this.$minipress.headings || []).filter(isTitleHeading)
       return titleHeadings.length > 0 ? titleHeadings[0] : null
     }
   }

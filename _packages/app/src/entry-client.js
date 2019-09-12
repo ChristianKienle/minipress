@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { createApp } from './index'
+import { createApp } from './create-app'
 const { app, router, store } = createApp()
 
 router.onReady(() => {
