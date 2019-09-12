@@ -12,29 +12,13 @@
  * @returns {import('vue').ComputedOptions}
 */
 export default ({ Vue, router, store, $site: _site }) => {
-  const RootComponent = {
-    name: 'RootComponent',
-    render(h) {
-      const defaultSlot = this.$slots.default
-      return h('div', { }, [defaultSlot])
-    }
-  }
   return {
-    components: { RootComponent },
     // @ts-ignore
     router,
     store,
     render(h) {
-      // const routerView = Vue.component('RouterView') || Vue.component('router-view')
-      // if(routerView == null) {
-      //   throw Error('router view null')
-      // }
-      // else {
-      //   console.log(routerView)
-      // }
-      return h(RootComponent, {}, [h('p', {}, 'hihi'), h('RouterView')])
+      return h('div', {}, [h('RouterView')])
     },
-    mixins: [],
     methods: {
       /**
        * Finds a page with relativePath = to and returns it's path
@@ -58,6 +42,7 @@ export default ({ Vue, router, store, $site: _site }) => {
     },
     computed: {
       themeConfig() {
+        // @ts-ignore
         return this.$site.themeConfig
       },
       headings() {
@@ -80,7 +65,6 @@ export default ({ Vue, router, store, $site: _site }) => {
         return this.$pageMeta.key
       },
       $page() {
-        // return this.$root.$options.$minipress.page
         // @ts-ignore
         return this.$pageForKey(this.$pageMetaKey)
       },

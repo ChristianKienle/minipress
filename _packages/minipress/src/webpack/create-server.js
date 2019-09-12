@@ -19,7 +19,6 @@ const createServer = (config, { dest, minipressConfig }) => {
     .add(entryPointPath)
     .end()
   config.target('node').end()
-  config.devtool('source-map').end()
   config
     .output
     .path(dest)

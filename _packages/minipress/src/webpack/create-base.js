@@ -6,21 +6,32 @@ const path = require('path')
 const CSSExtractPlugin = require('mini-css-extract-plugin')
 const define = require('./../minipress/utils/webpack/define')
 
-
 /**
  * @typedef {object} Options
  * @prop {boolean} isServer
  * @prop {import('./../minipress/config/config')} minipressConfig
  */
 
- /** @param {Options} options */
+/** @param {Options} options */
 module.exports = function createBase({ isServer, minipressConfig }) {
   // eslint-disable-next-line no-use-before-define
   const modulePaths = getModulePaths()
-
   const isProd = process.env.NODE_ENV === 'production'
+  const isDev = process.env.NODE_ENV === 'production'
   const mode = isProd ? 'production' : 'development'
   const config = new WebpackChain()
+
+  // Configure source maps:
+  // I am not really sure what the best practice is.
+  // For a long time I used the following settings:
+  // - server config: source-map
+  // - client config: source-map (but only in development)
+  // Those settings are replaced by the following settings which are used
+  // by saber. There must be a reason. Why?
+  // Use 'source-map' when running on the server side
+  // Use 'cheap-module-source-map' on the client side but only in development.
+  config.devtool(isServer ? 'source-map' : (isDev ? 'cheap-module-source-map' : false))
+
   config.resolve.alias.set('vue$', require.resolve('vue'))
   config.mode(mode).end()
   config.resolveLoader.set('symlinks', true)
@@ -62,31 +73,26 @@ module.exports = function createBase({ isServer, minipressConfig }) {
       plugins: [
         require.resolve('@babel/plugin-syntax-dynamic-import'),
         [require('@babel/plugin-transform-runtime').default,
-        {
-          corejs: false,
-          helpers: false,
-          regenerator: true,
-          // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
-          // We should turn this on once the lowest version of Node LTS
-          // supports ES Modules.
-          useESModules: false,
-          // Undocumented option that lets us encapsulate our runtime, ensuring
-          // the correct version is used
-          // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
-          absoluteRuntime: path.dirname(
-            require.resolve('@babel/runtime/package.json')
-          )
-        }]
+          {
+            corejs: false,
+            helpers: false,
+            regenerator: true,
+            // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
+            // We should turn this on once the lowest version of Node LTS
+            // supports ES Modules.
+            useESModules: false,
+            // Undocumented option that lets us encapsulate our runtime, ensuring
+            // the correct version is used
+            // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
+            absoluteRuntime: path.dirname(
+              require.resolve('@babel/runtime/package.json')
+            )
+          }]
       ]
     })
     .end()
 
-
-  // const ownModulesDir = path.dirname(require.resolve('@minipress/built-in-components'));
-
   config.resolve.modules.add('node_modules')
-  // .add(ownModulesDir)
-
 
   function createCSSRule(lang, test, loader, options) {
     const baseRule = config.module.rule(lang).test(test)

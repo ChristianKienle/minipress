@@ -53,30 +53,12 @@ export default () => {
           if (to.path === from.path) {
             fulfill()
           } else {
-            // router.app.$once('trigger-scroll', fulfill)
+            router.app.$once('trigger-scroll', fulfill)
           }
         })
       }
     })
     return router
   }
-
-  const router = createRouter(_routes)
-
-  // if (module.hot) {
-  //   console.log('module.hot')
-  //   // debugger
-  //   module.hot.accept('#minpress/routes', () => {
-  //     console.log('module.hot.accept')
-  //     const requiredRoutes = require('#minpress/routes')
-  //     console.log('requiredRoutes', requiredRoutes)
-  //     const matcher = createRouter(requiredRoutes.default).matcher
-  //     console.log(matcher)
-  //     console.log(_routes)
-  //     // debugger
-  //     router.options.routes = _routes
-  //     router.matcher = matcher
-  //   })
-  // }
-  return router
+  return createRouter(_routes)
 }

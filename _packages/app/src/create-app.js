@@ -10,6 +10,7 @@ import Router from 'vue-router'
 
 Vue.config.devtools = true;
 
+// Expose $minipress everywhere
 Vue.mixin({
   beforeCreate() {
     this.$minipress = this.$root
