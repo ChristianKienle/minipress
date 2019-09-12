@@ -13,12 +13,17 @@ const entryPointPath = require.resolve('@minipress/app/src/entry-client')
  * @param {Options} options
  */
 const createClient = (config, { dest, minipressConfig }) => {
-  const isProduction = process.env.NODE_ENV === 'production'
-  config.entry('app').clear()
+  config
+    .entry('app')
+    .clear()
     .add(entryPointPath)
     .end()
-  config.plugin('vue-client').use(VueSSRClientPlugin)
+
+  config
+    .plugin('vue-client')
+    .use(VueSSRClientPlugin)
     .end()
+
   config
     .output
     .path(dest)

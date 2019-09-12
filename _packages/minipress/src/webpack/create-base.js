@@ -17,10 +17,11 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   // eslint-disable-next-line no-use-before-define
   const modulePaths = getModulePaths()
   const isProd = process.env.NODE_ENV === 'production'
-  const isDev = process.env.NODE_ENV === 'production'
+  const isDev = !isProd
   const mode = isProd ? 'production' : 'development'
   const config = new WebpackChain()
 
+  config.mode(mode).end()
   // Configure source maps:
   // I am not really sure what the best practice is.
   // For a long time I used the following settings:
@@ -31,35 +32,38 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   // Use 'source-map' when running on the server side
   // Use 'cheap-module-source-map' on the client side but only in development.
   config.devtool(isServer ? 'source-map' : (isDev ? 'cheap-module-source-map' : false))
-
+  // For some reason this is needed. Otherwise vue will be bundled twice.
   config.resolve.alias.set('vue$', require.resolve('vue'))
-  config.mode(mode).end()
-  config.resolveLoader.set('symlinks', true)
+  // Not sure why the following two settings are needed – it is done so by VuePress.
+  config
+    .resolveLoader.set('symlinks', true)
+    .modules.merge(modulePaths)
   config.resolve.set('symlinks', true)
+  // Configure output settings
   config
     .output
     .publicPath(minipressConfig.build.base)
     .path(minipressConfig.dest)
     .filename('assets/js/[name].js')
     .end()
-
-  // config.stats('none').end()
-  config.resolveLoader
-    .set('symlinks', true)
-    .modules
-    .merge(modulePaths)
-
-  config.module.rule('vue').test(/\.vue$/)
+  // Tell vue-loader to extract CSS in production
+  config
+    .module
+    .rule('vue')
+    .test(/\.vue$/)
     .use('vue-loader')
     .loader('vue-loader')
-    .options({
-      extractCSS: isProd
-    })
+    .options({ extractCSS: isProd })
     .end()
+
   config.module.rule('js').test(/\.js$/).exclude.add(/node_modules/).add(/\.vue\.js/)
     .end()
 
-  config.module.rule('js').use('babel-loader')
+  // TODO: Where is this from?
+  config
+    .module
+    .rule('js')
+    .use('babel-loader')
     .loader('babel-loader')
     .options({
       // do not pick local project babel config (.babelrc)
@@ -92,8 +96,12 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     })
     .end()
 
+  // Resolve dependencies
   config.resolve.modules.add('node_modules')
 
+  // Complicated CSS Support
+  // Stolen from VuePress
+  // Need to simplify
   function createCSSRule(lang, test, loader, options) {
     const baseRule = config.module.rule(lang).test(test)
     const modulesRule = baseRule.oneOf('modules').resourceQuery(/module/)
@@ -133,11 +141,7 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   createCSSRule('css', /\.css$/)
   createCSSRule('postcss', /\.p(ost)?css$/, 'postcss-loader',
     {
-      plugins: [
-        // require('postcss-import'),
-        // require('tailwindcss'),
-        require('autoprefixer')
-      ]
+      plugins: [require('autoprefixer')]
     })
   createCSSRule('scss', /\.scss$/, 'sass-loader', scssOptions)
   createCSSRule('sass', /\.sass$/, 'sass-loader', Object.assign({ indentedSyntax: true }, sassOptions))
@@ -161,9 +165,14 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .tap(() => [{ filename: 'style.css' }])
     .end()
 
-  config.plugin('vue').use(VueLoaderPlugin)
+  config
+    .plugin('vue')
+    .use(VueLoaderPlugin)
     .end()
-  config.plugin('define').use(Webpack.DefinePlugin, [{}])
+
+  config
+    .plugin('define')
+    .use(Webpack.DefinePlugin, [{}])
     .end()
 
   define(config)
