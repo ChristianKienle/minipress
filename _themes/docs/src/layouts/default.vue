@@ -1,5 +1,5 @@
 <template>
-  <MpMain><slot /></MpMain>
+  <MpMain showSidebar><slot /></MpMain>
 </template>
 
 <script>

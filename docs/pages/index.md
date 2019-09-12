@@ -2,6 +2,7 @@
 layout: hero
 ---
 
+<img src="./gfx/vuedocs-boy.png" />
 
 # Welcome to *miniPress*
 
