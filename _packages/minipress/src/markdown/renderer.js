@@ -49,6 +49,10 @@ module.exports = class Renderer {
       Token: SaberMarkdown.Token,
       ...env
     }
+    const { page } = env
+    if(page != null) {
+      page.frontmatter = frontmatter.attributes
+    }
     const html = this.md.render(frontmatter.markdownContent, _env)
     return { html, frontmatter }
   }

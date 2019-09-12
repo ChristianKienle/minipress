@@ -27,8 +27,7 @@ module.exports = class VueRenderer {
   }
 
   async build() {
-    // await fs.emptyDir(this.config.dest)
-
+    await fs.emptyDir(this.config.dest)
     const { client, server } = this.webpack.configs()
     const clientCompiler = createWebpack(client)
     const serverCompiler = createWebpack(server)
@@ -40,7 +39,7 @@ module.exports = class VueRenderer {
 
   /** @param {{ pages: Page[]; outDir: string; dest: string }} options */
   async generate({ pages, outDir, dest }) {
-    // await fs.emptyDir(outDir)
+    await fs.emptyDir(outDir)
     const serverBundle = readJSON(
       this.serverBundlePath({ dest })
     )
@@ -73,7 +72,6 @@ module.exports = class VueRenderer {
     const { path } = page
     const outputPath = page.outputFilePath({ outDir })
     this.log.info(`Generating ${path}…`)
-
     const url = path
     const context = {
       url
