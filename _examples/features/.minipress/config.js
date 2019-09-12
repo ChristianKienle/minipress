@@ -12,9 +12,8 @@ module.exports = {
     navbar: {
       items: [
         { text: 'Home', link: '/' },
-        { text: 'Guide', link: '/guide/' },
-        { text: 'Themes', link: '/themes/' },
-        { text: 'GitHub', link: '/404' },
+        { text: 'Markdown', link: '/markdown/' },
+        { text: 'Routing', link: '/routing/' },
       ]
     }
   },

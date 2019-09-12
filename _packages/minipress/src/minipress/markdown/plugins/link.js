@@ -1,6 +1,7 @@
 // @ts-check
 const url = require('url')
 const { stringify } = require('./../../utils')
+const { pathFor } = require('./../../utils/paths')
 
 // markdown-it plugin for:
 // 1. adding target="_blank" to external links
@@ -20,7 +21,8 @@ function ensureBeginningDotSlash(path) {
 module.exports = (md, {cleanUrls, externalAttrs}) => {
   function toRouterLink(token, link, relativePath) {
     link[0] = ':to'
-    let to = link[1]
+    let to = pathFor({ href: link[1], currentRelativePagePath: '/' + relativePath })
+    // link[1]
 
     // convert link to filename and export it for existence check
     // const links = md.$data.links || (md.$data.links = [])
@@ -28,25 +30,25 @@ module.exports = (md, {cleanUrls, externalAttrs}) => {
 
 
     // relative path usage.
-    if (!to.startsWith('/')) {
-      to = relativePath
-        ? url.resolve(`/${relativePath}`, to)
-        : ensureBeginningDotSlash(to)
-    }
+    // if (!to.startsWith('/')) {
+    //   to = relativePath
+    //     ? url.resolve(`/${relativePath}`, to)
+    //     : ensureBeginningDotSlash(to)
+    // }
 
-    const indexMatch = to.match(indexRE)
-    if (indexMatch) {
-      const [, path, , hash] = indexMatch
-      to = path + hash
-    } else {
-      const replaceWith = cleanUrls ? ['', '$1'] : ['.html', 'html$1']
+    // const indexMatch = to.match(indexRE)
+    // if (indexMatch) {
+    //   const [, path, , hash] = indexMatch
+    //   to = path + hash
+    // } else {
+    //   const replaceWith = cleanUrls ? ['', '$1'] : ['.html', 'html$1']
 
-      to = to
-        .replace(/\.md$/, replaceWith[0])
-        .replace(/\.md(#.*)$/, replaceWith[1])
-        .replace(/\.md$/, '.html')
-        .replace(/\.md(#.*)$/, '.html$1')
-    }
+    //   to = to
+    //     .replace(/\.md$/, replaceWith[0])
+    //     .replace(/\.md(#.*)$/, replaceWith[1])
+    //     .replace(/\.md$/, '.html')
+    //     .replace(/\.md(#.*)$/, '.html$1')
+    // }
 
     // markdown-it encodes the uri
     link[1] = `$minipressPageLink(${stringify(decodeURI(to))})`

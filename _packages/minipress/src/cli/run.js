@@ -46,7 +46,8 @@ const run = async () => {
     cli.help()
     cli.parse(Process.argv)
   } catch (error) {
-    log.error('Uncaught error:', error)
+    console.trace(error)
+    // log.error('Uncaught error:', error)
   }
 }
 

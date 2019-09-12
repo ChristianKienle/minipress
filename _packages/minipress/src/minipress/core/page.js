@@ -77,6 +77,7 @@ module.exports = class Page {
   toJSON() {
     return {
       key: this.key,
+      path: this.path,
       frontmatter: this.frontmatter,
       layout: this.layout,
       headings: this.headings,

@@ -32,10 +32,9 @@ class Logger {
 
   /**
    * @param {string} message
-   * @param  {Error} error
    */
-  error(message, error) {
-    this._ora.fail(`${chalk.dim(message)} ${chalk.reset(error.message)}`)
+  error(message) {
+    this._ora.fail(`${chalk.dim(message)}`)
   }
 
   /** @param {string=} text */

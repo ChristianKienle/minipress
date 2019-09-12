@@ -16,16 +16,28 @@ export default $site => {
     install(vue) {
       vue.mixin({
         methods: {
+          /**
+           * Finds a page with relativePath = to and returns it's path
+           * @param {string} to
+           * @returns {string}
+           */
           $minipressPageLink(to) {
+            const _to = to.startsWith('/') ? to.substring(1) : to
+            const pages = this.$site.pages
+            const page = pages.find(page => page.relativePath === _to)
+            if(page != null) {
+              return page.path
+            }
             return to
-            const relativePath = this.$page.relativePath
+            // return to
+            // const relativePath = this.$page.relativePath
 
-            // if (!to.startsWith('/')) {
-            //   to = relativePath
-            //     ? url.resolve(`/${relativePath}`, to)
-            //     : ensureBeginningDotSlash(to)
-            // }
-            return to.replace('.md', '')
+            // // if (!to.startsWith('/')) {
+            // //   to = relativePath
+            // //     ? url.resolve(`/${relativePath}`, to)
+            // //     : ensureBeginningDotSlash(to)
+            // // }
+            // return to.replace('.md', '')
           },
           $pageForKey(key) {
             // @ts-ignore
