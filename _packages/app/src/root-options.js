@@ -34,16 +34,16 @@ export default ({ Vue, router, store, $site: _site }) => {
         }
         return to
       },
-      $pageForKey(key) {
+      pageForKey(key) {
         // @ts-ignore
-        const pages = this.$site.pages || []
+        const pages = this.site.pages || []
         return pages.find(page => page.key === key)
       }
     },
     computed: {
       themeConfig() {
         // @ts-ignore
-        return this.$site.themeConfig
+        return this.site.themeConfig
       },
       headings() {
         // @ts-ignore
@@ -64,12 +64,12 @@ export default ({ Vue, router, store, $site: _site }) => {
         // @ts-ignore
         return this.$pageMeta.key
       },
-      $page() {
+      page() {
         // @ts-ignore
-        return this.$pageForKey(this.$pageMetaKey)
+        return this.pageForKey(this.$pageMetaKey)
       },
       $layoutName() {
-        const page = this.$page
+        const { page } = this
         // @ts-ignore
         return page == null ? "default" : page.layout
       },
@@ -79,7 +79,7 @@ export default ({ Vue, router, store, $site: _site }) => {
       $_route() {
         return this.$route
       },
-      $site() {
+      site() {
         return _site
       }
     }

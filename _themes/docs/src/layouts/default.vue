@@ -36,10 +36,10 @@ export default {
   },
   computed: {
     $_headings() {
-      return (this.$minipress.headings || []).filter(isNotTitleHeading)
+      return (this.$minipress.page.headings || []).filter(isNotTitleHeading)
     },
     $_titleHeading() {
-      const titleHeadings = (this.$minipress.headings || []).filter(isTitleHeading)
+      const titleHeadings = (this.$minipress.page.headings || []).filter(isTitleHeading)
       return titleHeadings.length > 0 ? titleHeadings[0] : null
     }
   }

@@ -64,32 +64,34 @@ This theme provides layouts located in it's `layouts`-directory. A custom layout
 
 ### `LayoutManager`
 
-## Globally available Properties
-By default, *miniPress* installs a *Vue mixin*. This mixin gives you access to a lot of interesting meta data about pages (…). You also get access to some convenience methods.
+## Global Computed
+By default, *miniPress* installs a property called `$minipress` on every Vue instance. This provides you with a lot of interesting meta data about your *miniPress* site (pages, heading, …). You also get access to some convenience methods.
 
-The mixin exposes certain properties and methods which you can access from almost everywhere. You can access those methods and properties from
+`$minipress` exposes certain properties and methods which you can access from almost everywhere. You can access `$minipress` from
 
-- any JavaScript file by using `this.$propertyName`,
-- any Vue `<template>`-section by using `$propertyName` and
-- any Markdown file by using <code v-pre>{{ $propertyName }}</code>.
+- any JavaScript file by using `this.$minipress.property_or_method`,
+- any Vue `<template>`-section by using `$minipress.property_or_method` and
+- any Markdown file by using <code v-pre>{{ $minipress.property_or_method }}</code>.
 
-Replace `$propertyName` by any of the documented properties/methods (see below).
+Replace `property_or_method` by any of the documented properties/methods (see below).
 
-### `$site`
+### `site`
 Give you access to the site meta data.
 
-#### `$site.themeConfig`
+> `site` also exposes `themeConfig`
+
+### `themeConfig`
 Contains the theme configuration (as set via `.minipress/config.js`).
 
-### `$page`
+### `page`
 
 Gives you access to the currently displayed page.
 
-#### `$page.frontmatter`
+#### `page.frontmatter`
 
 Gives you access to the parsed front matter object. The object simply contains keys and values.
 
-#### `$page.headings`
+#### `page.headings`
 
 Contains the headings found on the current page. The value will always be an array with one or more heading-objects inside.
 
@@ -105,11 +107,11 @@ type Heading = {
 }
 ```
 
-#### `$page.key`
+#### `page.key`
 
 Contains a key uniquely identifying the corresponding page.
 
-#### `$page.layout`
+#### `page.layout`
 
 Contains the name of the layout used to display this page.
 

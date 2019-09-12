@@ -58,7 +58,7 @@ export default {
   computed: {
     $_headings() {
       const { headings } = this
-      return headings != null ? headings : this.$minipress.headings
+      return headings != null ? headings : this.$minipress.page.headings
     }
   },
   watch: {
