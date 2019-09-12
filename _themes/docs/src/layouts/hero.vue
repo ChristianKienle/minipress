@@ -1,11 +1,11 @@
 <template>
-  <MpMain><slot /></MpMain>
+  <MpMain :showSidebar="false"><slot /></MpMain>
 </template>
 
 <script>
 import MpMain from "./../components/main.vue";
 export default {
-  name: "MpLayoutDefault",
+  name: "MpLayoutHero",
   components: { MpMain }
 };
 </script>

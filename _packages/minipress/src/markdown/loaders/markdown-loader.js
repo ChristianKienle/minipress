@@ -33,7 +33,7 @@ module.exports = function load(_source, map) {
     throw Error(`Unable to find page with key '${pageKey}'`)
   }
   const { html, frontmatter } = minipress.markdownRenderer.render(source, { page })
-  page.frontmatter = frontmatter
+  page.frontmatter = frontmatter.attributes
   const code = [
     '<template>',
     '  <MpLayoutManager>',

@@ -1,3 +1,8 @@
+---
+layout: hero
+---
+
+
 # Welcome to *miniPress*
 
 *miniPress* is a _minimalistic_ Vue-powered static site generator.
