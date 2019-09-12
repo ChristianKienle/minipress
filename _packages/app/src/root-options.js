@@ -45,15 +45,6 @@ export default ({ Vue, router, store, $site: _site }) => {
         // @ts-ignore
         return this.site.themeConfig
       },
-      headings() {
-        // @ts-ignore
-        return this.$page.headings
-      },
-      $frontmatter() {
-        const page = this.$page
-        // @ts-ignore
-        return page == null ? {} : (page.frontmatter || {})
-      },
       $pageMeta() {
         const { $_route = {} } = this
         // @ts-ignore

@@ -1,15 +1,14 @@
 <template>
   <div class="mp-nav__item">
-    <router-link
+    <mp-link
       class="mp-nav__item__link"
       :exact="exact"
       :to="link"
-
       exact-active-class="mp-nav__item__link--active"
       active-class="mp-nav__item__link--active"
     >
       <slot>{{ text }}</slot>
-    </router-link>
+    </mp-link>
   </div>
 </template>
 
