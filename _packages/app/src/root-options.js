@@ -59,14 +59,6 @@ export default ({ Vue, router, store, $site: _site }) => {
         // @ts-ignore
         return this.pageForKey(this.$pageMetaKey)
       },
-      $layoutName() {
-        const { page } = this
-        // @ts-ignore
-        return page == null ? "default" : page.layout
-      },
-      $layoutComponentName() {
-        return `mp-layout-${this.$layoutName}`
-      },
       $_route() {
         return this.$route
       },

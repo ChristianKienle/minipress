@@ -62,9 +62,12 @@ This theme provides layouts located in it's `layouts`-directory. A custom layout
 
 ### `Link`
 
+### `Layout`
+
+
 ### `LayoutManager`
 
-## Global Computed
+## Global Computed: `$minipress`
 By default, *miniPress* installs a property called `$minipress` on every Vue instance. This provides you with a lot of interesting meta data about your *miniPress* site (pages, heading, …). You also get access to some convenience methods.
 
 `$minipress` exposes certain properties and methods which you can access from almost everywhere. You can access `$minipress` from
@@ -75,23 +78,25 @@ By default, *miniPress* installs a property called `$minipress` on every Vue ins
 
 Replace `property_or_method` by any of the documented properties/methods (see below).
 
-### `site`
+### Properties
+
+#### `site`
 Give you access to the site meta data.
 
 > `site` also exposes `themeConfig`
 
-### `themeConfig`
+#### `themeConfig`
 Contains the theme configuration (as set via `.minipress/config.js`).
 
-### `page`
+#### `page`
 
 Gives you access to the currently displayed page.
 
-#### `page.frontmatter`
+##### `page.frontmatter`
 
 Gives you access to the parsed front matter object. The object simply contains keys and values.
 
-#### `page.headings`
+##### `page.headings`
 
 Contains the headings found on the current page. The value will always be an array with one or more heading-objects inside.
 
@@ -107,13 +112,35 @@ type Heading = {
 }
 ```
 
-#### `page.key`
+##### `page.key`
 
 Contains a key uniquely identifying the corresponding page.
 
-#### `page.layout`
+##### `page.layout`
 
 Contains the name of the layout used to display this page.
+
+### Methods
+
+#### pageForKey(key)
+
+Use `$minipress.pageForKey(key)` in order to get the `Page`-object for a given key.
+
+* **Arguments:**
+  * `key: string`: The key of a page.
+
+#### pageLink(to)
+
+Use `$minipress.pageLink(to)` in order to get an absolute path for a given relative path. `to` should be the path to a page as it appears in your file system. For example,
+
+``` js
+$minipress.pageLink('./themes/clean.md')
+```
+
+basically returns the value for the `href`-attribute.
+
+* **Arguments:**
+  * `to: string`: Relative path to a page as it is present in your file system.
 
 ## CLI
 

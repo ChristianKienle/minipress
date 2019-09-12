@@ -1,20 +1,21 @@
 // @ts-check
-const MinipressWebpackConfig = require('./webpack-config')
-const enableMarkdownSupport = require('./../markdown')
-const TempDir = require('./temp-dir')
-const Pages = require('./pages')
-const Components = require('./components')
-const { prettifyJs } = require('./../utils')
-const MarkdownRenderer = require('./../markdown/renderer')
+const MinipressWebpackConfig = require('./../webpack-config')
+const enableMarkdownSupport = require('./../../markdown')
+const TempDir = require('./../temp-dir')
+const Pages = require('./../pages')
+const Components = require('./../components')
+const { prettifyJs } = require('./../../utils')
+const MarkdownRenderer = require('./../../markdown/renderer')
+const processLayouts = require('./process-layouts')
 
 /**
- * @typedef {import('./../config/types')._Page} _Page
- * @typedef {import('./../config/types').Component} Component
- * @typedef {import('./types').DynamicModuleFn} DynamicModuleFn
- * @typedef {import('./page-route')} PageRoute
+ * @typedef {import('./../../config/types')._Page} _Page
+ * @typedef {import('./../../config/types').Component} Component
+ * @typedef {import('./../types').DynamicModuleFn} DynamicModuleFn
+ * @typedef {import('./../page-route')} PageRoute
  *
  * @typedef {object} Options
- * @prop {import('./../config/config')} config
+ * @prop {import('./../../config/config')} config
  * @prop {import('@minipress/log').Logger} log
  */
 class Minipress {
@@ -79,7 +80,7 @@ class Minipress {
       this.alias(moduleName, this.tempDir.writeTemp(moduleName, code))
     })
 
-    this.processLayouts()
+    this._processLayouts()
   }
 
   async resumePages() {
@@ -113,16 +114,6 @@ class Minipress {
     this.tempDir.writeTemp('config/index.js', this.config.code)
     await this.resumePages()
     const cleanUrls = this.config.cleanUrls
-    // this.pages.values().forEach(page => {
-    //   const { relativePath } = page
-    //   if (cleanUrls) {
-    //     page._path = '/' + relativePath.replace('.md', '')
-    //   } else {
-    //     page._path = '/' + relativePath.replace('.md', '.html')
-    //   }
-    //   console.log(page._path)
-    //   // page._path = cleanUrls ?  : page.pa
-    // })
     await this.config.components.resume()
     this._processRoutes()
     this.processSiteData()
@@ -133,23 +124,8 @@ class Minipress {
     }
   }
 
-  processLayouts() {
-    const configLayouts = this.config.layouts
-    const themeLayouts = this.config.theme(this.config.themeConfig).layouts
-    const layouts = Object.entries({
-      ...configLayouts,
-      ...themeLayouts
-    })
-
-    const layoutName = name => `mp-layout-${name}`
-    const stringify = JSON.stringify
-    const genImport = path => `() => import(${stringify(path)})`
-    const code = prettifyJs([
-      'export default vue => {',
-      ...layouts.map(([name, path]) => `vue.component(${stringify(layoutName(name))}, ${genImport(path)})`),
-      '}'
-    ].join('\n'))
-    this.tempDir.writeTemp('layouts/index.js', code)
+  _processLayouts() {
+    processLayouts({ config: this.config, tempDir: this.tempDir })
   }
 
   async processSiteData() {
@@ -254,7 +230,7 @@ class Minipress {
   }
 
   /** @param {string} key */
-  /** @param {function(import('./page')=): void} handler */
+  /** @param {function(import('./../page')=): void} handler */
   withPage(key, handler) {
     const page = this.pages.get(key)
     handler(page)
