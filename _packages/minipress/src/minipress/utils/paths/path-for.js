@@ -16,10 +16,10 @@ const withoutQueryAndFragment = path => {
   // matches[0] = hello/index.md?foo=bar#helloworld
   // matches[1] = hello/index.md
   // matches[2] = ?foo=bar#helloworld
-  if(matches == null) {
+  if (matches == null) {
     return
   }
-  if(matches.length < 2) {
+  if (matches.length < 2) {
     throw Error(`Serious internal error: given path ('${path}') seems to be malformed`)
   }
   return matches[1]

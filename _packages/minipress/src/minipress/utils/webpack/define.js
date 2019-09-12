@@ -12,15 +12,13 @@ const stringfify = require('./../stringify')
  * @param {Chain} config
  * @param {Options} options
  */
-const define = (config, { key, value }) => {
-  return config
-    .plugin('define')
-    .tap(([definitions]) => [{
-      ...definitions,
-      [key]: typeof value === 'string' ? stringfify(value) : value
-    }])
-    .end()
-}
+const define = (config, { key, value }) => config
+  .plugin('define')
+  .tap(([definitions]) => [{
+    ...definitions,
+    [key]: typeof value === 'string' ? stringfify(value) : value
+  }])
+  .end()
 
 class Define {
   /** @param {Chain} config */
@@ -30,6 +28,7 @@ class Define {
 
   /** @param {string} key */
   set(key) {
+    // eslint-disable-next-line consistent-this
     const that = this
     const { config } = this
     return {

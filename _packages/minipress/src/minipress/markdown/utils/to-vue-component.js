@@ -42,6 +42,6 @@ const toVueComponent = ({ source, preprocessors }) => {
   </script>
   `
   return component
-};
+}
 
 module.exports = toVueComponent

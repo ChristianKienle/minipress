@@ -35,7 +35,6 @@ class Minipress {
   }
 
 
-
   /** @param {string} name */
   /** @param {string} path */
   alias(name, path) {
@@ -128,7 +127,7 @@ class Minipress {
     this._processRoutes()
     this.processSiteData()
 
-    if(watch === false) {
+    if (watch === false) {
       this.pagesWatcher.close()
       this.config.components.close()
     }
@@ -180,7 +179,7 @@ class Minipress {
   _processRoutes() {
     const routes = this.routes()
     const routesCode = routes.map(route => route.code).join(',\n')
-    const catchAllRouteCode = `,{ name: '404', path: '*', component: { render(h) { return h('h1', {}, '404') } } }\n`
+    const catchAllRouteCode = ',{ name: \'404\', path: \'*\', component: { render(h) { return h(\'h1\', {}, \'404\') } } }\n'
     const _code = routesCode + catchAllRouteCode
     const code = prettifyJs(`export default [${_code}];`)
     this.tempDir.writeTemp('routes/index.js', code)

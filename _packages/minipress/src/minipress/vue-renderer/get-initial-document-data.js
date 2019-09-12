@@ -10,7 +10,7 @@ module.exports = context => {
       link: '',
       style: '',
       headScript: '',
-      bodyScript: `<script src="/_saber/js/client.js" defer></script>`,
+      bodyScript: '<script src="/_saber/js/client.js" defer></script>',
       noscript: '',
       meta: ''
     }

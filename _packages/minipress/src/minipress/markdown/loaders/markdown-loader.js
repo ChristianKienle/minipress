@@ -21,7 +21,7 @@ const defaultPreprocess = function (source) {
   return {
     frontmatter: data,
     processedSource,
-    serializedVueMixin: `{}`
+    serializedVueMixin: '{}'
   }
 }
 /** @typedef {import('./../../core/minipress')} Minipress */
@@ -58,16 +58,16 @@ module.exports = function load(_source, map) {
   const pageStringified = page != null ? page.stringified() : '{}'
   const code = [
     '<template>',
-    `  <MpLayoutManager>`,
+    '  <MpLayoutManager>',
     `    <div class="page-content">${html}</div>`,
     '  </MpLayoutManager>',
     '</template>',
     '<script>',
     'export default {',
-      // 'beforeCreate() {',
-      // `console.log("before create page", ${pageStringified})`,
-      //   `this.$root.$options.minipressOption.page = ${pageStringified};`,
-      // '}',
+    // 'beforeCreate() {',
+    // `console.log("before create page", ${pageStringified})`,
+    //   `this.$root.$options.minipressOption.page = ${pageStringified};`,
+    // '}',
     '}',
     '</script>'
   ].join('\n')

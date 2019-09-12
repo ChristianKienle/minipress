@@ -47,7 +47,7 @@ class MinipressWebpackConfig {
   asseertChains() {
     const { server, client } = this
     if (!isWpConfig(server) || !isWpConfig(client)) {
-      throw Error(`asseertChains expects that setup() has been called already. Make sure to call setup() before using asseertChains.`)
+      throw Error('asseertChains expects that setup() has been called already. Make sure to call setup() before using asseertChains.')
     }
     return { server, client }
   }

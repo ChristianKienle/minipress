@@ -34,7 +34,7 @@ md.use(linkPlugin, {
   externalAttrs: {
     target: '_blank',
     rel: 'noopener noreferrer'
-  },
+  }
 })
 md.use(highlightPlugin)
 

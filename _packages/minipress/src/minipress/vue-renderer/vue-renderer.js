@@ -74,7 +74,7 @@ module.exports = class VueRenderer {
     const outputPath = page.outputFilePath({ outDir })
     this.log.info(`Generating ${path}…`)
 
-    const url = path//Path.posix.join(this.config.build.publicUrl, path)
+    const url = path
     const context = {
       url
     }
@@ -95,18 +95,18 @@ module.exports = class VueRenderer {
     if (serverBundle && clientManifest) {
       // {{{ renderResourceHints() }}}
       // {{{ renderStyles() }}}
-  //     const template = (resolt, context) => {
-  //       console.log(context)
-  //       return `<!DOCTYPE html>
-  // <html lang="en">
-  //   <head>
-  //     <meta charset="UTF-8">
-  //     <meta name="viewport" content="width=device-width, initial-scale=1">
-  //   </head>
-  //   <body><!--vue-ssr-outlet--></body>
-  // </html>`
-  //     };
-      const template =`<!DOCTYPE html>
+      //     const template = (resolt, context) => {
+      //       console.log(context)
+      //       return `<!DOCTYPE html>
+      // <html lang="en">
+      //   <head>
+      //     <meta charset="UTF-8">
+      //     <meta name="viewport" content="width=device-width, initial-scale=1">
+      //   </head>
+      //   <body><!--vue-ssr-outlet--></body>
+      // </html>`
+      //     };
+      const template = `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -231,7 +231,7 @@ module.exports = class VueRenderer {
       }
 
       if (!this.renderer) {
-        return res.end(`Please wait for compilation and refresh..`)
+        return res.end('Please wait for compilation and refresh..')
       }
 
       const render = async () => {

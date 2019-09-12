@@ -16,7 +16,7 @@ describe('from-paths', () => {
     expect(Object.keys(fromPaths([
       '/hello/world.js',
       '/bla/hihi.vu',
-      'bla.js',
+      'bla.js'
     ]))).toHaveLength(0)
   })
 })

@@ -42,14 +42,13 @@ module.exports = class Pages {
     if (page instanceof Page) {
       this._setPage(key, page)
       return page
-    } else {
-      const _page = new Page({
-        key: page.createKey(),
-        ...page
-      })
-      this._setPage(key, _page)
-      return _page
     }
+    const _page = new Page({
+      key: page.createKey(),
+      ...page
+    })
+    this._setPage(key, _page)
+    return _page
   }
 
   /** @param {string} key */

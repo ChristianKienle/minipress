@@ -1,9 +1,7 @@
 // @ts-check
-const { VueRenderer } = require('./../../../minipress/vue-renderer')
 const { setNodeEnv } = require('./../../utils')
-
-var express = require('express')
-var serveStatic = require('serve-static')
+const express = require('express')
+const serveStatic = require('serve-static')
 const path = require('path')
 
 /**
@@ -36,12 +34,11 @@ module.exports = ({ minipress, cli }) => {
           // app.options.p
           const listener = app.listen(port, () => {
             const addr = listener.address()
-            if(typeof addr !== 'object' || addr == null) {
+            if (typeof addr !== 'object' || addr == null) {
               throw Error('invalid address')
             }
             log.info(`minipress is running on http://${addr.address}:${addr.port}`)
           })
-
         })()
       } catch (err) {
         log.error('Error during serve', err)

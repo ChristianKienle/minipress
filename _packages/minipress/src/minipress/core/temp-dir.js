@@ -9,7 +9,6 @@ const { writeFileSync, mkdirSync, openSync, fstatSync } = require('fs')
  */
 
 module.exports = class TempDir {
-
   /** @param {Options} options */
   constructor({ path }) {
     this.path = path

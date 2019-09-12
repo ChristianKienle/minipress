@@ -81,7 +81,9 @@ const languageAlias = {
 }
 
 module.exports = (code, lang) => {
-  if (!lang) return Prism.highlight(code, {})
+  if (!lang) {
+    return Prism.highlight(code, {})
+  }
 
   lang = lang.toLowerCase()
 

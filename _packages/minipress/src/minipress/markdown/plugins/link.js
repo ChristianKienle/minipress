@@ -1,5 +1,4 @@
 // @ts-check
-const url = require('url')
 const { stringify } = require('./../../utils')
 const { pathFor } = require('./../../utils/paths')
 
@@ -7,21 +6,12 @@ const { pathFor } = require('./../../utils/paths')
 // 1. adding target="_blank" to external links
 // 2. converting internal links to <router-link>
 
-const indexRE = /(^|.*\/)(index|readme).md(#?.*)$/i
-const beginningSlashRE = /^\.\//
-const renderOutboundLink = () => `<MpOutboundLink />`
-
-function ensureBeginningDotSlash(path) {
-  if (beginningSlashRE.test(path)) {
-    return path
-  }
-  return `./${path}`
-}
+const renderOutboundLink = () => '<MpOutboundLink />'
 
 module.exports = (md, {cleanUrls, externalAttrs}) => {
   function toRouterLink(token, link, relativePath) {
     link[0] = ':to'
-    let to = pathFor({ href: link[1], currentRelativePagePath: '/' + relativePath })
+    const to = pathFor({ href: link[1], currentRelativePagePath: `/${relativePath}` })
     // link[1]
 
     // convert link to filename and export it for existence check

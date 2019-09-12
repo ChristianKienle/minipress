@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
-    "eslint": "^6.1.0"
+    "eslint": "^6.1.0",
+    "eslint-plugin-jest": "^22.17.0"
   },
   "dependencies": {
     "@zeit/eslint-config-node": "^0.3.0"

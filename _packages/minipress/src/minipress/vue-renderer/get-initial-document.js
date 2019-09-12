@@ -15,8 +15,7 @@ module.exports = ({
   bodyAttrs,
   headAttrs,
   htmlAttrs
-}) => {
-  return `
+}) => `
     <html${prefixSpace(htmlAttrs)}>
       <head${prefixSpace(headAttrs)}>
         <meta charset="UTF-8" />
@@ -31,4 +30,3 @@ module.exports = ({
       </body>
     </html>
   `
-}

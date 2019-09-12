@@ -14,6 +14,5 @@ describe('toPath', () => {
     expect(toPath('themes/clean.md')).toBe('/themes/clean.html')
     expect(toPath('themes/minimal/index.md')).toBe('/themes/minimal/')
     expect(toPath('themes/minimal/clean.md')).toBe('/themes/minimal/clean.html')
-
   })
 })

@@ -5,9 +5,9 @@ const _pathFor = (href, currentRelativePagePath) => pathFor({ href, currentRelat
 describe('absolutePathFor', () => {
   it('works', () => {
     expect(_pathFor('./guide.md', '/index.md'))
-    .toBe('/guide.md')
+      .toBe('/guide.md')
 
     expect(_pathFor('./../guide.md', '/themes/index.md'))
-    .toBe('/guide.md')
+      .toBe('/guide.md')
   })
 })

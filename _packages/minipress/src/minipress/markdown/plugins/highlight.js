@@ -13,13 +13,13 @@ const parseOptions = str => {
 }
 
 const generateLineNumbers = code =>
-  '<span aria-hidden="true" class="saber-highlight-line-numbers">' +
-  code
-    .trim()
-    .split('\n')
-    .map(() => `<span></span>`)
-    .join('') +
-  '</span>'
+  `<span aria-hidden="true" class="saber-highlight-line-numbers">${
+    code
+      .trim()
+      .split('\n')
+      .map(() => '<span></span>')
+      .join('')
+  }</span>`
 
 module.exports = (
   md,
@@ -50,16 +50,15 @@ module.exports = (
 
     const highlightLines = fenceOptions.highlightLines
       ? fenceOptions.highlightLines.map(v =>
-          `${v}`.split('-').map(v => parseInt(v, 10))
-        )
+        `${v}`.split('-').map(v => parseInt(v, 10)))
       : []
 
     const codeMask =
       highlightLines.length === 0
         ? ''
         : `<div class="saber-highlight-mask${
-            langClass ? ` ${langClass}` : ''
-          }">` +
+          langClass ? ` ${langClass}` : ''
+        }">${
           md.utils
             .escapeHtml(token.content)
             .split('\n')
@@ -82,17 +81,17 @@ module.exports = (
 
               return `<div class="code-line">${split}</div>`
             })
-            .join('') +
-          '</div>'
+            .join('')
+        }</div>`
 
     const renderAttrs = attrs => self.renderAttrs({ attrs })
     const shouldGenerateLineNumbers =
       // It might be false so check for undefined
       fenceOptions.lineNumbers === undefined
         ? // Defaults to global config
-          lineNumbers
+        lineNumbers
         : // If it's set to false, even if the global config says true, ignore
-          fenceOptions.lineNumbers
+        fenceOptions.lineNumbers
     const lines = shouldGenerateLineNumbers ? generateLineNumbers(code) : ''
 
     const preAttrs = renderAttrs([
