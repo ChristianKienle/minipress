@@ -1,6 +1,6 @@
 {
   "name": "@minipress/eslint-config-node",
-  "version": "0.1.1-alpha.10",
+  "version": "0.1.1-alpha.11",
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
