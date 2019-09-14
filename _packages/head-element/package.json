@@ -1,0 +1,24 @@
+{
+  "name": "@minipress/head-element",
+  "version": "0.1.1-alpha.11",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest ."
+  },
+  "private": false,
+  "dependencies": {
+    "@minipress/code-gen": "^0.1.1-alpha.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0"
+  },
+  "types": "index.d.ts",
+  "files": [
+    "src/*.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

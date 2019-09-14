@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
     "target": "esnext",
     "module": "commonjs",
     "resolveJsonModule": true,
-    "strict": false,
-    "moduleResolution": "node"
+    "strict": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false
   },
   "include": ["**/*.js"]
 }

@@ -2,14 +2,14 @@
 const Minipress = require('./../core/minipress')
 const Process = require('process')
 const { cac } = require('cac')
-const { log } = require('@minipress/log')
-const { resolve } = require('path')
+const log = require('@minipress/log')
+const Path = require('path')
+const { resolve } = Path
 const fs = require('fs')
 const { Config } = require('./../config')
 const installDevCommand = require('./commands/dev')
 const installServeCommand = require('./commands/serve')
 const installGenerateCommand = require('./commands/generate')
-
 const loadConfig = configOptionValue => {
   if (configOptionValue == null) {
     return Config.fromUserProvidedConfig()
@@ -26,15 +26,18 @@ const loadConfig = configOptionValue => {
 const run = async () => {
   try {
     const cli = cac()
-    cli.option('--config <file>', 'spefify config', {
-      'default': resolve(Process.cwd(), '.minipress', 'config.js')
+    cli.option('--config <file>', 'specify a config file', {
+      'default': resolve(Process.cwd(), 'minipress.config.js')
     })
     cli.option('--mode <mode>', 'spefify mode', {
       'default': 'development'
     })
     const config = (() => {
-      const args = cli.parse(Process.argv, { run: false })
-      return loadConfig(args.options.config)
+      const { options } = cli.parse(Process.argv, { run: false })
+      const { config } = options
+      const envPath = Path.join(Path.dirname(config), '.env')
+      require('dotenv').config({ path: envPath })
+      return loadConfig(config)
     })()
     const minipress = new Minipress({
       config,

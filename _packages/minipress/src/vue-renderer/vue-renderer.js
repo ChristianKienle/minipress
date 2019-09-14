@@ -1,36 +1,56 @@
 // @ts-check
 const fs = require('fs-extra')
 const Path = require('path')
+const { stringify } = require('@minipress/utils')
 const createWebpack = require('webpack')
-const readJSON = (file, readFile = fs.readFileSync) => JSON.parse(readFile(file, 'utf8'))
+const { replacePrefix, readJson } = require('./utils')
 const createHotMiddleware = require('webpack-hot-middleware')
 const createDevMiddleware = require('webpack-dev-middleware')
+const { createBundleRenderer } = require('vue-server-renderer')
+// @ts-ignore
 const createServer = require('polka')
 const {
   runCompiler,
   logStats
 } = require('./../utils/webpack')
+const createTemplate = require('./template')
+const Head = require('@minipress/head-element')
+const getPageOutputFilepath = require('./get-page-output-filepath')
 
 /** @typedef {import('vue-server-renderer').BundleRenderer} BundleRenderer */
+/** @typedef {import('@minipress/types').EmittablePage} EmittablePage */
 
 module.exports = class VueRenderer {
-  /**
-   * @typedef {object} Options
-   * @prop {import('./../core/webpack-config')} webpack
-   * @prop {import('@minipress/log/src/logger')} log
-   * @prop {import('./../config/config')} config
-   */
-  /** @param {Options} options */
-  constructor({ webpack, log, config }) {
-    this.config = config
-    this.log = log
-    this.webpack = webpack
+  /** @param{import('./../core/minipress/minipress')} minipress */
+  constructor(minipress) {
     this.renderer = null
+    this.minipress = minipress
+  }
+
+  get config() {
+    return this.minipress.config
+  }
+  get log() {
+    return this.minipress.log
+  }
+
+  /** @param {string} url */
+  async createContext(url) {
+    const head = new Head()
+      .title('')
+      .description('')
+    await this.minipress.hooks.getHead.promise(head, url)
+
+    return {
+      url,
+      head: head.renderToString()
+    }
   }
 
   async build() {
     await fs.emptyDir(this.config.dest)
-    const { client, server } = this.webpack.configs()
+    const client = await this.minipress.getWebpackConfig('client')
+    const server = await this.minipress.getWebpackConfig('server')
     const clientCompiler = createWebpack(client)
     const serverCompiler = createWebpack(server)
     await Promise.all([
@@ -39,13 +59,13 @@ module.exports = class VueRenderer {
     ])
   }
 
-  /** @param {{ pages: Page[]; outDir: string; dest: string }} options */
+  /** @param {{ pages: EmittablePage[]; outDir: string; dest: string }} options */
   async generate({ pages, outDir, dest }) {
     await fs.emptyDir(outDir)
-    const serverBundle = readJSON(
+    const serverBundle = readJson(
       this.serverBundlePath({ dest })
     )
-    const clientManifest = readJSON(
+    const clientManifest = readJson(
       this.clientManifestPath({ dest })
     )
     const renderer = this.initRenderer({ serverBundle, clientManifest })
@@ -59,56 +79,55 @@ module.exports = class VueRenderer {
     await fs.copy(dest, destOutPath)
   }
 
-  /** @typedef {import('./../core/page')} Page */
-  /** @param {{ page: Page; renderer: BundleRenderer; outDir: string }} options */
+  /** @param {{ page: EmittablePage; renderer: BundleRenderer; outDir: string }} options */
   async generatePage({ page, renderer, outDir }) {
     const { path } = page
-    const outputPath = page.outputFilePath({ outDir })
-    this.log.info(`Generating ${path}…`)
-    const context = { url: path }
+    if(path == null) {
+      this.log.debug(`Cannot generate page ${stringify(page.file)} – path is null.`)
+      return
+    }
+    const outputPath = getPageOutputFilepath(page, { outDir })
+    if(outputPath == null) {
+      this.log.debug(`Cannot generate page ${stringify(page.file)} – outputPath could not be determined.`)
+      return
+    }
+    this.log.info(`${path} → ${outputPath}…`)
+    const context = await this.createContext(path)
     const markup = await renderer.renderToString(context)
-    const initialDocumentData = require('./get-initial-document-data')(
-      context
-    )
-    context.documentData = initialDocumentData
     const html = markup.replace('<div data-server-rendered="true">', '<div data-server-rendered="true" id="app">')
     this.log.info(`${path} generated (${html.length} bytes)`)
     const outPath = outputPath
     await fs.outputFile(outPath, html)
   }
 
+  /**
+   * @param {{serverBundle?: object, clientManifest?: object}} bundles
+   */
   initRenderer({ serverBundle, clientManifest }) {
-    const { createBundleRenderer } = require('vue-server-renderer')
-
     if (serverBundle && clientManifest) {
-      const template = `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body><!--vue-ssr-outlet--></body>
-  </html>`
+      const template = createTemplate()
       // @ts-ignore
       this.renderer = createBundleRenderer(serverBundle, {
         template,
         clientManifest,
-        runInNewContext: true,
+        inject: false,
+        runInNewContext: false,
         shouldPrefetch: () => true,
-        shouldPreload: (file, type) => type === 'style',
+        shouldPreload: (_, type) => type === 'script' || type === 'style',
         basedir: Path.resolve(__dirname, '..', 'dist-server')
       })
     }
     return this.renderer
   }
 
-  /** @param {createWebpack.Configuration} config */
-  /** @returns {string} */
+  /**
+   * @param {createWebpack.Configuration} config
+   * @returns {string}
+   */
   _publicPathFromConfig(config) {
-    // return this.config.build.publicUrl
-    const { publicPath = null } = (config.output || {})
+    const publicPath = config.output && config.output.publicPath
     if (publicPath != null) {
-      return publicPath// + '_minipress/'
+      return publicPath
     }
     throw Error('config.output.publicPath cannot be undefined/null')
   }
@@ -124,10 +143,13 @@ module.exports = class VueRenderer {
   }
 
   /** @param {{ dest: string }} options */
-  getRequestHandler({ dest }) {
+  async getRequestHandler({ dest }) {
+    const clientConfig = await this.minipress.getWebpackConfig('client')
+    const serverConfig = await this.minipress.getWebpackConfig('server')
+
     const server = createServer()
+
     /** @type {createWebpack.Configuration} */
-    const clientConfig = this.webpack.client.toConfig()
     // @ts-ignore
     clientConfig.plugins.push(new createWebpack.HotModuleReplacementPlugin())
     const clientCompiler = createWebpack(clientConfig)
@@ -136,12 +158,7 @@ module.exports = class VueRenderer {
       publicPath: this._publicPathFromConfig(clientConfig)
     })
 
-    const hotMiddleware = createHotMiddleware(clientCompiler, {
-      log: false
-    })
-    clientCompiler.hooks.watchRun.tap('saber-serve', () => {
-      // event.emit('rebuild')
-    })
+    const hotMiddleware = createHotMiddleware(clientCompiler, { log: false })
     clientCompiler
       .hooks
       .done
@@ -149,13 +166,14 @@ module.exports = class VueRenderer {
         logStats(stats, { log: this.log, level: 'errors-only' })
       })
 
-    const serverConfig = this.webpack.server.toConfig()
     const serverCompiler = createWebpack(serverConfig)
     // @ts-ignore
     const mfs = new createWebpack.MemoryOutputFileSystem()
     serverCompiler.outputFileSystem = mfs
 
+    /** @type {object=} */
     let serverBundle
+    /** @type {object=} */
     let clientManifest
 
     serverCompiler.hooks.done.tap('minipress-requestHandler', stats => {
@@ -163,7 +181,7 @@ module.exports = class VueRenderer {
         logStats(stats, { log: this.log, level: 'errors-only' })
         return
       }
-      serverBundle = readJSON(this.serverBundlePath({ dest }), mfs.readFileSync.bind(mfs))
+      serverBundle = readJson(this.serverBundlePath({ dest }), mfs.readFileSync.bind(mfs))
       this.initRenderer({ serverBundle, clientManifest })
     })
 
@@ -172,7 +190,7 @@ module.exports = class VueRenderer {
         logStats(stats, { log: this.log, level: 'errors-only' })
         return
       }
-      clientManifest = readJSON(
+      clientManifest = readJson(
         this.clientManifestPath({ dest }),
         // @ts-ignore
         clientCompiler.outputFileSystem.readFileSync.bind(
@@ -186,25 +204,29 @@ module.exports = class VueRenderer {
     server.use(devMiddleware)
     server.use(hotMiddleware)
 
-    server.get('*', async (req, res) => {
+    server.get('*', async (
+      /** @type {any} */ req,
+      /** @type {any} */ res
+    ) => {
       if (!req.headers.accept || !req.headers.accept.includes('text/html')) {
         res.statusCode = 404
         return res.end('404')
       }
 
-      if (!this.renderer) {
+      const { renderer } = this
+      if (renderer == null) {
         return res.end('Please wait for compilation and refresh..')
       }
 
       const render = async () => {
-        this.log.info(`Rendering page ${req.url}`)
+        // Replace the base with /. Somehow this is needed.
+        // If req.url is /minipress/config then replacePrefix will yield
+        // /config. We could probably work around this by fixing the routes or something…
+        const url = replacePrefix(req.url, this.config.build.base, '/')
+        this.log.info(`Rendering page ${url}`)
+        const context = await this.createContext(url)
+        const markup = await renderer.renderToString(context)
 
-        const context = {
-          url: req.url.replace(this.config.build.base, '/')
-        }
-        const markup = (this.renderer
-          ? await this.renderer.renderToString(context)
-          : '$&')
         const html = markup.replace('<div data-server-rendered="true">', '<div data-server-rendered="true" id="app">')
         res.setHeader('content-type', 'text/html')
         res.end(html)

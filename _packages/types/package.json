@@ -1,0 +1,13 @@
+{
+  "name": "@minipress/types",
+  "version": "0.1.1-alpha.11",
+  "files": [
+    "types/*.d.ts"
+  ],
+  "devDependencies": {
+    "@types/joi": "^14.3.3"
+  },
+  "types": "types/index.d.ts",
+  "main": "index.ts",
+  "license": "ISC"
+}

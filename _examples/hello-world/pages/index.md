@@ -1,10 +1,17 @@
----
-hello: chris
----
+# hi
+dddsss
+## minssipress page
 
+<Content pageKey="virtual" />
 
-# H1
-## H2
-### H3
-#### H4
+fsdf
+## hello
 
+## world
+
+## bla bla
+
+### blupp
+
+ [hello.md](./hello.html)
+ [test.vue](./test.html)

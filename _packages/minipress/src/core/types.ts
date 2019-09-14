@@ -6,6 +6,6 @@ export interface PageMeta {
   }
 }
 
-import Minpress from './minipress'
+import Minipress from './minipress/minipress'
 
-export type DynamicModuleFn = ({ context: Minpress }) => { code: string }
+export type DynamicModuleFn = (args: { context: Minipress }) => { code: string }

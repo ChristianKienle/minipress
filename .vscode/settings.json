@@ -15,5 +15,6 @@
   },
   "peacock.color": "#42b883",
   "debug.node.autoAttach": "on",
-  "eslint.enable": false
+  "eslint.enable": false,
+  "stylint.enable": true
 }

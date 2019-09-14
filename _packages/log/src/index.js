@@ -2,7 +2,5 @@
 const Logger = require("./logger")
 const log = new Logger()
 
-module.exports = {
-  Logger,
-  log
-}
+module.exports = log
+

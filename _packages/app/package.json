@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve demo",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --no-fix",
     "test:unit": "vue-cli-service test:unit"
   },
   "publishConfig": {
@@ -23,6 +23,7 @@
     "prismjs": "^1.17.1"
   },
   "peerDependencies": {
+    "webpack-hot-middleware": "^2.25.0",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",

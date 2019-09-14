@@ -5,11 +5,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev --config .minipress/config.js",
-    "dev": "minipress dev --config .minipress/config.js",
-    "gen": "minipress generate --config .minipress/config.js",
+    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev",
+    "dev": "minipress dev",
+    "gen": "minipress generate",
     "serve": "minipress serve",
-    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate --config .minipress/config.js"
+    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   ],
   "dependencies": {
     "@minipress/minipress": "^0.1.1-alpha.11",
-    "@minipress/minipress-theme-docs": "^0.1.1-alpha.11",
-    "express": "^4.17.1",
-    "serve-static": "^1.14.1"
+    "@minipress/theme-docs": "^0.1.1-alpha.11",
+    "@minipress/plugin-additional-pages": "^0.1.1-alpha.11",
+    "@minipress/plugin-clean-urls": "^0.1.1-alpha.11"
   },
   "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
 }

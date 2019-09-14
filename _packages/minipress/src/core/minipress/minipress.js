@@ -1,240 +1,445 @@
 // @ts-check
-const MinipressWebpackConfig = require('./../webpack-config')
-const enableMarkdownSupport = require('./../../markdown')
 const TempDir = require('./../temp-dir')
+const Components = require('./components')
+const Layouts = require('./layouts')
+const Plugins = require('./plugins')
+const Path = require('path')
+const { AsyncSeriesHook } = require('tapable')
+const codeGen = require('@minipress/code-gen')
+const createRoutes = require('./create-routes')
+const Transformers = require('./transformers')
 const Pages = require('./../pages')
-const Components = require('./../components')
-const { prettifyJs } = require('./../../utils')
-const MarkdownRenderer = require('./../../markdown/renderer')
-const processLayouts = require('./process-layouts')
+const Aliases = require('./aliases')
+const DynamicModules = require('./dynamic-modules')
+const PageTransformers = require('./page-transformers')
+const { VueRenderer } = require('./../../vue-renderer')
+const { setNodeEnv } = require('@minipress/utils')
+const Joi = require('joi')
+const {
+  createBaseConfig,
+  createServerConfig,
+  createClientConfig
+} = require('./../../webpack')
+const http = require('http')
+const PageMutations = require('./page-mutations')
+const ContentComponents = require('./content-components')
 
 /**
- * @typedef {import('./../../config/types')._Page} _Page
+ *
+ * @param {Page} page
+ */
+const pageForSiteData = page => {
+  const { content = '' } = page
+  const maxIndex = Math.min(content.length, 256)
+  return {
+    ...page,
+    content: content.substring(0, maxIndex)
+  }
+}
+
+/**
+ * @typedef {import('./../../config/types')._ResolvedPlugin} _ResolvedPlugin
+ * @typedef {import('./../../config/types').InvokedPlugin} InvokedPlugin
  * @typedef {import('./../../config/types').Component} Component
  * @typedef {import('./../types').DynamicModuleFn} DynamicModuleFn
- * @typedef {import('./../page-route')} PageRoute
+ * @typedef {import('@minipress/types').Page} Page
  *
  * @typedef {object} Options
  * @prop {import('./../../config/config')} config
- * @prop {import('@minipress/log').log} log
+ * @prop {import('@minipress/log')} log
  */
 class Minipress {
-  /** @param {Options} options */
+  /**
+   * @param {Options} options
+   */
   constructor({ config, log }) {
+    this.hooks = {
+      // Called as early as possible:
+      // A minipress.config.js can expose a apply(…) function that gives
+      // the user a chance to register for hooks pretty early on.
+      // applyConfig: new AsyncSeriesHook(),
+      // Called right at the start of the run(…)-method
+      beforeRun: new AsyncSeriesHook(),
+      // Called right before a webpack config is requested.
+      // This allows you to modify to webpack chain before it is used
+      // to create the actual config object.
+      // chain: A webpack chain
+      // type: either 'client' or 'server'
+      chainWebpack: new AsyncSeriesHook(['chain', 'type']),
+      // config: A webpack config object
+      // type: either 'client' or 'server'
+      getWebpackConfig: new AsyncSeriesHook(['config', 'type']),
+
+      // Called during the render process (vue-renderer)
+      // This is called multiple times so it should not take a lot of time to compute
+      // the head. Each iteration of getHead(…) begins with a new head-instance.
+      // Last one wins.
+      getHead: new AsyncSeriesHook([
+        'head', // instance of @minipress/head-element
+        'page' // a page - currently the page is just the req.url (TODO)
+      ]),
+      // Called multiple times – each time with a fresh empty object.
+      // Each plugin simply should mutate the object.
+      configureSiteData: new AsyncSeriesHook(['siteData']),
+      emitSiteData: new AsyncSeriesHook(['siteData']),
+      // Called as soon miniPress wants to have the initial set of pages – called only once
+      initialPages: new AsyncSeriesHook(),
+      registerDynamicModules: new AsyncSeriesHook(),
+      emitDynamicModules: new AsyncSeriesHook(),
+      registerAliases: new AsyncSeriesHook(),
+      registerComponents: new AsyncSeriesHook(),
+      registerTransformers: new AsyncSeriesHook(),
+      registerContentComponents: new AsyncSeriesHook(),
+      emitContentComponents: new AsyncSeriesHook(),
+      registerLayouts: new AsyncSeriesHook(),
+      emitPages: new AsyncSeriesHook(),
+      emitRoutes: new AsyncSeriesHook(),
+      mutatePages: new AsyncSeriesHook(['mutations']),
+      // called before plugins are applied
+      // applying a plugin simply calls its 'apply(…)'-function
+      // This is your last chance to register more plugins
+      beforePlugins: new AsyncSeriesHook(),
+      // called after plugins are applied.
+      // This is useful to hook into Minpress and (more or less) ensure that
+      // you are the last one being invoked on a certain hook.
+      // It cannot be garantueed since you can do almost anything with our
+      // hooks – but well – this is our best bet.
+      afterPlugins: new AsyncSeriesHook()
+    }
+    this.plugins = new Plugins()
     this.config = config
-    this.webpack = new MinipressWebpackConfig({ config, log })
     this.log = log
     this.tempDir = new TempDir({ path: config.tempDir })
-    /** @type {PageRoute[]} */ this.additionalRoutes = []
     this._initialized = false
-    this.pages = new Pages()
     this.components = new Components()
-    /** @type {Map<string, DynamicModuleFn>} */
-    this.dynamicModules = new Map()
-    this.markdownRenderer = new MarkdownRenderer()
-    this.markdownRenderer.init({ cleanUrls: config.cleanUrls })
+    this.contentComponents = new ContentComponents()
+    this.layouts = new Layouts()
+    this.transformers = new Transformers()
+    this.pages = new Pages(this)
+    this.aliases = new Aliases(this)
+    this.dynamicModules = new DynamicModules(this)
+    this.watch = true
+    this.pageTransformers = new PageTransformers()
+    this.aliases.register('#minipress/site-data', this.tempDir.resolveTemp('site-data/index.js'))
+    this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
+      const pages = this.pages.values()//.map(page => page)
+      const _siteData = {
+        pages: pages.map(pageForSiteData),
+        ...siteData,
+      }
+      const code = codeGen.js(c => `export default ${c.stringify(_siteData)}`)
+      this.tempDir.writeTemp('site-data/index.js', code)
+    })
+    // this.hooks.beforeRun.tapPromise('minipress - site data', async () => {
+    //   await this.hooks.emitSiteData.promise()
+    // })
+    this.vueRenderer = new VueRenderer(this)
   }
 
+  get joi() {
+    return Joi
+  }
 
-  /** @param {string} name */
-  /** @param {string} path */
-  alias(name, path) {
-    /** @param {import('webpack-chain')} config */
-    const addAlias = config => {
-      config.resolve.alias.set(name, path)
+  async getSiteData() {
+    const siteData = {}
+    await this.hooks.configureSiteData.promise(siteData)
+    await this.hooks.emitSiteData.promise(siteData)
+    return siteData
+  }
+  /**
+   * @param {'client' | 'server'} type
+   */
+  async getWebpackConfig(type) {
+    const { config } = this
+    const { dest } = config
+    const baseOptions = {
+      dest,
+      isServer: type === 'server',
+      minipressConfig: this.config
     }
-    const { server, client } = this.webpack.asseertChains()
-    addAlias(server)
-    addAlias(client)
+    const base = createBaseConfig(baseOptions)
+    const chain = type === 'server' ? createServerConfig(base, baseOptions) : createClientConfig(base, baseOptions)
+
+    // Inform our plugins about the chain
+    await this.hooks.chainWebpack.promise(chain, type)
+
+    // Now create the actual webpack config and inform all plugins
+    const webpackConfig = chain.toConfig()
+    await this.hooks.getWebpackConfig.promise(webpackConfig, type)
+    return webpackConfig
   }
 
-  // Initializes the minipress instance.
-  // This method must be called before calling any other method.
-  // We don't call init(…) automatically in the ctor because we have to give
-  // the whole system a chance to configure webpack and the minipress configuration.
-  _init() {
-    const { componentsWatcher, pagesWatcher } = this
-    pagesWatcher.onAdded(page => this._pageAdded(page))
-    pagesWatcher.onRemoved(page => this._pageRemoved(page))
-    pagesWatcher.onChanged(page => this._pageChanged(page))
+  /**
+   * @typedef {object} GenerateOptions
+   * @prop {('development' | 'production')=} [mode=production]
+   * @prop {string} outDir
+   *
+   * @param {GenerateOptions} options
+   */
+  async generate({ outDir, mode = 'production' }) {
+    this.watch = false
+    setNodeEnv(mode)
+    await this.prepare()
+    await this.run()
+    const { vueRenderer } = this
+    await vueRenderer.build()
+    const pages = this.pages.values()
+    const dest = this.config.dest
+    await vueRenderer.generate({ pages, outDir, dest })
+  }
+  /**
+   * @typedef {object} ServeOptions
+   * @prop {boolean=} [watch=true]
+   * @prop {('development' | 'production')=} [mode=development]
+   * @prop {number} port
+   * @prop {string} host
+   *
+   * @param {ServeOptions} options
+   */
+  async serve({
+    port,
+    host,
+    watch = true,
+    mode = 'development'
+  }) {
+    this.watch = watch
+    setNodeEnv(mode)
+    await this.prepare()
+    const { vueRenderer, log } = this
+    try {
+      const requestHandler = await vueRenderer.getRequestHandler({ dest: this.config.dest })
+      const server = http.createServer(requestHandler)
+      server.listen(port, host, () => {
+        log.info(`minipress is running on http://${host}:${port}`)
+      })
+    } catch (err) {
+      log.error(`Error during runCompiler: ${err}`)
+    }
+    await this.run()
+  }
 
-    componentsWatcher.onAdded(component => this._componentAdded(component))
-    componentsWatcher.onRemoved(component => this._componentRemoved(component))
-    componentsWatcher.onChanged(component => this._componentChanged(component))
+  // Everything that needs to be done exactly once goes into prepare(…)
+  async prepare() {
+    this.cleanTempDir()
 
-    enableMarkdownSupport({ webpack: this.webpack, minipress: this })
+    // Register default Transformers
+    this.use('@minipress/plugin-format-markdown')
+    this.use('@minipress/plugin-format-vue')
 
-    const aliases = ['config', 'pages', 'layouts', 'routes', 'components', 'site-data']
+    this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
+      this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
+        const pages = this.pages.values()
+        pages.forEach(route => {
+          this.contentComponents.register(route.key, { id: route.key, absolutePath: route.file.absolute })
+        })
+      })
+
+      this.hooks.emitRoutes.tapPromise('minipress-prepare', async () => {
+        await this.hooks.registerContentComponents.promise()
+        await this.hooks.emitContentComponents.promise()
+        this.emitContentComponents()
+        const { code } = createRoutes(this.pages.values())
+        this.tempDir.writeTemp('routes/index.js', code)
+      })
+    })
+
+    // Give minipress.config.js a chance to do something
+    await this.config.apply(this)
+
+    // tell everyone that we are about to apply all plugins
+    await this.hooks.beforePlugins.promise()
+    await this.applyPlugins()
+    await this.hooks.afterPlugins.promise()
+
+    // Give plugins a chance to register transformers
+    await this.hooks.registerTransformers.promise()
+
+    this._enableUniversalPageLoaderSupport()
+    this.pages.createAlias()
+
+    const aliases = ['async-data', 'content-components', 'layouts', 'routes', 'components', 'site-data']
     aliases.forEach(alias => {
       const name = `#minipress/${alias}`
-      const path = `${alias}/index.js`
-      const initialContent = ''
+      const path = this.tempDir.resolveTemp(`${alias}/index.js`)
       // writeTemp(…) returns the absolute path for the relative
       // path passed as the first argument.
-      this.alias(name, this.tempDir.writeTemp(path, initialContent))
+      this.aliases.register(name, path)
     })
 
-    // Dynamic Modules
-    Object.entries(this.config.dynamicModules({ context: this })).map(([name, code]) => {
-      const moduleName = `#minipress/dynamic/${name}`
-      this.alias(moduleName, this.tempDir.writeTemp(moduleName, code))
+    // Setup Default Theme + Layouts
+    const defaultThemePath = require.resolve('@minipress/theme-default/package.json')
+    const defaultLayoutPath = Path.join(Path.dirname(defaultThemePath), 'src', 'layouts', 'default.vue')
+    this.layouts.register('default', defaultLayoutPath)
+    await this.hooks.registerLayouts.promise()
+    this.emitToLayouts()
+
+    await this.hooks.registerDynamicModules.promise()
+    await this.hooks.emitDynamicModules.promise()
+
+    await this.hooks.registerAliases.promise()
+    await this.hooks.registerComponents.promise()
+    await this.hooks.registerContentComponents.promise()
+
+    this.emitComponents()
+    this.emitContentComponents()
+  }
+
+  /**
+   * @param {string} id
+   * @param {any=} options
+   */
+  use(id, options) {
+    this.plugins.use(id, options)
+  }
+
+  applyPlugins() {
+    return this.plugins.applyPlugins(this)
+  }
+
+  _enableUniversalPageLoaderSupport() {
+    /** @param {import('webpack-chain')} config */
+    const enableFor = config => {
+      // FIXME
+      const VueLoaderOptions = { extractCSS: false }
+
+      const supportedExtensions = ['minipresspage', 'md', 'vue']
+      const pageExtensions = supportedExtensions
+        .map(ext => new RegExp(`\\.${ext}$`))
+
+      config
+        .module
+        .rule('vue')
+        .test(/\.vue$/)
+        .use('vue-loader')
+        .loader('vue-loader')
+        .options(VueLoaderOptions)
+        .end()
+        .use('minipress-page-loader')
+        .loader(require.resolve('./universal-page-loader'))
+        .options({
+          minipress: this
+        }).end()
+
+      config.module
+        .rule('minipress-page')
+        .test(pageExtensions)
+        // @ts-ignore
+        .resourceQuery(query => /minipresspage/.test(query))
+        .use('vue-loader')
+        .loader('vue-loader')
+        .options(VueLoaderOptions)
+        .end()
+        .use('minipress-page-loader')
+        .loader(require.resolve('./universal-page-loader'))
+        .options({
+          minipress: this
+        }).end()
+
+      // Handle `<page-prop>` block in .vue file
+      config.module
+        .rule('page-prop')
+        .type('javascript/auto')
+        // @ts-ignore
+        .resourceQuery(/blockType=page-prop/)
+        .use('page-prop-loader')
+        .loader(require.resolve('./page-prop-loader'))
+        .options({
+          minipress: this
+        })
+
+      config.module
+        .rule('layout-block')
+        .type('javascript/auto')
+        // @ts-ignore
+        .resourceQuery(/blockType=layout/)
+        .use('layout-block-loader')
+        .loader(require.resolve('./layout-block-loader'))
+        .options({
+          minipress: this
+        })
+
+    }
+
+    this.hooks.chainWebpack.tapPromise('_enableUniversalPageLoaderSupport', async config => {
+      enableFor(config)
     })
-
-    this._processLayouts()
   }
 
-  async resumePages() {
-    const allPages = await this.pagesWatcher.resume()
-    await this._processPages(allPages)
+  cleanTempDir() {
+    const { tempDir, log } = this
+    this.tempDir.clean()
+    log.actionSucceed(`Cleaned temporary directory at '${tempDir.path}'`)
   }
 
-  /** @param {_Page[]} pages */
-  async _processPages(pages) {
-    await Promise.all(
-      pages.map(page => this._processPage(page))
-    )
+  /**
+   * @param {Page} page
+   */
+  async addPage(page) {
+    return await this.pages.createPage(page)
   }
 
-  /** @param {_Page} _page */
-  async _processPage(_page) {
-    const page = await this._pageAdded(_page)
-    return page.process({ renderer: this.markdownRenderer })
+  /**
+   *
+   * @param {string} alias
+   * @param {string} content
+   * @param {{path: string}} [options={path: 'index.js'}]
+   */
+  _writeToAlias(alias, content, options = { path: 'index.js' }) {
+    const path = `${alias}/${options.path}`
+    return this.tempDir.writeTemp(path, content)
+  }
+
+  /**
+   * @param {string} pageKey
+   * @param {object} content
+   */
+  _writeAsyncData(pageKey, content) {
+    const code = codeGen.js(c => `export default () => (${c.stringify(content)})`)
+    this._writeToAlias('async-data', code, { path: `${pageKey}.js` })
   }
 
   /**
    * @typedef {object} RunOptions
    * @prop {boolean} watch
    */
-  async run({ watch = true } = { }) {
+  async run() {
     this.log.info(`Using publicUrl: ${this.config.build.base}`)
-    if (this._initialized === false) {
-      this._init()
-      this._initialized = true
-    }
-    this.tempDir.writeTemp('config/index.js', this.config.code)
-    await this.resumePages()
-    const cleanUrls = this.config.cleanUrls
-    await this.config.components.resume()
-    this._processRoutes()
-    this.processSiteData()
+    await this.hooks.beforeRun.promise()
 
-    if (watch === false) {
-      this.pagesWatcher.close()
-      this.config.components.close()
-    }
-  }
-
-  _processLayouts() {
-    processLayouts({ config: this.config, tempDir: this.tempDir })
-  }
-
-  async processSiteData() {
-    const navbar = {
-      items: this.config.navbar.items
-    }
-    const pages = this.pages.map(page => page.toJSON())
-    const siteData = await this.config.configureSiteData({
-      navbar,
-      pages,
-      themeConfig: this.config.themeConfig
+    this.hooks.emitPages.tapPromise('builtin:pages:emitPages', async () => {
+      await this.pages.emit()
     })
-    const code = prettifyJs([
-      `const siteData = ${JSON.stringify(siteData)};`,
-      'export default siteData'
-    ].join('\n'))
 
-    this.tempDir.writeTemp('site-data/index.js', code)
-  }
+    this.emitComponents()
+    const defaultThemePath = require.resolve('@minipress/theme-default/package.json')
+    const defaultLayoutPath = Path.join(Path.dirname(defaultThemePath), 'src', 'layouts', 'default.vue')
+    this.layouts.register('default', defaultLayoutPath)
+    await this.hooks.registerLayouts.promise()
+    this.emitToLayouts()
 
-  // Routes
-  /** @param {PageRoute} route */
-  addRoute(route) {
-    this.additionalRoutes.push(route)
-  }
-
-  _processRoutes() {
-    const routes = this.routes()
-    const routesCode = routes.map(route => route.code).join(',\n')
-    const catchAllRouteCode = ',{ name: \'404\', path: \'*\', component: { render(h) { return h(\'h1\', {}, \'404\') } } }\n'
-    const _code = routesCode + catchAllRouteCode
-    const code = prettifyJs(`export default [${_code}];`)
-    this.tempDir.writeTemp('routes/index.js', code)
-  }
-
-  routes() {
-    return [...this.additionalRoutes, ...this.pageRoutes()]
+    this.tempDir.writeTemp('config/index.js', this.config.code)
+    await this.hooks.initialPages.promise()
+    const mutations = new PageMutations()
+    await this.hooks.mutatePages.promise(mutations)
+    await mutations.execute(this)
+    await this.hooks.registerContentComponents.promise()
+    await this.hooks.emitContentComponents.promise()
+    this.emitContentComponents()
+    await this.hooks.emitPages.promise()
+    await this.getSiteData()
   }
 
   // Components
-  get componentsWatcher() {
-    return this.config.components
+  emitComponents() {
+    this.tempDir.writeTemp('components/index.js', this.components.code)
   }
 
-  processComponents() {
-    this.tempDir.writeTemp('components/index.js', prettifyJs(this.components.code))
+  emitContentComponents() {
+    this.tempDir.writeTemp('content-components/index.js', this.contentComponents.code)
   }
 
-  /** @param {Component} component */
-  _componentAdded(component) {
-    this.log.success(`<${component.name}> added`)
-    this.components.set(component)
-    this.processComponents()
-  }
-
-  /** @param {Component} component */
-  _componentRemoved(component) {
-    this.log.success(`<${component.name}> removed`)
-    this.components.delete(component.name)
-    this.processComponents()
-  }
-
-  /** @param {Component} component */
-  _componentChanged(component) {
-    this.log.success(`<${component.name}> changed`)
-    this.components.set(component)
-    this.processComponents()
-  }
-
-  // Pages
-  get pagesWatcher() {
-    return this.config.pages
-  }
-
-  pageRoutes() {
-    return this.pages.map(page => page.route)
-  }
-
-  /** @param {_Page} _page */
-  async _pageAdded(_page) {
-    this.log.success(`${_page.regularPath} added`)
-    const page = this.pages.set(_page.createKey(), _page)
-    this._processRoutes()
-    // await this.processSiteData()
-    return page
-  }
-
-  /** @param {_Page} page */
-  async _pageRemoved(page) {
-    this.log.success(`${page.regularPath} removed`)
-    this.pages.delete(page.createKey())
-    this._processRoutes()
-    await this.processSiteData()
-  }
-
-  /** @param {_Page} page */
-  async _pageChanged(page) {
-    this.log.success(`${page.regularPath} changed`)
-    this._processRoutes()
-    await this.processSiteData()
-    this.pages.set(page.createKey(), page)
-  }
-
-  /** @param {string} key */
-  /** @param {function(import('./../page')=): void} handler */
-  withPage(key, handler) {
-    const page = this.pages.get(key)
-    handler(page)
-    this.processSiteData()
+  emitToLayouts() {
+    this.tempDir.writeTemp('layouts/index.js', this.layouts.code)
   }
 }
 

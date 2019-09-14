@@ -50,11 +50,7 @@
 </template>
 
 <script>
-// import Logo from './hero-logo.svg'
-// console.log(Logo)
-// debugger
 export default {
-  // width="250px" :height="566px"
   props: {
     width: {
       type: Number,

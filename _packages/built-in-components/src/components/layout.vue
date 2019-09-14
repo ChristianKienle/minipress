@@ -1,19 +1,27 @@
 <script>
-export default {
-  name: 'Layout',
+/** @type {import('vue').FunctionalComponentOptions} */
+const Layout = {
+  name: "Layout",
   functional: true,
   props: {
     name: {
       type: String,
-      default: null
+      default: "default",
+      /** @param {string=} value */
+      validator(value) {
+        return value != null && value.length > 0;
+      }
     }
   },
-  render(h, context) {
-    const layoutName = context.props.name || context.parent.$minipress.page.layout || 'default'
-    const componentName = `mp-layout-${layoutName}`
-    const slots = context.slots()
-    const defaultSlot = slots.default
-    return  h(componentName, {}, defaultSlot)
+  render(h, { parent, props, scopedSlots, slots }) {
+    const { $page } = parent;
+    const attrs = { props: { page: $page } };
+    const { name } = /** @type { {name: string} } */ (props);
+    const children = h("div", {}, [
+      scopedSlots.default != null ? scopedSlots.default(attrs.props) : slots().default
+    ]);
+    return h(`mp-layout-${name}`, {...attrs}, [children]);
   }
-}
+};
+export default Layout;
 </script>

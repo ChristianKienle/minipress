@@ -4,6 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
+  "minipress": {
+    "github": "https://github.com/ChristianKienle/minipress"
+  },
   "keywords": [],
   "author": "",
   "private": false,
@@ -11,8 +14,7 @@
   "files": [
     "components/*",
     "pages/*",
-    ".minipress/config.js",
-    ".minipress/layouts/*",
+    "minipress.config.js",
     "!.DS_Store"
   ],
   "scripts": {
@@ -27,7 +29,13 @@
   },
   "dependencies": {
     "@minipress/minipress": "^0.1.1-alpha.11",
-    "@minipress/minipress-theme-docs": "^0.1.1-alpha.11"
+    "@minipress/theme-docs": "^0.1.1-alpha.11",
+    "@minipress/plugin-last-modified": "^0.1.1-alpha.11",
+    "@minipress/plugin-pages": "^0.1.1-alpha.11",
+    "@minipress/plugin-head": "^0.1.1-alpha.11",
+    "@minipress/plugin-components": "^0.1.1-alpha.11",
+    "@minipress/plugin-clean-urls": "^0.1.1-alpha.11",
+    "@minipress/plugin-package-json": "^0.1.1-alpha.11"
   },
   "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
 }

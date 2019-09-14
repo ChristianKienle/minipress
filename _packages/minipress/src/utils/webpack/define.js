@@ -1,5 +1,5 @@
 // @ts-check
-const stringfify = require('./../stringify')
+const { stringify } = require('@minipress/utils')
 
 /**
  * @typedef {import('webpack-chain')} Chain
@@ -16,7 +16,7 @@ const define = (config, { key, value }) => config
   .plugin('define')
   .tap(([definitions]) => [{
     ...definitions,
-    [key]: typeof value === 'string' ? stringfify(value) : value
+    [key]: typeof value === 'string' ? stringify(value) : value
   }])
   .end()
 

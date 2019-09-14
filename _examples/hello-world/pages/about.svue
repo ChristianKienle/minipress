@@ -1,0 +1,31 @@
+<template>
+  <div>about</div>
+</template>
+
+<script>
+const wait = (ms = 500) => new Promise(resolve => setTimeout(resolve, ms));
+
+export default {
+  initialPageData() {
+    return {
+      lastName: "Kienle-Sönne"
+    };
+  },
+  data() {
+    return {
+      firstName: "andi"
+    };
+  },
+  async asyncData(context) {
+    if (true) {
+      await wait(0);
+      return {
+        lastName: "about.vue –– Kienle"
+      };
+    }
+    return {
+      lastName: "about.vue –– Kienle"
+    };
+  }
+};
+</script>

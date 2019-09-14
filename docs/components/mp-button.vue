@@ -11,13 +11,18 @@
 export default {
   props: {
     to: String,
-    secondary: Boolean
+    secondary: Boolean,
+    block: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     classes() {
       return {
         "mp-button--secondary": this.secondary,
-        "mp-button--primary": !this.secondary
+        "mp-button--primary": !this.secondary,
+        "mp-button--block": this.block
       };
     },
     isExternal() {
@@ -39,31 +44,26 @@ $primaryColor = white;
 $secondaryBackground = darken(#efefef, 0%);
 $secondaryColor = gray;
 
-.mp-button {
+.mp-button
+  text-align center
+  display inline-block
   padding: 15px 25px;
   font-weight: 600;
   font-size: 1.2rem;
   transition: background 0.2s ease-in-out;
   border-radius: 5px;
-
-  &--secondary {
+  &--block
+    display block
+  &--secondary
     color: $secondaryColor;
     background: $secondaryBackground;
-
-    &:hover {
+    &:hover
       color: darken($secondaryColor, 50%);
       background: lightness(saturate($secondaryBackground, 100%), 80%);
-    }
-  }
-
-  &--primary {
+  &--primary
     color: $primaryColor;
     background: $primaryBackground;
-
-    &:hover {
+    &:hover
       color: $primaryColor;
       background: lightness(saturate($primaryBackground, 100%), 50%);
-    }
-  }
-}
 </style>

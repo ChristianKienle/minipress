@@ -1,12 +1,22 @@
 <script>
-import Layout from './layout.vue'
-export default {
-  name: 'MpLayoutManager',
+/** @type {import('vue').FunctionalComponentOptions} */
+const Layout = {
+  name: 'LayoutManager',
   functional: true,
-  render(h, context) {
-    const slots = context.slots()
-    const defaultSlot = slots.default
-    return h(Layout, {}, defaultSlot)
+  props: {
+    name: {
+      type: String,
+      default: 'default',
+      /** @param {string=} value */
+      validator(value) {
+        return value != null && value.length > 0
+      }
+    },
+  },
+  render(h, { props, slots }) {
+    const { name } = /** @type { {name: string} } */ (props)
+    return  h(`mp-layout-${name}`, {}, slots().default)
   }
 }
+export default Layout
 </script>

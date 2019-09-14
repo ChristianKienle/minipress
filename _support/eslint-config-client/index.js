@@ -15,7 +15,8 @@ module.exports = {
     "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
     "arrow-body-style": ["error", "as-needed"],
     "no-eq-null": "off",
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "no-multiple-empty-lines": "error"
   },
   parserOptions: {
     parser: 'babel-eslint'

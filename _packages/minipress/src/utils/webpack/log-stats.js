@@ -10,10 +10,10 @@
  * @param {Options} options
  */
 module.exports = (stats, { log, level = 'errors-only' }) => {
-  if(level === 'none') {
+  if (level === 'none') {
     return
   }
-  if(stats.hasErrors()) {
+  if (stats.hasErrors()) {
     log.error(stats.toString('errors-only'))
   }
 }

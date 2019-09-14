@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`highlight markdown plugin – render mask works 1`] = `"<div class=\\"minipress-highlight-mask\\"><div class=\\"code-line highlighted\\">export default {</div><div class=\\"code-line highlighted\\"> hello: 'world'</div><div class=\\"code-line highlighted\\">}</div></div>"`;

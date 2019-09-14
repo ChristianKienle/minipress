@@ -33,26 +33,27 @@ module.exports = class Logger {
 
   /**
    * @param {string} message
+   * @param {Error=} error
    */
-  error(message) {
+  error(message, error) {
     this._ora.fail(`${chalk.dim(message)}`)
   }
 
   /** @param {string=} text */
   actionSucceed(text) {
-    assert(this._ora.isSpinning)
+    // assert(this._ora.isSpinning)
     this._ora.succeed(text)
   }
 
   /** @param {string=} text */
   actionFailed(text) {
-    assert(this._ora.isSpinning)
+    // assert(this._ora.isSpinning)
     this._ora.fail(text)
   }
 
   /** @param {string=} text */
   action(text) {
-    assert(this._ora.isSpinning === false)
+    // assert(this._ora.isSpinning === false)
     this._ora.start(text)
   }
 }

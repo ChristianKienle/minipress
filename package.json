@@ -6,6 +6,7 @@
   "private": true,
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
+    "test": "lerna run test",
     "publish": "lerna publish prerelease",
     "gh-pages": "node _support/gh-pages",
     "bs": "lerna bootstrap",
@@ -20,13 +21,14 @@
     "helloworld:debug": "cd _examples/hello-world && npm run dev:debug",
     "helloworld:gen": "cd _examples/hello-world && npm run gen",
     "helloworld:gen:debug": "cd _examples/hello-world && npm run gen:debug",
-    "features": "cd _examples/features && npm run dev -- --port 4001",
+    "features": "cd _examples/features && npm run dev",
     "features:debug": "cd _examples/features && npm run dev:debug",
     "features:gen": "cd _examples/features && npm run gen",
     "features:serve": "cd _examples/features && npm run serve",
     "features:gen:debug": "cd _examples/features && npm run gen:debug"
   },
   "devDependencies": {
+    "eslint": "6.1.0",
     "lerna": "^3.16.4"
   }
 }

@@ -1,13 +1,11 @@
 // @ts-check
 const { resolve, parse } = require('path')
-const { writeFileSync, mkdirSync, openSync, fstatSync } = require('fs')
+const { pathExistsSync, readFileSync, emptyDirSync, writeFileSync, mkdirSync, openSync, fstatSync } = require('fs-extra')
 
-/**
 /**
  * @typedef {object} Options
  * @prop {string} path
  */
-
 module.exports = class TempDir {
   /** @param {Options} options */
   constructor({ path }) {
@@ -16,6 +14,14 @@ module.exports = class TempDir {
 
   tempPath() {
     return this._ensureTempDir()
+  }
+
+  clean() {
+    const tempDir = this._ensureTempDir()
+    if (tempDir == null) {
+      return
+    }
+    emptyDirSync(tempDir)
   }
 
   /**
@@ -28,6 +34,38 @@ module.exports = class TempDir {
       throw Error(`Unable to write temporary file '${path}' because temporary directory could not be determined. This is a serious error. We can't proceed.`)
     }
     writeFileSync(path, content, 'utf-8')
+    return path
+  }
+  /**
+   * @param {string} relativePath
+   */
+  existsSync(relativePath) {
+    const path = this._absolutePathForTempFile(relativePath)
+    if (path == null) {
+      throw Error(`Unable to read temporary file '${path}' because temporary directory could not be determined. This is a serious error. We can't proceed.`)
+    }
+    return pathExistsSync(path)
+  }
+
+  /**
+   * @param {string} relativePath
+   */
+  readSync(relativePath) {
+    const path = this._absolutePathForTempFile(relativePath)
+    if (path == null) {
+      throw Error(`Unable to read temporary file '${path}' because temporary directory could not be determined. This is a serious error. We can't proceed.`)
+    }
+    return readFileSync(path, 'utf-8')
+  }
+
+  /**
+   * @param {string} relativePath
+   */
+  resolveTemp(relativePath) {
+    const path = this._absolutePathForTempFile(relativePath)
+    if (path == null) {
+      throw Error(`Unable to resolve temporary file '${path}' because temporary directory could not be determined. This is a serious error. We can't proceed.`)
+    }
     return path
   }
 

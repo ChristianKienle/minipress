@@ -1,70 +1,76 @@
-// @ts-check
+import site from '#minipress/site-data'
 // This file contains the options for our $root Vue component.
 /**
  * @typedef {object} Options
  * @prop {import('vue-router/types/router').VueRouter} router
- * @prop {import('vuex').Store} store
  * @prop {object} $site
  * @prop {any} Vue
  */
 /**
  * @param {Options} options
- * @returns {import('vue').ComputedOptions}
 */
-export default ({ Vue, router, store, $site: _site }) => {
-  return {
-    // @ts-ignore
-    router,
-    store,
-    render(h) {
-      return h('div', {}, [h('RouterView')])
-    },
-    methods: {
-      /**
-       * Finds a page with relativePath = to and returns it's path
-       * @param {string} to
-       * @returns {string}
-       */
-      pageLink(to) {
-        const _to = to.startsWith('/') ? to.substring(1) : to
-        const pages = this.site.pages
-        const page = pages.find(page => page.relativePath === _to)
-        if (page != null) {
-          return page.path
-        }
-        return to
-      },
-      pageForKey(key) {
-        // @ts-ignore
-        const pages = this.site.pages || []
-        return pages.find(page => page.key === key)
+export default ({ router }) => ({
+  // @ts-ignore
+  router,
+  render(h) {
+    const RouterView = h('RouterView')
+    const PageContentWrapper = h('div', { class: 'page-content' }, [RouterView])
+    return h('div', {}, [PageContentWrapper])
+  },
+  computed: {
+    page() {
+      const { $route } = this
+      if ($route == null) {
+        return
       }
+      const { meta = {} } = $route
+      const { $page = {} } = meta
+      const pageKey = $page.key
+      return (site.pages || []).find(({ key }) => key === pageKey)
     },
-    computed: {
-      themeConfig() {
-        // @ts-ignore
-        return this.site.themeConfig
-      },
-      $pageMeta() {
-        const { $_route = {} } = this
-        // @ts-ignore
-        const { meta = {} } = $_route
-        return meta.$page || {}
-      },
-      $pageMetaKey() {
-        // @ts-ignore
-        return this.$pageMeta.key
-      },
-      page() {
-        // @ts-ignore
-        return this.pageForKey(this.$pageMetaKey)
-      },
-      $_route() {
-        return this.$route
-      },
-      site() {
-        return _site
+    site() {
+      return site
+    },
+    themeConfig() {
+      return site.themeConfig
+    },
+  },
+  methods: {
+    /**
+     * Finds a page with relativePath = to and returns it's path
+     * @param {string} to
+     * @returns {string}
+     */
+    pageLink(to) {
+      const _to = to.startsWith('/') ? to.substring(1) : to
+      const page = (site.pages || []).find(({ file }) => file.relative === _to)
+      if (page != null) {
+        return page.path
       }
+      return to
+    },
+    pageForPath(_path) {
+      const page = (site.pages || []).find(({ path }) => path === _path)
+      if(page == null) {
+        return
+      }
+      return page
+    },
+    pageForKey(_key) {
+      // @ts-ignore
+      return (site.pages || []).find(({ key }) => key === _key)
     }
   }
+})
+
+if (module.hot) {
+  // eslint-disable-next-line no-undef
+  const MINIPRESS_TEMP_DIR = /** @type {string} */(__MINIPRESS_TEMP_DIR__)
+  const createTempPath = name => `./${MINIPRESS_TEMP_DIR}/${name}/index.js`
+  // MINIPRESS_TEMP_DIR is something like this: '.minipress/.temp'
+  const paths = [
+    createTempPath('site-data'),
+    createTempPath('routes')
+  ]
+  module.hot.accept(paths, () => { })
 }

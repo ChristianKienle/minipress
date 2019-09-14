@@ -1,0 +1,30 @@
+{
+  "name": "@minipress/create-plugin",
+  "version": "0.1.1-alpha.11",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "bin": {
+    "minipress": "./cli.js"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "globby": "^10.0.1",
+    "inquirer": "^7.0.0",
+    "execa": "^2.0.4",
+    "fs-extra": "^8.1.0",
+    "ora": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.0"
+  },
+  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
+}
