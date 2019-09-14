@@ -7,15 +7,15 @@
     "eslint": "^6.1.0",
     "eslint-plugin-jest": "^22.17.0"
   },
-  "private": false,
   "dependencies": {
     "@zeit/eslint-config-node": "^0.3.0"
   },
   "resolutions": {
     "portfinder": "1.0.21"
   },
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "90d65a7cce1a3bc70f50af4144451bd74dfae174"
+  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
 }
