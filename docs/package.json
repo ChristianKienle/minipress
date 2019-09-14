@@ -1,6 +1,6 @@
 {
   "name": "@minipress/docs",
-  "version": "0.1.1-alpha.1",
+  "version": "0.1.1-alpha.2",
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
@@ -26,8 +26,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.1",
-    "@minipress/minipress-theme-docs": "^0.1.1-alpha.1"
+    "@minipress/minipress": "^0.1.1-alpha.2",
+    "@minipress/minipress-theme-docs": "^0.1.1-alpha.2"
   },
   "gitHead": "ccd057d8f2a348d23c9ad3835dec5896d5730f9a"
 }
