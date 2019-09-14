@@ -1,8 +1,9 @@
 {
-  "name": "@minipress/examples-features",
+  "name": "@minipress/example-features",
   "version": "0.1.1-alpha.0",
   "main": "index.js",
   "license": "MIT",
+  "private": false,
   "scripts": {
     "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev --config .minipress/config.js",
     "dev": "minipress dev --config .minipress/config.js",
@@ -24,5 +25,6 @@
     "@minipress/minipress-theme-docs": "^0.1.1-alpha.0",
     "express": "^4.17.1",
     "serve-static": "^1.14.1"
-  }
+  },
+  "gitHead": "9d425bc39a5be2e627c4377e5a76b5e4d4850dd8"
 }

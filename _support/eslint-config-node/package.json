@@ -7,6 +7,7 @@
     "eslint": "^6.1.0",
     "eslint-plugin-jest": "^22.17.0"
   },
+  "private": false,
   "dependencies": {
     "@zeit/eslint-config-node": "^0.3.0"
   },
@@ -15,5 +16,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "9d425bc39a5be2e627c4377e5a76b5e4d4850dd8"
 }
