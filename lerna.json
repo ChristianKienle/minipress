@@ -1,13 +1,13 @@
 {
   "packages": [
-    "_packages/*",
     "_examples/*",
-    "_support/*",
+    "_packages/*",
     "_plugins/*",
+    "_support/*",
     "_themes/*",
     "docs"
   ],
   "parallel": false,
   "npmClient": "npm",
-  "version": "0.1.0"
+  "version": "0.1.1-alpha.0"
 }

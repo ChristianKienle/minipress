@@ -1,14 +1,16 @@
 {
   "name": "@minipress/log",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
-    "ora": "^3.4.0",
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "ora": "^3.4.0"
   },
   "types": "index.d.ts",
-  "files": ["src/*.js"],
+  "files": [
+    "src/*.js"
+  ],
   "publishConfig": {
     "access": "public"
   }
