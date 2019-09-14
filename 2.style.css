@@ -1,24 +1,19 @@
-.mp-button[data-v-cb5770dc] {
-  padding: 15px 25px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  transition: background 0.2s ease-in-out;
-  border-radius: 5px;
+.mp-flex__item {
+  padding: 0rem;
 }
-.mp-button--secondary[data-v-cb5770dc] {
-  color: #808080;
-  background: #efefef;
+.mp-flex__item + .mp-flex__item {
+  margin-left: 0.5rem;
 }
-.mp-button--secondary[data-v-cb5770dc]:hover {
-  color: #404040;
-  background: #ccc;
+.mp-flex__item--top {
+  align-self: flex-start;
 }
-.mp-button--primary[data-v-cb5770dc] {
-  color: #fff;
-  background: #1669b1;
+.mp-flex__item--bottom {
+  align-self: flex-end;
 }
-.mp-button--primary[data-v-cb5770dc]:hover {
-  color: #fff;
-  background: #006eff;
+@media (max-width: 705px) {
+.mp-flex--responsive .mp-flex__item + .mp-flex__item {
+    margin-left: 0;
+    margin-top: 0.5rem;
+}
 }
 

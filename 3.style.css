@@ -1,10 +1,11 @@
-.mp-flex__item {
-  padding: 1rem;
+.mp-flex {
+  display: flex;
+  flex-direction: row;
 }
-.mp-flex__item--top {
-  align-self: flex-start;
+@media (max-width: 705px) {
+.mp-flex--responsive {
+    display: flex;
+    flex-direction: column;
 }
-.mp-flex__item--bottom {
-  align-self: flex-end;
 }
 
