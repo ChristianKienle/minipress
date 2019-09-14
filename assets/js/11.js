@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{37:function(t,n,e){"use strict";e.r(n);var a={name:"MpLayoutDefault",components:{MpMain:e(24).a}},s=e(1),u=Object(s.a)(a,function(){var t=this.$createElement;return(this._self._c||t)("MpMain",{attrs:{showSidebar:""}},[this._t("default")],2)},[],!1,null,null,null);n.default=u.exports}}]);
