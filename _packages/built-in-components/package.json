@@ -1,7 +1,7 @@
 {
   "name": "@minipress/built-in-components",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve demo",
     "build": "vue-cli-service build",
