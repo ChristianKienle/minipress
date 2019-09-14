@@ -7,6 +7,9 @@
     "lint": "eslint .",
     "test": "jest ."
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "minipress": "./src/cli/cli-entry.js"
   },

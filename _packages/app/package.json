@@ -8,6 +8,9 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "src/index.js",
   "files": [
     "src/**/*.js",

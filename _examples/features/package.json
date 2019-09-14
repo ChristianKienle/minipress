@@ -10,6 +10,15 @@
     "serve": "minipress serve",
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate --config .minipress/config.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "components/*",
+    "pages/*",
+    ".minipress/config.js",
+    "!.DS_Store"
+  ],
   "dependencies": {
     "@minipress/minipress-theme-docs": "^0.1.0",
     "express": "^4.17.1",

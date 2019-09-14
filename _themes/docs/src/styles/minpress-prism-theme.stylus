@@ -1,3 +1,5 @@
+@require './_config.stylus'
+
 $minpressCodeBorderRadius = 8px
 
 code[class*="language-"]::-webkit-scrollbar
@@ -51,14 +53,14 @@ pre[class*="language-"] ::selection
   }
 }
 
-.saber-highlight
+.minipress-highlight
   position relative
   overflow hidden
   margin 2rem 0;
   color: white
-  background-color rgb(45, 55, 72)
+  background-color $code-accent-color
   border-radius $minpressCodeBorderRadius
-.saber-highlight:before
+.minipress-highlight:before
   background rgba(201, 167, 255, 0.2)
   color var(--text-color)
   border-radius 0 0 $minpressCodeBorderRadius $minpressCodeBorderRadius
@@ -67,12 +69,11 @@ pre[class*="language-"] ::selection
 
 .code-line
   &.highlighted
-    background rgba(201, 167, 255, 0.2)
-    box-shadow inset 3px 0 0 0 rgb(201, 167, 255)
-    background rgba(3, 169, 244, 0.121)
+    background $code-highlighted-line-background
+    box-shadow $code-highlighted-line-shadow
 
-.saber-highlight-mask,
-.saber-highlight-code
+.minipress-highlight-mask,
+.minipress-highlight-code
   line-height 1.5
   background-color transparent !important
   text-shadow none !important
@@ -86,7 +87,7 @@ pre[class*="language-"] ::selection
   font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace !important;
 
 
-.saber-highlight-mask
+.minipress-highlight-mask
   position absolute
   top 0
   bottom 0
@@ -97,17 +98,17 @@ pre[class*="language-"] ::selection
   padding-left 0 !important
   padding-right 0 !important
 
-.saber-highlight-code
+.minipress-highlight-code
   position relative
   z-index 2
   font-size 0 !important
   font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace !important;
 
-.saber-highlight-code code,
-.saber-highlight-mask
+.minipress-highlight-code code,
+.minipress-highlight-mask
   font-size 0.875rem
 
-.saber-highlight-line-numbers
+.minipress-highlight-line-numbers
   pointer-events none
   font-size 100%
   float left

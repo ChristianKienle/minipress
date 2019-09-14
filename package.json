@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
+    "publish:npm": "lerna publish prerelease",
     "gh-pages": "node _support/gh-pages",
     "bs": "lerna bootstrap",
     "clean": "lerna clean -y",

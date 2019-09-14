@@ -10,6 +10,15 @@
     "gen": "minipress generate --config .minipress/config.js",
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate --config .minipress/config.js"
   },
+  "files": [
+    "components/*",
+    "pages/*",
+    ".minipress/config.js",
+    "!public/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@minipress/minipress": "^0.1.0"
   }

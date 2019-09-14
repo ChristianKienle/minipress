@@ -2,6 +2,9 @@
   "name": "@minipress/minipress-theme-default",
   "version": "0.1.0",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve demo",
     "build": "vue-cli-service build",

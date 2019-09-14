@@ -5,5 +5,8 @@
   "license": "MIT",
   "resolutions": {
     "portfinder": "1.0.21"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

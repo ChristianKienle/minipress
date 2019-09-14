@@ -8,5 +8,8 @@
     "chalk": "^2.4.2"
   },
   "types": "index.d.ts",
-  "files": ["src/*.js"]
+  "files": ["src/*.js"],
+  "publishConfig": {
+    "access": "public"
+  }
 }

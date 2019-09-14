@@ -13,7 +13,7 @@ const parseOptions = str => {
 }
 
 const generateLineNumbers = code =>
-  `<span aria-hidden="true" class="saber-highlight-line-numbers">${
+  `<span aria-hidden="true" class="minipress-highlight-line-numbers">${
     code
       .trim()
       .split('\n')
@@ -23,7 +23,8 @@ const generateLineNumbers = code =>
 
 module.exports = (
   md,
-  { highlightedLineBackground = 'red', lineNumbers = false } = {}
+  { highlightedLineBackground,
+     lineNumbers = false } = {}
 ) => {
   const renderPreWrapper = ({
     preWrapperAttrs,
@@ -56,7 +57,7 @@ module.exports = (
     const codeMask =
       highlightLines.length === 0
         ? ''
-        : `<div class="saber-highlight-mask${
+        : `<div class="minipress-highlight-mask${
           langClass ? ` ${langClass}` : ''
         }">${
           md.utils
@@ -96,7 +97,7 @@ module.exports = (
 
     const preAttrs = renderAttrs([
       ...(token.attrs || []),
-      ['class', ['saber-highlight-code', langClass].filter(Boolean).join(' ')]
+      ['class', ['minipress-highlight-code', langClass].filter(Boolean).join(' ')]
     ])
     const codeAttrs = renderAttrs([
       ...(token.attrs || []),
@@ -105,7 +106,7 @@ module.exports = (
     const preWrapperAttrs = renderAttrs([
       [
         'class',
-        `saber-highlight${shouldGenerateLineNumbers ? ' has-line-numbers' : ''}`
+        `minipress-highlight${shouldGenerateLineNumbers ? ' has-line-numbers' : ''}`
       ],
       ['v-pre', ''],
       ['data-lang', langName]

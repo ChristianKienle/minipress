@@ -1,4 +1,5 @@
-$accentColor = #728798 //#4299e1
+$accentColor = #728798
+
 $borderColor = lighten($accentColor, 75%)
 $horizontalLineColor = #efefef
 $textColor = black
@@ -12,3 +13,10 @@ $navItemLinkColor = darken(desaturate($accentColor, 50%), 50%)
 $navItemLinkUnderlineColor = $accentColor
 $navItemLinkUnderlineWidth = 2.5px
 $navItemLinkUnderlineDistance = 8px
+
+// Syntax Highlighting:
+// The accent color of code samples
+$code-accent-color = rgb(45, 55, 72)
+$code-highlighted-line-background = alpha(darken($code-accent-color, 80%), 0.4)
+$code-highlighted-line-shadow = inset 4px 0 0 0 saturation(lightness($code-accent-color, 70%), 90%)
+
