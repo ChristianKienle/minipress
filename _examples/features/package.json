@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-features",
-  "version": "0.1.1-alpha.9",
+  "version": "0.1.1-alpha.10",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -21,8 +21,8 @@
     "!.DS_Store"
   ],
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.9",
-    "@minipress/minipress-theme-docs": "^0.1.1-alpha.9",
+    "@minipress/minipress": "^0.1.1-alpha.10",
+    "@minipress/minipress-theme-docs": "^0.1.1-alpha.10",
     "express": "^4.17.1",
     "serve-static": "^1.14.1"
   },
