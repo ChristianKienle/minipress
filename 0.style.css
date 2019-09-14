@@ -123,10 +123,16 @@
   font-size: 0.8rem;
 }
 
-.navbar-items[data-v-a6bee15c] {
+.navbar-items[data-v-31016c6c] {
   border-bottom: 1px solid #dce1e5;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
+  display: none;
+}
+@media (max-width: 705px) {
+.navbar-items[data-v-31016c6c] {
+    display: block;
+}
 }
 
 @-moz-keyframes fadeInFromNone {
