@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": false,
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
