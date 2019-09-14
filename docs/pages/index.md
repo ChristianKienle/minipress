@@ -2,7 +2,6 @@
 layout: hero
 ---
 
-
 <mp-flex>
 <mp-flex-item><mp-hero-logo :width="150" /></mp-flex-item>
 <mp-flex-item>
@@ -25,3 +24,5 @@ $ minipress dev
   ✔ index.md added
   ℹ minipress is running on http://0.0.0.0:4000
 ```
+
+sss

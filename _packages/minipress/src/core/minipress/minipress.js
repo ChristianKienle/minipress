@@ -16,7 +16,7 @@ const processLayouts = require('./process-layouts')
  *
  * @typedef {object} Options
  * @prop {import('./../../config/config')} config
- * @prop {import('@minipress/log').Logger} log
+ * @prop {import('@minipress/log').log} log
  */
 class Minipress {
   /** @param {Options} options */
@@ -209,7 +209,7 @@ class Minipress {
     this.log.success(`${_page.regularPath} added`)
     const page = this.pages.set(_page.createKey(), _page)
     this._processRoutes()
-    await this.processSiteData()
+    // await this.processSiteData()
     return page
   }
 

@@ -1,5 +1,4 @@
 // @ts-check
-const { EventEmitter } = require('events')
 const fs = require('fs-extra')
 const Path = require('path')
 const createWebpack = require('webpack')
@@ -7,7 +6,10 @@ const readJSON = (file, readFile = fs.readFileSync) => JSON.parse(readFile(file,
 const createHotMiddleware = require('webpack-hot-middleware')
 const createDevMiddleware = require('webpack-dev-middleware')
 const createServer = require('polka')
-const runCompiler = require('./../utils/webpack/run-compiler')
+const {
+  runCompiler,
+  logStats
+} = require('./../utils/webpack')
 
 /** @typedef {import('vue-server-renderer').BundleRenderer} BundleRenderer */
 
@@ -55,15 +57,6 @@ module.exports = class VueRenderer {
     )
     const destOutPath = Path.join(outDir)
     await fs.copy(dest, destOutPath)
-    // const critical = require('critical')
-    // const files = await globby('**/*.html', {
-    //   cwd: outDir,
-    //   absolute: true
-    // })
-    // await Promise.all(
-    //   files
-    //     .map(file => critical.generate({ inline: true, src: file, base: outDir }).then(html => fs.outputFile(file, html)))
-    // )
   }
 
   /** @typedef {import('./../core/page')} Page */
@@ -72,10 +65,7 @@ module.exports = class VueRenderer {
     const { path } = page
     const outputPath = page.outputFilePath({ outDir })
     this.log.info(`Generating ${path}…`)
-    const url = path
-    const context = {
-      url
-    }
+    const context = { url: path }
     const markup = await renderer.renderToString(context)
     const initialDocumentData = require('./get-initial-document-data')(
       context
@@ -91,19 +81,6 @@ module.exports = class VueRenderer {
     const { createBundleRenderer } = require('vue-server-renderer')
 
     if (serverBundle && clientManifest) {
-      // {{{ renderResourceHints() }}}
-      // {{{ renderStyles() }}}
-      //     const template = (resolt, context) => {
-      //       console.log(context)
-      //       return `<!DOCTYPE html>
-      // <html lang="en">
-      //   <head>
-      //     <meta charset="UTF-8">
-      //     <meta name="viewport" content="width=device-width, initial-scale=1">
-      //   </head>
-      //   <body><!--vue-ssr-outlet--></body>
-      // </html>`
-      //     };
       const template = `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -112,26 +89,16 @@ module.exports = class VueRenderer {
     </head>
     <body><!--vue-ssr-outlet--></body>
   </html>`
-
-
-      // {{{ renderState() }}}
-      // {{{ renderScripts() }}}
       // @ts-ignore
       this.renderer = createBundleRenderer(serverBundle, {
+        template,
         clientManifest,
         runInNewContext: true,
-        shouldPrefetch() {
-          return true
-        },
-        shouldPreload(file, type) {
-          return type === 'style'
-        },
-        // inject: false,
-        basedir: Path.resolve(__dirname, '..', 'dist-server'),
-        template
+        shouldPrefetch: () => true,
+        shouldPreload: (file, type) => type === 'style',
+        basedir: Path.resolve(__dirname, '..', 'dist-server')
       })
     }
-
     return this.renderer
   }
 
@@ -165,20 +132,22 @@ module.exports = class VueRenderer {
     clientConfig.plugins.push(new createWebpack.HotModuleReplacementPlugin())
     const clientCompiler = createWebpack(clientConfig)
     const devMiddleware = createDevMiddleware(clientCompiler, {
-      logLevel: 'trace',
+      logLevel: 'silent',
       publicPath: this._publicPathFromConfig(clientConfig)
     })
 
     const hotMiddleware = createHotMiddleware(clientCompiler, {
       log: false
     })
-    const event = new EventEmitter()
     clientCompiler.hooks.watchRun.tap('saber-serve', () => {
-      event.emit('rebuild')
+      // event.emit('rebuild')
     })
-    clientCompiler.hooks.done.tap('saber-serve', stats => {
-      event.emit('done', stats.hasErrors())
-    })
+    clientCompiler
+      .hooks
+      .done
+      .tap('minipress-requestHandler', stats => {
+        logStats(stats, { log: this.log, level: 'errors-only' })
+      })
 
     const serverConfig = this.webpack.server.toConfig()
     const serverCompiler = createWebpack(serverConfig)
@@ -189,27 +158,22 @@ module.exports = class VueRenderer {
     let serverBundle
     let clientManifest
 
-    serverCompiler.hooks.done.tap('init-renderer', stats => {
+    serverCompiler.hooks.done.tap('minipress-requestHandler', stats => {
       if (stats.hasErrors()) {
-        console.error('Error in done server compiler hook:', stats.toString('errors-only'))
+        logStats(stats, { log: this.log, level: 'errors-only' })
         return
       }
-      const p = this.serverBundlePath({ dest })
-      serverBundle = readJSON(
-        p,
-        mfs.readFileSync.bind(mfs)
-      )
+      serverBundle = readJSON(this.serverBundlePath({ dest }), mfs.readFileSync.bind(mfs))
       this.initRenderer({ serverBundle, clientManifest })
     })
+
     clientCompiler.hooks.done.tap('init-renderer', stats => {
       if (stats.hasErrors()) {
-        console.error('Error in done client compiler hook:', stats.toString('errors-only'))
+        logStats(stats, { log: this.log, level: 'errors-only' })
         return
       }
-      const p = this.clientManifestPath({ dest })
-
       clientManifest = readJSON(
-        p,
+        this.clientManifestPath({ dest }),
         // @ts-ignore
         clientCompiler.outputFileSystem.readFileSync.bind(
           clientCompiler.outputFileSystem
@@ -241,17 +205,12 @@ module.exports = class VueRenderer {
         const markup = (this.renderer
           ? await this.renderer.renderToString(context)
           : '$&')
-        // const initialDocumentData = require('./get-initial-document-data')(
-        //   context
-        // )
-        // context.documentData = initialDocumentData
         const html = markup.replace('<div data-server-rendered="true">', '<div data-server-rendered="true" id="app">')
         res.setHeader('content-type', 'text/html')
         res.end(html)
       }
       return render()
     })
-
     return server.handler
   }
 }

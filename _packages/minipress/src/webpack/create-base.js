@@ -22,6 +22,23 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   const config = new WebpackChain()
 
   config.mode(mode).end()
+  config.stats('errors-only').end()
+  // {
+  //   colors: true,
+  //   hash: false,
+  //   version: false,
+  //   timings: false,
+  //   assets: false,
+  //   chunks: false,
+  //   modules: false,
+  //   reasons: false,
+  //   children: false,
+  //   source: false,
+  //   errors: false,
+  //   errorDetails: false,
+  //   warnings: false,
+  //   publicPath: false
+  // }).end()
   // Configure source maps:
   // I am not really sure what the best practice is.
   // For a long time I used the following settings:
@@ -77,21 +94,21 @@ module.exports = function createBase({ isServer, minipressConfig }) {
       plugins: [
         require.resolve('@babel/plugin-syntax-dynamic-import'),
         [require('@babel/plugin-transform-runtime').default,
-          {
-            corejs: false,
-            helpers: false,
-            regenerator: true,
-            // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
-            // We should turn this on once the lowest version of Node LTS
-            // supports ES Modules.
-            useESModules: false,
-            // Undocumented option that lets us encapsulate our runtime, ensuring
-            // the correct version is used
-            // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
-            absoluteRuntime: path.dirname(
-              require.resolve('@babel/runtime/package.json')
-            )
-          }]
+        {
+          corejs: false,
+          helpers: false,
+          regenerator: true,
+          // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
+          // We should turn this on once the lowest version of Node LTS
+          // supports ES Modules.
+          useESModules: false,
+          // Undocumented option that lets us encapsulate our runtime, ensuring
+          // the correct version is used
+          // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
+          absoluteRuntime: path.dirname(
+            require.resolve('@babel/runtime/package.json')
+          )
+        }]
       ]
     })
     .end()

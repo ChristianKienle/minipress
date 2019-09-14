@@ -16,12 +16,13 @@ const loaderUtils = require('loader-utils')
 
 /** @type {import("webpack").loader.Loader} */
 module.exports = function load(_source, map) {
+
   /**
    * @typedef {object} Options
    * @prop {Minipress} minipress
    */
-  /** @type {Options} */
-  const options = loaderUtils.getOptions(this)
+
+  const options = /** @type {Options} */ (loaderUtils.getOptions(this))
   const source = String(_source)
   const pageKey = this.resourceQuery && qs.parse(this.resourceQuery.slice(1)).minipresspage
   const {
@@ -29,6 +30,7 @@ module.exports = function load(_source, map) {
   } = options
   const callback = this.callback
   const page = minipress.pages.get(pageKey)
+  minipress.log.info(`markdown loader called for page: ${page._filePath}`)
   if (page == null) {
     throw Error(`Unable to find page with key '${pageKey}'`)
   }
@@ -46,7 +48,7 @@ module.exports = function load(_source, map) {
     '</script>'
   ].join('\n')
 
-  minipress.processSiteData()
+  // minipress.processSiteData()
 
   callback(null, code, map)
   return // required by webpack

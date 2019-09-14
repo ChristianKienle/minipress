@@ -17,6 +17,7 @@ module.exports = {
         { text: 'Guide', link: '/guide/' },
         { text: 'Configuration', link: '/configuration/' },
         { text: 'Themes', link: '/themes/' },
+        { text: 'Internals', link: '/internals/' },
         { text: 'GitHub', link: '/404' },
       ]
     }

@@ -1,6 +1,8 @@
 // @ts-check
 const Logger = require("./logger")
+const log = new Logger()
+
 module.exports = {
-  log: new Logger(),
-  Logger
-};
+  Logger,
+  log
+}

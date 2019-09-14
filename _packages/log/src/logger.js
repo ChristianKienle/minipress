@@ -1,4 +1,5 @@
 // @ts-check
+
 const chalk = require("chalk").default;
 const ora = require('ora')
 const assert = require('assert').strict
@@ -9,7 +10,7 @@ const assert = require('assert').strict
 const prefix = " minipress ";
 const _log = message => console.log;
 
-class Logger {
+module.exports = class Logger {
   constructor() {
     this._ora = ora()
   }
@@ -55,5 +56,3 @@ class Logger {
     this._ora.start(text)
   }
 }
-
-module.exports = Logger;
