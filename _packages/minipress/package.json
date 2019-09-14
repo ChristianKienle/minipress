@@ -1,6 +1,6 @@
 {
   "name": "@minipress/minipress",
-  "version": "0.1.1-alpha.8",
+  "version": "0.1.1-alpha.9",
   "main": "src/index.js",
   "license": "MIT",
   "private": false,
@@ -20,9 +20,9 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "@minipress/app": "^0.1.1-alpha.8",
-    "@minipress/log": "^0.1.1-alpha.8",
-    "@minipress/minipress-theme-default": "^0.1.1-alpha.8",
+    "@minipress/app": "^0.1.1-alpha.9",
+    "@minipress/log": "^0.1.1-alpha.9",
+    "@minipress/minipress-theme-default": "^0.1.1-alpha.9",
     "@types/fs-extra": "^8.0.0",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
@@ -76,7 +76,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
-    "@minipress/eslint-config-node": "^0.1.1-alpha.8",
+    "@minipress/eslint-config-node": "^0.1.1-alpha.9",
     "@types/express": "^4.17.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.2",
