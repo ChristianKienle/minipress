@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-hello-world",
-  "version": "0.1.1-alpha.7",
+  "version": "0.1.1-alpha.8",
   "private": false,
   "main": "index.js",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.7"
+    "@minipress/minipress": "^0.1.1-alpha.8"
   },
   "gitHead": "a4283da232285bf3f619b9293ff3b8fee92f690a"
 }

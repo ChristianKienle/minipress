@@ -1,6 +1,6 @@
 {
   "name": "@minipress/app",
-  "version": "0.1.1-alpha.7",
+  "version": "0.1.1-alpha.8",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve demo",
@@ -19,7 +19,7 @@
     "!**/__*__/**"
   ],
   "dependencies": {
-    "@minipress/built-in-components": "^0.1.1-alpha.7",
+    "@minipress/built-in-components": "^0.1.1-alpha.8",
     "prismjs": "^1.17.1"
   },
   "peerDependencies": {
@@ -30,7 +30,7 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@minipress/eslint-config-client": "^0.1.1-alpha.7",
+    "@minipress/eslint-config-client": "^0.1.1-alpha.8",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
