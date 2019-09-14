@@ -1,23 +1,23 @@
-.mp-button[data-v-a642d202] {
+.mp-button[data-v-cb5770dc] {
   padding: 15px 25px;
   font-weight: 600;
   font-size: 1.2rem;
   transition: background 0.2s ease-in-out;
   border-radius: 5px;
 }
-.mp-button--secondary[data-v-a642d202] {
+.mp-button--secondary[data-v-cb5770dc] {
   color: #808080;
   background: #efefef;
 }
-.mp-button--secondary[data-v-a642d202]:hover {
+.mp-button--secondary[data-v-cb5770dc]:hover {
   color: #404040;
   background: #ccc;
 }
-.mp-button--primary[data-v-a642d202] {
+.mp-button--primary[data-v-cb5770dc] {
   color: #fff;
   background: #1669b1;
 }
-.mp-button--primary[data-v-a642d202]:hover {
+.mp-button--primary[data-v-cb5770dc]:hover {
   color: #fff;
   background: #006eff;
 }
