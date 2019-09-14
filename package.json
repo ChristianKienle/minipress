@@ -1,9 +1,12 @@
 {
   "name": "@minipress/main",
-  "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
     "publish:npm": "lerna publish prerelease",
