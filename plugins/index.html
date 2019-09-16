@@ -36,13 +36,45 @@
   GitHub
 </a></div></div> <div data-toc-item-level="1" class="mp-toc__item">
     Plugin
-  </div> <div><div data-toc-item-level="2" class="mp-toc__item"><a href="/minipress/plugins#writing-a-plugin" class="mp-toc__item__link">
+  </div> <div><div data-toc-item-level="2" class="mp-toc__item"><a href="/minipress/plugins#available-plugins" class="mp-toc__item__link">
+  Available Plugins
+</a></div><div data-toc-item-level="3" class="mp-toc__item"><a href="/minipress/plugins#clean-urls" class="mp-toc__item__link">
+  clean-urls
+</a></div><div data-toc-item-level="3" class="mp-toc__item"><a href="/minipress/plugins#additional-pages" class="mp-toc__item__link">
+  additional-pages
+</a></div><div data-toc-item-level="3" class="mp-toc__item"><a href="/minipress/plugins#last-modified" class="mp-toc__item__link">
+  last-modified
+</a></div><div data-toc-item-level="2" class="mp-toc__item"><a href="/minipress/plugins#writing-a-plugin" class="mp-toc__item__link">
   Writing a Plugin
 </a></div><div data-toc-item-level="2" class="mp-toc__item"><a href="/minipress/plugins#configured-plugin" class="mp-toc__item__link">
   Configured Plugin
 </a></div><div data-toc-item-level="2" class="mp-toc__item"><a href="/minipress/plugins#minipress-instance" class="mp-toc__item__link">
   minipress-Instance
-</a></div></div> </div></div></div> <div class="mp-layout__container mp-layout__container--with-sidebar"><div class="mp-main__content" style="max-width:800px;"><div class="page-content"><h1 id="plugin"><a href="/minipress/plugins#plugin" aria-hidden="true" class="header-anchor">#</a> Plugin</h1> <h2 id="writing-a-plugin"><a href="/minipress/plugins#writing-a-plugin" aria-hidden="true" class="header-anchor">#</a> Writing a Plugin</h2> <p>A plugin is a normal NPM package. Its entry point (<code>main</code>-file) should export an <code>async</code> function that will be called by <em>miniPress</em>:</p> <div class="minipress-highlight" data-lang="js"><pre class="minipress-highlight-code language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> options<span class="token punctuation">,</span> minipress <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+</a></div></div> </div></div></div> <div class="mp-layout__container mp-layout__container--with-sidebar"><div class="mp-main__content" style="max-width:800px;"><div class="page-content"><h1 id="plugin"><a href="/minipress/plugins#plugin" aria-hidden="true" class="header-anchor">#</a> Plugin</h1> <h2 id="available-plugins"><a href="/minipress/plugins#available-plugins" aria-hidden="true" class="header-anchor">#</a> Available Plugins</h2> <h3 id="clean-urls"><a href="/minipress/plugins#clean-urls" aria-hidden="true" class="header-anchor">#</a> clean-urls</h3> <p><strong>Installation:</strong></p> <div class="minipress-highlight" data-lang="sh"><pre class="minipress-highlight-code language-sh"><code class="language-sh"><span class="token function">npm</span> <span class="token function">install</span> @minipress/plugin-clean-urls --save</code></pre></div><p><strong>Configuration:</strong></p> <div class="minipress-highlight" data-lang="js"><pre class="minipress-highlight-code language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token string">'@minipress/plugin-clean-urls'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div><h3 id="additional-pages"><a href="/minipress/plugins#additional-pages" aria-hidden="true" class="header-anchor">#</a> additional-pages</h3> <p><strong>Installation:</strong></p> <div class="minipress-highlight" data-lang="sh"><pre class="minipress-highlight-code language-sh"><code class="language-sh"><span class="token function">npm</span> <span class="token function">install</span> @minipress/plugin-clean-urls --save</code></pre></div><p><strong>Configuration:</strong></p> <div class="minipress-highlight" data-lang="js"><pre class="minipress-highlight-code language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">'@minipress/plugin-additional-pages'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        pages<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            path<span class="token punctuation">:</span> <span class="token string">'/my/page.html'</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'# My Page'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token comment">// …</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div><h3 id="last-modified"><a href="/minipress/plugins#last-modified" aria-hidden="true" class="header-anchor">#</a> last-modified</h3> <p><strong>Installation:</strong></p> <div class="minipress-highlight" data-lang="sh"><pre class="minipress-highlight-code language-sh"><code class="language-sh"><span class="token function">npm</span> <span class="token function">install</span> @minipress/plugin-last-modified --save</code></pre></div><p><strong>Configuration:</strong></p> <div class="minipress-highlight" data-lang="js"><pre class="minipress-highlight-code language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token string">'@minipress/plugin-last-modified'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div><p>The you can access the last modified date like this:</p> <div class="minipress-highlight" data-lang="md"><pre class="minipress-highlight-code language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">##</span> About this Page</span>
+Last Modified: {{ $minipress.page.lastModified }}</code></pre></div><h2 id="writing-a-plugin"><a href="/minipress/plugins#writing-a-plugin" aria-hidden="true" class="header-anchor">#</a> Writing a Plugin</h2> <p>A plugin is a normal NPM package. Its entry point (<code>main</code>-file) should export an <code>async</code> function that will be called by <em>miniPress</em>:</p> <div class="minipress-highlight" data-lang="js"><pre class="minipress-highlight-code language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> options<span class="token punctuation">,</span> minipress <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
   <span class="token comment">// plugin implementation goes here</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     <span class="token comment">// plugin configuration goes here</span>
