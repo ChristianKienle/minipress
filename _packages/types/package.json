@@ -4,10 +4,15 @@
   "files": [
     "types/*.d.ts"
   ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/joi": "^14.3.3"
   },
   "types": "types/index.d.ts",
   "main": "index.ts",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }

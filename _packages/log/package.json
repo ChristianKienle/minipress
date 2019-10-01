@@ -3,7 +3,6 @@
   "version": "0.1.1-alpha.12",
   "main": "src/index.js",
   "license": "MIT",
-  "private": false,
   "dependencies": {
     "chalk": "^2.4.2",
     "ora": "^4.0.2"
@@ -12,8 +11,9 @@
   "files": [
     "src/*.js"
   ],
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
+  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }

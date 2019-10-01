@@ -4,12 +4,12 @@
   "main": "src/index.js",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "jest ."
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "bin": {
     "minipress": "./src/cli/cli-entry.js"
@@ -107,5 +107,5 @@
     "jest": "^24.9.0",
     "typescript": "^3.6.3"
   },
-  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
+  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }

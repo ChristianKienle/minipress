@@ -10,6 +10,9 @@
   "keywords": [],
   "author": "",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "ISC",
   "files": [
     "components/*",
@@ -24,9 +27,6 @@
     "gen": "minipress generate",
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@minipress/minipress": "^0.1.1-alpha.12",
     "@minipress/plugin-clean-urls": "^0.1.1-alpha.12",
@@ -37,5 +37,5 @@
     "@minipress/plugin-pages": "^0.1.1-alpha.12",
     "@minipress/theme-docs": "^0.1.1-alpha.12"
   },
-  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
+  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }

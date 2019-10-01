@@ -2,14 +2,14 @@
   "name": "@minipress/built-in-components",
   "version": "0.1.1-alpha.12",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve demo",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "main": "src/index.js",
   "files": [
@@ -43,5 +43,5 @@
     "vue-template-compiler": "^2.6.10",
     "vuex": "^3.1.1"
   },
-  "gitHead": "c7520f1b3a55e5c1d23584224b602564223aaac8"
+  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }
