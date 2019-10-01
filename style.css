@@ -30,7 +30,7 @@
   color: #ccc;
 }
 
-.mp-nav[data-v-c6b6b066] {
+.mp-nav[data-v-41fdbb3d] {
   box-sizing: border-box;
   z-index: 1000;
   display: flex;
@@ -39,14 +39,14 @@
   line-height: 2.2rem;
   border-bottom: 1px solid #dce1e5;
 }
-.mp-nav__items[data-v-c6b6b066] {
+.mp-nav__items[data-v-41fdbb3d] {
   display: flex;
   justify-content: flex-end;
   flex-shrink: 0;
   width: 100%;
 }
 @media (max-width: 705px) {
-.mp-nav__items[data-v-c6b6b066] {
+.mp-nav__items[data-v-41fdbb3d] {
     display: none;
 }
 }
@@ -104,14 +104,14 @@
   font-size: 0.8rem;
 }
 
-.navbar-items[data-v-31016c6c] {
+.navbar-items[data-v-1659774c] {
   border-bottom: 1px solid #dce1e5;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   display: none;
 }
 @media (max-width: 705px) {
-.navbar-items[data-v-31016c6c] {
+.navbar-items[data-v-1659774c] {
     display: block;
 }
 }
@@ -212,7 +212,7 @@
   stroke: #4c4c4c;
 }
 
-.button[data-v-998137ac] {
+.button[data-v-011230cc] {
   background-color: transparent;
   padding: 0;
   border: 0;
@@ -328,7 +328,6 @@ code[class*='language-'],
   padding-bottom: 1rem !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
-  white-space: pre;
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !important;
 }
 .minipress-highlight-mask {
@@ -811,35 +810,6 @@ table th:first-child {
   margin-bottom: 20px;
 }
 
-.mp-button[data-v-0c69e2e9] {
-  text-align: center;
-  display: inline-block;
-  padding: 15px 25px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  transition: background 0.2s ease-in-out;
-  border-radius: 5px;
-}
-.mp-button--block[data-v-0c69e2e9] {
-  display: block;
-}
-.mp-button--secondary[data-v-0c69e2e9] {
-  color: #808080;
-  background: #efefef;
-}
-.mp-button--secondary[data-v-0c69e2e9]:hover {
-  color: #404040;
-  background: #ccc;
-}
-.mp-button--primary[data-v-0c69e2e9] {
-  color: #fff;
-  background: #1669b1;
-}
-.mp-button--primary[data-v-0c69e2e9]:hover {
-  color: #fff;
-  background: #006eff;
-}
-
 .mp-flex__item {
   padding: 0rem;
 }
@@ -871,6 +841,35 @@ table th:first-child {
     display: flex;
     flex-direction: column;
 }
+}
+
+.mp-button[data-v-0c69e2e9] {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 25px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: background 0.2s ease-in-out;
+  border-radius: 5px;
+}
+.mp-button--block[data-v-0c69e2e9] {
+  display: block;
+}
+.mp-button--secondary[data-v-0c69e2e9] {
+  color: #808080;
+  background: #efefef;
+}
+.mp-button--secondary[data-v-0c69e2e9]:hover {
+  color: #404040;
+  background: #ccc;
+}
+.mp-button--primary[data-v-0c69e2e9] {
+  color: #fff;
+  background: #1669b1;
+}
+.mp-button--primary[data-v-0c69e2e9]:hover {
+  color: #fff;
+  background: #006eff;
 }
 
 
