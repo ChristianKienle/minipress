@@ -1,18 +1,11 @@
 {
   "publicPath": "/minipress/",
   "all": [
-    "assets/js/1.js",
-    "assets/js/10.js",
-    "assets/js/11.js",
-    "assets/js/12.js",
-    "assets/js/13.js",
-    "assets/js/14.js",
     "assets/js/15.js",
     "assets/js/16.js",
     "assets/js/17.js",
     "assets/js/18.js",
     "assets/js/19.js",
-    "assets/js/2.js",
     "assets/js/20.js",
     "assets/js/21.js",
     "assets/js/22.js",
@@ -22,14 +15,21 @@
     "assets/js/26.js",
     "assets/js/27.js",
     "assets/js/28.js",
-    "assets/js/3.js",
-    "assets/js/4.js",
-    "assets/js/5.js",
-    "assets/js/6.js",
-    "assets/js/7.js",
-    "assets/js/8.js",
-    "assets/js/9.js",
     "assets/js/app.js",
+    "assets/js/page--0cc22fe4.js",
+    "assets/js/page--2e666dbc.js",
+    "assets/js/page--3b499795.js",
+    "assets/js/page--43fa1dd0.js",
+    "assets/js/page--4dcd7602.js",
+    "assets/js/page--6510deed.js",
+    "assets/js/page--6f23211f.js",
+    "assets/js/page--720de4fb.js",
+    "assets/js/page--85a15be2.js",
+    "assets/js/page--90f8fd5e.js",
+    "assets/js/page--b30beac6.js",
+    "assets/js/page--c9680e70.js",
+    "assets/js/page--ca11f630.js",
+    "assets/js/page--e6d50b2e.js",
     "style.css"
   ],
   "initial": [
@@ -37,18 +37,11 @@
     "assets/js/app.js"
   ],
   "async": [
-    "assets/js/1.js",
-    "assets/js/10.js",
-    "assets/js/11.js",
-    "assets/js/12.js",
-    "assets/js/13.js",
-    "assets/js/14.js",
     "assets/js/15.js",
     "assets/js/16.js",
     "assets/js/17.js",
     "assets/js/18.js",
     "assets/js/19.js",
-    "assets/js/2.js",
     "assets/js/20.js",
     "assets/js/21.js",
     "assets/js/22.js",
@@ -58,298 +51,305 @@
     "assets/js/26.js",
     "assets/js/27.js",
     "assets/js/28.js",
-    "assets/js/3.js",
-    "assets/js/4.js",
-    "assets/js/5.js",
-    "assets/js/6.js",
-    "assets/js/7.js",
-    "assets/js/8.js",
-    "assets/js/9.js"
+    "assets/js/page--0cc22fe4.js",
+    "assets/js/page--2e666dbc.js",
+    "assets/js/page--3b499795.js",
+    "assets/js/page--43fa1dd0.js",
+    "assets/js/page--4dcd7602.js",
+    "assets/js/page--6510deed.js",
+    "assets/js/page--6f23211f.js",
+    "assets/js/page--720de4fb.js",
+    "assets/js/page--85a15be2.js",
+    "assets/js/page--90f8fd5e.js",
+    "assets/js/page--b30beac6.js",
+    "assets/js/page--c9680e70.js",
+    "assets/js/page--ca11f630.js",
+    "assets/js/page--e6d50b2e.js"
   ],
   "modules": {
     "95a9d01c": [
       29,
-      28
+      14
     ],
     "387ccf72": [
       29,
-      28
+      14
     ],
     "d6ca716c": [
       29,
-      28
+      14
     ],
     "acc75f10": [
       29,
-      28
+      14
     ],
     "05092e67": [
       29,
-      28
+      14
     ],
     "652aa772": [
       29,
-      28
+      14
     ],
     "44813c9e": [
       29,
-      28
+      14
     ],
     "09ac718a": [
       29,
-      28
+      14
     ],
     "b7ff7c9c": [
       29,
-      28
+      14
     ],
     "4079ede3": [
       29,
-      28
+      14
     ],
     "651eea86": [
       29,
-      28
+      14
     ],
     "88d21870": [
       29,
-      28
+      14
     ],
     "4b24a4c6": [
       29,
-      28
+      14
     ],
     "59c77120": [
       29,
-      28
+      14
     ],
     "c7879390": [
       29,
-      28
+      14
     ],
     "030ce01d": [
       29,
-      28
+      14
     ],
     "918f3b92": [
       29,
-      28
+      14
     ],
     "bba014b0": [
       29,
-      28
+      14
     ],
     "6a1d5d88": [
       29,
-      28
+      14
     ],
     "9b555eb4": [
       29,
-      28
+      14
     ],
     "3e2c3058": [
       29,
-      28
+      14
     ],
     "62f10f8b": [
       29,
-      28
+      14
     ],
     "29b594ba": [
       29,
-      28
+      14
     ],
     "480a970d": [
       29,
-      28
+      14
     ],
     "4a0aece6": [
       29,
-      28
+      14
     ],
     "3276ead6": [
       29,
-      28
+      14
     ],
     "a1f58df2": [
       29,
-      28
+      14
     ],
     "c726fc3c": [
       29,
-      28
+      14
     ],
     "552d95ec": [
       29,
-      28
+      14
     ],
     "fb1b87bc": [
       29,
-      28
+      14
     ],
     "0c2cc544": [
       29,
-      28
+      14
     ],
     "a9a99038": [
       29,
-      28
+      14
     ],
     "68a06702": [
       29,
-      28
+      14
     ],
     "5963f189": [
       29,
-      28
+      14
     ],
     "02025afe": [
       29,
-      28
+      14
     ],
     "76d094f0": [
       29,
-      28
+      14
     ],
     "8b285d1a": [
       29,
-      28
+      14
     ],
     "80b22308": [
-      21
+      18
     ],
     "488b4082": [
-      23
+      28
     ],
     "49e32d4d": [
-      25
-    ],
-    "f476e0b6": [
-      27
-    ],
-    "ff606dca": [
-      2
-    ],
-    "7e7c0028": [
-      4
-    ],
-    "5fd3d846": [
-      19
-    ],
-    "3ec65197": [
-      6
-    ],
-    "3f5f21b8": [
-      8
-    ],
-    "6bad4428": [
-      10
-    ],
-    "9f6d7168": [
-      13
-    ],
-    "2e0b947a": [
-      15
-    ],
-    "17ccf646": [
-      17
-    ],
-    "694e1115": [
-      22
-    ],
-    "6a35eb72": [
-      24
-    ],
-    "8fd397b8": [
       26
     ],
-    "1859b268": [
+    "f476e0b6": [
+      23
+    ],
+    "ff606dca": [
+      19
+    ],
+    "7e7c0028": [
+      27
+    ],
+    "5fd3d846": [
+      16
+    ],
+    "3ec65197": [
+      21
+    ],
+    "3f5f21b8": [
+      17
+    ],
+    "6bad4428": [
+      25
+    ],
+    "9f6d7168": [
+      22
+    ],
+    "2e0b947a": [
+      20
+    ],
+    "17ccf646": [
+      15
+    ],
+    "694e1115": [
       1
     ],
-    "4a4032d4": [
+    "6a35eb72": [
+      2
+    ],
+    "8fd397b8": [
       3
     ],
-    "7ffa19e9": [
+    "1859b268": [
+      4
+    ],
+    "4a4032d4": [
       5
     ],
+    "7ffa19e9": [
+      6
+    ],
     "b8b788d8": [
-      20
+      13
     ],
     "a10f42cc": [
       7
     ],
     "729ddb6d": [
-      9
+      8
     ],
     "459055e9": [
-      12
+      9
     ],
     "fcd54376": [
-      14
+      10
     ],
     "6cddb357": [
-      16
+      11
     ],
     "407a2fea": [
-      18
+      12
     ],
     "b8c3cb00": [
-      0
+      24
     ],
     "690156de": [
-      11
+      0
     ],
     "0118eae2": [
       29,
-      28
+      14
     ],
     "30fcc71c": [
       29,
-      28
+      14
     ],
     "34ac8c48": [
       29,
-      28
+      14
     ],
     "0fe4feca": [
       29,
-      28
+      14
     ],
     "00b800c8": [
       29,
-      28
+      14
     ],
     "496099c7": [
       29,
-      28
+      14
     ],
     "4421658e": [
       29,
-      28
+      14
     ],
     "2dbec091": [
       29,
-      28
+      14
     ],
     "4638dde6": [
       29,
-      28
+      14
     ],
     "aba3dec0": [
       29,
-      28
+      14
     ],
     "7fe367dc": [
       29,
-      28
+      14
     ],
     "e4793d40": [
       29,
-      28
+      14
     ],
     "72d97346": [
       29,
-      28
+      14
     ]
   }
 }
