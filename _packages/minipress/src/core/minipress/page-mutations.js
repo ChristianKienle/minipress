@@ -12,27 +12,6 @@
 /**
  * @typedef { 'create' | 'remove' | 'change' } Type
  */
-// class PageMutation {
-//   constructor(type, page) {
-
-//   }
-// }
-
-// /** @param {Page} page */
-// const CreateMutation = page =>
-//   /** @param {Minipress} minipress */
-//   async minipress => await minipress.pages.normalizePage(page)
-
-// /** @param {Page} page */
-// const RemoveMutation = page =>
-//   /** @param {Minipress} minipress */
-//   async minipress => await minipress.pages.normalizePage(page)
-
-// /** @param {Page} page */
-// const ChangeMutation = page =>
-//   /** @param {Minipress} minipress */
-//   async minipress => await minipress.pages.normalizePage(page)
-
 module.exports = class Mutations {
   constructor() {
     /** @type {({type: Type, page: Page })[]} */
@@ -60,9 +39,3 @@ module.exports = class Mutations {
     }))
   }
 }
-
-// module.exports = {
-//   CreateMutation,
-//   RemoveMutation,
-//   ChangeMutation
-// }

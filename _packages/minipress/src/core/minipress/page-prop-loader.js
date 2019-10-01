@@ -2,6 +2,7 @@
 const loaderUtils = require('loader-utils')
 const codeGen = require('@minipress/code-gen')
 const normalizeOptions = require('./../minipress/universal-page-loader/normalize-options')
+const devalue = require('devalue')
 
 /** @type {import("webpack").loader.Loader} */
 module.exports = async function load(source, map) {
@@ -21,11 +22,14 @@ module.exports = async function load(source, map) {
     throw Error('page not found')
   }
 
-  const code = codeGen.js(c => `
+  // @ts-ignore
+  const serializedPage = devalue(options.minipress.pages.makePageAvailableToClient(page))
+
+  const code = codeGen.js(() => `
   export default function(Component) {
     var beforeCreate = Component.options.beforeCreate || []
     Component.options.beforeCreate = [function() {
-      var page = ${c.stringify(page)}
+      var page = ${serializedPage}
       this.$page = page
     }].concat(beforeCreate)
   }`)

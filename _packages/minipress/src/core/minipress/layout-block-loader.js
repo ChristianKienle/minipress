@@ -1,6 +1,5 @@
 // @ts-check
 const loaderUtils = require('loader-utils')
-const Path = require('path')
 const codeGen = require('@minipress/code-gen')
 const normalizeOptions = require('./../minipress/universal-page-loader/normalize-options')
 
@@ -17,15 +16,6 @@ module.exports = async function load(source, map) {
     return
   }
   const layout = String(source).trim()
-  // const page = options.minipress.pages.get(pageKey)
-  // if (page == null) {
-  //   throw Error(`page not found`)
-  // }
-  // if (module.hot) {
-  //   var Vue = require('vue').default
-  //   Component.options._Ctor = Vue.extend(Component)
-  // }
-  // Component.options.layout = ${c.stringify(layout)}
   const code = codeGen.js(c => `
     export default function(Component) {
       var layout = ${c.stringify(layout)}
@@ -36,12 +26,6 @@ module.exports = async function load(source, map) {
 
   }
   `)
-  // const [options, error] = normalizeOptions(loaderUtils.getOptions(this))
-
-  // if (error != null || options == null) {
-  //   callback(error)
-  //   return
-  // }
   callback(/* error */ null, code, map)
   return
 }

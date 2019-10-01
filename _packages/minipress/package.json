@@ -15,6 +15,7 @@
     "minipress": "./src/cli/cli-entry.js"
   },
   "dependencies": {
+    "devalue": "^2.0.0",
     "joi": "^14.3.1",
     "@types/joi": "^14.3.3",
     "less": "^3.10.3",

@@ -1,5 +1,5 @@
 // @ts-check
-const { normalizePage } = require('./normalize')
+const { normalizePage, makePageAvailableToClient } = require('./normalize')
 const hash = require('hash-sum')
 
 /**
@@ -84,12 +84,10 @@ module.exports = class Pages {
   _emitPage(page) {
     const { minipress } = this
     const { tempDir } = minipress
-    // const pageHash = `export default '${hash(page)}'`
     const pageHash = hash(page)
     const path = `pages/${page.key}.minipresspage`
     if(tempDir.existsSync(path)) {
       const existingHash = tempDir.readSync(path)
-      // const existingHash = `export default '${tempDir.readSync(path)}`
       if(pageHash === existingHash) {
         return
       }
@@ -105,6 +103,11 @@ module.exports = class Pages {
     })
     await this.minipress.pageTransformers.transform(ProcessablePage)
     return ProcessablePage
+  }
+
+  /** @param {EmittablePage} page */
+  makePageAvailableToClient(page) {
+    return makePageAvailableToClient(page)
   }
 
   [Symbol.iterator]() {

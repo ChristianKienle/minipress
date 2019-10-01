@@ -29,10 +29,13 @@ const ContentComponents = require('./content-components')
  * @param {Page} page
  */
 const pageForSiteData = page => {
-  const { content = '' } = page
+  const { content = '', file = {} } = page
+  const siteDataFile = { ...file }
+  delete siteDataFile.absolute
   const maxIndex = Math.min(content.length, 256)
   return {
     ...page,
+    file: siteDataFile,
     content: content.substring(0, maxIndex)
   }
 }
@@ -124,7 +127,7 @@ class Minipress {
     this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
       const pages = this.pages.values()//.map(page => page)
       const _siteData = {
-        pages: pages.map(pageForSiteData),
+        pages: pages.map(page => this.pages.makePageAvailableToClient(page)),
         ...siteData,
       }
       const code = codeGen.js(c => `export default ${c.stringify(_siteData)}`)

@@ -21,7 +21,7 @@
     "inquirer": "^7.0.0",
     "execa": "^2.0.4",
     "fs-extra": "^8.1.0",
-    "ora": "^3.4.0"
+    "ora": "^4.0.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.0.0"

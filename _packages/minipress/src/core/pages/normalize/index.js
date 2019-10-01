@@ -152,7 +152,31 @@ const normalizePage = async (page = {}, { minipress, transformers }) => {
  */
 const normalizePages = async (pages, options) => Promise.all(pages.map(page => normalizePage(page, options)))
 
+/**
+ * This function prepares a page that is supposed to be made available on
+ * the client/in the browser. Pages are exposed in site data and thus we have
+ * to take care of a few things at this point:
+ * - remove absolute path information
+ * - remove the actual content
+ * All of this has to be done on a deep copy of the page because we do not
+ * want to mutate the original.
+ * @param {EmittablePage} page
+ */
+const makePageAvailableToClient = page => {
+  const { file = {} } = page
+  const siteDataFile = { ...file }
+  delete siteDataFile.absolute
+  // const maxIndex = Math.min(content.length, 256)
+  return {
+    ...page,
+    file: siteDataFile,
+    content: ''
+    // : content.substring(0, maxIndex)
+  }
+}
+
 module.exports = {
   normalizePage,
-  normalizePages
+  normalizePages,
+  makePageAvailableToClient
 }
