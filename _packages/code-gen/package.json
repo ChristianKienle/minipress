@@ -1,6 +1,6 @@
 {
   "name": "@minipress/code-gen",
-  "version": "0.1.1-alpha.11",
+  "version": "0.1.1-alpha.12",
   "description": "",
   "main": "src/index.js",
   "keywords": [],
@@ -12,6 +12,8 @@
   "devDependencies": {
     "@types/prettier": "^1.18.2"
   },
-  "files": ["src/*"],
+  "files": [
+    "src/*"
+  ],
   "types": "index.d.ts"
 }

@@ -1,11 +1,9 @@
 {
   "name": "@minipress/create-plugin",
-  "version": "0.1.1-alpha.11",
+  "version": "0.1.1-alpha.12",
   "description": "",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "bin": {
     "minipress": "./cli.js"
   },
@@ -17,10 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "globby": "^10.0.1",
-    "inquirer": "^7.0.0",
     "execa": "^2.0.4",
     "fs-extra": "^8.1.0",
+    "globby": "^10.0.1",
+    "inquirer": "^7.0.0",
     "ora": "^4.0.2"
   },
   "devDependencies": {
