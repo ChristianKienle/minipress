@@ -7,6 +7,7 @@
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
     "test": "lerna run test",
+    "check-dependencies": "npm outdated && lerna exec --no-bail -- npm outdated",
     "publish": "lerna publish prerelease",
     "gh-pages": "node _support/gh-pages",
     "bs": "lerna bootstrap",
