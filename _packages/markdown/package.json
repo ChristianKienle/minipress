@@ -6,6 +6,10 @@
   "scripts": {
     "test": "jest ."
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,5 +25,5 @@
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0"
   },
-  "gitHead": "0afd5f7c7092ba4dec04a6e1ccb543b8b1fa828d"
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
 }
