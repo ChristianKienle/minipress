@@ -1,6 +1,6 @@
 {
   "name": "@minipress/types",
-  "version": "0.1.1-alpha.13",
+  "version": "0.1.1-alpha.14",
   "files": [
     "types/*.d.ts"
   ],
