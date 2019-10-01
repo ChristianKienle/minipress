@@ -1,15 +1,15 @@
 {
   "name": "@minipress/plugin-pages",
-  "version": "0.1.1-alpha.12",
+  "version": "0.1.1-alpha.13",
   "description": "",
   "main": "src/index.js",
   "scripts": {},
   "dependencies": {
-    "@minipress/utils": "^0.1.1-alpha.12",
+    "@minipress/utils": "^0.1.1-alpha.13",
     "chokidar": "^3.1.1"
   },
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.12"
+    "@minipress/types": "^0.1.1-alpha.13"
   },
   "private": false,
   "publishConfig": {

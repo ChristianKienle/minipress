@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-hello-world",
-  "version": "0.1.1-alpha.12",
+  "version": "0.1.1-alpha.13",
   "private": false,
   "main": "index.js",
   "license": "MIT",
@@ -21,10 +21,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.12",
-    "@minipress/plugin-additional-pages": "^0.1.1-alpha.12",
-    "@minipress/plugin-pages": "^0.1.1-alpha.12",
-    "@minipress/theme-default": "^0.1.1-alpha.12"
+    "@minipress/minipress": "^0.1.1-alpha.13",
+    "@minipress/plugin-additional-pages": "^0.1.1-alpha.13",
+    "@minipress/plugin-pages": "^0.1.1-alpha.13",
+    "@minipress/theme-default": "^0.1.1-alpha.13"
   },
   "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
 }

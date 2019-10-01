@@ -1,6 +1,6 @@
 {
   "name": "@minipress/create-plugin",
-  "version": "0.1.1-alpha.12",
+  "version": "0.1.1-alpha.13",
   "description": "",
   "main": "index.js",
   "scripts": {},
