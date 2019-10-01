@@ -15,8 +15,12 @@
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0"
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "gitHead": "f65e40942f64e041465bac879f0d85e7efc1d23e"
+  "gitHead": "0afd5f7c7092ba4dec04a6e1ccb543b8b1fa828d"
 }
