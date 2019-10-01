@@ -1,6 +1,6 @@
 {
   "name": "@minipress/log",
-  "version": "0.1.1-alpha.14",
+  "version": "0.1.1-alpha.15",
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
