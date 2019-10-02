@@ -25,14 +25,10 @@ const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
 
 /**
- * @typedef {import('./../../config/types')._ResolvedPlugin} _ResolvedPlugin
- * @typedef {import('./../../config/types').InvokedPlugin} InvokedPlugin
- * @typedef {import('./../../config/types').Component} Component
- * @typedef {import('./../types').DynamicModuleFn} DynamicModuleFn
  * @typedef {import('@minipress/types').Page} Page
  *
  * @typedef {object} Options
- * @prop {import('./../../config/config')} config
+ * @prop {import('@minipress/types')._Config} config
  * @prop {import('@minipress/log')} log
  */
 class Minipress {
@@ -404,7 +400,6 @@ class Minipress {
     await this.hooks.registerLayouts.promise()
     this.emitToLayouts()
 
-    this.tempDir.writeTemp('config/index.js', this.config.code)
     await this.hooks.initialPages.promise()
     const mutations = new PageMutations()
     await this.hooks.mutatePages.promise(mutations)

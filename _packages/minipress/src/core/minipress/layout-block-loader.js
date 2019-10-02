@@ -23,7 +23,6 @@ module.exports = async function load(source, map) {
       Component.options.beforeCreate = [function() {
         this.$layout = layout
       }].concat(beforeCreate)
-
   }
   `)
   callback(/* error */ null, code, map)

@@ -1,10 +1,10 @@
 // @ts-check
 const { resolve } = require('path')
-const { normalizeBuild } = require('./normalize')
+const normalizeBuild = require('./build')
 
 /**
- * @typedef {import('./types').Config} Config
- * @typedef {import('./types')._Config} _Config
+ * @typedef {import('@minipress/types').Config} Config
+ * @typedef {import('@minipress/types')._Config} _Config
  */
 
 /**

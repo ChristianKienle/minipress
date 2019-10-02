@@ -39,7 +39,7 @@ const createBabelOptions = () => ({
 /**
  * @typedef {object} Options
  * @prop {boolean} isServer
- * @prop {import('./../config/config')} minipressConfig
+ * @prop {import('@minipress/types')._Config} minipressConfig
  */
 
 /** @param {Options} options */

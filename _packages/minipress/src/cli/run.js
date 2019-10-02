@@ -6,21 +6,29 @@ const log = require('@minipress/log')
 const Path = require('path')
 const { resolve } = Path
 const fs = require('fs')
-const { Config } = require('./../config')
+const normalizeConfig = require('./../config')
 const installDevCommand = require('./commands/dev')
 const installServeCommand = require('./commands/serve')
 const installGenerateCommand = require('./commands/generate')
+
 const loadConfig = configOptionValue => {
   if (configOptionValue == null) {
-    return Config.fromUserProvidedConfig()
+    return normalizeConfig()
   }
 
   const configPath = resolve(configOptionValue)
   if (fs.existsSync(configPath) === false) {
-    log.error(`No configuration found at '${configPath}': File does not exist.`)
-    return Config.fromUserProvidedConfig()
+    log.warn(`No configuration found at '${configPath}': File does not exist.`)
+    return normalizeConfig()
   }
-  return Config.fromUserProvidedConfig(require(configPath))
+
+  try {
+    const rawConfig = require(configPath)
+    return normalizeConfig (rawConfig)
+  } catch(error) {
+    log.error(`Unable to load config at '${configPath}' – require(…) threw an error: %O`, error)
+    throw error
+  }
 }
 
 const run = async () => {

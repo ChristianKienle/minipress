@@ -33,11 +33,57 @@ You should no be able to see your *miniPress* site by opening [http://localhost:
 Head over to the [configuration guide](./configuration.md) in order to learn more details.
 
 ## Built-In Components
+*miniPress* comes with a few components that are globally registered. This means you can just use them without any additional setup.
 
-### `OutoundLink`
-### `Link`
-### `Layout`
-### `LayoutManager`
+### `MiniContent`
+`MiniContent` allows you to embed pages in other pages. You can use this for a lot of things. Here are a couple of use-cases to give you an idea:
+
+- **Don't repeat yourself:** Imagine you have some kind of warning message that you want to display on multiple pages. Instead of copy and pasting the warning message every time you need it you save it in a regular Markdown file and then embed it where you need it by using `MiniContent`.
+- **Use Markdown Features in `*.vue`-files:** It is not that easy to use Markdown features within `*.vue`-files. Imagine you want to create a page that needs to use certain Vue-features. Great. You create a page using the `vue`-file format. But now you can't use Markdown features like syntax highlighting, containers, etc. This is where `MiniContent` comes in. Simply store your Markdown content inside a `*.md`-file and embed it using `MiniContent`.
+
+#### Usage
+Let's embed a warning message in other pages. Create a file called `_warning-message.md`:
+
+```md {highlightLines:[2]}
+---
+key: warning-message
+---
+
+> **WARNING**
+> This App is still beta. Things might break.
+```
+
+Now you can embed this warning message everywhere like this:
+
+
+```md {highlightLines:[3]}
+Go ahead and try our super cool new App!
+
+<MiniContent pageKey="warning-message" />
+```
+
+#### API
+- **Props:**
+  - `pageKey` – string
+
+### `MiniLink`
+A component that renders a `<router-link>` but comes with [Vue Router Prefetch](https://github.com/egoist/vue-router-prefetch)-integration.
+
+### `MiniLayout`
+A component that renders a registered layout given it's name.
+
+#### Usage
+```markup
+<template>
+  <div>
+    <div>Before my Layout</div>
+      <MiniLayout name="default">
+        My Content goes here
+      </MiniLayout>
+    <div>After my Layout</div>
+  </div>
+</template>
+```
 
 ## Global Computed: `$minipress`
 By default, *miniPress* installs a property called `$minipress` on every Vue instance. This provides you with a lot of interesting meta data about your *miniPress* site (pages, heading, …). You also get access to some convenience methods.
