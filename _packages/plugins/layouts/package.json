@@ -1,0 +1,21 @@
+{
+  "name": "@minipress/plugin-layouts",
+  "version": "0.1.1-alpha.15",
+  "description": "my beautiful plugin",
+  "author": "kienle.christian@icloud.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src/index.js"
+  ],
+  "main": "src/index.js",
+  "dependencies": {
+    "globby": "^10.0.1"
+  },
+  "devDependencies": {
+    "@minipress/types": "^0.1.1-alpha.15"
+  }
+}

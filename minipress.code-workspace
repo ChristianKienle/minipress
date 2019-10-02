@@ -80,6 +80,10 @@
       "path": "_packages/plugins/package-json"
     },
     {
+      "name": "plugin/layouts",
+      "path": "_packages/plugins/layouts"
+    },
+    {
       "name": "plugin/format-vue",
       "path": "_packages/plugins/format-vue"
     },
@@ -108,13 +112,9 @@
       "path": "_support/gh-pages"
     },
     {
-      "name": "support/create-plugin",
-      "path": "_support/create-plugin"
-    },
-		{
-			"name": "support/type-check",
-			"path": "_support/type-check"
-		}
+      "name": "support/type-check",
+      "path": "_support/type-check"
+    }
   ],
   "settings": {
     "workbench.colorCustomizations": {

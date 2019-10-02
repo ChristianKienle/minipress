@@ -1,3 +1,8 @@
+---
+layout: custom
+---
+
+
 # hi
 
 ## minipress page

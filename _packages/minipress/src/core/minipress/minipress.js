@@ -208,6 +208,7 @@ class Minipress {
     // Register default Theme
     this.use('@minipress/theme-default')
     this.use('@minipress/plugin-pages')
+    this.use('@minipress/plugin-layouts')
     this.use('@minipress/plugin-components')
 
     // Register default Transformers

@@ -5,8 +5,10 @@
   "author": "<%= email %>",
   "license": "MIT",
   "files": [
-    "src/index.js"
+    "src/*.js",
+    "src/types.ts"
   ],
+  "main": "src/index.js",
   "devDependencies": {
     "@minipress/types": "*"
   }

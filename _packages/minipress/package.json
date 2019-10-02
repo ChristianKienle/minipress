@@ -29,6 +29,7 @@
     "@minipress/plugin-format-markdown": "^0.1.1-alpha.15",
     "@minipress/plugin-format-vue": "^0.1.1-alpha.15",
     "@minipress/plugin-pages": "^0.1.1-alpha.15",
+    "@minipress/plugin-layouts": "^0.1.1-alpha.15",
     "@minipress/plugin-components": "^0.1.1-alpha.15",
     "@minipress/theme-default": "^0.1.1-alpha.15",
     "@minipress/types": "^0.1.1-alpha.15",

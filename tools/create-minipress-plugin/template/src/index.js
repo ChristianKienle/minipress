@@ -2,7 +2,7 @@
 
 const PLUGIN = "<%= name %>"
 
-/** @type {import('./types')} */
+/** @type {import('./types').Plugin} */
 module.exports = {
   async apply(minipress, options) {
     // plugin implementation goes here
