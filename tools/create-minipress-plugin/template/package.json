@@ -1,0 +1,13 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.1",
+  "description": "<%= description %>",
+  "author": "<%= email %>",
+  "license": "MIT",
+  "files": [
+    "src/index.js"
+  ],
+  "devDependencies": {
+    "@minipress/types": "*"
+  }
+}
