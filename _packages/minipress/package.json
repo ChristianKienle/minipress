@@ -16,6 +16,7 @@
     "minipress": "./src/cli/cli-entry.js"
   },
   "dependencies": {
+    "webpackbar": "^4.0.0",
     "@babel/core": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.5.5",

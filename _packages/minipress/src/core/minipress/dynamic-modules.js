@@ -1,7 +1,6 @@
 // @ts-check
 
 /**
- *
  * @param {string} name
  */
 const fullName = name => `#minipress/dynamic/${name}`

@@ -5,6 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
 const CSSExtractPlugin = require('mini-css-extract-plugin')
 const define = require('./../utils/webpack/define')
+const WebpackBar = require('webpackbar')
 
 const createBabelOptions = () => ({
   // do not pick local project babel config (.babelrc)
@@ -124,7 +125,6 @@ module.exports = function createBase({ isServer, minipressConfig }) {
       }
     }
 
-    // applyLoaders(modulesRule)
     applyLoaders(normalRule)
   }
 
@@ -182,6 +182,10 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .set('__MINIPRESS_TEMP_DIR__')
     .to(tempDir)
     .end()
+
+  const webpackbarName = isServer ? 'server' : 'client'
+  const webpackbarColor = isServer ? 'magenta' : 'teal'
+  config.plugin('webpackbar').use(WebpackBar, [{ color: webpackbarColor, name: webpackbarName }])
   return config
 }
 

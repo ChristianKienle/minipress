@@ -10,7 +10,6 @@ const fs = require('fs-extra')
  * @typedef {import('@minipress/types').ProcessablePage} ProcessablePage
  * @typedef {import('@minipress/types').EmittablePage} EmittablePage
  * @typedef {import('./../../minipress/minipress')} Minipress
- * @typedef {import('./../../minipress/transformers/transformers')} Transformers
  */
 
 /**
@@ -86,16 +85,15 @@ const isVirtualPage = page => {
 
 /**
  * @param {Page} page
- * @param {{transformers: Transformers; minipress: Minipress }} options
+ * @param {{ minipress: Minipress }} options
  * @returns {Promise<EmittablePage>}
  */
-const normalizePage = async (page = {}, { minipress, transformers }) => {
+const normalizePage = async (page = {}, { minipress }) => {
   const file = normalizeFile(page.file)
   let key = page.key
   if (key == null && file.absolute != null) {
     key = createPageKey(file.absolute)
   }
-  // const isVirtualPage = key != null && file.absolute == null && file.relative == null && page.content != null
   if (isVirtualPage(page)) {
     const absolutePath = minipress.tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
     file.absolute = absolutePath
@@ -108,7 +106,7 @@ const normalizePage = async (page = {}, { minipress, transformers }) => {
   const attributes = { ...(page.attributes || {}) }
   const headings = [ ...(page.headings || []) ]
   const frontmatter = { ...(page.frontmatter || {}) }
-  const transformer = transformers.get(contentType)
+  const transformer = minipress.transformers.get(contentType)
   const ProcessablePage = {
     ...page,
     content,
@@ -147,7 +145,7 @@ const normalizePage = async (page = {}, { minipress, transformers }) => {
 
 /**
  * @param {Page[]} pages
- * @param {{transformers: Transformers }} options
+ * @param {{ minipress: Minipress }} options
  * @returns {Promise<ProcessablePage[]>}
  */
 const normalizePages = async (pages, options) => Promise.all(pages.map(page => normalizePage(page, options)))
@@ -166,12 +164,10 @@ const makePageAvailableToClient = page => {
   const { file = {} } = page
   const siteDataFile = { ...file }
   delete siteDataFile.absolute
-  // const maxIndex = Math.min(content.length, 256)
   return {
     ...page,
     file: siteDataFile,
     content: ''
-    // : content.substring(0, maxIndex)
   }
 }
 

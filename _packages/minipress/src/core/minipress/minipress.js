@@ -213,7 +213,12 @@ class Minipress {
       this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
         const pages = this.pages.values()
         pages.forEach(route => {
-          this.contentComponents.register(route.key, { id: route.key, absolutePath: route.file.absolute })
+          const { file } = route
+          const { absolute } = file
+          if(absolute == null) {
+            return
+          }
+          this.contentComponents.register(route.key, { id: route.key, absolutePath: absolute })
         })
       })
 

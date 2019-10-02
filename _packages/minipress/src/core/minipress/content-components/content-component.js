@@ -3,14 +3,10 @@ const qs = require('querystring')
 const { stringify } = require('@minipress/utils')
 
 module.exports = class ContentComponent {
-  /**
-   * @typedef {object} Options
-   * @prop {string} id
-   * @prop {string} absolutePath
-   */
+  /** @typedef {import('./types').ContentComponentI} ContentComponentI */
 
   /**
-   * @param {Options} options
+   * @param {ContentComponentI} options
    */
   constructor({ id, absolutePath }) {
     this.id = id
