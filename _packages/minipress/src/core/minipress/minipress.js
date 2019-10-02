@@ -205,6 +205,11 @@ class Minipress {
   async prepare() {
     this.cleanTempDir()
 
+    // Register default Theme
+    this.use('@minipress/theme-default')
+    this.use('@minipress/plugin-pages')
+    this.use('@minipress/plugin-components')
+
     // Register default Transformers
     this.use('@minipress/plugin-format-markdown')
     this.use('@minipress/plugin-format-vue')

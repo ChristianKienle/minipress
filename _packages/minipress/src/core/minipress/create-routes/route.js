@@ -40,7 +40,6 @@ module.exports = class Route {
   /** @param {{contentOnly: boolean}} options */
   importCode({ contentOnly = false }) {
     const importPath = this.importPath({ contentOnly })
-    // return import(/* webpackChunkName: "page--examples-button-md" */ "/Users/d069408/ChristianKienle/sabertest/pages/examples/button.md?saberPage=399172e8")
     const chunkName = `page--${this.meta.$page.key}`
     const magicComment = `/* webpackChunkName: "${chunkName}" */`
     return codeGen.raw(c => `() => import(${magicComment} ${c.stringify(importPath)})`)
