@@ -198,7 +198,7 @@ export default {
 
 .mp-layout__container {
   margin-left: 'calc(%s + %s)' % ($leftBarWidth $leftBarPaddingX);
-  padding-top: 40px;
+  padding-top: 32px;
   padding-left: $leftBarPaddingX;
   padding-right: $leftBarPaddingX;
 
@@ -236,7 +236,7 @@ export default {
 .mp-main__content {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 </style>

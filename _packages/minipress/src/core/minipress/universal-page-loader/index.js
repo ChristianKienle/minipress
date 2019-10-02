@@ -43,8 +43,6 @@ module.exports = async function load(source, map) {
     return
   }
 
-  console.log('ul', this.resourcePath)
-
   const { minipress } = options
   const page = minipress.pages.get(pageKey)
   if (page == null) {

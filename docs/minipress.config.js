@@ -6,8 +6,8 @@ const themeConfig = {
       { text: 'Guide', link: '/guide/' },
       { text: 'Configuration', link: '/configuration/' },
       { text: 'Features', link: '/features/' },
-      { text: 'Themes', link: '/themes/' },
-      { text: 'Plugins', link: '/plugins/' },
+      // { text: 'Themes', link: '/themes/' },
+      { text: 'Plugins & Themes', link: '/plugins-and-themes/' },
       { text: 'GitHub', link: '/404' },
       // { text: 'Internals', link: '/internals/' },
     ]
