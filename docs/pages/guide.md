@@ -3,12 +3,20 @@
 
 ::: tip hihi
 bla `xxx` furz
-
-```js
-console.log('i')
-```
-brot
 :::
+
+hihihihi
+
+::: warn hihi
+bla `xxx` furz
+:::
+
+bllll
+
+::: error hihi
+bla `xxx` furz
+:::
+
 
 > *miniPress* is a _mini_-mal static site generator. It was created for educational purposes. Sometimes having something small and minimal (and probably incomplete) helps to get the big picture.
 

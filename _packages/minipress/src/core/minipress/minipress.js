@@ -280,7 +280,7 @@ class Minipress {
   }
 
   /**
-   * @param {string} id
+   * @param {string | any} id
    * @param {any=} options
    */
   use(id, options) {

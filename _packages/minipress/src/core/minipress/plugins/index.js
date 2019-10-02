@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * @typedef {import('./types')._ResolvedPlugin} Plugin
+ * @typedef {import('./types').SealedPlugin} Plugin
  */
 
 const { normalizePlugin } = require('./normalize')

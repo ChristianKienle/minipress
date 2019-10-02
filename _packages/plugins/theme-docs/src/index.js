@@ -1,18 +1,41 @@
 // @ts-check
 const { join } = require('path')
+const CustomContainer = require('@minipress/custom-container')
+
 const PLUGIN = '@minipress/theme-docs'
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
   apply(minipress, options) {
-
-    minipress.use('@minipress/custom-container', {
+    CustomContainer.apply(minipress, {
       type: 'tip',
       defaultTitle: 'TIP',
-      renderBefore() {
-        return '<div>\n'
+      renderBefore({ title }) {
+        return `<MiniTip title="${title}">\n`
       },
       renderAfter() {
-        return '</div>\n'
+        return '</MiniTip>\n'
+      }
+    })
+
+    CustomContainer.apply(minipress, {
+      type: 'warn',
+      defaultTitle: 'WARNING',
+      renderBefore({ title }) {
+        return `<MiniWarn title="${title}">\n`
+      },
+      renderAfter() {
+        return '</MiniWarn>\n'
+      }
+    })
+
+    CustomContainer.apply(minipress, {
+      type: 'error',
+      defaultTitle: 'ERROR',
+      renderBefore({ title }) {
+        return `<MiniError title="${title}">\n`
+      },
+      renderAfter() {
+        return '</MiniError>\n'
       }
     })
 
@@ -37,7 +60,9 @@ module.exports = {
       // register('BurgerIcon', 'burger-item.vue')
       register('FlexItem', 'flex-item.vue')
       register('Flex', 'flex.vue')
-      register('MiniTip', 'tip.vue')
+      register('MiniTip', 'containers/tip.vue')
+      register('MiniWarn', 'containers/warn.vue')
+      register('MiniError', 'containers/error.vue')
       // register('HeroLogo', 'logo.vue')
       // register('HeroLogo', 'button.vue')
       // register('LeftBar', 'left-bar.vue')

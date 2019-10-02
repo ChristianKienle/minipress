@@ -15,7 +15,7 @@ module.exports = (md, options) => {
     renderBefore = defaultRenderBefore,
     renderAfter = defaultRenderAfter
   } = options
-  const TYPE_RE = new RegExp(`/^${type}\s+(.*)$/`)
+  const TYPE_RE = new RegExp(`^${type}\\s+(.*)`, 'gi')
 
   const validate = params => {
     return params.trim().match(TYPE_RE);
