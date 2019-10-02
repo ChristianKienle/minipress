@@ -110,7 +110,11 @@
     {
       "name": "support/create-plugin",
       "path": "_support/create-plugin"
-    }
+    },
+		{
+			"name": "support/type-check",
+			"path": "_support/type-check"
+		}
   ],
   "settings": {
     "workbench.colorCustomizations": {

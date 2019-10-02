@@ -6,6 +6,7 @@
   "private": true,
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
+    "typecheck": "lerna run typecheck --no-bail",
     "test": "lerna run test",
     "check-dependencies": "npm outdated && lerna exec --no-bail -- npm outdated",
     "publish": "lerna publish prerelease",

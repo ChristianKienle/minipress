@@ -3,7 +3,7 @@ const codeGen = require('@minipress/code-gen')
 const ContentComponent = require('./content-component')
 
 /**
- * @typedef {Pick<InstanceType<typeof ContentComponent>, 'id' | 'absolutePath'>} ContentComponentI
+ * @typedef {import('./types').ContentComponentI} ContentComponentI
  */
 
 module.exports = class ContentComponents {

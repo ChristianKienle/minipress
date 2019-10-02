@@ -8,7 +8,8 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest ."
+    "test": "jest .",
+    "typecheck": "tsc --project ."
   },
   "keywords": [],
   "author": "",

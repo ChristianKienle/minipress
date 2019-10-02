@@ -9,7 +9,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest ."
+    "test": "jest .",
+    "typecheck": "tsc --project ."
   },
   "bin": {
     "minipress": "./src/cli/cli-entry.js"
