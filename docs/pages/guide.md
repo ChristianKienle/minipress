@@ -1,7 +1,7 @@
 # Guide
 *miniPress* is for the little ones – for everyone who is still trying to learn.
 
-::: tip hihi
+::: tip ddd
 bla `xxx` furz
 :::
 

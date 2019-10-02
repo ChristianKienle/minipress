@@ -1,16 +1,6 @@
-
-{/* <template functional>
-  <div :class="classPrefix">
-    <div v-if="hasTitle" :class="titleClasses">
-      {{ title }}
-    </div>
-    <slot />
-  </div>
-</template> */}
-export default classPrefix => ({
-  functional: true,
-  render(h, { slots, props }) {
-    const { title } = props
+export default (classPrefix, defaultTitle = '') => ({
+  render(h) {
+    const title = this.title || defaultTitle
     const hasTitle = title.length > 0
     const children = (() => {
       const result = []
@@ -19,26 +9,16 @@ export default classPrefix => ({
         const renderedTitle = h('div', { class: titleClass }, title)
         result.push(renderedTitle)
       }
-      result.push(...slots().default)
+      result.push(...this.$slots.default)
       return result
     })()
 
     return h('div', { class: classPrefix }, children)
   },
-
   props: {
     title: {
       type: String,
-      default: ''
+      default: null
     }
   }
 })
-
-// <style scoped lang="stylus">
-// @import '../styles/_config.stylus';
-// @import '../styles/_container.stylus';
-
-// .tip
-//   make-container($base-color: #B2DBBF)
-// </style>
-
