@@ -6,8 +6,6 @@ import OutboundLink from './components/outbound-link.vue'
 // @ts-ignore
 import Layout from './components/layout.vue'
 // @ts-ignore
-import LayoutManager from './components/layout-manager.vue'
-// @ts-ignore
 import Content from './components/content.vue'
 
 const install = vue => {

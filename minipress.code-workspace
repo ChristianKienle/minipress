@@ -47,6 +47,10 @@
       "name": "plugin/clean-urls",
       "path": "_packages/plugins/clean-urls"
     },
+		{
+			"name": "plugin/custom-container",
+			"path": "_packages/plugins/custom-container"
+		},
     {
       "name": "plugin/additional-pages",
       "path": "_packages/plugins/additional-pages"

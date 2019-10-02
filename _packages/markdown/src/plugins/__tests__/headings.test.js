@@ -19,7 +19,6 @@ Text
 `, env)).toMatchSnapshot()
 const { headings } = page
     expect(headings).toHaveLength(3)
-    console.log(headings)
     expect(headings[0]).toMatchObject({ text: 'Title', level: 1, slug: 'title'})
     expect(headings[1]).toMatchObject({ text: 'Chapter 1', level: 2, slug: 'chapter-1'})
     expect(headings[2]).toMatchObject({ text: 'Chapter 2', level: 2, slug: 'chapter-2'})

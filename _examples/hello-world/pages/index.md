@@ -1,6 +1,9 @@
 # hi
-dddsss
-## minssipress page
+
+bla `xxx` bla **hihi** hhh *hihi* <HwBadge>hi</HwBadge> blubb
+bla `xxx` bla **hihi** hhh *hihi* <HwBadge /> blubb
+
+## minssipress page <HwBadge />
 
 <Content pageKey="virtual" />
 <HwButton>hi</HwButton>

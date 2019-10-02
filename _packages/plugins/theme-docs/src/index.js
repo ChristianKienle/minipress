@@ -4,6 +4,18 @@ const PLUGIN = '@minipress/theme-docs'
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
   apply(minipress, options) {
+
+    minipress.use('@minipress/custom-container', {
+      type: 'tip',
+      defaultTitle: 'TIP',
+      renderBefore() {
+        return '<div>\n'
+      },
+      renderAfter() {
+        return '</div>\n'
+      }
+    })
+
     minipress.hooks.configureSiteData.tapPromise(PLUGIN, async siteData => {
       siteData.themeConfig = { ...options }
     })
@@ -25,6 +37,7 @@ module.exports = {
       // register('BurgerIcon', 'burger-item.vue')
       register('FlexItem', 'flex-item.vue')
       register('Flex', 'flex.vue')
+      register('MiniTip', 'tip.vue')
       // register('HeroLogo', 'logo.vue')
       // register('HeroLogo', 'button.vue')
       // register('LeftBar', 'left-bar.vue')

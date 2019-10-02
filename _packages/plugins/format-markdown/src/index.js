@@ -3,7 +3,7 @@ const assert = require('assert')
 // @ts-ignore
 const ID = require('./../package.json').name
 assert(ID)
-const Transformer = require('./transformer')
+const createTransformer = require('./transformer')
 
 /**
  * @typedef {object} Options
@@ -13,8 +13,15 @@ const Transformer = require('./transformer')
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
   apply(minipress) {
+    const transformer = createTransformer()
+    const renderer = transformer.renderer
+
+    minipress.hooks.afterPlugins.tapPromise(ID, async () => {
+      await minipress.hooks.configureMarkdownRenderer.promise(renderer)
+    })
+
     minipress.hooks.registerTransformers.tapPromise(ID, async () => {
-      minipress.transformers.set('md', Transformer)
+      minipress.transformers.set('md', transformer)
     })
   }
 }

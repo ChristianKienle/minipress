@@ -11,20 +11,26 @@ module.exports = class Renderer {
     this.md = createMd()
   }
 
+  use(plugin, options) {
+    this.md.use(plugin, options)
+    return this
+  }
+
   init() {
-    const { link, headings, highlight: highlightPlugin, taskList } = plugins
+    const { containers, link, headings, highlight: highlightPlugin, taskList } = plugins
     this.md
-      .use(headings)
-      .use(highlightPlugin)
-      .use(link, {
-        externalAttrs: {
-          target: '_blank',
-          rel: 'noopener noreferrer'
-        }
-      })
-      .use(taskList, {
-        disabled: false
-      })
+    .use(headings)
+    .use(highlightPlugin)
+    .use(link, {
+      externalAttrs: {
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      }
+    })
+    .use(taskList, {
+      disabled: false
+    })
+      // .use(containers.tip)
   }
 
   /**

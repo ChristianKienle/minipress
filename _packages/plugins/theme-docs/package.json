@@ -21,6 +21,9 @@
     "index.js",
     "src/*"
   ],
+  "dependencies": {
+    "@minipress/custom-container": "^0.1.1-alpha.15"
+  },
   "devDependencies": {
     "@minipress/eslint-config-client": "^0.1.1-alpha.15",
     "@vue/cli-plugin-babel": "^3.11.0",

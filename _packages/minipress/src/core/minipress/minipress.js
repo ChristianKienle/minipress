@@ -78,6 +78,7 @@ class Minipress {
       emitPages: new AsyncSeriesHook(),
       emitRoutes: new AsyncSeriesHook(),
       mutatePages: new AsyncSeriesHook(['mutations']),
+      configureMarkdownRenderer: new AsyncSeriesHook(['markdownRenderer']),
       // called before plugins are applied
       // applying a plugin simply calls its 'apply(…)'-function
       // This is your last chance to register more plugins
