@@ -99,7 +99,6 @@ module.exports = class Pages {
   async normalizePage(page) {
     const ProcessablePage = await normalizePage(page, {
       minipress: this.minipress,
-      transformers: this.minipress.transformers
     })
     await this.minipress.pageTransformers.transform(ProcessablePage)
     return ProcessablePage

@@ -1,40 +1,16 @@
 // @ts-check
 const normalizeFile = require('./file')
 const { stringify, createPageKey, relativePathToUrlPath } = require('@minipress/utils')
-const Path = require('path')
 const fs = require('fs-extra')
+const normalizeContentType = require('./content-type')
 
 /**
  * @typedef {import('@minipress/types').File} File
  * @typedef {import('@minipress/types').Page} Page
  * @typedef {import('@minipress/types').ProcessablePage} ProcessablePage
  * @typedef {import('@minipress/types').EmittablePage} EmittablePage
- * @typedef {import('./../../minipress/minipress')} Minipress
+ * @typedef {import('./../../minipress')} Minipress
  */
-
-/**
- * @param {string=} path
- */
-const inferContentTypeFromPath = path => {
-  if (path == null) {
-    return
-  }
-  const extension = Path.extname(path)
-  if (extension.length === 0) {
-    return
-  }
-  return extension.slice(1)
-}
-
-/**
- *
- * @param {File} file
- * @param {{defaultContentType: string}} [options = { defaultContentType: 'default' }]
- */
-const inferContentTypeFromFile = (
-  { relative, absolute },
-  { defaultContentType } = { defaultContentType: 'default' }
-) => inferContentTypeFromPath(relative) || inferContentTypeFromPath(absolute) || defaultContentType
 
 /**
  * @param {'key' | 'path'} property
@@ -59,8 +35,8 @@ const normalizeRegularPath = ({ regularPath, file }) => {
     return relativePathToUrlPath(file.relative)
   }
 }
+
 /**
- *
  * @param {File} file
  */
 const getContent = file => {
@@ -102,7 +78,7 @@ const normalizePage = async (page = {}, { minipress }) => {
 
   const regularPath = normalizeRegularPath({ regularPath: page.regularPath, file: file })
   const content = page.content || getContent(file) || ''
-  const contentType = page.contentType || inferContentTypeFromFile(file)
+  const contentType = normalizeContentType({ ...page, file })
   const attributes = { ...(page.attributes || {}) }
   const headings = [ ...(page.headings || []) ]
   const frontmatter = { ...(page.frontmatter || {}) }

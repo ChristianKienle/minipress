@@ -1,5 +1,6 @@
-export interface File {
-  absolute?: string
-  relative?: string
+export interface _File {
+  absolute: string
+  relative: string
 }
 
+export type File = Partial<_File>
