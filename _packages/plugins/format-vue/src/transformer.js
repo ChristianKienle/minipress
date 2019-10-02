@@ -39,7 +39,7 @@ const transformer = {
             return h(PageComponent, { props })
           }
         }
-        return h('Layout', { props: { name: PageComponent.layout || 'default' }, scopedSlots })
+        return h('MiniLayout', { props: { name: PageComponent.layout || 'default' }, scopedSlots })
       }
     }
     </script>

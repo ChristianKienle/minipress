@@ -1,5 +1,4 @@
 // @ts-check
-
 const slugo = require('slugo')
 
 const uniqueSlug = (slug, slugs) => {

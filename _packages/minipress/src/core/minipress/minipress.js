@@ -25,22 +25,6 @@ const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
 
 /**
- *
- * @param {Page} page
- */
-const pageForSiteData = page => {
-  const { content = '', file = {} } = page
-  const siteDataFile = { ...file }
-  delete siteDataFile.absolute
-  const maxIndex = Math.min(content.length, 256)
-  return {
-    ...page,
-    file: siteDataFile,
-    content: content.substring(0, maxIndex)
-  }
-}
-
-/**
  * @typedef {import('./../../config/types')._ResolvedPlugin} _ResolvedPlugin
  * @typedef {import('./../../config/types').InvokedPlugin} InvokedPlugin
  * @typedef {import('./../../config/types').Component} Component

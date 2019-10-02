@@ -2,9 +2,9 @@
   <a v-if="isExternal" class="mp-button" :href="to" :class="classes"
     ><slot
   /></a>
-  <MpLink v-else class="mp-button" :to="to_" :class="classes"
+  <MiniLink v-else class="mp-button" :to="to_" :class="classes"
     ><slot
-  /></MpLink>
+  /></MiniLink>
 </template>
 
 <script>

@@ -25,7 +25,7 @@
     </Flex>
     <div>
       <h2>Quickstart</h2>
-      <Content :pageKey="$minipress.pageForPath('/_quickstart-sample').key" />
+      <MiniContent :pageKey="$minipress.pageForPath('/_quickstart-sample').key" />
     </div>
   </div>
 </template>
@@ -34,6 +34,6 @@
 export default {
   layout: "hero"
 };
+// <layout>hero</layout>
 </script>
 
-<layout>hero</layout>

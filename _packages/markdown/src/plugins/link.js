@@ -13,7 +13,7 @@ module.exports = (md, { externalAttrs }) => {
     const to = pathForRelativeFile({ href: link[1], currentRelativePagePath: `/${relativePath}` })
     link[1] = `$minipress.pageLink(${stringify(decodeURI(to))})`
     return Object.create(token, {
-      tag: { value: 'mp-link' }
+      tag: { value: 'MiniLink' }
     })
   }
   let hasOpenRouterLink = false
@@ -49,7 +49,7 @@ module.exports = (md, { externalAttrs }) => {
   md.renderer.rules.link_close = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     if (hasOpenRouterLink) {
-      token.tag = 'mp-link'
+      token.tag = 'MiniLink'
       hasOpenRouterLink = false
     }
     if (hasOpenExternalLink) {

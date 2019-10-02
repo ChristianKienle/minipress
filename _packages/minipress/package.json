@@ -24,7 +24,6 @@
     "@minipress/code-gen": "^0.1.1-alpha.15",
     "@minipress/head-element": "^0.1.1-alpha.15",
     "@minipress/log": "^0.1.1-alpha.15",
-    "@minipress/page-renderer": "^0.1.1-alpha.15",
     "@minipress/plugin-format-markdown": "^0.1.1-alpha.15",
     "@minipress/plugin-format-vue": "^0.1.1-alpha.15",
     "@minipress/plugin-pages": "^0.1.1-alpha.15",

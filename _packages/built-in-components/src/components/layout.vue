@@ -1,7 +1,7 @@
 <script>
 /** @type {import('vue').FunctionalComponentOptions} */
 const Layout = {
-  name: "Layout",
+  name: "MiniLayout",
   functional: true,
   props: {
     name: {

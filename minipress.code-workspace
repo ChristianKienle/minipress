@@ -25,15 +25,12 @@
     {
       "path": "_packages/utils"
     },
-		{
+    {
       "path": "_packages/head-element"
     },
     {
-      "path": "_packages/page-renderer"
+      "path": "_packages/markdown"
     },
-		{
-			"path": "_packages/markdown"
-		},
     {
       "name": "types",
       "path": "_packages/types"
@@ -82,14 +79,14 @@
       "name": "plugin/package-json",
       "path": "_packages/plugins/package-json"
     },
-		{
-			"name": "plugin/format-vue",
-			"path": "_packages/plugins/format-vue"
-		},
-		{
-			"name": "plugin/format-markdown",
-			"path": "_packages/plugins/format-markdown"
-		},
+    {
+      "name": "plugin/format-vue",
+      "path": "_packages/plugins/format-vue"
+    },
+    {
+      "name": "plugin/format-markdown",
+      "path": "_packages/plugins/format-markdown"
+    },
     {
       "name": "examples/hello-world",
       "path": "_examples/hello-world"

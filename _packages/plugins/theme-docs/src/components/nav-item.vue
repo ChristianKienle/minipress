@@ -1,13 +1,13 @@
 <template>
   <div class="mp-nav__item">
-    <mp-link
+    <MiniLink
       class="mp-nav__item__link"
       :to="link"
       exact-active-class="mp-nav__item__link--active"
       active-class="mp-nav__item__link--active"
     >
       <slot>{{ text }}</slot>
-    </mp-link>
+    </MiniLink>
   </div>
 </template>
 

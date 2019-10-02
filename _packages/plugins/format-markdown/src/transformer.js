@@ -1,6 +1,6 @@
 // @ts-check
 const codeGen = require('@minipress/code-gen')
-const { Renderer } = require('@minipress/markdown')
+const Renderer = require('@minipress/markdown')
 
 const renderer = new Renderer()
 renderer.init()
@@ -38,9 +38,9 @@ const transformer = {
   async getPageComponent(page) {
     const result = codeGen.vue(() => `
     <template>
-      <Layout>
+      <MiniLayout>
         <div>${page.content}</div>
-      </Layout>
+      </MiniLayout>
     </template>
     <script>
     export default {

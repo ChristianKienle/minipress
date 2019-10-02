@@ -2,9 +2,9 @@
   <div>
 
 
-    <MpLink to="./about.html">About</MpLink>
-    <MpLink to="./hello.html">Hello</MpLink>
-    <MpLink to="./markdown.html">Markdown</MpLink>
+    <MiniLink to="./about.html">About</MiniLink>
+    <MiniLink to="./hello.html">Hello</MiniLink>
+    <MiniLink to="./markdown.html">Markdown</MiniLink>
 dddyy
   </div>
 </template>

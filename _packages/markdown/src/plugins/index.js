@@ -1,6 +1,6 @@
 // @ts-check
-const taskList = require('./task-list-plugin')
-const headings = require('./headings-plugin')
+const taskList = require('./task-list')
+const headings = require('./headings')
 const link = require('./link')
 const highlight = require('./highlight')
 
