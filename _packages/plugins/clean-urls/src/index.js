@@ -11,9 +11,6 @@ module.exports = {
     } = options
     minipress.pageTransformers.add(async page => {
       const { regularPath, path, frontmatter = {}} = page
-      // if (frontmatter.permalink) {
-      //   return
-      // }
       if(regularPath == null) {
         return
       }
