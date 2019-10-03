@@ -1,13 +1,8 @@
 <template>
-  <div
-    class="mp-toc__item"
-    :class="classes"
-
-  >
-  <div class="mp-toc__item-content" :data-toc-item-level="level">
-    <slot />
-
-  </div>
+  <div class="mp-toc__item" :class="classes">
+    <div class="mp-toc__item-content" :data-toc-item-level="level">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -19,22 +14,27 @@ export default {
   },
   computed: {
     classes() {
-      return this.isActive ? 'mp-toc__item--active' : ''
+      return this.isActive ? "mp-toc__item--active" : "";
     }
   }
-}
+};
 </script>
 
 <style lang="stylus">
 @require './../../styles/_config.stylus'
+$item-background-color = #e9fafa
+$item-active-edge = darken(#b6edef, 20%)
 .mp-toc__item
   font-size 1rem
   padding-top 4px
   padding-bottom 4px
   border-left 6px solid transparent
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &--active
-    border-left 6px solid lighten(saturation($accentColor, 100%), 20%)
-    background-color $code-inline-background-color
+    border-left 6px solid $item-active-edge
+    background-color $item-background-color
   &-content
     padding-left $sideNavItemPadding
     padding-right $sideNavItemPadding

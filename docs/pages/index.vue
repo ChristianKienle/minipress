@@ -5,12 +5,10 @@
         <mp-hero-logo :width="150" />
       </MiniFlexItem>
       <MiniFlexItem :grow="2" style="text-align: center;">
-        <h1>
-          <em>miniPress</em>
+        <h1 class="title">
+          miniPress
+          <span class="title__sub">A minimalistic static site generator</span>
         </h1>
-        <p>
-          <em>A minimalistic static site generator</em>
-        </p>
         <MiniFlex responsive style="margin-top:2rem;">
           <MiniFlexItem style="width: 100%;" :grow="1">
             <mp-button to="/guide/">Get Started</mp-button></MiniFlexItem
@@ -34,6 +32,17 @@
 export default {
   layout: "hero"
 };
-// <layout>hero</layout>
 </script>
 
+<style scoped lang="stylus">
+.title
+  font-size 48px
+  font-weight 300
+  color rgb(26, 32, 44)
+  line-height 60px
+  &__sub
+    font-size 40px
+    color #38b2ac
+    display block
+    line-height 60px
+</style>
