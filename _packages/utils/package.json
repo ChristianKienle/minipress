@@ -11,6 +11,9 @@
     "test": "jest .",
     "typecheck": "tsc --project ."
   },
+  "files": [
+    "src/**/*.js"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

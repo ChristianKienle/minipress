@@ -16,5 +16,8 @@
     "gh-pages": "^2.1.1",
     "ora": "^4.0.2"
   },
+  "files": [
+    "src/**/*"
+  ],
   "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
 }

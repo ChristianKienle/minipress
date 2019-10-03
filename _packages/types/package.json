@@ -2,7 +2,7 @@
   "name": "@minipress/types",
   "version": "0.1.1-alpha.18",
   "files": [
-    "types/*.d.ts"
+    "types/**/*.d.ts"
   ],
   "private": false,
   "publishConfig": {

@@ -12,9 +12,7 @@
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
   "files": [
-    "components/*",
-    "pages/*",
-    ".minipress/config.js",
+    "src/**/*",
     "!public/*"
   ],
   "publishConfig": {

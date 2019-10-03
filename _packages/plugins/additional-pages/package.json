@@ -7,6 +7,9 @@
   "devDependencies": {
     "@minipress/types": "^0.1.1-alpha.18"
   },
+  "files": [
+    "src/**/*"
+  ],
   "keywords": [],
   "author": "",
   "private": false,

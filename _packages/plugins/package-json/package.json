@@ -10,6 +10,9 @@
     "@minipress/types": "^0.1.1-alpha.18",
     "@types/fs-extra": "^8.0.0"
   },
+  "files": [
+    "src/**/*"
+  ],
   "private": false,
   "publishConfig": {
     "access": "public"

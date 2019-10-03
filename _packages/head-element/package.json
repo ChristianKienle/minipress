@@ -16,7 +16,7 @@
   },
   "types": "index.d.ts",
   "files": [
-    "src/*.js"
+    "src/**/*.js"
   ],
   "publishConfig": {
     "access": "public"

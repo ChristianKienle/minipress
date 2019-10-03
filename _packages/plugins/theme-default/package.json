@@ -19,7 +19,7 @@
   },
   "files": [
     "index.js",
-    "src/*"
+    "src/**/*"
   ],
   "devDependencies": {
     "@minipress/eslint-config-client": "^0.1.1-alpha.15",

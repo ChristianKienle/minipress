@@ -9,7 +9,7 @@
     "access": "public"
   },
   "files": [
-    "src/index.js"
+    "src/**/*"
   ],
   "main": "src/index.js",
   "dependencies": {
