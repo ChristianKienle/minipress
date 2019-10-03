@@ -25,19 +25,6 @@ export type _Plugin<Options = any> = [
   Options?
 ]
 
-// Normalized Plugin
-// export interface _Plugin {
-//   id: IdOrResolvedPlugin
-//   options?: any
-// }
-
-// import Joi from 'joi'
-// export interface InvokedPlugin {
-//   name?: string;
-//   optionsSchema?(minipress: Minipress): Joi.Schema;
-//   apply(minipress: Minipress, options: any): Promise<void>
-// }
-
 // This describes a plugin that has been validated and normalized.
 // apply(…) no longer needs options because it is done by the function
 // that makes the plugin executable.
@@ -47,5 +34,3 @@ export interface ExecutablePlugin {
   options: any
   apply(minipress: MinipressI): Promise<void>
 }
-
-// export type _Plugins = ExecutablePlugin[]

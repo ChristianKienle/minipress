@@ -3,5 +3,5 @@ export * from './page'
 export * from './transformer'
 export * from './plugin'
 
-import * as Joi from 'joi'
+import * as Joi from '@hapi/joi'
 export { Joi }

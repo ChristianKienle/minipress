@@ -14,7 +14,7 @@ const DynamicModules = require('./dynamic-modules')
 const PageTransformers = require('./page-transformers')
 const { VueRenderer } = require('./../../vue-renderer')
 const { setNodeEnv } = require('@minipress/utils')
-const Joi = require('joi')
+const Joi = require('@hapi/joi')
 const {
   createBaseConfig,
   createServerConfig,

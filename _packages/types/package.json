@@ -9,6 +9,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@hapi/joi": "^16.1.5",
     "@types/joi": "^14.3.3"
   },
   "types": "types/index.d.ts",
