@@ -5,6 +5,20 @@ const CustomContainer = require('@minipress/custom-container')
 const PLUGIN = '@minipress/theme-docs'
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
+  optionsSchema({joi}) {
+    return joi.object({
+      navbar: joi.object({
+        items: joi.array().items(joi.object({
+          text: joi.string().default('text undefined'),
+          link: joi.string().default('/')
+        })).default([])
+      })
+    }).default({
+      navbar: {
+        items: []
+      }
+    })
+  },
   apply(minipress, options) {
     CustomContainer.apply(minipress, {
       type: 'tip',
@@ -53,10 +67,12 @@ module.exports = {
     minipress.hooks.configureSiteData.tapPromise(PLUGIN, async siteData => {
       siteData.themeConfig = { ...options }
     })
+
     minipress.hooks.registerLayouts.tapPromise(PLUGIN, async () => {
       minipress.layouts.register('default', join(__dirname, 'layouts', 'default.vue'))
       minipress.layouts.register('hero', join(__dirname, 'layouts', 'hero.vue'))
     })
+
     minipress.hooks.registerComponents.tapPromise(PLUGIN, async () => {
       const root = join(__dirname, 'components')
       /**
