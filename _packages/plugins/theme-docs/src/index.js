@@ -58,8 +58,8 @@ module.exports = {
         minipress.components.register(id, path)
       }
       // register('BurgerIcon', 'burger-item.vue')
-      register('FlexItem', 'flex-item.vue')
-      register('Flex', 'flex.vue')
+      register('MiniFlexItem', 'flex-item.vue')
+      register('MiniFlex', 'flex.vue')
       register('MiniTip', 'containers/tip.vue')
       register('MiniWarn', 'containers/warn.vue')
       register('MiniError', 'containers/error.vue')

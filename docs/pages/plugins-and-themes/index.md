@@ -33,14 +33,62 @@ npm install @minipress/theme-docs --save
 
 ``` js
 module.exports = {
-  apply(minipress) {
+  plugins: [
+    ['@minipress/theme-docs', { /* optional theme config */ }]
+  ]
+}
+```
 
+#### Options
+`@minipress/theme-docs` has some useful options:
+
+##### navbar
+
+Customize the navigation bar displayed at the top.
+
+```js
+const ThemeOptions = {
+  navbar: {
+    items: [
+      { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/guide/' },
+      { text: 'About', link: '/about/' },
+    ]
   }
+}
+
+module.exports = {
+  plugins: [
+    ['@minipress/theme-docs', ThemeOptions]
+  ]
 }
 ```
 
 
+#### Additional Features
+`@minipress/theme-docs` also comes with a couple of additional features. There are three custom containers you can choose from:
 
+::: tip
+Tips is a tip container.
+You can use `:::tip` to display almost any useful information.
+:::
+
+::: warn
+Tips is a warning container.
+Use `:::warn` to display a warning. This is useful to help the user along to get non-obvious things right.
+:::
+
+::: error
+Tips is an error container.
+Use `:::error` to display error messages or highly important information.
+:::
+
+The *docs*-theme also comes with a second layout: `hero`. You can see this layout in action by going to the [landing page](/).
+
+It also includes two useful components:
+
+- `MiniFlex`: Can be used to render a flex box.
+- `MiniFlexItem`: Use this component inside `MiniFlex` to add content to your flex box.
 
 ## Writing a Plugin or Theme
 
