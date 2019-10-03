@@ -1,6 +1,6 @@
 {
   "name": "@minipress/custom-container",
-  "version": "0.1.1-alpha.18",
+  "version": "0.1.1-alpha.19",
   "description": "my beautiful plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "markdown-it": "^10.0.0"
   },
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.18",
+    "@minipress/types": "^0.1.1-alpha.19",
     "markdown-it": "^10.0.0"
   }
 }
