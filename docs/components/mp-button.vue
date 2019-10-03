@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-$primaryBackground = #1669B1;
+$primaryBackground = darken(#009DA3, 0%);
 $primaryColor = white;
 $secondaryBackground = darken(#efefef, 0%);
 $secondaryColor = gray;
@@ -61,9 +61,9 @@ $secondaryColor = gray;
       color: darken($secondaryColor, 50%);
       background: lightness(saturate($secondaryBackground, 100%), 80%);
   &--primary
-    color: $primaryColor;
-    background: $primaryBackground;
-    &:hover
       color: $primaryColor;
-      background: lightness(saturate($primaryBackground, 100%), 50%);
+      background: $primaryBackground;
+    &:hover
+      background: darken($primaryBackground, 20%);
+      color: $primaryColor;
 </style>
