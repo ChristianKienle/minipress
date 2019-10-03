@@ -216,6 +216,11 @@ class Minipress {
     this.use('@minipress/plugin-format-markdown')
     this.use('@minipress/plugin-format-vue')
 
+    // Plugins from Config
+    this.config.plugins.forEach(plugin => {
+      this.use(...plugin)
+    })
+
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
       this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
         const pages = this.pages.values()

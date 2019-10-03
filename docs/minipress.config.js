@@ -20,20 +20,17 @@ const head = {
 }
 
 module.exports = {
+  plugins: [
+    ['@minipress/theme-docs', themeConfig],
+    ['@minipress/plugin-pages'],
+    ['@minipress/plugin-components'],
+    ['@minipress/plugin-head', head],
+    ['@minipress/plugin-last-modified'],
+    ['@minipress/plugin-clean-urls'],
+    ['@minipress/plugin-package-json']
+  ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
-  apply(minipress) {
-    minipress.use('@minipress/theme-docs', themeConfig)
-    minipress.use('@minipress/plugin-pages')
-    minipress.use('@minipress/plugin-components')
-    minipress.use('@minipress/plugin-head', head)
-    minipress.use('@minipress/plugin-last-modified')
-    minipress.use('@minipress/plugin-clean-urls')
-    minipress.use('@minipress/plugin-package-json')
-  },
-  head: {
-    title: 'miniPress',
-    description: 'A minimalistic static site generator'
-  },
+  apply(minipress) {},
   build: {
     base: '/minipress/'
   }

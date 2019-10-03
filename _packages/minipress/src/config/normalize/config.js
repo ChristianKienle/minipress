@@ -1,7 +1,7 @@
 // @ts-check
 const { resolve } = require('path')
 const normalizeBuild = require('./build')
-
+const { normalizePlugins } = require('./plugin')
 /**
  * @typedef {import('@minipress/types').Config} Config
  * @typedef {import('@minipress/types')._Config} _Config
@@ -20,6 +20,7 @@ const normalizeConfig = (config = {}) => {
   const host = config.host || '0.0.0.0'
   const build = normalizeBuild({ cwd, build: config.build })
   const apply = config.apply || (async () => { })
+  const plugins = normalizePlugins(config.plugins)
   const result = {
     tempDir,
     cwd,
@@ -27,7 +28,8 @@ const normalizeConfig = (config = {}) => {
     port,
     host,
     build,
-    apply
+    apply,
+    plugins
   }
   return result
 }

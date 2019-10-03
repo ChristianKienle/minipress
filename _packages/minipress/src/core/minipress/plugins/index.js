@@ -1,12 +1,11 @@
 // @ts-check
+const { normalizePlugin } = require('./../../../config/normalize/plugin')
 /**
- * @typedef {import('./types').SealedPlugin} Plugin
+ * @typedef {import('@minipress/types').ConfigExecutablePlugin} ExecutablePlugin
  */
-
-const { normalizePlugin } = require('./normalize')
 module.exports = class Plugins {
   constructor() {
-    /** @type {Plugin[]} */
+    /** @type {ExecutablePlugin[]} */
     this._all = []
   }
 
