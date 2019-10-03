@@ -1,6 +1,6 @@
 {
   "name": "@minipress/app",
-  "version": "0.1.1-alpha.15",
+  "version": "0.1.1-alpha.16",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -19,7 +19,7 @@
     "!**/__*__/**"
   ],
   "dependencies": {
-    "@minipress/built-in-components": "^0.1.1-alpha.15",
+    "@minipress/built-in-components": "^0.1.1-alpha.16",
     "prismjs": "^1.17.1"
   },
   "peerDependencies": {
