@@ -8,9 +8,9 @@ npm install @minipress/plugin-last-modified --save
 ## Configuration
 ```js
 module.exports = {
-  apply(minipress) {
-    minipress.use('@minipress/plugin-last-modified')
-  }
+  plugins: [
+    ['@minipress/plugin-last-modified']
+  ]
 }
 ```
 

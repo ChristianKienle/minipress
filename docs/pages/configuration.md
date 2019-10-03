@@ -42,16 +42,19 @@ It opens up the whole *miniPress*-API for you. `apply` is also the main entry po
 
 > If you want to learn more about plugins you should head over to the [Plugins Guide](./plugins-and-themes/index.md).
 
-`apply` is a function that is invoked by *miniPress* once – relatively early on. Within your implementation of `apply` you have access to the *miniPress*-instance. The *miniPress*-instance allows you to do a lot. Again: Please refer to the [Plugins Guide](./plugins-and-themes/index.md) for more details. At this point we will only show you how to use existing plugins. But there is a lot more to discover.
+`apply` is a function that is invoked by *miniPress* once – relatively early on. Within your implementation of `apply` you have access to the *miniPress*-instance. The *miniPress*-instance allows you to do a lot. Again: Please refer to the [Plugins Guide](./plugins-and-themes/index.md) for more details.
+
+### plugins
+`plugins` allows you to configure *miniPress* plugins.
 
 #### Example
 The example below shows a `minipress.config.js`-file which installes an already existing plugin:
 
 ```js
 module.exports = {
-  apply(minipress) {
-    minipress.use('@minipress/plugin-last-modified' /*, options */)
-  }
+  plugins: [
+    ['@minipress/plugin-last-modified' /*, options */]
+  ]
 }
 ```
 

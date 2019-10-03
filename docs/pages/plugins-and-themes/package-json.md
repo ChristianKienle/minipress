@@ -8,9 +8,9 @@ npm install @minipress/plugin-package-json --save
 ## Configuration
 ```js
 module.exports = {
-  apply(minipress) {
-    minipress.use('@minipress/plugin-package-json')
-  }
+  plugis: [
+    ['@minipress/plugin-package-json']
+  ]
 }
 ```
 
