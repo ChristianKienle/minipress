@@ -39,6 +39,17 @@ module.exports = {
       }
     })
 
+    CustomContainer.apply(minipress, {
+      type: 'info',
+      defaultTitle: 'INFO',
+      renderBefore({ title }) {
+        return `<MiniInfo title="${title}">\n`
+      },
+      renderAfter() {
+        return '</MiniInfo>\n'
+      }
+    })
+
     minipress.hooks.configureSiteData.tapPromise(PLUGIN, async siteData => {
       siteData.themeConfig = { ...options }
     })
@@ -61,6 +72,7 @@ module.exports = {
       register('MiniFlexItem', 'flex-item.vue')
       register('MiniFlex', 'flex.vue')
       register('MiniTip', 'containers/tip.vue')
+      register('MiniInfo', 'containers/info.vue')
       register('MiniWarn', 'containers/warn.vue')
       register('MiniError', 'containers/error.vue')
       // register('HeroLogo', 'logo.vue')

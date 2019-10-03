@@ -40,7 +40,9 @@ Specify the host to be used when something has to be served via *HTTP*.
 #### Access to the API
 It opens up the whole *miniPress*-API for you. `apply` is also the main entry point for *miniPress* plugins.
 
-> If you want to learn more about plugins you should head over to the [Plugins Guide](./plugins-and-themes/index.md).
+::: tip
+If you want to learn more about plugins you should head over to the [Plugins Guide](./plugins-and-themes/index.md).
+:::
 
 `apply` is a function that is invoked by *miniPress* once – relatively early on. Within your implementation of `apply` you have access to the *miniPress*-instance. The *miniPress*-instance allows you to do a lot. Again: Please refer to the [Plugins Guide](./plugins-and-themes/index.md) for more details.
 

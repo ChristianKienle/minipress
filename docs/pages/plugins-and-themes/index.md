@@ -3,7 +3,9 @@ For *miniPress* plugins and themes are the same thing. There is virtually no dif
 
 That is why within this documentation we still differentiate between *plugins* and *themes* – but only for educational purposes.
 
-> From a technical point of view plugins and themes are identical.
+::: info
+From a technical point of view plugins and themes are identical.
+:::
 
 ## Available Plugins
 

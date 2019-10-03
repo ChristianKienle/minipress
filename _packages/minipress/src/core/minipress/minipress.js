@@ -78,6 +78,10 @@ class Minipress {
       emitPages: new AsyncSeriesHook(),
       emitRoutes: new AsyncSeriesHook(),
       mutatePages: new AsyncSeriesHook(['mutations']),
+      // This is called the moment a new page has been created.
+      onCreatePage: new AsyncSeriesHook(['page']),
+      // This is called once multiple pages have been created.
+      onCreatePages: new AsyncSeriesHook([]),
       configureMarkdownRenderer: new AsyncSeriesHook(['markdownRenderer']),
       // called before plugins are applied
       // applying a plugin simply calls its 'apply(…)'-function
@@ -222,12 +226,16 @@ class Minipress {
     })
 
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
+      this.hooks.onCreatePage.tapPromise('minipress-prepare', async page => {
+        // this.emit
+        await this.pages._emitPage(page)
+      })
       this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
         const pages = this.pages.values()
         pages.forEach(route => {
           const { file } = route
           const { absolute } = file
-          if(absolute == null) {
+          if (absolute == null) {
             return
           }
           this.contentComponents.register(route.key, { id: route.key, absolutePath: absolute })
@@ -235,11 +243,12 @@ class Minipress {
       })
 
       this.hooks.emitRoutes.tapPromise('minipress-prepare', async () => {
-        await this.hooks.registerContentComponents.promise()
-        await this.hooks.emitContentComponents.promise()
-        this.emitContentComponents()
-        const { code } = createRoutes(this.pages.values())
-        this.tempDir.writeTemp('routes/index.js', code)
+        await this.emitRoutes()
+        // await this.hooks.registerContentComponents.promise()
+        // await this.hooks.emitContentComponents.promise()
+        // this.emitContentComponents()
+        // const { code } = createRoutes(this.pages.values())
+        // this.tempDir.writeTemp('routes/index.js', code)
       })
     })
 
@@ -431,6 +440,22 @@ class Minipress {
   // Components
   emitComponents() {
     this.tempDir.writeTemp('components/index.js', this.components.code)
+  }
+
+  // async emitRoutes() {
+  //   await this.hooks.registerContentComponents.promise()
+  //   await this.hooks.emitContentComponents.promise()
+  //   this.emitContentComponents()
+  //   const { code } = createRoutes(this.pages.values())
+  //   this.tempDir.writeTemp('routes/index.js', code)
+  // }
+
+  async emitRoutes() {
+    await this.hooks.registerContentComponents.promise()
+    await this.hooks.emitContentComponents.promise()
+    this.emitContentComponents()
+    const { code } = createRoutes(this.pages.values())
+    this.tempDir.writeTemp('routes/index.js', code)
   }
 
   emitContentComponents() {

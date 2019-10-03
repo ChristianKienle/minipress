@@ -37,19 +37,23 @@ module.exports = {
       }
 
       pages.onAdded(async page => {
-        await minipress.addPage(page)
-        await minipress.hooks.emitPages.promise()
-        await minipress.hooks.emitRoutes.promise()
+        const _page = await minipress.addPage(page)
+        await minipress.hooks.onCreatePage.promise(_page)
+        // await minipress.addPage(page)
+        // await minipress.hooks.emitPages.promise()
+        // await minipress.hooks.emitRoutes.promise()
       })
 
       pages.onChanged(async page => {
-        await minipress.addPage(page)
-        await minipress.hooks.emitPages.promise()
-        await minipress.hooks.emitRoutes.promise()
+        const _page = await minipress.addPage(page)
+        await minipress.hooks.onCreatePage.promise(_page)
+
+        // await minipress.hooks.emitPages.promise()
+        // await minipress.hooks.emitRoutes.promise()
       })
       pages.onRemoved(async page => {
-        await minipress.hooks.emitPages.promise()
-        await minipress.hooks.emitRoutes.promise()
+        // await minipress.hooks.emitPages.promise()
+        // await minipress.hooks.emitRoutes.promise()
       })
     })
   }
