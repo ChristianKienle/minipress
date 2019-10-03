@@ -15,9 +15,6 @@
   "dependencies": {
     "markdown-it-container": "^2.0.0"
   },
-  "peerDependencies": {
-    "markdown-it": "^10.0.0"
-  },
   "devDependencies": {
     "@minipress/types": "^0.1.1-alpha.19",
     "markdown-it": "^10.0.0"
