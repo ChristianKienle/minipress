@@ -23,6 +23,25 @@ This is the default theme. It is used whenever no theme has been specified. It d
 ### `@minipress/theme-docs`
 This is the theme that powers this very site.
 
+#### Installation
+
+``` sh
+npm install @minipress/theme-docs --save
+```
+
+#### Usage
+
+``` js
+module.exports = {
+  apply(minipress) {
+
+  }
+}
+```
+
+
+
+
 ## Writing a Plugin or Theme
 
 A plugin is a normal NPM package. Its entry point (`main`-file) should export an `object` with an `apply`-function. The `apply`-function will be called by *miniPress* early on:

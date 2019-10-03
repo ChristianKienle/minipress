@@ -1,19 +1,19 @@
 # Guide
 *miniPress* is for the little ones – for everyone who is still trying to learn.
 
-::: tip ddd
+::: tip
 bla `xxx` furz
 :::
 
 hihihihi
 
-::: warn hihi
+::: warn
 bla `xxx` furz
 :::
 
 bllll
 
-::: error hihi
+::: error
 bla `xxx` furz
 :::
 

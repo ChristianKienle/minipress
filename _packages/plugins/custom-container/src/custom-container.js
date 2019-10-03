@@ -17,15 +17,18 @@ module.exports = (md, options) => {
   } = options
   const TYPE_RE = new RegExp(`^${type}\\s+(.*)`, 'gi')
 
+  const normalizeTitle = title => title.length === 0 ? defaultTitle : title
   const validate = params => {
-    return params.trim().match(TYPE_RE);
+    const p = params.trim()
+    return p === type ||  p.match(TYPE_RE);
     // return params.trim().match(/^tip\s+(.*)$/);
   }
   const render = (tokens, idx) => {
-    const m = tokens[idx].info.trim().match(TYPE_RE);
+    const typeAndTitle = tokens[idx].info.trim()
     if (tokens[idx].nesting === 1) {
+      const title = normalizeTitle(typeAndTitle.substring(type.length).trim())
       // opening tag
-      const title = m[1] || defaultTitle
+      // const title = m == null ? defaultTitle : m[1]
       const html = renderBefore({title});
       // const r = md.render(apiMd);
       // // @ts-ignore
