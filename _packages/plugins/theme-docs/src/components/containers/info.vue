@@ -1,6 +1,6 @@
 <script>
 import CreateContainer from './create-container'
-export default CreateContainer('info', 'INFO')
+export default CreateContainer('info', '')
 </script>
 
 <style scoped lang="stylus">

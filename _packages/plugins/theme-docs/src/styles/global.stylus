@@ -11,11 +11,11 @@ body
 a
 a:visited
 a:active
-  color $accentColor
+  color $link-color
   font-weight 500
   text-decoration none
 a:hover
-  color darken($accentColor, 30%)
+  color $link-active
   text-decoration none
 pre
   margin 0

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`hi do 1`] = `
-"<MiniTip title=\\"bla\\"><p>hihi</p>
-</MiniTip>
-"
-`;

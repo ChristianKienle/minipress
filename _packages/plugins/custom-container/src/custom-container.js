@@ -1,7 +1,7 @@
 // @ts-check
 const markdownItContainer = require('markdown-it-container')
 
-const defaultRenderBefore = ({ title }) => `<MiniTip title="${title}">`
+const defaultRenderBefore = ({ title = '' }) => `<MiniTip title="${title}">`
 const defaultRenderAfter = () => '</MiniTip>'
 
 /**

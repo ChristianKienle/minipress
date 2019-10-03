@@ -4,6 +4,7 @@
       v-for="heading in items"
       :key="heading.slug"
       :level="heading.level"
+      :isActive="itemIsActive(heading)"
     >
       <MpItemLink
         :slug="heading.slug"
@@ -58,6 +59,9 @@ export default {
     this.disconnectObserverIfPossible();
   },
   methods: {
+    itemIsActive({ slug }) {
+      return `#${slug}` === this.currentHash
+    },
     disconnectObserverIfPossible() {
       if (this.observer != null) {
         this.observer.disconnect();

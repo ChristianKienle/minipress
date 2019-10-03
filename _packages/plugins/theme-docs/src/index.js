@@ -41,9 +41,9 @@ module.exports = {
 
     CustomContainer.apply(minipress, {
       type: 'info',
-      defaultTitle: 'INFO',
-      renderBefore({ title }) {
-        return `<MiniInfo title="${title}">\n`
+      defaultTitle: '',
+      renderBefore() {
+        return `<MiniInfo>\n`
       },
       renderAfter() {
         return '</MiniInfo>\n'
@@ -60,7 +60,6 @@ module.exports = {
     minipress.hooks.registerComponents.tapPromise(PLUGIN, async () => {
       const root = join(__dirname, 'components')
       /**
-       *
        * @param {string} id
        * @param {string} relativePath
        */
@@ -68,19 +67,12 @@ module.exports = {
         const path = join(root, relativePath)
         minipress.components.register(id, path)
       }
-      // register('BurgerIcon', 'burger-item.vue')
       register('MiniFlexItem', 'flex-item.vue')
       register('MiniFlex', 'flex.vue')
       register('MiniTip', 'containers/tip.vue')
       register('MiniInfo', 'containers/info.vue')
       register('MiniWarn', 'containers/warn.vue')
       register('MiniError', 'containers/error.vue')
-      // register('HeroLogo', 'logo.vue')
-      // register('HeroLogo', 'button.vue')
-      // register('LeftBar', 'left-bar.vue')
-      // register('LeftBar', 'left-bar.vue')
-      // minipress.components.register('default', join(__dirname, 'src', 'components', 'default.vue'))
-      // minipress.components.register('hero', join(__dirname, 'src', 'components', 'hero.vue'))
     })
   }
 }

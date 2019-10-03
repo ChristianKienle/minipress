@@ -179,13 +179,12 @@ pre[class*="language-"] ::selection
 .token.entity,
 .token.string,
 .token.url
-  color #addb67
+  color #00c58e
 
 .token.atrule,
 .token.attr-value,
 .token.class-name
   color rgb(181, 244, 165)
-  // color #ffcb8b
 
 .token.important,
 .token.regex,

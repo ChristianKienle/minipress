@@ -30,7 +30,6 @@ module.exports = class Renderer {
     .use(taskList, {
       disabled: false
     })
-      // .use(containers.tip)
   }
 
   /**

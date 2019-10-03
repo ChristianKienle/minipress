@@ -5,14 +5,16 @@
 </template>
 
 <style lang="stylus">
-$logoColor = #cccccc
+@import '../styles/_config.stylus';
 .logo
+  color $logo-color
+  font-weight 400
   &__mini
     padding-left 0.1rem
     padding-right 0.1rem
     padding-top 0.3rem
     padding-bottom 0.3rem
     border-radius 0.33rem
-    font-weight 600
-    color:$logoColor
+    color:$logo-color
+    font-weight 700
 </style>

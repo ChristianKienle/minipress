@@ -18,14 +18,14 @@
   blockquote
   li
     code
-      background-color rgba(188,216,255,0.2)
+      background-color $code-inline-background-color
       padding-left 0.3rem
       padding-right 0.3rem
       padding-top 0.3rem
       padding-bottom 0.3rem
       font-size 0.9rem
       border-radius 4px
-      color saturate(darken(rgba(188,216,255,0.9), 70%), 70%)
+      color $code-inline-color
   pre
     padding-top 2rem
     padding-bottom 2rem

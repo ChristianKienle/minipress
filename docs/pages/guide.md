@@ -1,9 +1,12 @@
 # Guide
 *miniPress* is for the little ones – for everyone who is still trying to learn.
 
-::: info
+
+::: info sss
+
 *miniPress* is a _mini_-mal static site generator. It was created for educational purposes. Sometimes having something small and minimal (and probably incomplete) helps to get the big picture.
 :::
+
 
 ## Motivation & Purpose
 The main motivation for the development of *miniPress* was to get a better understanding of Vue + SSR + Webpack and all other related technologies. VuePress and Nuxt sometimes look like like magic: Things just work and you don't know why or how. This is not a bad thing – to the contrary. This makes those tools amazing and jaw dropping. They work really and come with a lot of features and a whole ecosystem. They even have a well tought out plugin API. Thus they should be used for any serious project.
@@ -124,7 +127,7 @@ Contains the headings found on the current page. The value will always be an arr
 
 A heading object has the following shape:
 
-``` typescript
+```ts
 type Heading = {
   level: 1 | 2 | 3 | 4 | 5 | 6;
   // name of the anchor (without the #)
