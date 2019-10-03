@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-features",
-  "version": "0.1.1-alpha.17",
+  "version": "0.1.1-alpha.18",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -21,10 +21,10 @@
     "!.DS_Store"
   ],
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.16",
-    "@minipress/plugin-additional-pages": "^0.1.1-alpha.16",
+    "@minipress/minipress": "^0.1.1-alpha.18",
+    "@minipress/plugin-additional-pages": "^0.1.1-alpha.18",
     "@minipress/plugin-clean-urls": "^0.1.1-alpha.16",
-    "@minipress/theme-docs": "^0.1.1-alpha.17"
+    "@minipress/theme-docs": "^0.1.1-alpha.18"
   },
   "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
 }
