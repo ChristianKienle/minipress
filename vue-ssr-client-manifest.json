@@ -1,6 +1,9 @@
 {
   "publicPath": "/minipress/",
   "all": [
+    "14.style.css",
+    "8.style.css",
+    "assets/js/14.js",
     "assets/js/15.js",
     "assets/js/16.js",
     "assets/js/17.js",
@@ -13,20 +16,17 @@
     "assets/js/24.js",
     "assets/js/25.js",
     "assets/js/26.js",
-    "assets/js/27.js",
-    "assets/js/28.js",
     "assets/js/app.js",
-    "assets/js/page--0cc22fe4.js",
-    "assets/js/page--2e666dbc.js",
-    "assets/js/page--3b499795.js",
+    "assets/js/page--0465cf8d.js",
+    "assets/js/page--0783e11c.js",
+    "assets/js/page--323ede5c.js",
     "assets/js/page--43fa1dd0.js",
     "assets/js/page--4dcd7602.js",
-    "assets/js/page--6510deed.js",
-    "assets/js/page--6f23211f.js",
-    "assets/js/page--720de4fb.js",
+    "assets/js/page--651c311e.js",
     "assets/js/page--85a15be2.js",
     "assets/js/page--90f8fd5e.js",
-    "assets/js/page--b30beac6.js",
+    "assets/js/page--99b23164.js",
+    "assets/js/page--b55b5a58.js",
     "assets/js/page--c9680e70.js",
     "assets/js/page--ca11f630.js",
     "assets/js/page--e6d50b2e.js",
@@ -37,6 +37,9 @@
     "assets/js/app.js"
   ],
   "async": [
+    "14.style.css",
+    "8.style.css",
+    "assets/js/14.js",
     "assets/js/15.js",
     "assets/js/16.js",
     "assets/js/17.js",
@@ -49,19 +52,16 @@
     "assets/js/24.js",
     "assets/js/25.js",
     "assets/js/26.js",
-    "assets/js/27.js",
-    "assets/js/28.js",
-    "assets/js/page--0cc22fe4.js",
-    "assets/js/page--2e666dbc.js",
-    "assets/js/page--3b499795.js",
+    "assets/js/page--0465cf8d.js",
+    "assets/js/page--0783e11c.js",
+    "assets/js/page--323ede5c.js",
     "assets/js/page--43fa1dd0.js",
     "assets/js/page--4dcd7602.js",
-    "assets/js/page--6510deed.js",
-    "assets/js/page--6f23211f.js",
-    "assets/js/page--720de4fb.js",
+    "assets/js/page--651c311e.js",
     "assets/js/page--85a15be2.js",
     "assets/js/page--90f8fd5e.js",
-    "assets/js/page--b30beac6.js",
+    "assets/js/page--99b23164.js",
+    "assets/js/page--b55b5a58.js",
     "assets/js/page--c9680e70.js",
     "assets/js/page--ca11f630.js",
     "assets/js/page--e6d50b2e.js"
@@ -69,154 +69,186 @@
   "modules": {
     "95a9d01c": [
       29,
-      14
+      15
     ],
     "387ccf72": [
       29,
-      14
+      15
     ],
     "d6ca716c": [
       29,
-      14
+      15
     ],
     "acc75f10": [
       29,
-      14
+      15
     ],
     "05092e67": [
       29,
-      14
+      15
     ],
     "652aa772": [
       29,
-      14
+      15
     ],
     "44813c9e": [
       29,
-      14
+      15
     ],
     "09ac718a": [
       29,
-      14
+      15
     ],
     "b7ff7c9c": [
       29,
-      14
+      15
     ],
     "4079ede3": [
       29,
-      14
+      15
     ],
     "651eea86": [
       29,
-      14
+      15
+    ],
+    "65fdc71c": [
+      29,
+      15
     ],
     "88d21870": [
       29,
-      14
+      15
     ],
     "4b24a4c6": [
       29,
-      14
+      15
     ],
-    "59c77120": [
+    "531a341c": [
       29,
-      14
+      15
+    ],
+    "b99e1ffe": [
+      29,
+      15
+    ],
+    "051dac31": [
+      29,
+      15
+    ],
+    "22837b80": [
+      29,
+      15
     ],
     "c7879390": [
       29,
-      14
+      15
     ],
     "030ce01d": [
       29,
-      14
+      15
     ],
     "918f3b92": [
       29,
-      14
+      15
     ],
     "bba014b0": [
       29,
-      14
+      15
     ],
     "6a1d5d88": [
       29,
-      14
+      15
     ],
     "9b555eb4": [
       29,
-      14
+      15
     ],
     "3e2c3058": [
       29,
-      14
+      15
     ],
     "62f10f8b": [
       29,
-      14
+      15
     ],
     "29b594ba": [
       29,
-      14
+      15
     ],
     "480a970d": [
       29,
-      14
+      15
     ],
     "4a0aece6": [
       29,
-      14
+      15
     ],
     "3276ead6": [
       29,
-      14
+      15
     ],
     "a1f58df2": [
       29,
-      14
+      15
     ],
     "c726fc3c": [
       29,
-      14
+      15
+    ],
+    "18631b40": [
+      29,
+      15
     ],
     "552d95ec": [
       29,
-      14
+      15
     ],
     "fb1b87bc": [
       29,
-      14
+      15
     ],
-    "0c2cc544": [
+    "6d00b364": [
       29,
-      14
+      15
+    ],
+    "11bc3b25": [
+      29,
+      15
+    ],
+    "73a8f755": [
+      29,
+      15
+    ],
+    "f53cd648": [
+      29,
+      15
     ],
     "a9a99038": [
       29,
-      14
+      15
     ],
     "68a06702": [
       29,
-      14
+      15
     ],
     "5963f189": [
       29,
-      14
+      15
     ],
     "02025afe": [
       29,
-      14
+      15
     ],
     "76d094f0": [
       29,
-      14
+      15
     ],
     "8b285d1a": [
       29,
-      14
+      15
     ],
     "80b22308": [
-      18
+      19
     ],
     "488b4082": [
       28
@@ -225,131 +257,143 @@
       26
     ],
     "f476e0b6": [
-      23
+      22
     ],
     "ff606dca": [
-      19
+      20
     ],
     "7e7c0028": [
       27
     ],
-    "5fd3d846": [
-      16
-    ],
-    "3ec65197": [
+    "5ca66e06": [
       21
     ],
-    "3f5f21b8": [
-      17
-    ],
-    "6bad4428": [
+    "5f73d970": [
       25
     ],
-    "9f6d7168": [
-      22
+    "9cecf232": [
+      17
     ],
-    "2e0b947a": [
-      20
+    "94490b0e": [
+      18
     ],
-    "17ccf646": [
-      15
-    ],
-    "694e1115": [
-      1
-    ],
-    "6a35eb72": [
-      2
-    ],
-    "8fd397b8": [
-      3
-    ],
-    "1859b268": [
-      4
-    ],
-    "4a4032d4": [
-      5
-    ],
-    "7ffa19e9": [
-      6
-    ],
-    "b8b788d8": [
-      13
-    ],
-    "a10f42cc": [
-      7
-    ],
-    "729ddb6d": [
-      8
-    ],
-    "459055e9": [
-      9
-    ],
-    "fcd54376": [
-      10
-    ],
-    "6cddb357": [
-      11
-    ],
-    "407a2fea": [
-      12
-    ],
-    "b8c3cb00": [
+    "9bdbcd42": [
       24
     ],
+    "14b2b9c6": [
+      16
+    ],
+    "694e1115": [
+      3
+    ],
+    "6a35eb72": [
+      4
+    ],
+    "8fd397b8": [
+      5
+    ],
+    "1859b268": [
+      6
+    ],
+    "4a4032d4": [
+      7
+    ],
+    "7ffa19e9": [
+      8
+    ],
+    "3c090f6a": [
+      9
+    ],
+    "e10410be": [
+      10
+    ],
+    "47d13f4a": [
+      11
+    ],
+    "caecdd10": [
+      12
+    ],
+    "999f045c": [
+      13
+    ],
+    "d55296ea": [
+      14
+    ],
+    "b8c3cb00": [
+      1,
+      23
+    ],
     "690156de": [
-      0
+      0,
+      2
     ],
     "0118eae2": [
       29,
-      14
+      15
+    ],
+    "134e3d96": [
+      29,
+      15
+    ],
+    "3f9a932b": [
+      29,
+      15
+    ],
+    "2e133588": [
+      29,
+      15
+    ],
+    "bcf1614a": [
+      29,
+      15
     ],
     "30fcc71c": [
       29,
-      14
+      15
     ],
     "34ac8c48": [
       29,
-      14
+      15
     ],
-    "0fe4feca": [
+    "1c1b54c6": [
       29,
-      14
+      15
     ],
     "00b800c8": [
       29,
-      14
+      15
     ],
     "496099c7": [
       29,
-      14
+      15
     ],
     "4421658e": [
       29,
-      14
+      15
     ],
     "2dbec091": [
       29,
-      14
+      15
     ],
     "4638dde6": [
       29,
-      14
+      15
     ],
     "aba3dec0": [
       29,
-      14
+      15
     ],
     "7fe367dc": [
       29,
-      14
+      15
     ],
     "e4793d40": [
       29,
-      14
+      15
     ],
     "72d97346": [
       29,
-      14
+      15
     ]
   }
 }
