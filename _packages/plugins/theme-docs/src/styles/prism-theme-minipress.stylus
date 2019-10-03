@@ -172,7 +172,7 @@ pre[class*="language-"] ::selection
 
 .token.attr-name,
 .token.inserted
-  color rgb(255, 228, 132)
+  color #8af
 
 .language-css .token.string,
 .style .token.string,
