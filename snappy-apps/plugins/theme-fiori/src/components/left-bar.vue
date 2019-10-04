@@ -1,18 +1,20 @@
 <template>
   <div class="mp-left-bar">
-    <MpToc :title-heading="titleHeading" :headings="headings">
+    <SideNav :items="sideNavItems" />
+    <!-- <MpToc :title-heading="titleHeading" :headings="headings">
       <template #before>
         <MpItemGroup class="navbar-items" :items="navbarItems_" />
       </template>
-    </MpToc>
+    </MpToc> -->
   </div>
 </template>
 
 <script>
+import SideNav from "./side-nav.vue"
 import MpToc from "./toc/index.vue";
 import MpItemGroup from "./toc/item-group.vue";
 export default {
-  components: { MpToc, MpItemGroup },
+  components: { SideNav, MpToc, MpItemGroup },
   computed: {
     // Transform nav items into our standard
     // item-object-shape.
@@ -24,6 +26,10 @@ export default {
     }
   },
   props: {
+    sideNavItems: {
+      type: Array,
+      default: () => []
+    },
     titleHeading: {
       type: Object,
       default: null

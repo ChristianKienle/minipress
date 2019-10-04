@@ -1,47 +1,72 @@
 <template>
-  <div class="mp-layout" :class="classes">
-    <MpNav class="mp-layout__nav" :items="themeConfig.navbar.items">
-      <template #site>
-        <div
-          style="align-items: center; justify-content: center; display: flex;"
-        >
-          <MpSideNavButton
-            v-if="showSidebar"
-            @click="toggleSidebar"
-            :pressed="sidebarOpen"
-            class="mp-main-sidebar-button"
+  <FdShell class="mp-layout" :class="classes">
+    <MpMask @click="toggleSidebar(false)" />
+    <template #header>
+      <MpNav class="mp-layout__nav" :items="themeConfig.navbar.items">
+        <template #site>
+          <div
+            style="align-items: center; justify-content: center; display: flex;"
+          >
+            <MpSideNavButton
+              v-if="showSidebar"
+              @click="toggleSidebar"
+              :pressed="sidebarOpen"
+              class="mp-main-sidebar-button"
+            />
+            <div class="mp-nav__product">
+              <router-link
+                class="mp-nav__product__link"
+                active-class=""
+                exact-active-class=""
+                to="/"
+              >
+                <MpLogo
+                  :prefix="themeConfig.productName.prefix"
+                  :name="themeConfig.productName.name"
+                />
+              </router-link>
+            </div>
+          </div>
+        </template>
+      </MpNav>
+    </template>
+
+    <template #app>
+      <div class="mp-layout__content">
+        <div class="mp-sidebar" :class="sidebarClasses">
+            <!-- v-show="$_headings.length > 0" -->
+          <MpLeftBar
+            :navbarItems="navbarItems"
+            :sideNavItems="sideNavItems"
+            class="mp-layout__left"
+            :headings="$_headings"
+            :title-heading="$_titleHeading"
           />
-          <div class="mp-nav__product">
-            <router-link
-              class="mp-nav__product__link"
-              active-class=""
-              exact-active-class=""
-              to="/"
-            >
-              <MpLogo :prefix="themeConfig.productName.prefix" :name="themeConfig.productName.name" />
-            </router-link>
+        </div>
+        <div class="mp-layout__container" :class="layoutContainerClasses">
+          <div class="mp-main__content" :style="layoutContainerStyles">
+            <FdShellApp>
+              <FdApp>
+                <template #main>
+                  <FdAppMain>
+                    <main class="fd-page">
+                      <div
+                        class="fd-page__content fd-has-background-color-neutral-2"
+                      >
+                        <div class="fd-container">
+                          <slot />
+                        </div>
+                      </div>
+                    </main>
+                  </FdAppMain>
+                </template>
+              </FdApp>
+            </FdShellApp>
           </div>
         </div>
-      </template>
-    </MpNav>
-    <MpMask @click="toggleSidebar(false)" />
-    <div class="mp-layout__content">
-      <div class="mp-sidebar" :class="sidebarClasses">
-        <MpLeftBar
-          :navbarItems="navbarItems"
-          v-show="$_headings.length > 0"
-          class="mp-layout__left"
-          :headings="$_headings"
-          :title-heading="$_titleHeading"
-        />
       </div>
-      <div class="mp-layout__container" :class="layoutContainerClasses">
-        <div class="mp-main__content" :style="layoutContainerStyles">
-          <slot  />
-        </div>
-      </div>
-    </div>
-  </div>
+    </template>
+  </FdShell>
 </template>
 
 <script>
@@ -64,7 +89,11 @@ export default {
     },
     themeConfig: {
       type: Object,
-      default: () => { navbar: { items: [] }}
+      default: () => {
+        navbar: {
+          items: [];
+        }
+      }
     },
     page: {
       type: Object,
@@ -109,6 +138,14 @@ export default {
     }
   },
   computed: {
+    sideNavItems() {
+      return [
+        {
+          id: "1",
+          name: "Home"
+        }
+      ];
+    },
     navbarItems() {
       return this.themeConfig.navbar.items;
     },
@@ -137,9 +174,7 @@ export default {
       return (this.page.headings || []).filter(isNotTitleHeading);
     },
     $_titleHeading() {
-      const titleHeadings = (this.page.headings || []).filter(
-        isTitleHeading
-      );
+      const titleHeadings = (this.page.headings || []).filter(isTitleHeading);
       return titleHeadings.length > 0 ? titleHeadings[0] : null;
     }
   }

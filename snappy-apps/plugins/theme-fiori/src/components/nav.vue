@@ -1,5 +1,13 @@
 <template>
-  <nav class="mp-nav">
+  <FdShellHeader>
+    <FdShellBar>
+      <FdShellBarGroup position="start">
+        <FdShellBarProduct productTitle="Snappy App Platform" />
+      </FdShellBarGroup>
+    </FdShellBar>
+  </FdShellHeader>
+</template>
+  <!-- <nav class="mp-nav">
     <slot name="site" />
     <div class="mp-nav__items">
       <MpNavItem
@@ -11,12 +19,11 @@
         {{ item.text }}
       </MpNavItem>
     </div>
-  </nav>
-</template>
+  </nav> -->
 
 <script>
-import MpNavItem from './nav-item.vue'
-import MpLogo from './logo.vue'
+import MpNavItem from "./nav-item.vue";
+import MpLogo from "./logo.vue";
 export default {
   components: { MpLogo, MpNavItem },
   props: {
@@ -25,7 +32,7 @@ export default {
       default: () => []
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
