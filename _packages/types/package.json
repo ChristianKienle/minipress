@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@hapi/joi": "^16.1.5",
-    "@types/joi": "^14.3.3"
+    "@types/joi": "^14.3.3",
+    "@minipress/log": "^0.1.1-alpha.16"
   },
   "types": "types/index.d.ts",
   "main": "index.ts",

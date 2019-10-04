@@ -3,6 +3,7 @@
     "_examples/*",
     "_packages/**",
     "_support/*",
+    "snappy-apps/**",
     "docs"
   ],
   "parallel": false,

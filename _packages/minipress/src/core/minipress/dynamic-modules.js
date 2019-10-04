@@ -24,17 +24,17 @@ module.exports = class DynamicModules {
     minipress.hooks.emitDynamicModules.tapPromise('dynamic modules', async () => {
       const modules = Array.from(this.byName.entries())
       modules.forEach(([name, code]) => {
-        const path = `dynamic-modules/${name}`
+        const path = `dynamic-modules/${name}.js`
         minipress.tempDir.writeTemp(path, code)
       })
     })
   }
 
   /**
-   * @param {string} id
+   * @param {string} name
    * @param {string} code
    */
-  register(id, code) {
-    this.byName.set(id, code)
+  register(name, code) {
+    this.byName.set(name, code)
   }
 }

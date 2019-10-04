@@ -91,6 +91,15 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .options(createBabelOptions())
     .end()
 
+  config.module
+    .rule('font')
+    .test(/\.(eot|otf|ttf|woff|woff2)(\?.*)?$/)
+    .use('file-loader')
+    .loader('file-loader')
+    .options({
+      name: isProd ? 'fonts/[name].[hash:8].[ext]' : 'fonts/[path][name].[ext]'
+    })
+
   // Resolve dependencies
   config.resolve.modules.add('node_modules')
 

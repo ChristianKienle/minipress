@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import createRouter from './router'
 import Layouts from '#minipress/layouts'
+import AppEnhancers from '#minipress/app-enhancers'
 import Components from '#minipress/components'
 import createRootOptions from './root-options'
 import MinipressComponents from '@minipress/built-in-components'
@@ -25,26 +26,9 @@ export function createApp(context) {
   Vue.use(Components)
   Vue.use(Layouts)
   const router = createRouter(context, scollHub)
-
+  AppEnhancers({ Vue })
 
   router.beforeEach(async (to, from, next) => {
-    const components = router.getMatchedComponents(to) || []
-    // for (const component of components) {
-    //   if (typeof component === 'function') {
-    //     const resolvedComponent = (await component()).default
-    //     const asyncDataFn = resolvedComponent.asyncData
-    //     if (asyncDataFn != null) {
-    //       const asyncData = await asyncDataFn()
-    //       if (context != null) {
-    //         if (context.minipress != null) {
-    //           context.minipress.asyncData = asyncData
-    //           context.minipress.pageKey = to.meta.$page.key
-    //           // await context.minipress.onAsyncData(asyncData, to.meta.$page.key)
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
     next()
   })
   const rootOptions = createRootOptions({ Vue, router })

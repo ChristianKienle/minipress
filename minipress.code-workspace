@@ -4,6 +4,16 @@
       "name": "docs",
       "path": "docs"
     },
+		{
+			"path": "snappy-apps/snappy-apps"
+		},
+		{
+			"path": "snappy-apps/website"
+		},
+		{
+		"name": "snappy-apps/plugins/theme-fiori",
+			"path": "snappy-apps/plugins/theme-fiori"
+		},
     {
       "path": "_packages/app"
     },
