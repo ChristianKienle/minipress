@@ -13,6 +13,7 @@ export interface Page {
   path?: string
   permalink?: string
   regularPath?: string
+  layout?: string
 }
 
 // Previously: _Page
@@ -29,6 +30,7 @@ export interface ProcessablePage {
   contentType: string
   headings: Headings
   permalink?: string
+  layout?: string
 }
 
 // Previously: ___Page
@@ -45,4 +47,5 @@ export interface EmittablePage {
   contentType: string
   headings: Headings
   permalink?: string
+  layout?: string
 }

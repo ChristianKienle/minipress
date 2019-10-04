@@ -4,7 +4,15 @@ const CustomContainer = require('@minipress/custom-container')
 
 module.exports = {
   optionsSchema({joi}) {
+    const sidebarItemSchema = joi.object({
+      text: joi.string(),
+      link: joi.string()
+    })
+    const sidebarSchema = joi.object({
+      items: joi.array().items(sidebarItemSchema).default([])
+    })
     return joi.object({
+      sidenav: sidebarSchema,
       productName: joi.object({
         prefix: joi.string(),
         name: joi.string().default('Snappy Apps')
@@ -16,6 +24,9 @@ module.exports = {
         })).default([])
       })
     }).default({
+      sidenav: {
+        items: []
+      },
       productName: {
         prefix: 'Snappy',
         name: 'Apps'

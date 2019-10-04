@@ -10,7 +10,7 @@ export default {
   props: {
     centerItems: {
       type: Boolean,
-      default: true
+      default: false
     },
     responsive: {
       type: Boolean,

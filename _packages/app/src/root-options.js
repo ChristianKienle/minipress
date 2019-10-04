@@ -14,7 +14,11 @@ export default ({ router }) => ({
   router,
   render(h) {
     const RouterView = h('RouterView')
-    const PageContentWrapper = h('div', { class: 'page-content' }, [RouterView])
+    const data = {
+      class: ''
+      // class: 'page-content'
+    }
+    const PageContentWrapper = h('div', data, [RouterView])
     return h('div', {}, [PageContentWrapper])
   },
   computed: {

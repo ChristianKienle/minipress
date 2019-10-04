@@ -1,3 +1,8 @@
+---
+layout: hero
+---
+
+
 # hello
 
 <FdButton>hi</FdButton>

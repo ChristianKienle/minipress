@@ -2,7 +2,8 @@
   <FdShell class="mp-layout" :class="classes">
     <MpMask @click="toggleSidebar(false)" />
     <template #header>
-      <MpNav class="mp-layout__nav" :items="themeConfig.navbar.items">
+      <div class="mp-layout__nav">
+      <MpNav :items="themeConfig.navbar.items">
         <template #site>
           <div
             style="align-items: center; justify-content: center; display: flex;"
@@ -29,42 +30,44 @@
           </div>
         </template>
       </MpNav>
+      </div>
     </template>
 
     <template #app>
-      <div class="mp-layout__content">
-        <div class="mp-sidebar" :class="sidebarClasses">
-            <!-- v-show="$_headings.length > 0" -->
-          <MpLeftBar
-            :navbarItems="navbarItems"
-            :sideNavItems="sideNavItems"
-            class="mp-layout__left"
-            :headings="$_headings"
-            :title-heading="$_titleHeading"
-          />
-        </div>
-        <div class="mp-layout__container" :class="layoutContainerClasses">
-          <div class="mp-main__content" :style="layoutContainerStyles">
-            <FdShellApp>
-              <FdApp>
-                <template #main>
-                  <FdAppMain>
+      <FdShellApp class="mp-layout__content">
+        <FdApp>
+          <template #main>
+            <FdAppMain>
+                <div class="mp-sidebar" :class="sidebarClasses">
+                  <!-- v-show="$_headings.length > 0" -->
+                  <MpLeftBar
+                    :navbarItems="navbarItems"
+                    :sidenavItems="sidenavItems"
+                    class="mp-layout__left"
+                    :headings="$_headings"
+                    :title-heading="$_titleHeading"
+                  />
+                </div>
+                <div
+                  class="mp-layout__container"
+                  :class="layoutContainerClasses"
+                >
+                  <div class="mp-main__content" :style="layoutContainerStyles">
                     <main class="fd-page">
                       <div
-                        class="fd-page__content fd-has-background-color-neutral-2"
+                        class="fd-page__content"
                       >
                         <div class="fd-container">
                           <slot />
                         </div>
                       </div>
                     </main>
-                  </FdAppMain>
-                </template>
-              </FdApp>
-            </FdShellApp>
-          </div>
-        </div>
-      </div>
+                  </div>
+                </div>
+            </FdAppMain>
+          </template>
+        </FdApp>
+      </FdShellApp>
     </template>
   </FdShell>
 </template>
@@ -89,11 +92,14 @@ export default {
     },
     themeConfig: {
       type: Object,
-      default: () => {
+      default: () => ({
+        sidenav: {
+          items: []
+        },
         navbar: {
-          items: [];
+          items: []
         }
-      }
+      })
     },
     page: {
       type: Object,
@@ -101,7 +107,7 @@ export default {
     },
     contentWidth: {
       type: String,
-      default: "800px"
+      default: "1000px"
     }
   },
   data() {
@@ -138,13 +144,8 @@ export default {
     }
   },
   computed: {
-    sideNavItems() {
-      return [
-        {
-          id: "1",
-          name: "Home"
-        }
-      ];
+    sidenavItems() {
+      return this.themeConfig.sidenav.items
     },
     navbarItems() {
       return this.themeConfig.navbar.items;
@@ -205,7 +206,7 @@ export default {
   overflow-y scroll
   position fixed;
   width $leftBarWidth
-  top 63px
+  top $navHeight
   bottom 0
   left 0
   z-index 999
@@ -229,11 +230,12 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  height $navHeight
 }
 
 .mp-layout__container {
   margin-left: 'calc(%s + %s)' % ($leftBarWidth $leftBarPaddingX);
-  padding-top: 32px;
+  // padding-top: 32px;
   padding-left: $leftBarPaddingX;
   padding-right: $leftBarPaddingX;
 

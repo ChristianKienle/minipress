@@ -15,7 +15,7 @@ const transformer = {
           }
         }
         return h('div', {
-          class: 'minipress-content',
+          class: 'page-content',
         },
         [h(PageComponent, { props })])
       }

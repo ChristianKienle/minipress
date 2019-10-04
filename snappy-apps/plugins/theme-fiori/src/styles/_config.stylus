@@ -11,7 +11,7 @@ $leftBarPaddingX = 2rem
 $sideNavItemPadding = $leftBarPaddingX
 $leftBarPaddingY = 2rem
 
-$navHeight = 3.6rem
+$navHeight = 48px
 $navItemLinkColor = darken(desaturate($accentColor, 50%), 50%)
 $navItemLinkUnderlineColor = $accentColor
 $navItemLinkUnderlineWidth = 2.5px

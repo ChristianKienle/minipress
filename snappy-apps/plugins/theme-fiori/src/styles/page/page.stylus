@@ -8,6 +8,7 @@
   p
     margin 1rem 0
     line-height 1.9rem
+    font-size 1.1rem
   hr
     border none
     height 1px

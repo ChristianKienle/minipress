@@ -33,10 +33,10 @@ export default {
 
 <style lang="stylus">
 @require './../styles/_mixins.stylus'
-
+$spacing = 1.5rem
 .mp-flex__item
   + .mp-flex__item
-    margin-left 0.5rem
+    margin-left $spacing
   padding: 0rem
   &--top
     align-self: flex-start;
@@ -47,5 +47,5 @@ export default {
   +forCompact()
     + .mp-flex__item
       margin-left 0
-      margin-top 0.5rem
+      margin-top $spacing
 </style>

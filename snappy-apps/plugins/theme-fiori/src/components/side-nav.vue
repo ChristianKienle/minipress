@@ -3,10 +3,10 @@
     <fd-side-nav-list :items="items">
       <template #item="item">
         <fd-side-nav-item>
-          <fd-side-nav-link>{{ item.name }}</fd-side-nav-link>
+          <fd-side-nav-link>{{ item.text }}</fd-side-nav-link>
           <template #subItem="subItem">
             <fd-side-nav-sub-item>
-              <fd-side-nav-sub-link>{{ subItem.name }}</fd-side-nav-sub-link>
+              <fd-side-nav-sub-link>{{ subItem.text }}</fd-side-nav-sub-link>
             </fd-side-nav-sub-item>
           </template>
         </fd-side-nav-item>

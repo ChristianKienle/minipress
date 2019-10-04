@@ -56,7 +56,7 @@ pre[class*="language-"] ::selection
 .minipress-highlight
   position relative
   overflow hidden
-  margin 2rem 0;
+  margin-bottom 2rem
   color: white
   background-color $code-accent-color
   border-radius $minpressCodeBorderRadius

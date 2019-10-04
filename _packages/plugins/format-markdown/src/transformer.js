@@ -2,9 +2,6 @@
 const codeGen = require('@minipress/code-gen')
 const Renderer = require('@minipress/markdown')
 
-// const renderer = new Renderer()
-// renderer.init()
-
 /** @typedef {import('@minipress/types').Page} Page */
 
 class Transformer {
@@ -14,14 +11,12 @@ class Transformer {
   }
 
   async getContentComponent(page) {
-    const result = codeGen.vue(() => `
+    const result = codeGen.vue(c => `
     <template>
-      <div class="minipress-content">${page.content}</div>
+      <div class="page-content">${page.content}</div>
     </template>
     <script>
-    export default {
-      layout: 'default'
-    }
+
     </script>
     `)
     return result
@@ -39,72 +34,23 @@ class Transformer {
       ...page.frontmatter,
       ...frontmatter.attributes
     }
+    if(frontmatter.attributes.key != null) {
+      page.key = frontmatter.attributes.key
+    }
     page.content = frontmatter.markdownContent
   }
 
   async getPageComponent(page) {
-    const result = codeGen.vue(() => `
+    const result = codeGen.vue(c => `
     <template>
-      <MiniLayout>
+      <MiniLayout name="${page.layout || 'default'}">
         <div>${page.content}</div>
       </MiniLayout>
     </template>
-    <script>
-    export default {
-      layout: 'default'
-    }
-    </script>
     `)
     return result
   }
 }
-// /**
-//  * @param {}
-//  * @return {import('@minipress/types').Transformer}
-//  */
-// const transformer = {
-//   async getContentComponent(page) {
-//     const result = codeGen.vue(() => `
-//     <template>
-//       <div class="minipress-content">${page.content}</div>
-//     </template>
-//     <script>
-//     export default {
-//       layout: 'default'
-//     }
-//     </script>
-//     `)
-//     return result
-//   },
-//   async transform(page) {
-//     const env = { page }
-//     const markup = renderer._render(page.content, env)
-//     page.content = markup
-//   },
-//   async parse(page) {
-//     const frontmatter = renderer.frontmatter(page.content)
-//     page.frontmatter = {
-//       ...page.frontmatter,
-//       ...frontmatter.attributes
-//     }
-//     page.content = frontmatter.markdownContent
-//   },
-//   async getPageComponent(page) {
-//     const result = codeGen.vue(() => `
-//     <template>
-//       <MiniLayout>
-//         <div>${page.content}</div>
-//       </MiniLayout>
-//     </template>
-//     <script>
-//     export default {
-//       layout: 'default'
-//     }
-//     </script>
-//     `)
-//     return result
-//   }
-// }
 
 module.exports = () => {
   /** @type {import('@minipress/types').Transformer} */

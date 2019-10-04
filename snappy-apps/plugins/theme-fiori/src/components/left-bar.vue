@@ -1,6 +1,6 @@
 <template>
   <div class="mp-left-bar">
-    <SideNav :items="sideNavItems" />
+    <SideNav :items="sidenavItems" />
     <!-- <MpToc :title-heading="titleHeading" :headings="headings">
       <template #before>
         <MpItemGroup class="navbar-items" :items="navbarItems_" />
@@ -26,7 +26,7 @@ export default {
     }
   },
   props: {
-    sideNavItems: {
+    sidenavItems: {
       type: Array,
       default: () => []
     },
