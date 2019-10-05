@@ -1,6 +1,16 @@
 @require './headings.stylus'
+@require './_page-config.stylus'
 
 .page-content
+  code
+    background-color $code-inline-background-color
+    padding-left 0.3rem
+    padding-right 0.3rem
+    padding-top 0.3rem
+    padding-bottom 0.3rem
+    font-size 0.9rem
+    border-radius 4px
+    color $code-inline-color
   line-height 1.9rem
   color $textColor
   img
@@ -13,9 +23,7 @@
     height 1px
     background $horizontalLineColor
     margin 30px 0
-  p
   td
-  blockquote
   li
     code
       background-color $code-inline-background-color
@@ -62,15 +70,15 @@
       font-size 0.9rem
       line-height 1.4rem
 	blockquote
-		background-color rgba(255, 229, 100, 0.3)
-		border-left 8px solid #ffe564
+		background-color $page-config.blockquote.background-color
+		border-left 8px solid $page-config.blockquote.border-color
 		padding 15px 30px 15px 15px
 		margin 2rem 0
-		color #6a737d
+		color $page-config.blockquote.color
 		& > :first-child
-			margin-top 0
+			margin 0
 		& > :last-child
-			margin-bottom 0
+			margin 0
 	small
 		code
 			font-size inherit
