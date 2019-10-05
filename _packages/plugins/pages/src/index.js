@@ -24,47 +24,44 @@ module.exports = {
         }
         return options
       })()
+
       const pages = getPagesInDir(dir)
 
-      const initialPages = await pages.resume()
-      await Promise.all(initialPages.map(page => minipress.addPage(page)))
-      await minipress.hooks.emitPages.promise()
-      await minipress.hooks.emitRoutes.promise()
-
-      if (minipress.watch === false) {
-        pages.close()
-        return
+      if (minipress.watch) {
+        pages.onAdded(async page => {
+          const _page = await minipress.addPage(page)
+          await minipress.hooks.onCreatePage.promise(_page)
+          await minipress.hooks.emitSiteData.promise()
+          await minipress.hooks.emitPages.promise()
+          await minipress.hooks.emitRoutes.promise()
+        }).onChanged(async page => {
+          const _page = await minipress.addPage(page)
+          await minipress.hooks.onCreatePage.promise(_page)
+          await minipress.hooks.emitSiteData.promise()
+          await minipress.hooks.emitPages.promise()
+          await minipress.hooks.emitRoutes.promise()
+        }).onRemoved(async page => {
+          const _page = await minipress.removePageWhere(existingPage => {
+            if(existingPage.key === page.key) {
+              return true
+            }
+            return false
+          })
+          if(_page != null) {
+            await minipress.hooks.onRemovePage.promise(_page)
+            await minipress.hooks.emitSiteData.promise()
+            await minipress.hooks.emitPages.promise()
+            await minipress.hooks.emitRoutes.promise()
+          }
+        })
       }
 
-      pages.onAdded(async page => {
-        const _page = await minipress.addPage(page)
-        await minipress.hooks.onCreatePage.promise(_page)
-        // await minipress.addPage(page)
-        // await minipress.hooks.emitPages.promise()
-        // await minipress.hooks.emitRoutes.promise()
-      })
+      const initialPages = await pages.getPages({ watch: minipress.watch })
+      await Promise.all(initialPages.map(page => minipress.addPage(page)))
 
-      pages.onChanged(async page => {
-        const _page = await minipress.addPage(page)
-        await minipress.hooks.onCreatePage.promise(_page)
-
-        // await minipress.hooks.emitPages.promise()
-        // await minipress.hooks.emitRoutes.promise()
-      })
-      pages.onRemoved(async page => {
-        const _page = await minipress.removePageWhere(existingPage => {
-          if(existingPage.key === page.key) {
-            return true
-          }
-          return false
-        })
-        if(_page != null) {
-          await minipress.hooks.onRemovePage.promise(_page)
-        }
-
-        // await minipress.hooks.emitPages.promise()
-        // await minipress.hooks.emitRoutes.promise()
-      })
+      await minipress.hooks.emitSiteData.promise()
+      await minipress.hooks.emitPages.promise()
+      await minipress.hooks.emitRoutes.promise()
     })
   }
 }

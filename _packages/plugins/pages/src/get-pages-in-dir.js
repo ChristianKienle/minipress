@@ -1,37 +1,20 @@
 // @ts-check
-const { resolve } = require('path')
+const { join } = require('path')
 const EventEmitter = require('events')
 const chokidar = require('chokidar')
+const globby = require('globby')
 const { createPageKey, relativePathToUrlPath } = require('@minipress/utils')
 
 const PAGES_GLOBS = ['**/*.md', '**/*.vue', '!node_modules/**']
 const EVENTS = Object.freeze({
   added: 'mp:pages:added',
   removed: 'mp:pages:removed',
-  changed: 'mp:pages:changed',
-  ready: 'mp:pages:ready'
+  changed: 'mp:pages:changed'
 })
 
 /** @typedef {import('@minipress/types').Page} Page */
 /** @typedef {import('@minipress/types').File} File */
 /** @typedef {(page: Page)=>void} Listener */
-
-/**
- * @param {File} file
- * @returns {Page}
- */
-const pagePathToPage = ({ relative, absolute }) => {
-  const path = relativePathToUrlPath(relative)
-  const key = createPageKey(absolute)
-  return {
-    key,
-    path,
-    file: {
-      relative,
-      absolute
-    }
-  }
-}
 
 class PagesProvider {
   /** @param {string} pagesDir */
@@ -41,17 +24,13 @@ class PagesProvider {
   }
 
   /** @param {string} relative */
-  toPagePath(relative) {
-    return {
+  relativePathToPage(relative) {
+    const absolute = join(this.pagesDir, relative)
+    const file = {
       relative,
-      absolute: resolve(this.pagesDir, relative)
+      absolute
     }
-  }
-
-  /** @param {string} relative */
-  toPage(relative) {
-    const path = this.toPagePath(relative)
-    return pagePathToPage(path)
+    return { file }
   }
 
   close() {
@@ -63,77 +42,53 @@ class PagesProvider {
 
   /** @param {Listener} listener */
   onAdded(listener) {
-    const { emitter } = this
-    const event = EVENTS.added
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(EVENTS.added, listener)
+    return this
   }
 
   /** @param {Listener} listener */
   onRemoved(listener) {
-    const { emitter } = this
-    const event = EVENTS.removed
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
-  }
-
-  /** @param {(pages: Page[]) => void} listener */
-  onReady(listener) {
-    const { emitter } = this
-    const event = EVENTS.ready
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(EVENTS.removed, listener)
+    return this
   }
 
   /** @param {Listener} listener */
   onChanged(listener) {
-    const { emitter } = this
-    const event = EVENTS.changed
-    const off = () => this.emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(EVENTS.changed, listener)
+    return this
   }
 
-  /** @returns {Promise<Page[]>} */
-  resume() {
-    const { emitter } = this
-    /** @type {Map<string, Page>} */
-    const pages = new Map()
-    return new Promise(resolvePromise => {
-      let isReady = false
+  /**
+   * @param {{watch: boolean}} options
+   * @returns {Promise<Page[]>}
+   */
+  async getPages({ watch } = { watch: false }) {
+    const relativePaths = await globby(PAGES_GLOBS, { cwd: this.pagesDir })
+    const pages = relativePaths.map(relative => this.relativePathToPage(relative))
+    if (watch) {
+      const { emitter } = this
       this.watcher = chokidar.watch(PAGES_GLOBS, {
         ignored: /(^|[\/\\])\../,
         persistent: true,
-        cwd: this.pagesDir
+        cwd: this.pagesDir,
+        ignoreInitial: true
+      }).on('all', (event, path) => {
+        const pagesEvent = (() => {
+          const mapping = {
+            add: EVENTS.added,
+            change: EVENTS.changed,
+            unlink: EVENTS.removed
+          }
+          return mapping[event]
+        })()
+        if (pagesEvent == null) {
+          return
+        }
+        const page = this.relativePathToPage(path)
+        emitter.emit(pagesEvent, page)
       })
-        .on('all', (event, path) => {
-          if (event === 'add') {
-            const page = this.toPage(path)
-            pages.set(path, page)
-            isReady && emitter.emit(EVENTS.added, page)
-          }
-
-          if (event === 'unlink') {
-            const page = this.toPage(path)
-            pages.delete(path)
-            isReady && emitter.emit(EVENTS.removed, page)
-          }
-
-          if (event === 'change') {
-            const page = this.toPage(path)
-            pages.set(path, page)
-            isReady && emitter.emit(EVENTS.changed, page)
-          }
-        })
-        .on('ready', () => {
-          isReady = true
-          emitter.emit(EVENTS.ready, pages.values())
-          resolvePromise(Array.from(pages.values()))
-        })
-    })
+    }
+    return pages
   }
 }
 

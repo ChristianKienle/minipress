@@ -16,6 +16,7 @@ From a technical point of view plugins and themes are identical.
 | [Head](./head.md) | Take control over everything between `<head>` and `</head>`. |
 | [package.json](./package-json.md) | Makes your `package.json` available to your pages. |
 | [Last Modified](./last-modified.md) | Adds a last modified date to your pages. |
+| [Custom Container](./custom-container.md) | Add custom Markdown containers. |
 
 ## Avaiable Themes
 

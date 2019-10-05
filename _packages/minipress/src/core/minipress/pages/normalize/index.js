@@ -113,6 +113,7 @@ const normalizePage = async (page = {}, {
 
   if (key == null && file.absolute != null) {
     key = createPageKey(file.absolute)
+    ProcessablePage.key = key
   }
 
   if (isVirtualPage(page)) {

@@ -18,3 +18,6 @@ fsdf
 
  [hello.md](./hello.html)
  [test.vue](./test.html)
+ [xxx.md](./xxx.md)
+ [yyy.md](./yyy.md)
+ [zzz.md](./zzz.md)
