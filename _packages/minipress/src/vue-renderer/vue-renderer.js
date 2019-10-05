@@ -42,6 +42,7 @@ module.exports = class VueRenderer {
     await this.minipress.hooks.getHead.promise(head, url)
 
     return {
+      xxx: 'chris',
       url,
       head: head.renderToString()
     }

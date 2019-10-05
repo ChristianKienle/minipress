@@ -16,6 +16,9 @@ dddyy
 // console.log('Chris',{Chris})
 const wait = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
 export default {
+    created() {
+    console.log('ssr', this.$ssrContext)
+    }
   // layout: 'custom',
   // Is called during SSR and then again on the client.
   // The data returned during SSR is merged with data.

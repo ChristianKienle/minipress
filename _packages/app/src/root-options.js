@@ -12,13 +12,9 @@ import site from '#minipress/site-data'
 export default ({ router }) => ({
   // @ts-ignore
   router,
+
   render(h) {
-    const RouterView = h('RouterView')
-    const data = {
-      class: ''
-      // class: 'page-content'
-    }
-    const PageContentWrapper = h('div', data, [RouterView])
+    const PageContentWrapper = h('div', {}, [h('RouterView')])
     return h('div', {}, [PageContentWrapper])
   },
   computed: {
