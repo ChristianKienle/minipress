@@ -11,6 +11,14 @@
 			"path": "snappy-apps/website"
 		},
 		{
+		"name": "snappy-apps/plugins/odata",
+			"path": "snappy-apps/plugins/odata"
+		},
+		{
+		"name": "snappy-apps/examples/odata",
+			"path": "snappy-apps/examples/odata"
+		},
+		{
 		"name": "snappy-apps/plugins/theme-fiori",
 			"path": "snappy-apps/plugins/theme-fiori"
 		},

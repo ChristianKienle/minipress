@@ -44,7 +44,7 @@ class Transformer {
     const result = codeGen.vue(c => `
     <template>
       <MiniLayout name="${page.layout || 'default'}">
-        <div>${page.content}</div>
+        <div class="page-content">${page.content}</div>
       </MiniLayout>
     </template>
     `)

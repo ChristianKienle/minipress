@@ -3,33 +3,33 @@
     <MpMask @click="toggleSidebar(false)" />
     <template #header>
       <div class="mp-layout__nav">
-      <MpNav :items="themeConfig.navbar.items">
-        <template #site>
-          <div
-            style="align-items: center; justify-content: center; display: flex;"
-          >
-            <MpSideNavButton
-              v-if="showSidebar"
-              @click="toggleSidebar"
-              :pressed="sidebarOpen"
-              class="mp-main-sidebar-button"
-            />
-            <div class="mp-nav__product">
-              <router-link
-                class="mp-nav__product__link"
-                active-class=""
-                exact-active-class=""
-                to="/"
-              >
-                <MpLogo
-                  :prefix="themeConfig.productName.prefix"
-                  :name="themeConfig.productName.name"
-                />
-              </router-link>
+        <MpNav :items="themeConfig.navbar.items">
+          <template #site>
+            <div
+              style="align-items: center; justify-content: center; display: flex;"
+            >
+              <MpSideNavButton
+                v-if="showSidebar"
+                @click="toggleSidebar"
+                :pressed="sidebarOpen"
+                class="mp-main-sidebar-button"
+              />
+              <div class="mp-nav__product">
+                <router-link
+                  class="mp-nav__product__link"
+                  active-class=""
+                  exact-active-class=""
+                  to="/"
+                >
+                  <MpLogo
+                    :prefix="themeConfig.productName.prefix"
+                    :name="themeConfig.productName.name"
+                  />
+                </router-link>
+              </div>
             </div>
-          </div>
-        </template>
-      </MpNav>
+          </template>
+        </MpNav>
       </div>
     </template>
 
@@ -38,32 +38,21 @@
         <FdApp>
           <template #main>
             <FdAppMain>
-                <div class="mp-sidebar" :class="sidebarClasses">
-                  <!-- v-show="$_headings.length > 0" -->
-                  <MpLeftBar
-                    :navbarItems="navbarItems"
-                    :sidenavItems="sidenavItems"
-                    class="mp-layout__left"
-                    :headings="$_headings"
-                    :title-heading="$_titleHeading"
-                  />
+              <div class="mp-sidebar" :class="sidebarClasses">
+                <!-- v-show="$_headings.length > 0" -->
+                <MpLeftBar
+                  :navbarItems="navbarItems"
+                  :sidenavItems="sidenavItems"
+                  class="mp-layout__left"
+                  :headings="$_headings"
+                  :title-heading="$_titleHeading"
+                />
+              </div>
+              <div class="mp-layout__container" :class="layoutContainerClasses">
+                <div class="mp-main__content" :style="layoutContainerStyles">
+                  <slot />
                 </div>
-                <div
-                  class="mp-layout__container"
-                  :class="layoutContainerClasses"
-                >
-                  <div class="mp-main__content" :style="layoutContainerStyles">
-                    <main class="fd-page">
-                      <div
-                        class="fd-page__content"
-                      >
-                        <div class="fd-container">
-                          <slot />
-                        </div>
-                      </div>
-                    </main>
-                  </div>
-                </div>
+              </div>
             </FdAppMain>
           </template>
         </FdApp>
@@ -145,7 +134,7 @@ export default {
   },
   computed: {
     sidenavItems() {
-      return this.themeConfig.sidenav.items
+      return this.themeConfig.sidenav.items;
     },
     navbarItems() {
       return this.themeConfig.navbar.items;
@@ -200,6 +189,7 @@ export default {
 .mp-layout
   padding-top $navHeight
   padding-bottom 50px
+  height: auto !important
 
 .mp-sidebar {
   background-color white
