@@ -15,6 +15,6 @@ module.exports = ({ minipress, cli }) => {
       'default': config.port
     })
     .action(async ({ port }) => {
-      await minipress.serve({ port, host, watch: true, mode: 'development' })
+      await minipress.dev({ port, host, watch: true, mode: 'development' })
     })
 }

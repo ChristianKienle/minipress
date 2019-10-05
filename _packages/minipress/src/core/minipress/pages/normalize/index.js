@@ -13,10 +13,11 @@ const normalizeContentType = require('./content-type')
  */
 
 /**
- * @param {'key' | 'path'} property
+ * @param {'key' | 'path' | 'layout'} property
  * @param {ProcessablePage} page
  */
-const enhanceWellKnownProperty = (property, { attributes, frontmatter, ...page }) => {
+const enhanceWellKnownProperty = (property, page) => {
+  const { frontmatter, attributes } = page
   if (page[property] != null) {
     return
   }
@@ -67,14 +68,6 @@ const isVirtualPage = page => {
 const normalizePage = async (page = {}, { minipress }) => {
   const file = normalizeFile(page.file)
   let key = page.key
-  if (key == null && file.absolute != null) {
-    key = createPageKey(file.absolute)
-  }
-  if (isVirtualPage(page)) {
-    const absolutePath = minipress.tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
-    file.absolute = absolutePath
-    minipress.contentComponents.register(page.key, { id: page.key, absolutePath })
-  }
 
   const regularPath = normalizeRegularPath({ regularPath: page.regularPath, file: file })
   const content = page.content || getContent(file) || ''
@@ -83,6 +76,8 @@ const normalizePage = async (page = {}, { minipress }) => {
   const headings = [ ...(page.headings || []) ]
   const frontmatter = { ...(page.frontmatter || {}) }
   const transformer = minipress.transformers.get(contentType)
+  const layout = page.layout
+
   const ProcessablePage = {
     ...page,
     content,
@@ -93,6 +88,7 @@ const normalizePage = async (page = {}, { minipress }) => {
     file,
     frontmatter,
     attributes,
+    layout
   }
   if (transformer != null) {
     await transformer.parse(ProcessablePage)
@@ -104,6 +100,18 @@ const normalizePage = async (page = {}, { minipress }) => {
   // present in either one.
   enhanceWellKnownProperty('key', ProcessablePage)
   enhanceWellKnownProperty('path', ProcessablePage)
+  enhanceWellKnownProperty('layout', ProcessablePage)
+
+  if (key == null && file.absolute != null) {
+    key = createPageKey(file.absolute)
+  }
+
+  if (isVirtualPage(page)) {
+    const absolutePath = minipress.tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
+    file.absolute = absolutePath
+    minipress.contentComponents.register(page.key, { id: page.key, absolutePath })
+  }
+
   let path = page.path
   if (path == null && file.relative != null) {
     path = relativePathToUrlPath(file.relative)

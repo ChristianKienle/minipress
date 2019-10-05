@@ -1,9 +1,6 @@
 <template>
   <MpMain :page="page" :themeConfig="$minipress.themeConfig" showSidebar>
     <slot />
-    <!-- <template #main-content>
-      <slot name="content" />
-    </template> -->
   </MpMain>
 </template>
 

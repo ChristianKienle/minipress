@@ -4,7 +4,6 @@ export default {
   functional: true,
   name: "Content",
   render(h, context) {
-    // return h('div')
     const pageKey = context.props.pageKey
     const contentKey = `mp-content-${pageKey}`
     const contentComponent = ContentComponents[contentKey]

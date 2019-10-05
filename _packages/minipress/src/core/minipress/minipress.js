@@ -11,6 +11,7 @@ const Transformers = require('./transformers')
 const Pages = require('./pages')
 const Aliases = require('./aliases')
 const DynamicModules = require('./dynamic-modules')
+const AppEnhancers = require('./app-enhancers')
 const PageTransformers = require('./page-transformers')
 const { VueRenderer } = require('./../../vue-renderer')
 const { setNodeEnv } = require('@minipress/utils')
@@ -69,6 +70,7 @@ class Minipress {
       initialPages: new AsyncSeriesHook(),
       registerDynamicModules: new AsyncSeriesHook(),
       emitDynamicModules: new AsyncSeriesHook(),
+      registerAppEnhancers: new AsyncSeriesHook(),
       registerAliases: new AsyncSeriesHook(),
       registerComponents: new AsyncSeriesHook(),
       registerTransformers: new AsyncSeriesHook(),
@@ -106,6 +108,7 @@ class Minipress {
     this.pages = new Pages(this)
     this.aliases = new Aliases(this)
     this.dynamicModules = new DynamicModules(this)
+    this.appEnhancers = new AppEnhancers(this)
     this.watch = true
     this.pageTransformers = new PageTransformers()
     this.aliases.register('#minipress/site-data', this.tempDir.resolveTemp('site-data/index.js'))
@@ -118,9 +121,6 @@ class Minipress {
       const code = codeGen.js(c => `export default ${c.stringify(_siteData)}`)
       this.tempDir.writeTemp('site-data/index.js', code)
     })
-    // this.hooks.beforeRun.tapPromise('minipress - site data', async () => {
-    //   await this.hooks.emitSiteData.promise()
-    // })
     this.vueRenderer = new VueRenderer(this)
   }
 
@@ -184,7 +184,7 @@ class Minipress {
    *
    * @param {ServeOptions} options
    */
-  async serve({
+  async dev({
     port,
     host,
     watch = true,
@@ -211,14 +211,14 @@ class Minipress {
     this.cleanTempDir()
 
     // Register default Theme
-    this.use('@minipress/theme-default')
-    this.use('@minipress/plugin-pages')
-    this.use('@minipress/plugin-layouts')
-    this.use('@minipress/plugin-components')
+    this.use(require('@minipress/theme-default'))
+    this.use(require('@minipress/plugin-pages'))
+    this.use(require('@minipress/plugin-layouts'))
+    this.use(require('@minipress/plugin-components'))
 
     // Register default Transformers
-    this.use('@minipress/plugin-format-markdown')
-    this.use('@minipress/plugin-format-vue')
+    this.use(require('@minipress/plugin-format-markdown'))
+    this.use(require('@minipress/plugin-format-vue'))
 
     // Plugins from Config
     this.config.plugins.forEach(plugin => {
@@ -227,7 +227,6 @@ class Minipress {
 
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
       this.hooks.onCreatePage.tapPromise('minipress-prepare', async page => {
-        // this.emit
         await this.pages._emitPage(page)
       })
       this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
@@ -244,11 +243,6 @@ class Minipress {
 
       this.hooks.emitRoutes.tapPromise('minipress-prepare', async () => {
         await this.emitRoutes()
-        // await this.hooks.registerContentComponents.promise()
-        // await this.hooks.emitContentComponents.promise()
-        // this.emitContentComponents()
-        // const { code } = createRoutes(this.pages.values())
-        // this.tempDir.writeTemp('routes/index.js', code)
       })
     })
 
@@ -266,7 +260,7 @@ class Minipress {
     this._enableUniversalPageLoaderSupport()
     this.pages.createAlias()
 
-    const aliases = ['async-data', 'content-components', 'layouts', 'routes', 'components', 'site-data']
+    const aliases = ['app-enhancers', 'async-data', 'content-components', 'layouts', 'routes', 'components', 'site-data']
     aliases.forEach(alias => {
       const name = `#minipress/${alias}`
       const path = this.tempDir.resolveTemp(`${alias}/index.js`)
@@ -282,6 +276,8 @@ class Minipress {
     await this.hooks.registerLayouts.promise()
     this.emitToLayouts()
 
+    await this.hooks.registerAppEnhancers.promise()
+    this.appEnhancers.emit()
     await this.hooks.registerDynamicModules.promise()
     await this.hooks.emitDynamicModules.promise()
 
