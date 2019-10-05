@@ -61,11 +61,20 @@ const isVirtualPage = page => {
 }
 
 /**
+ * @typedef NormalizeOptions
+ * @prop {import('./../../temp-dir')} tempDir
+ * @prop {import('./../../transformers')} transformers
+ * @prop {import('./../../content-components')} contentComponents
+ *
  * @param {Page} page
- * @param {{ minipress: Minipress }} options
+ * @param {NormalizeOptions} options
  * @returns {Promise<EmittablePage>}
  */
-const normalizePage = async (page = {}, { minipress }) => {
+const normalizePage = async (page = {}, {
+  transformers,
+  tempDir,
+  contentComponents
+}) => {
   const file = normalizeFile(page.file)
   let key = page.key
 
@@ -75,7 +84,7 @@ const normalizePage = async (page = {}, { minipress }) => {
   const attributes = { ...(page.attributes || {}) }
   const headings = [ ...(page.headings || []) ]
   const frontmatter = { ...(page.frontmatter || {}) }
-  const transformer = minipress.transformers.get(contentType)
+  const transformer = transformers.get(contentType)
   const layout = page.layout
 
   const ProcessablePage = {
@@ -107,14 +116,14 @@ const normalizePage = async (page = {}, { minipress }) => {
   }
 
   if (isVirtualPage(page)) {
-    const absolutePath = minipress.tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
+    const absolutePath = tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
     file.absolute = absolutePath
-    minipress.contentComponents.register(page.key, { id: page.key, absolutePath })
+    contentComponents.register(page.key, { id: page.key, absolutePath })
   }
 
-  let path = page.path
-  if (path == null && file.relative != null) {
-    path = relativePathToUrlPath(file.relative)
+  let path = ProcessablePage.path
+  if (path == null && ProcessablePage.file.relative != null) {
+    path = relativePathToUrlPath(ProcessablePage.file.relative)
   }
   const _key = ProcessablePage.key
   if (_key == null) {
@@ -129,7 +138,7 @@ const normalizePage = async (page = {}, { minipress }) => {
 
 /**
  * @param {Page[]} pages
- * @param {{ minipress: Minipress }} options
+ * @param {NormalizeOptions} options
  * @returns {Promise<ProcessablePage[]>}
  */
 const normalizePages = async (pages, options) => Promise.all(pages.map(page => normalizePage(page, options)))

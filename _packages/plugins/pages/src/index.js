@@ -52,6 +52,16 @@ module.exports = {
         // await minipress.hooks.emitRoutes.promise()
       })
       pages.onRemoved(async page => {
+        const _page = await minipress.removePageWhere(existingPage => {
+          if(existingPage.key === page.key) {
+            return true
+          }
+          return false
+        })
+        if(_page != null) {
+          await minipress.hooks.onRemovePage.promise(_page)
+        }
+
         // await minipress.hooks.emitPages.promise()
         // await minipress.hooks.emitRoutes.promise()
       })

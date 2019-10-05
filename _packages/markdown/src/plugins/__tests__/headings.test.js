@@ -1,5 +1,4 @@
 // @ts-check
-
 const createMd = require('./../../create-md')
 const headingsPlugin = require('./../headings')
 

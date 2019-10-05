@@ -11,9 +11,6 @@
   "bin": {
     "snappy-apps": "./src/cli/cli-entry.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "dotenv": "^8.1.0",
     "serve-static": "^1.14.1",

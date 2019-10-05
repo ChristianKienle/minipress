@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Object {
+  "content": "# hi",
+  "contentType": "md",
+  "key": "virtual",
+}
+`;
+
+exports[`normalize page virtual page 1`] = `
+Object {
+  "content": "# hi",
+  "contentType": "md",
+  "key": "virtual",
+}
+`;

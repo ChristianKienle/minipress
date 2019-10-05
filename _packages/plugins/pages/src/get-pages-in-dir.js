@@ -14,7 +14,7 @@ const EVENTS = Object.freeze({
 
 /** @typedef {import('@minipress/types').Page} Page */
 /** @typedef {import('@minipress/types').File} File */
-/** @typedef {(page)=>void} Listener */
+/** @typedef {(page: Page)=>void} Listener */
 
 /**
  * @param {File} file

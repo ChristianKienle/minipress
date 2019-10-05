@@ -98,7 +98,9 @@ module.exports = class Pages {
   /** @param {Page} page */
   async normalizePage(page) {
     const ProcessablePage = await normalizePage(page, {
-      minipress: this.minipress,
+      transformers: this.minipress.transformers,
+      contentComponents: this.minipress.contentComponents,
+      tempDir: this.minipress.tempDir
     })
     await this.minipress.pageTransformers.transform(ProcessablePage)
     return ProcessablePage
@@ -155,10 +157,23 @@ module.exports = class Pages {
    * @param {string} key
    * @returns {EmittablePage | undefined}
    */
-  delete(key) {
+  removePage(key) {
     const page = this.get(key)
     if (this.pages.delete(key)) {
       return page
     }
+  }
+
+  /**
+   * @param {(page: EmittablePage) => boolean} condition
+   * @returns {EmittablePage | undefined}
+   */
+  removePageWhere(condition) {
+    const page = this.values().find(condition)
+    if(page == null) {
+      return
+    }
+    this.removePage(page.key)
+    return page
   }
 }

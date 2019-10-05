@@ -2,7 +2,7 @@
 // Inspired by from Vuepress: https://vuepress.vuejs.org
 const Prism = require('prismjs')
 const loadLanguages = require('prismjs/components/')
-loadLanguages()
+loadLanguages(['javascript', 'markup', 'bash'])
 
 const languageAlias = {
   vue: 'html',

@@ -1,5 +1,5 @@
 // @ts-check
-const TempDir = require('./../temp-dir')
+const TempDir = require('./temp-dir')
 const Components = require('./components')
 const Layouts = require('./layouts')
 const Plugins = require('./plugins')
@@ -82,6 +82,7 @@ class Minipress {
       mutatePages: new AsyncSeriesHook(['mutations']),
       // This is called the moment a new page has been created.
       onCreatePage: new AsyncSeriesHook(['page']),
+      onRemovePage: new AsyncSeriesHook(['page']),
       // This is called once multiple pages have been created.
       onCreatePages: new AsyncSeriesHook([]),
       configureMarkdownRenderer: new AsyncSeriesHook(['markdownRenderer']),
@@ -122,6 +123,13 @@ class Minipress {
       this.tempDir.writeTemp('site-data/index.js', code)
     })
     this.vueRenderer = new VueRenderer(this)
+    this.hooks.afterPlugins.tapPromise('minipress-ctor', async () => {
+      this.hooks.onRemovePage.tapPromise('minipress ctor', async page => {
+        this.contentComponents.remove(page.key)
+        await this.emitRoutes()
+        await this.emitContentComponents()
+      })
+    })
   }
 
   get joi() {
@@ -376,11 +384,23 @@ class Minipress {
     log.actionSucceed(`Cleaned temporary directory at '${tempDir.path}'`)
   }
 
-  /**
-   * @param {Page} page
-   */
+  /** @param {Page} page */
   async addPage(page) {
     return await this.pages.createPage(page)
+  }
+
+  /**
+   * @param {string} key
+   */
+  async removePage(key) {
+    return await this.pages.removePage(key)
+  }
+
+  /**
+   * @param {(page: Page)=>boolean} condition
+   */
+  async removePageWhere(condition) {
+    return await this.pages.removePageWhere(condition)
   }
 
   /**

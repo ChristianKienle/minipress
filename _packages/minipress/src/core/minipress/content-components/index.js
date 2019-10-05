@@ -20,6 +20,21 @@ module.exports = class ContentComponents {
     this.byId.set(id, new ContentComponent({ ...component }))
   }
 
+  /**
+   * @param {string} id
+   */
+  remove(id) {
+    this.byId.delete(id)
+  }
+
+  /**
+   * @param {string} id
+   * @returns {ContentComponentI | undefined}
+   */
+  get(id) {
+    return this.byId.get(id)
+  }
+
   get code() {
     const components = Array.from(this.byId.values())
     return codeGen.js(() => [
