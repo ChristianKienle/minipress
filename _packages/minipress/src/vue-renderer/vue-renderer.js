@@ -149,6 +149,7 @@ module.exports = class VueRenderer {
     const serverConfig = await this.minipress.getWebpackConfig('server')
 
     const server = createServer()
+    await this.minipress.hooks.configureRequestServer.promise(server)
 
     /** @type {createWebpack.Configuration} */
     // @ts-ignore

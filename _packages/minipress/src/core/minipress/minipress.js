@@ -24,7 +24,7 @@ const {
 const http = require('http')
 const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
-
+const helmet = require('helmet')
 /**
  * @typedef {import('@minipress/types').Page} Page
  *
@@ -80,6 +80,7 @@ class Minipress {
       emitPages: new AsyncSeriesHook(),
       emitRoutes: new AsyncSeriesHook(),
       mutatePages: new AsyncSeriesHook(['mutations']),
+      configureRequestServer: new AsyncSeriesHook(['server']),
       // This is called the moment a new page has been created.
       onCreatePage: new AsyncSeriesHook(['page']),
       onRemovePage: new AsyncSeriesHook(['page']),
@@ -129,6 +130,9 @@ class Minipress {
         await this.emitRoutes()
         await this.emitContentComponents()
       })
+    })
+    this.hooks.configureRequestServer.tapPromise('minipress', async server => {
+      server.use(helmet())
     })
   }
 

@@ -19,6 +19,7 @@
     "minipress": "./src/cli/cli-entry.js"
   },
   "dependencies": {
+    "helmet": "^3.21.1",
     "memfs": "^2.15.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
