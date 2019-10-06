@@ -38,10 +38,6 @@ class Minipress {
    */
   constructor({ config, log }) {
     this.hooks = {
-      // Called as early as possible:
-      // A minipress.config.js can expose a apply(…) function that gives
-      // the user a chance to register for hooks pretty early on.
-      // applyConfig: new AsyncSeriesHook(),
       // Called right at the start of the run(…)-method
       beforeRun: new AsyncSeriesHook(),
       // Called right before a webpack config is requested.

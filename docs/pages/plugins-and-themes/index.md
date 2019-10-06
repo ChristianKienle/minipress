@@ -117,10 +117,45 @@ It is the duty of the plugin developer to do the right thing inside `apply`. You
 You can use hooks to hook into almost every aspect of *miniPress*. Hooks are called by *miniPress* – you only have to register for all the hooks you want and wait to be called. Just like at the doctors office. Sit still. Don't say a word.
 
 #### `beforeRun`
+- Hook Type: `AsyncSeriesHook`
+- Arguments: *none*
+
+This hook is called right at the start the `run(…)`–method. Almost every CLI-command will end up calling `run(…)` at the start.
+
 #### `chainWebpack`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `chain`: An instance of [webpack-chain.Config](https://github.com/neutrinojs/webpack-chain)
+  - `type`: Either `server` or `client`
+
+Called right before a webpack config is requested. This allows you to modify to webpack chain before it is used to create the actual config object.
+
 #### `getWebpackConfig`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `chain`: An instance of [webpack-chain.Config](https://github.com/neutrinojs/webpack-chain)
+  - `type`: Either `server` or `client`
+
+Called in order to get a webpack configuration.
+
 #### `getHead`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `head`: An instance of `@minipress/head-element`.
+  - `page`: A page object.
+
+Called during the render process (see `src/vue-renderer` for details). This is called multiple times – at least once for each page. Every time a page is rendered – at some point we need to create the `<head>`-element. This hook allows you to modify the head of each page.
+
 #### `configureSiteData`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `siteData`: In the beginning this is just `{}`. Then each hook can mutate this object in order to add more site specfic data.
+
+#### `emitSiteData`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `siteData`: The site data (type `object`) that needs to be emitted.
+
 #### `emitPages`
 #### `emitRoutes`
 
