@@ -201,7 +201,10 @@ module.exports = class VueRenderer {
       )
       this.initRenderer({ serverBundle, clientManifest })
     })
-    serverCompiler.watch({}, () => { })
+
+    serverCompiler.watch({
+      aggregateTimeout: 1000
+    }, () => { })
 
     server.use(devMiddleware)
     server.use(hotMiddleware)
