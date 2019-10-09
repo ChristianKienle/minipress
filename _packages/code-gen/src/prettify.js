@@ -31,7 +31,7 @@ const langToParser = lang => {
  * @param {Lang} [lang='js']
  */
 module.exports = (code, lang = 'js') => {
-  if (process.env.MINIPRESS_DISABLE_PRETTIER === 'true') {
+  if (process.env.MINIPRESS_ENABLE_PRETTIER !== 'true') {
     return code
   }
   if (process.env.NODE_ENV !== 'production' && lang !== 'raw') {

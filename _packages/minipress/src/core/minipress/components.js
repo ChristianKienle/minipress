@@ -1,6 +1,5 @@
 // @ts-check
 const codeGen = require('@minipress/code-gen')
-
 module.exports = class Components {
   constructor() {
     /** @type {Map.<string, string>} */
@@ -13,6 +12,13 @@ module.exports = class Components {
    */
   register(id, path) {
     this.byId.set(id, path)
+  }
+
+  /**
+   * @param {string} id
+   */
+  getPath(id) {
+    return this.byId.get(id)
   }
 
   /** @param {number} index */

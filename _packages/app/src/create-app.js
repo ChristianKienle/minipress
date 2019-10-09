@@ -4,7 +4,7 @@ import Layouts from '#minipress/layouts'
 import AppEnhancers from '#minipress/app-enhancers'
 import Components from '#minipress/components'
 import createRootOptions from './root-options'
-import MinipressComponents from '@minipress/built-in-components'
+// import MinipressComponents from '@minipress/built-in-components'
 import Router from 'vue-router'
 // eslint-disable-next-line no-undef
 const MINIPRESS_TEMP_DIR = /** @type {string} */(__MINIPRESS_TEMP_DIR__)
@@ -22,7 +22,7 @@ Vue.mixin({
 export function createApp(context) {
   const scollHub = new Vue()
   Vue.use(Router)
-  Vue.use(MinipressComponents)
+  // Vue.use(MinipressComponents)
   Vue.use(Components)
   Vue.use(Layouts)
   const router = createRouter(context, scollHub)
@@ -31,6 +31,7 @@ export function createApp(context) {
   router.beforeEach(async (to, from, next) => {
     next()
   })
+
   const rootOptions = createRootOptions({ Vue, router })
   const app = new Vue(rootOptions)
   return { app, router }

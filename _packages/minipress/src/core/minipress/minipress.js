@@ -65,6 +65,7 @@ class Minipress {
       // Called as soon miniPress wants to have the initial set of pages – called only once
       initialPages: new AsyncSeriesHook(),
       registerDynamicModules: new AsyncSeriesHook(),
+      vuePreloaders: new AsyncSeriesHook(['preloaders']),
       emitDynamicModules: new AsyncSeriesHook(),
       registerAppEnhancers: new AsyncSeriesHook(),
       registerAliases: new AsyncSeriesHook(),
@@ -99,7 +100,8 @@ class Minipress {
     this.log = log
     this.tempDir = new TempDir({ path: config.tempDir })
     this._initialized = false
-    this.components = new Components()
+
+    this.components = /** @type {import('@minipress/types').ComponentsI} */(new Components())
     this.contentComponents = new ContentComponents()
     this.layouts = new Layouts()
     this.transformers = new Transformers()
@@ -110,17 +112,17 @@ class Minipress {
     this.watch = true
     this.pageTransformers = new PageTransformers()
     this.aliases.register('#minipress/site-data', this.tempDir.resolveTemp('site-data/index.js'))
-    this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
-      const pages = this.pages.values()//.map(page => page)
-      const _siteData = {
-        pages: pages.map(page => this.pages.makePageAvailableToClient(page)),
-        ...siteData,
-      }
-      const code = codeGen.js(c => `export default ${c.stringify(_siteData)}`)
-      this.tempDir.writeTemp('site-data/index.js', code)
-    })
     this.vueRenderer = new VueRenderer(this)
     this.hooks.afterPlugins.tapPromise('minipress-ctor', async () => {
+      this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
+        const pages = this.pages.values()//.map(page => page)
+        const _siteData = {
+          pages: pages.map(page => this.pages.makePageAvailableToClient(page)),
+          ...siteData,
+        }
+        const code = codeGen.js(c => `export default ${c.stringify(_siteData)}`)
+        this.tempDir.writeTemp('site-data/index.js', code)
+      })
       this.hooks.onRemovePage.tapPromise('minipress ctor', async page => {
         this.contentComponents.remove(page.key)
         await this.emitRoutes()
@@ -219,10 +221,11 @@ class Minipress {
     this.cleanTempDir()
 
     // Register default Theme
+    this.use(require('@minipress/plugin-built-in-components'))
     this.use(require('@minipress/theme-default'))
-    this.use(require('@minipress/plugin-pages'))
     this.use(require('@minipress/plugin-layouts'))
     this.use(require('@minipress/plugin-components'))
+    this.use(require('@minipress/plugin-pages'))
 
     // Register default Transformers
     this.use(require('@minipress/plugin-format-markdown'))
@@ -237,6 +240,7 @@ class Minipress {
       this.hooks.onCreatePage.tapPromise('minipress-prepare', async page => {
         await this.pages._emitPage(page)
       })
+
       this.hooks.registerContentComponents.tapPromise('minipress-prepare - routes', async () => {
         const pages = this.pages.values()
         pages.forEach(route => {
@@ -265,7 +269,7 @@ class Minipress {
     // Give plugins a chance to register transformers
     await this.hooks.registerTransformers.promise()
 
-    this._enableUniversalPageLoaderSupport()
+    await this._enableUniversalPageLoaderSupport()
     this.pages.createAlias()
 
     const aliases = ['app-enhancers', 'async-data', 'content-components', 'layouts', 'routes', 'components', 'site-data']
@@ -276,6 +280,8 @@ class Minipress {
       // path passed as the first argument.
       this.aliases.register(name, path)
     })
+
+    this.aliases.register('@@', this.config.cwd)
 
     // Setup Default Theme + Layouts
     const defaultThemePath = require.resolve('@minipress/theme-default/package.json')
@@ -309,9 +315,9 @@ class Minipress {
     return this.plugins.applyPlugins(this)
   }
 
-  _enableUniversalPageLoaderSupport() {
+  async _enableUniversalPageLoaderSupport() {
     /** @param {import('webpack-chain')} config */
-    const enableFor = config => {
+    const enableFor = async config => {
       // FIXME
       const VueLoaderOptions = { extractCSS: false }
 
@@ -319,19 +325,41 @@ class Minipress {
       const pageExtensions = supportedExtensions
         .map(ext => new RegExp(`\\.${ext}$`))
 
-      config
-        .module
-        .rule('vue')
+      // config
+      // .module
+      // .rule('vue')
+      // .test(/\.vue$/)
+      // .use('vue-loader')
+      // .loader('vue-loader')
+      // .options(VueLoaderOptions)
+      // .end()
+      // .use('minipress-page-loader')
+      // .loader(require.resolve('./universal-page-loader'))
+      // .options({
+      //   minipress: this
+      // }).end()
+
+      const vuePreloaders = []
+      await this.hooks.vuePreloaders.promise(vuePreloaders)
+
+      const ruleVue = config.module.rule('vue')
+
+      ruleVue
         .test(/\.vue$/)
         .use('vue-loader')
         .loader('vue-loader')
         .options(VueLoaderOptions)
         .end()
+
         .use('minipress-page-loader')
         .loader(require.resolve('./universal-page-loader'))
         .options({
           minipress: this
         }).end()
+
+      vuePreloaders.forEach(({ use, loader, options = {} }) => {
+        ruleVue.use(use).loader(loader).options(options).end()
+      })
 
       config.module
         .rule('minipress-page')

@@ -10,17 +10,18 @@ module.exports = {
     }
   }],
   plugins: [
+    [require('@minipress/plugin-component-documentation')],
     ['@minipress/plugin-clean-urls', {}],
     [
       '@minipress/plugin-additional-pages',
-      {
-        pages: [
+      () => [
           {
+            key: 'helloworld',
             path: '/helloworld/',
+            contentType: 'md',
             content: '# helloworld'
           }
         ]
-      }
     ]
   ],
   build: {

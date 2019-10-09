@@ -19,7 +19,6 @@
     "!**/__*__/**"
   ],
   "dependencies": {
-    "@minipress/built-in-components": "^0.1.1-alpha.19",
     "prismjs": "^1.17.1"
   },
   "peerDependencies": {

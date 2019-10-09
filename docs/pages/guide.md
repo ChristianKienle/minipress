@@ -41,11 +41,11 @@ Head over to the [configuration guide](./configuration.md) in order to learn mor
 ## Built-In Components
 *miniPress* comes with a few components that are globally registered. This means you can just use them without any additional setup.
 
-### `MiniContent`
-`MiniContent` allows you to embed pages in other pages. You can use this for a lot of things. Here are a couple of use-cases to give you an idea:
 
-- **Don't repeat yourself:** Imagine you have some kind of warning message that you want to display on multiple pages. Instead of copy and pasting the warning message every time you need it you save it in a regular Markdown file and then embed it where you need it by using `MiniContent`.
-- **Use Markdown Features in `*.vue`-files:** It is not that easy to use Markdown features within `*.vue`-files. Imagine you want to create a page that needs to use certain Vue-features. Great. You create a page using the `vue`-file format. But now you can't use Markdown features like syntax highlighting, containers, etc. This is where `MiniContent` comes in. Simply store your Markdown content inside a `*.md`-file and embed it using `MiniContent`.
+### `MiniContent`
+
+::: component-documentation-for MiniContent
+:::
 
 #### Usage
 Let's embed a warning message in other pages. Create a file called `_warning-message.md`:
@@ -68,15 +68,13 @@ Go ahead and try our super cool new App!
 <MiniContent pageKey="warning-message" />
 ```
 
-#### API
-- **Props:**
-  - `pageKey` – string
-
 ### `MiniLink`
 A component that renders a `<router-link>` but comes with [Vue Router Prefetch](https://github.com/egoist/vue-router-prefetch)-integration.
 
 ### `MiniLayout`
-A component that renders a registered layout given it's name.
+
+::: component-documentation-for MiniLayout
+:::
 
 #### Usage
 ```markup
@@ -107,7 +105,9 @@ Replace `property_or_method` by any of the documented properties/methods (see be
 #### `site`
 Give you access to the site meta data.
 
-> `site` also exposes `themeConfig`
+::: tip
+`site` also exposes `themeConfig`
+:::
 
 #### `themeConfig`
 Contains the theme configuration (as set via `.minipress/config.js`).

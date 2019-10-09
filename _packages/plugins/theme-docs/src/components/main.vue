@@ -64,7 +64,7 @@ export default {
     },
     themeConfig: {
       type: Object,
-      default: () => { navbar: { items: [] }}
+      default: () => ({ navbar: { items: [] }})
     },
     page: {
       type: Object,

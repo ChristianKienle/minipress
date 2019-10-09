@@ -1,8 +1,20 @@
 import { _Config } from './../config'
+import { ComponentsI } from './components'
 import * as Logger from '@minipress/log/index'
+import Joi from '@hapi/joi'
+
+interface Hooks {
+
+}
+
+export { ComponentsI } from './components'
+
 export interface MinipressI {
   readonly config: _Config
-  readonly log: Logger
+  readonly log: typeof Logger
+  readonly joi: typeof Joi
+  readonly hooks: Hooks
+  readonly components: ComponentsI
 
   dev(options: {
     watch?: boolean

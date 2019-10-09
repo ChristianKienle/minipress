@@ -18,7 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hash-sum": "^2.0.0"
+    "hash-sum": "^2.0.0",
+    "devalue": "^2.0.0"
   },
   "types": "index.d.ts",
   "devDependencies": {

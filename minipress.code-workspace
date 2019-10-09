@@ -35,9 +35,6 @@
       "path": "_packages/plugins"
     },
     {
-      "path": "_packages/built-in-components"
-    },
-    {
       "path": "_packages/code-gen"
     },
     {
@@ -53,6 +50,14 @@
       "name": "types",
       "path": "_packages/types"
     },
+		{
+		 "name": "plugin/alias",
+			"path": "_packages/plugins/alias"
+		},
+		{
+			"name": "plugin/component-documentation",
+			"path": "_packages/plugins/component-documentation"
+		},
     {
       "name": "theme/default",
       "path": "_packages/plugins/theme-default"
@@ -85,6 +90,10 @@
       "name": "plugin/pages",
       "path": "_packages/plugins/pages"
     },
+		{
+			"name": "plugin/built-in-components",
+			"path": "_packages/plugins/built-in-components"
+		},
     {
       "name": "plugin/transform-pages",
       "path": "_packages/plugins/transform-pages"
@@ -136,6 +145,10 @@
     {
       "name": "support/type-check",
       "path": "_support/type-check"
+    },
+		{
+      "name": "tools/create-minipress-plugin",
+      "path": "tools/create-minipress-plugin
     }
   ],
   "settings": {

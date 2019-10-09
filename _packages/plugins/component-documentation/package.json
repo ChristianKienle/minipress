@@ -1,0 +1,23 @@
+{
+  "name": "@minipress/plugin-component-documentation",
+  "version": "0.1.1-alpha.19",
+  "description": "my mathematical plugin",
+  "author": "kienle.christian@icloud.com",
+  "license": "MIT",
+  "files": [
+    "src/*.js",
+    "src/types.ts"
+  ],
+  "main": "src/index.js",
+  "dependencies": {
+    "@minipress/markdown": "^0.1.1-alpha.19",
+    "@minipress/custom-container": "^0.1.1-alpha.22",
+    "@minipress/utils": "^0.1.1-alpha.19",
+    "loader-utils": "^1.2.3",
+    "@vuese/markdown-render": "^2.5.1",
+    "@vuese/parser": "^2.4.1"
+  },
+  "devDependencies": {
+    "@minipress/types": "*"
+  }
+}

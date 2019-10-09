@@ -2,10 +2,15 @@
 hello: world
 ---
 
-{{ page.path }}
 
 # Features
 
+- [api.vue](./api.vue)
 - [markdown.md](./markdown.md)
 - [routing/index.md](./routing/index.md)
-- [hello.vue](./hello.vue)
+
+::: vuese MiniLayout
+:::
+
+::: vuese MiniContent
+:::

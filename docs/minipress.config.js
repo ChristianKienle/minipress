@@ -21,6 +21,7 @@ const head = {
 module.exports = {
   plugins: [
     ['@minipress/theme-docs', themeConfig],
+    [require('@minipress/plugin-component-documentation')],
     ['@minipress/plugin-head', head],
     ['@minipress/plugin-last-modified'],
     ['@minipress/plugin-clean-urls'],
