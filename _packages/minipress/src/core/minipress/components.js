@@ -14,6 +14,10 @@ module.exports = class Components {
     this.byId.set(id, path)
   }
 
+  get paths() {
+    return Array.from(this.byId.values())
+  }
+
   /**
    * @param {string} id
    */

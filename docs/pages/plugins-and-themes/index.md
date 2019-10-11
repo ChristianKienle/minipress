@@ -1,4 +1,17 @@
 # Plugins & Themes
+
+::: summary hello
+
+hello
+
+this is sparta
+
+```js
+const x = 5
+```
+
+:::
+
 For *miniPress* plugins and themes are the same thing. There is virtually no difference between a theme and a plugin. However, the term *plugin* is more technical than the term *theme*. Everyone knows what a theme does: It changes the look and feel of your site. When I say *"hey look at this cool plugin I made"* you don't know a thing about what to expect.
 
 That is why within this documentation we still differentiate between *plugins* and *themes* – but only for educational purposes.

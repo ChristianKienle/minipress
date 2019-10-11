@@ -14,6 +14,10 @@ const fs = require('fs')
  */
 module.exports = {
   async apply(minipress, options) {
+    minipress.hooks.registerGlobalComponents.tapPromise(PLUGIN, async () => {
+      minipress.globalComponents.register('minipress-component-documentation-styles', join(__dirname, 'default-styles.vue'))
+    })
+
     const _renderer = options.renderer === 'minipress-markdown' ? renderer.VueDocs : renderer.Vuese
     CustomContainerPlugin.apply(minipress, {
       type: 'component-documentation-for',

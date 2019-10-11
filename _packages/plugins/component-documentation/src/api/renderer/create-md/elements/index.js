@@ -18,6 +18,26 @@ const Newline = (count = 1) => () => '\n'.repeat(count);
 /** @param {string} text */
 const StrongText = text => () => `**${text}**`;
 
+ /**
+  * @param {import('./../types').Data} data
+  * @param {(() => string)[]} children
+  */
+const Div = (data, children = []) => () => {
+  const attrs = Object.entries(data.attrs || {})
+  const hasAttrs = attrs.length > 0
+  const attrsPrefix = hasAttrs ? ' ' : ''
+  const asString = attrs.map(([name, value]) => {
+    if(value == null) {
+      return name
+    }
+    if(value.length === 0) {
+      return name
+    }
+    return `${name}="${value}"`
+  }).join(' ')
+  return `<div${attrsPrefix}${asString}>${Elements(children)()}</div>`
+}
+
 /** @param {string} text */
 const _InlineCode = text => () => text.length > 0 ? `\`${text}\`` : "";
 
@@ -87,5 +107,6 @@ module.exports = {
   Lines,
   Raw,
   Elements,
-  Hr
+  Hr,
+  Div
 };

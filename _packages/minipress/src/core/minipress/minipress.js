@@ -70,6 +70,7 @@ class Minipress {
       registerAppEnhancers: new AsyncSeriesHook(),
       registerAliases: new AsyncSeriesHook(),
       registerComponents: new AsyncSeriesHook(),
+      registerGlobalComponents: new AsyncSeriesHook(),
       registerTransformers: new AsyncSeriesHook(),
       registerContentComponents: new AsyncSeriesHook(),
       emitContentComponents: new AsyncSeriesHook(),
@@ -101,6 +102,7 @@ class Minipress {
     this.tempDir = new TempDir({ path: config.tempDir })
     this._initialized = false
 
+    this.globalComponents = /** @type {import('@minipress/types').ComponentsI} */(new Components())
     this.components = /** @type {import('@minipress/types').ComponentsI} */(new Components())
     this.contentComponents = new ContentComponents()
     this.layouts = new Layouts()
@@ -253,6 +255,8 @@ class Minipress {
         })
       })
 
+      await this.hooks.registerGlobalComponents.promise()
+
       this.hooks.emitRoutes.tapPromise('minipress-prepare', async () => {
         await this.emitRoutes()
       })
@@ -291,6 +295,11 @@ class Minipress {
     this.emitToLayouts()
 
     await this.hooks.registerAppEnhancers.promise()
+    const globalImports = this.globalComponents.paths.map(path => `import '${path}'`)
+    this.appEnhancers.add(`
+    ${globalImports.join('\n')}
+    export default () => {}
+    `)
     this.appEnhancers.emit()
     await this.hooks.registerDynamicModules.promise()
     await this.hooks.emitDynamicModules.promise()

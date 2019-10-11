@@ -15,6 +15,7 @@ export interface MinipressI {
   readonly joi: typeof Joi
   readonly hooks: Hooks
   readonly components: ComponentsI
+  readonly globalComponents: ComponentsI
 
   dev(options: {
     watch?: boolean

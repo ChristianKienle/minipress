@@ -30,6 +30,7 @@
   "dependencies": {
     "@minipress/minipress": "^0.1.1-alpha.19",
     "@minipress/plugin-clean-urls": "^0.1.1-alpha.19",
+    "@minipress/plugin-summary-container": "^0.0.1",
     "@minipress/plugin-component-documentation": "^0.1.1-alpha.19",
     "@minipress/plugin-components": "^0.1.1-alpha.19",
     "@minipress/plugin-head": "^0.1.1-alpha.19",

@@ -16,14 +16,17 @@ it with CSS selectors if you want).
 You can also refer to a component by path:
 
 ```md {highlightLines:[1,7]}
-::: component-documentation-for @/sample-dir-structure/components/my-button.vue
+::: component-documentation-for @/sample-dir-structure/components/documented-component.vue
 :::
 ```
+
+::: component-documentation-for @/sample-dir-structure/components/documented-component.vue
+:::
 
 <details>
 <summary>Show Rendered API Documentation</summary>
 
-::: component-documentation-for @/sample-dir-structure/components/my-button.vue
+::: component-documentation-for @/sample-dir-structure/components/documented-component.vue
 :::
 
 </details>

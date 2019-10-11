@@ -11,11 +11,13 @@ const {
   Lines,
   Raw,
   Elements,
-  Hr
+  Hr,
+  Div
 } = require("./elements");
 
 class CreateMarkdown {
   constructor(tokens = []) {
+    /** @type {(() => string)[]} */
     this.tokens = tokens;
   }
 
@@ -26,6 +28,14 @@ class CreateMarkdown {
 
   hr() {
     return this.add(Hr())
+  }
+
+ /**
+  * @param {import('./types').Data} data
+  * @param {(() => string)[]} [children=[]]
+  */
+  div(data, children = []) {
+    return this.add(Div(data, children))
   }
 
   /**

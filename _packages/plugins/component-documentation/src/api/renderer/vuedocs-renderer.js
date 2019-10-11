@@ -3,6 +3,12 @@
 const assert = require('assert').strict
 const CreateMarkdown = require('./create-md')
 
+const classPrefix = 'component-documentation'
+/**
+ * @param {string} child
+ */
+const createScopedClass = child => `${classPrefix}${child}`
+
 /**
  * @typedef {import("@vuese/parser").ParserResult} ParserResult
  * @typedef {import("@vuese/parser").PropsResult} PropsResult
@@ -33,9 +39,17 @@ const renderDivWithScopedClass = (text, cssClass) => {
   return new CreateMarkdown().raw(`<div class="${scopedClass}">${text}</div>`)
 }
 
+const renderWithScopedClass = (cssClass, children = []) => {
+  const scopedClass = createScopedClass(cssClass)
+  const attrs = { class: scopedClass }
+  return new CreateMarkdown().div({ attrs }, children)
+}
+
 /** @param {PropsResult} prop */
 const renderProp = prop => {
-  return new CreateMarkdown()
+  const md = new CreateMarkdown()
+    .nl()
+    .nl()
     .strong('Name:')
     .raw('&nbsp;')
     .raw(prop.name)
@@ -53,6 +67,10 @@ const renderProp = prop => {
     .nl()
     .lines(prop.defaultDesc, { wrap: true })
     .lines(prop.describe, { wrap: true })
+    .nl()
+    .nl()
+
+  return renderWithScopedClass('__prop', md.tokens)
 }
 
 /** @param {EventResult} event */
@@ -87,12 +105,14 @@ const renderSlots = slots => {
   if (slots.length === 0) {
     return ''
   }
-  const md = renderDivWithScopedClass('Slots', 'slots-heading')
-    .hr()
-    .nl()
-    .nl()
-    .raw(slots.map(renderSlot), { wrap: true })
-  return md
+  const md = new CreateMarkdown()
+  .nl()
+  .nl()
+  renderDivWithScopedClass('Slots', 'slots-heading')
+  .nl()
+  .nl()
+  .raw(slots.map(renderSlot), { wrap: true })
+  return renderWithScopedClass('__slots', md.tokens)
 }
 /** @param {EventResult[]} events */
 const renderEvents = events => {
@@ -102,11 +122,17 @@ const renderEvents = events => {
   if (events.length === 0) {
     return ''
   }
-  const md = renderDivWithScopedClass('Events', 'events-heading')
+  const md = new CreateMarkdown()
+    .nl()
+    .nl()
+    .raw(renderDivWithScopedClass('Events', 'events-heading'))
     .nl()
     .nl()
   events.forEach(event => md.raw(renderEvent(event), { wrap: true }))
-  return md
+  md
+    .nl()
+    .nl()
+  return renderWithScopedClass('__events', md.tokens)
 }
 
 /** @param {PropsResult[]} props */
@@ -114,11 +140,16 @@ const renderProps = (props = []) => {
   if (props.length === 0) {
     return ''
   }
-  const md = renderDivWithScopedClass('Props', 'props-heading')
+  const md = new CreateMarkdown()
+    .nl()
+    .nl()
+    .raw(renderDivWithScopedClass('Props', 'props-heading'))
     .nl()
     .nl()
     .raw(props.map(renderProp), { wrap: true })
-  return md
+    .nl()
+    .nl()
+  return renderWithScopedClass('__props', md.tokens)
 }
 
 /** @param {import("@vuese/parser").ParserResult} componentApi */
@@ -127,7 +158,7 @@ const render = componentApi => {
   assert(typeof componentApi === 'object')
   // renderDivWithScopedClass('name', componentApi.name)
   const md = new CreateMarkdown()
-  .raw('<div class="component-documentation">')
+    .raw('<div class="component-documentation">')
     .nl()
     .nl()
     .lines(getDescription(componentApi), { wrap: true })

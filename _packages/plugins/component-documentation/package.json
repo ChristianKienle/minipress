@@ -5,9 +5,12 @@
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
   "files": [
-    "src/*.js",
+    "src/**/*.js",
     "src/types.ts"
   ],
+  "scripts": {
+    "test": "jest ."
+  },
   "main": "src/index.js",
   "dependencies": {
     "@minipress/markdown": "^0.1.1-alpha.19",
@@ -18,6 +21,8 @@
     "@vuese/parser": "^2.4.1"
   },
   "devDependencies": {
-    "@minipress/types": "*"
+    "@minipress/types": "*",
+    "jest": "^24.9.0",
+    "@types/jest": "^24.0.18"
   }
 }

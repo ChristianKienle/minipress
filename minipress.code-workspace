@@ -55,6 +55,10 @@
 			"path": "_packages/plugins/alias"
 		},
 		{
+		 "name": "plugin/summary-container",
+			"path": "_packages/plugins/summary-container"
+		},
+		{
 			"name": "plugin/component-documentation",
 			"path": "_packages/plugins/component-documentation"
 		},
@@ -148,7 +152,7 @@
     },
 		{
       "name": "tools/create-minipress-plugin",
-      "path": "tools/create-minipress-plugin
+      "path": "tools/create-minipress-plugin"
     }
   ],
   "settings": {

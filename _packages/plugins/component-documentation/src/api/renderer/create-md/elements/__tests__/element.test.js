@@ -1,9 +1,30 @@
 // @ts-check
-/* eslint-env node,jest */
+/* eslint-env jest */
 
-const { Elements, StrongText, Nothing, Newline, Heading, InlineCode, Line, Lines } = require("./../index");
+const { Raw, Div, Elements, StrongText, Nothing, Newline, Heading, InlineCode, Line, Lines } = require("./../index");
 
 describe("Markdown Elements", () => {
+  describe('Div(…)', () => {
+    it('renders empty Div', () => {
+      expect(Div({ attrs: {}}, [])()).toEqual('<div></div>')
+    })
+    it('renders child', () => {
+      expect(Div({ attrs: {}}, [Raw('test')])()).toEqual('<div>test</div>')
+    })
+    it('renders children', () => {
+      expect(Div({ attrs: {}}, [Raw('test'), Raw('test2')])()).toEqual('<div>testtest2</div>')
+    })
+    it('renders simple attribute', () => {
+      expect(Div({ attrs: { class: 'test'}})()).toEqual('<div class="test"></div>')
+    })
+    it('renders attribute without value', () => {
+      expect(Div({ attrs: { class: null }})()).toEqual('<div class></div>')
+    })
+    it('renders attributes', () => {
+      expect(Div({ attrs: { class: null, test: 'chris' }})()).toEqual('<div class test="chris"></div>')
+    })
+  })
+
   it("Nothing", () => {
     expect(Nothing()()).toEqual("");
   });
