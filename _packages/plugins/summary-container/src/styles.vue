@@ -42,6 +42,7 @@ $ScContainer = {
     border-bottom-left-radius 0
     border-bottom-right-radius 0
   &__summary
+    user-select none
     background-color: $ScContainer[summary][bg-color]
     cursor pointer
     outline none
