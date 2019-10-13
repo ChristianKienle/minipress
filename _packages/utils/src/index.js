@@ -4,6 +4,7 @@ const setNodeEnv = require('./set-node-env')
 const pathUtils = require('./paths')
 const stringify = JSON.stringify
 const devalue = require('devalue')
+const Watcher = require('./watcher')
 
 module.exports = {
   createPageKey,
@@ -14,5 +15,6 @@ module.exports = {
   ...pathUtils,
   stringify,
   //@ts-ignore
-  devalue:  /** @type { (value: any) => string } */ (devalue)
+  devalue:  /** @type { (value: any) => string } */ (devalue),
+  Watcher
 }

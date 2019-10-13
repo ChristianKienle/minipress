@@ -1,7 +1,6 @@
 # Guide
 *miniPress* is for the little ones – for everyone who is still trying to learn.
 
-
 ::: info
 *miniPress* is a _mini_-mal static site generator. It was created for educational purposes. Sometimes having something small and minimal (and probably incomplete) helps to get the big picture.
 :::

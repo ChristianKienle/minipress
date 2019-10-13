@@ -1,7 +1,7 @@
 // @ts-check
 const Path = require('path')
 const getPagesInDir = require('./get-pages-in-dir')
-
+const { Watcher } = require('@minipress/utils')
 const PLUGIN = '@minipress/plugin-pages'
 
 const dirFromOptions = options => {
@@ -24,8 +24,8 @@ module.exports = {
         }
         return options
       })()
-
-      const pages = getPagesInDir(dir)
+      const watcher = Watcher.createFsWatcher({ dir, globs: ['**/*.vue', '**/*.md'] })
+      const pages = getPagesInDir(dir, watcher)
 
       if (minipress.watch) {
         pages.onAdded(async page => {
@@ -45,12 +45,12 @@ module.exports = {
             if(key === page.key) {
               return true
             }
-            const { absolute, relative } = file
-            if(absolute === page.file.absolute) {
+            const { absolute, relative } = file || {}
+            if(absolute === (page.file || {}).absolute) {
               return true
             }
 
-            if(relative === page.file.relative) {
+            if(relative === (page.file || {}).relative) {
               return true
             }
             return false
