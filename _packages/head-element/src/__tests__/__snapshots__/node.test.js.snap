@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Node renders simple link (emptry with single attr) 1`] = `"<link test=\\"hihi\\">"`;
+
+exports[`Node renders simple link (empty, no attributes) 1`] = `"<link>"`;
+
+exports[`Node renders simple link (not emptry with single attr) 1`] = `"<link test=\\"hihi\\"></link>"`;
+
+exports[`Node renders simple link (not empty, no attributes) 1`] = `"<link></link>"`;

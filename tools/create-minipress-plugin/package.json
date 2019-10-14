@@ -1,0 +1,26 @@
+{
+  "name": "sao-create-minipress-plugin",
+  "version": "0.0.1",
+  "description": "generates a plugin for miniPress",
+  "repository": {
+    "url": "christiankienle/sao-create-minipress-plugin",
+    "type": "git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "christiankienle <kienle.christian@icloud.com> (github.com/christiankienle)",
+  "license": "MIT",
+  "files": [
+    "saofile.js",
+    "template"
+  ],
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "sao": "^1.7.0"
+  }
+}

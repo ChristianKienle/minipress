@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`md works 1`] = `
+"<h1>hello <MyBadge /></h1>
+"
+`;
+
+exports[`md works2 1`] = `
+"<h1>title</h1>
+<p>test <code>cool</code> test <MyButton /> bla</p>
+"
+`;

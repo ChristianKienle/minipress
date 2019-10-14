@@ -1,0 +1,24 @@
+{
+  "name": "@minipress/plugin-last-modified",
+  "version": "0.1.1-alpha.25",
+  "description": "",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "src/index.js",
+  "scripts": {},
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

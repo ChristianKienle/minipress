@@ -1,0 +1,23 @@
+{
+  "name": "@minipress/gh-pages",
+  "version": "0.1.1-alpha.25",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "execa": "^2.0.4",
+    "gh-pages": "^2.1.1",
+    "ora": "^4.0.2"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@minipress/plugin-alias",
+  "version": "0.1.1-alpha.25",
+  "description": "my fabulous plugin",
+  "author": "kienle.christian@icloud.com",
+  "license": "MIT",
+  "files": [
+    "src/*.js",
+    "src/types.ts"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "src/index.js",
+  "devDependencies": {
+    "@minipress/types": "*"
+  },
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

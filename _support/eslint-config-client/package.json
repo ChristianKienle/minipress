@@ -1,0 +1,17 @@
+{
+  "name": "@minipress/eslint-config-client",
+  "version": "0.1.1-alpha.25",
+  "main": "index.js",
+  "license": "MIT",
+  "resolutions": {
+    "portfinder": "1.0.21"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

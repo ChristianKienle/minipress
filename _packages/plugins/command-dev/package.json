@@ -1,0 +1,20 @@
+{
+  "name": "@minipress/plugin-command-dev",
+  "version": "0.1.1-alpha.25",
+  "description": "my cool plugin",
+  "author": "kienle.christian@icloud.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src/**/*.js",
+    "src/types.ts"
+  ],
+  "main": "src/index.js",
+  "devDependencies": {
+    "@minipress/types": "*"
+  },
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

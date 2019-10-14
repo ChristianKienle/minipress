@@ -1,0 +1,194 @@
+{
+	"folders": [
+    {
+      "name": "docs",
+      "path": "docs"
+    },
+    {
+      "name": "minipress",
+      "path": "_packages/minipress"
+    },
+    {
+      "name": "app",
+      "path": "_packages/app"
+    },
+    {
+      "name": "log",
+      "path": "_packages/log"
+    },
+    {
+      "name": "plugins",
+      "path": "_packages/plugins"
+    },
+    {
+      "name": "code-gen",
+      "path": "_packages/code-gen"
+    },
+    {
+      "name": "utils",
+      "path": "_packages/utils"
+    },
+    {
+      "name": "cli",
+      "path": "_packages/cli"
+    },
+    {
+      "name": "head-element",
+      "path": "_packages/head-element"
+    },
+    {
+      "name": "markdown",
+      "path": "_packages/markdown"
+    },
+    {
+      "name": "types",
+      "path": "_packages/types"
+    },
+    {
+      "name": "plugin/alias",
+      "path": "_packages/plugins/alias"
+    },
+    {
+      "name": "plugin/command-dev",
+      "path": "_packages/plugins/command-dev"
+    },
+    {
+      "name": "plugin/command-generate",
+      "path": "_packages/plugins/command-generate"
+    },
+    {
+      "name": "plugin/command-serve",
+      "path": "_packages/plugins/command-serve"
+    },
+    {
+      "name": "plugin/deploy-to-gh-pages",
+      "path": "_packages/plugins/deploy-to-gh-pages"
+    },
+    {
+      "name": "plugin/serve-static",
+      "path": "_packages/plugins/serve-static"
+    },
+    {
+      "name": "plugin/summary-container",
+      "path": "_packages/plugins/summary-container"
+    },
+    {
+      "name": "plugin/component-documentation",
+      "path": "_packages/plugins/component-documentation"
+    },
+    {
+      "name": "theme/default",
+      "path": "_packages/plugins/theme-default"
+    },
+    {
+      "name": "theme/docs",
+      "path": "_packages/plugins/theme-docs"
+    },
+    {
+      "name": "plugin/clean-urls",
+      "path": "_packages/plugins/clean-urls"
+    },
+    {
+      "name": "plugin/custom-container",
+      "path": "_packages/plugins/custom-container"
+    },
+    {
+      "name": "plugin/additional-pages",
+      "path": "_packages/plugins/additional-pages"
+    },
+    {
+      "name": "plugin/last-modified",
+      "path": "_packages/plugins/last-modified"
+    },
+    {
+      "name": "plugin/components",
+      "path": "_packages/plugins/components"
+    },
+    {
+      "name": "plugin/pages",
+      "path": "_packages/plugins/pages"
+    },
+    {
+      "name": "plugin/built-in-components",
+      "path": "_packages/plugins/built-in-components"
+    },
+    {
+      "name": "plugin/transform-pages",
+      "path": "_packages/plugins/transform-pages"
+    },
+    {
+      "name": "plugin/head",
+      "path": "_packages/plugins/head"
+    },
+    {
+      "name": "plugin/site-data",
+      "path": "_packages/plugins/site-data"
+    },
+    {
+      "name": "plugin/package-json",
+      "path": "_packages/plugins/package-json"
+    },
+    {
+      "name": "plugin/layouts",
+      "path": "_packages/plugins/layouts"
+    },
+    {
+      "name": "plugin/format-vue",
+      "path": "_packages/plugins/format-vue"
+    },
+    {
+      "name": "plugin/format-markdown",
+      "path": "_packages/plugins/format-markdown"
+    },
+    {
+      "name": "examples/hello-world",
+      "path": "_examples/hello-world"
+    },
+    {
+      "name": "examples/features",
+      "path": "_examples/features"
+    },
+    {
+      "name": "examples/extend-cli",
+      "path": "_examples/extend-cli"
+    },
+    {
+      "name": "support/eslint-config-node",
+      "path": "_support/eslint-config-node"
+    },
+    {
+      "name": "support/eslint-config-client",
+      "path": "_support/eslint-config-client"
+    },
+    {
+      "name": "support/gh-pages",
+      "path": "_support/gh-pages"
+    },
+    {
+      "name": "support/type-check",
+      "path": "_support/type-check"
+    },
+    {
+      "name": "tools/create-minipress-plugin",
+      "path": "tools/create-minipress-plugin"
+    }
+  ],
+  "settings": {
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#7f40bf",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#c78f58",
+      "activityBarBadge.foreground": "#15202b",
+      "titleBar.activeBackground": "#663399",
+      "titleBar.inactiveBackground": "#66339999",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveForeground": "#e7e7e799",
+      "statusBar.background": "#663399",
+      "statusBarItem.hoverBackground": "#7f40bf",
+      "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#639",
+    "debug.node.autoAttach": "on"
+  }
+}

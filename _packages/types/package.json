@@ -1,0 +1,21 @@
+{
+  "name": "@minipress/types",
+  "version": "0.1.1-alpha.25",
+  "files": [
+    "types/**/*.d.ts"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@minipress/cli": "^0.1.1-alpha.25",
+    "@minipress/log": "^0.1.1-alpha.25",
+    "@types/hapi__joi": "^16.0.1",
+    "@types/joi": "^14.3.3",
+    "webpack-chain": "^6.0.0"
+  },
+  "types": "types/index.d.ts",
+  "license": "ISC",
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}
