@@ -672,6 +672,10 @@ code[class*='language-'],
 .page-content ul.task-list input {
   cursor: pointer;
 }
+.page-content ol,
+.page-content ul {
+  padding-left: 15px;
+}
 .page-content ol.task-list,
 .page-content ul.task-list {
   list-style: none;
