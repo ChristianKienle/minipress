@@ -1,4 +1,0 @@
-// Use to apply styles for compact view ports.
-forCompact()
-  @media (max-width: 705px)
-    {block}
