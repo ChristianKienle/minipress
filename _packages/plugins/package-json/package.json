@@ -1,13 +1,13 @@
 {
   "name": "@minipress/plugin-package-json",
-  "version": "0.1.1-alpha.19",
+  "version": "0.1.1-alpha.23",
   "description": "",
   "main": "src/index.js",
   "dependencies": {
     "fs-extra": "^8.1.0"
   },
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.19",
+    "@minipress/types": "^0.1.1-alpha.23",
     "@types/fs-extra": "^8.0.0"
   },
   "files": [

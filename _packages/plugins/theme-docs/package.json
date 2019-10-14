@@ -1,6 +1,6 @@
 {
   "name": "@minipress/theme-docs",
-  "version": "0.1.1-alpha.22",
+  "version": "0.1.1-alpha.23",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve demo",
@@ -21,7 +21,7 @@
     "src/**/*"
   ],
   "dependencies": {
-    "@minipress/custom-container": "^0.1.1-alpha.22"
+    "@minipress/custom-container": "^0.1.1-alpha.23"
   },
   "devDependencies": {
     "@minipress/eslint-config-client": "^0.1.1-alpha.19",

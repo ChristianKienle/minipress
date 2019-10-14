@@ -3,10 +3,10 @@
     "_examples/*",
     "_packages/**",
     "_support/*",
-    "snappy-apps/**",
-    "docs"
+    "docs",
+    "snappy-apps/**"
   ],
   "parallel": false,
   "npmClient": "npm",
-  "version": "0.1.1-alpha.22"
+  "version": "0.1.1-alpha.23"
 }
