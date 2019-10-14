@@ -2,6 +2,7 @@
 const { resolve } = require('path')
 const normalizeBuild = require('./build')
 const { normalizePlugins } = require('./plugin')
+
 /**
  * @typedef {import('@minipress/types').Config} Config
  * @typedef {import('@minipress/types')._Config} _Config

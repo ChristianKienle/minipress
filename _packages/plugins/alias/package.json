@@ -8,6 +8,10 @@
     "src/*.js",
     "src/types.ts"
   ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "src/index.js",
   "devDependencies": {
     "@minipress/types": "*"

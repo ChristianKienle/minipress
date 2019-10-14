@@ -11,6 +11,10 @@
   "scripts": {
     "test": "jest ."
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "src/index.js",
   "dependencies": {
     "@minipress/markdown": "^0.1.1-alpha.19",

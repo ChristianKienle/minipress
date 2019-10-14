@@ -6,6 +6,10 @@
     "url": "christiankienle/sao-create-minipress-plugin",
     "type": "git"
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "christiankienle <kienle.christian@icloud.com> (github.com/christiankienle)",
   "license": "MIT",
   "files": [

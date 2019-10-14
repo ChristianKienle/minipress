@@ -4,11 +4,11 @@
 .page-content
   code
     background-color $code-inline-background-color
-    padding-left 0.3rem
-    padding-right 0.3rem
-    padding-top 0.3rem
-    padding-bottom 0.3rem
-    font-size 0.9rem
+    padding-left .3rem
+    padding-right .3rem
+    padding-top .3rem
+    padding-bottom .3rem
+    font-size .9rem
     border-radius 4px
     color $code-inline-color
   line-height 1.9rem
@@ -64,6 +64,7 @@
       > li > label, input
         cursor: pointer
   ol, ul
+    padding-left 15px
     &.task-list
       list-style none
       padding-left 0
