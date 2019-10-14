@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "paths": {
+    "@minipress/page-renderer": ["_packages/page-renderer"]
+  },
+  "include": ["**/*.js"]
+}

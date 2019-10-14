@@ -1,0 +1,28 @@
+{
+  "name": "@minipress/eslint-config-node",
+  "version": "0.1.1-alpha.23",
+  "main": "index.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-jest": "^22.17.0"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-jest": "^22.17.0"
+  },
+  "resolutions": {
+    "portfinder": "1.0.21"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

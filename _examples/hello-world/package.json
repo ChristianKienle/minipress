@@ -1,0 +1,28 @@
+{
+  "name": "@minipress/example-hello-world",
+  "version": "0.1.1-alpha.23",
+  "private": false,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev",
+    "dev": "minipress dev",
+    "serve": "minipress serve",
+    "gen": "minipress generate",
+    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
+  },
+  "files": [
+    "src/**/*",
+    "!public/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@minipress/minipress": "^0.1.1-alpha.23",
+    "@minipress/plugin-additional-pages": "^0.1.1-alpha.23",
+    "@minipress/plugin-pages": "^0.1.1-alpha.23",
+    "@minipress/theme-default": "^0.1.1-alpha.23"
+  },
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

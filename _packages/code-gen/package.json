@@ -1,0 +1,24 @@
+{
+  "name": "@minipress/code-gen",
+  "version": "0.1.1-alpha.23",
+  "description": "",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^1.18.2"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/prettier": "^1.18.2"
+  },
+  "files": [
+    "src/*"
+  ],
+  "types": "index.d.ts",
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

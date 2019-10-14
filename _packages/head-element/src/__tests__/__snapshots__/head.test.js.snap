@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Head renders Description 1`] = `"<meta name=\\"Description\\" content=\\"my site\\">"`;
+
+exports[`Head renders Meta 1`] = `"<meta name=\\"Test\\" content=\\"value\\">"`;
+
+exports[`Head renders Title 1`] = `"<title>hello</title>"`;

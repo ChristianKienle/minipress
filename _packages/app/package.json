@@ -1,0 +1,52 @@
+{
+  "name": "@minipress/app",
+  "version": "0.1.1-alpha.23",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve demo",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint --no-fix",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src/**/*.js",
+    "src/**/*.vue",
+    "!**/*.test.js",
+    "!**/__*__/**"
+  ],
+  "dependencies": {
+    "prismjs": "^1.17.1"
+  },
+  "peerDependencies": {
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vue-router-prefetch": "^1.6.0",
+    "vuex": "^3.1.1",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "devDependencies": {
+    "@minipress/eslint-config-client": "^0.1.1-alpha.19",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "core-js": "^2.6.5",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vue-router-prefetch": "^1.6.0",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1"
+  },
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

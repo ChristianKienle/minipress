@@ -1,0 +1,26 @@
+{
+  "name": "@minipress/plugin-format-vue",
+  "version": "0.1.1-alpha.23",
+  "description": "",
+  "main": "src/index.js",
+  "dependencies": {
+    "@minipress/code-gen": "^0.1.1-alpha.23",
+    "@minipress/utils": "^0.1.1-alpha.23"
+  },
+  "devDependencies": {
+    "@minipress/types": "^0.1.1-alpha.23",
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

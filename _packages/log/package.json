@@ -1,0 +1,19 @@
+{
+  "name": "@minipress/log",
+  "version": "0.1.1-alpha.23",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "ora": "^4.0.2"
+  },
+  "types": "index.d.ts",
+  "files": [
+    "src/*.js"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}

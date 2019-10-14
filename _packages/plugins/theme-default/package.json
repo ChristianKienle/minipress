@@ -1,0 +1,42 @@
+{
+  "name": "@minipress/theme-default",
+  "version": "0.1.1-alpha.23",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve demo",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "main": "index.js",
+  "peerDependencies": {
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3"
+  },
+  "files": [
+    "index.js",
+    "src/**/*"
+  ],
+  "devDependencies": {
+    "@minipress/eslint-config-client": "^0.1.1-alpha.19",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.9.0",
+    "core-js": "^2.6.5",
+    "eslint": "^6.5.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+}
