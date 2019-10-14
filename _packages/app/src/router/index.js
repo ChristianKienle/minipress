@@ -16,17 +16,6 @@ export default (context, scollHub) => {
       fallback: false,
       scrollBehavior: createScrollBehavior(scollHub)
     })
-    // router.afterEach((to, from) => {
-    //   const matched = to.matched
-    //   const components = router.getMatchedComponents(to)
-    //   console.log({matched})
-    //   console.log({to})
-    //   console.log({components})
-    //   const component = components[0]
-    //   console.log({component})
-    //   debugger
-    //   // next()
-    // })
     return router
   }
   return createRouter(_routes)

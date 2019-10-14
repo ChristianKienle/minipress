@@ -28,19 +28,17 @@ module.exports = {
       const pages = getPagesInDir(dir, watcher)
 
       if (minipress.watch) {
-        pages.onAdded(async page => {
+        const addOrChange = async page => {
           const _page = await minipress.addPage(page)
           await minipress.hooks.onCreatePage.promise(_page)
           await minipress.getSiteData()
           await minipress.hooks.emitPages.promise()
           await minipress.hooks.emitRoutes.promise()
-        }).onChanged(async page => {
-          const _page = await minipress.addPage(page)
-          await minipress.hooks.onCreatePage.promise(_page)
-          await minipress.getSiteData()
-          await minipress.hooks.emitPages.promise()
-          await minipress.hooks.emitRoutes.promise()
-        }).onRemoved(async page => {
+        }
+        pages
+        .onAdded(addOrChange)
+        .onChanged(addOrChange)
+        .onRemoved(async page => {
           const _page = await minipress.removePageWhere(({ key, file }) => {
             if(key === page.key) {
               return true

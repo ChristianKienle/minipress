@@ -42,7 +42,6 @@ module.exports = class VueRenderer {
     await this.minipress.hooks.getHead.promise(head, url)
 
     return {
-      xxx: 'chris',
       url,
       head: head.renderToString()
     }
@@ -114,10 +113,7 @@ module.exports = class VueRenderer {
         inject: false,
         runInNewContext: false,
         shouldPrefetch: () => true,
-        shouldPreload: (_, type) => {
-          console.log(type)
-          return type === 'script' || type === 'style' || type === 'font'
-        },
+        shouldPreload: (_, type) => type === 'script' || type === 'style' || type === 'font',
         basedir: Path.resolve(__dirname, '..', 'dist-server')
       })
     }
