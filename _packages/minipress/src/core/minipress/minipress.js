@@ -187,6 +187,7 @@ class Minipress {
     const dest = this.config.dest
     await vueRenderer.generate({ pages, outDir, dest })
   }
+
   /**
    * @typedef {object} ServeOptions
    * @prop {boolean=} [watch=true]
@@ -210,7 +211,7 @@ class Minipress {
       const requestHandler = await vueRenderer.getRequestHandler({ dest: this.config.dest })
       const server = http.createServer(requestHandler)
       server.listen(port, host, () => {
-        log.info(`minipress is running on http://${host}:${port}`)
+        log.info(`minipress is running on http://${host}:${port}${this.config.build.base}`)
       })
     } catch (err) {
       log.error(`Error during runCompiler: ${err}`)
@@ -327,26 +328,11 @@ class Minipress {
   async _enableUniversalPageLoaderSupport() {
     /** @param {import('webpack-chain')} config */
     const enableFor = async config => {
-      // FIXME
       const VueLoaderOptions = { extractCSS: false }
 
       const supportedExtensions = ['minipresspage', 'md', 'vue']
       const pageExtensions = supportedExtensions
         .map(ext => new RegExp(`\\.${ext}$`))
-
-      // config
-      // .module
-      // .rule('vue')
-      // .test(/\.vue$/)
-      // .use('vue-loader')
-      // .loader('vue-loader')
-      // .options(VueLoaderOptions)
-      // .end()
-      // .use('minipress-page-loader')
-      // .loader(require.resolve('./universal-page-loader'))
-      // .options({
-      //   minipress: this
-      // }).end()
 
       const vuePreloaders = []
       await this.hooks.vuePreloaders.promise(vuePreloaders)
@@ -441,7 +427,6 @@ class Minipress {
   }
 
   /**
-   *
    * @param {string} alias
    * @param {string} content
    * @param {{path: string}} [options={path: 'index.js'}]
@@ -449,15 +434,6 @@ class Minipress {
   _writeToAlias(alias, content, options = { path: 'index.js' }) {
     const path = `${alias}/${options.path}`
     return this.tempDir.writeTemp(path, content)
-  }
-
-  /**
-   * @param {string} pageKey
-   * @param {object} content
-   */
-  _writeAsyncData(pageKey, content) {
-    const code = codeGen.js(c => `export default () => (${c.stringify(content)})`)
-    this._writeToAlias('async-data', code, { path: `${pageKey}.js` })
   }
 
   /**
@@ -494,14 +470,6 @@ class Minipress {
   emitComponents() {
     this.tempDir.writeTemp('components/index.js', this.components.code)
   }
-
-  // async emitRoutes() {
-  //   await this.hooks.registerContentComponents.promise()
-  //   await this.hooks.emitContentComponents.promise()
-  //   this.emitContentComponents()
-  //   const { code } = createRoutes(this.pages.values())
-  //   this.tempDir.writeTemp('routes/index.js', code)
-  // }
 
   async emitRoutes() {
     await this.hooks.registerContentComponents.promise()

@@ -1,5 +1,4 @@
 // @ts-check
-
 const PLUGIN = "plugin-vuese"
 const { join } = require('path')
 const CustomContainerPlugin = require('@minipress/custom-container')
@@ -19,6 +18,7 @@ module.exports = {
     })
 
     const _renderer = options.renderer === 'minipress-markdown' ? renderer.VueDocs : renderer.Vuese
+
     CustomContainerPlugin.apply(minipress, {
       type: 'component-documentation-for',
       defaultTitle: '',
@@ -50,40 +50,17 @@ module.exports = {
         return '</div>\n'
       }
     })
+
     minipress.hooks.registerComponents.tapPromise(PLUGIN, async () => {
       minipress.components.register('VueseComponentApi', join(__dirname, 'components', 'vuese-component-api.vue'))
     })
+
     minipress.hooks.vuePreloaders.tapPromise(PLUGIN, async preloaders => {
       preloaders.push({
         use: 'vuese-loader',
         loader: require.resolve('./vuese-loader'),
         options: {}
       })
-    })
-    minipress.hooks.chainWebpack.tapPromise(PLUGIN, async config => {
-      // const VueLoaderOptions = { extractCSS: false }
-      // config.module
-      // .rule('vuese-loader')
-      // .use('vuese-loader')
-      // .loader(require.resolve('./vuese-loader'))
-      // .options({})
-      // .end()
-      // config.module
-      // .rule('vuese-api-documentation')
-      // .test(path => {
-      //   return path.endsWith('vueseapi')
-      // })
-      // // .test(new RegExp('\\.vue$'))
-      // // @ts-ignore
-      // .resourceQuery(query => /vueseapi/.test(query))
-      // .use('raw-loader')
-      // .loader('raw-loader')
-      // // .options(VueLoaderOptions)
-      // .end()
-      // .use('vuese-api-loader')
-      // .loader(require.resolve('./vuese-loader'))
-      // .options({})
-      // .end()
     })
   },
 
