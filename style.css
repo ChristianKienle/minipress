@@ -897,8 +897,24 @@ Markup Example:
 .component-documentation > pre {
   padding: 0;
 }
+.component-documentation__prop,
+.component-documentation__event,
+.component-documentation__method,
+.component-documentation__compzted,
+.component-documentation__slot {
+  margin-bottom: 1rem;
+}
+.component-documentation__prop-name,
+.component-documentation__event-name,
+.component-documentation__method-name,
+.component-documentation__compzted-name,
+.component-documentation__slot-name {
+  font-weight: 600;
+}
 .component-documentation__prop p,
 .component-documentation__event p,
+.component-documentation__method p,
+.component-documentation__compzted p,
 .component-documentation__slot p {
   margin: 0;
 }
@@ -907,16 +923,22 @@ Markup Example:
 }
 .component-documentation__props,
 .component-documentation__events,
+.component-documentation__computed-props,
+.component-documentation__methods,
 .component-documentation__slots {
   margin-bottom: 2rem;
 }
 .component-documentation__props p,
 .component-documentation__events p,
+.component-documentation__computed-props p,
+.component-documentation__methods p,
 .component-documentation__slots p {
   margin: 0;
 }
 .component-documentation__props-heading,
 .component-documentation__slots-heading,
+.component-documentation__methods-heading,
+.component-documentation__computed-props-heading,
 .component-documentation__events-heading {
   border-bottom: 1px solid #efefef;
   padding-bottom: 8px;
