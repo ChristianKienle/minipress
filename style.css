@@ -1038,6 +1038,10 @@ Markup Example:
   font-weight: 600;
   margin-bottom: -0.9rem;
 }
+.tip p[data-v-511d3a8c],
+.tip ul[data-v-511d3a8c] {
+  margin-top: 1rem;
+}
 .tip code[data-v-511d3a8c] {
   background-color: #d1e9d9;
   color: #2e613e;
@@ -1062,6 +1066,10 @@ Markup Example:
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: -0.9rem;
+}
+.info p[data-v-2f4a2af0],
+.info ul[data-v-2f4a2af0] {
+  margin-top: 1rem;
 }
 .info code[data-v-2f4a2af0] {
   background-color: #cdf4f4;
@@ -1088,6 +1096,10 @@ Markup Example:
   font-weight: 600;
   margin-bottom: -0.9rem;
 }
+.warn p[data-v-64e28b4a],
+.warn ul[data-v-64e28b4a] {
+  margin-top: 1rem;
+}
 .warn code[data-v-64e28b4a] {
   background-color: #ffefc9;
   color: #9f7200;
@@ -1112,6 +1124,10 @@ Markup Example:
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: -0.9rem;
+}
+.error p[data-v-23e7a489],
+.error ul[data-v-23e7a489] {
+  margin-top: 1rem;
 }
 .error code[data-v-23e7a489] {
   background-color: #ffcedc;
