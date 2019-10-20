@@ -1,13 +1,13 @@
 {
   "name": "@minipress/plugin-pages",
-  "version": "0.1.1-alpha.23",
+  "version": "0.1.1-alpha.24",
   "description": "",
   "main": "src/index.js",
   "scripts": {
     "test": "jest ."
   },
   "dependencies": {
-    "@minipress/utils": "^0.1.1-alpha.23",
+    "@minipress/utils": "^0.1.1-alpha.24",
     "chokidar": "^3.2.1",
     "globby": "^10.0.1"
   },
@@ -15,7 +15,7 @@
     "src/**/*"
   ],
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.23",
+    "@minipress/types": "^0.1.1-alpha.24",
     "@types/fs-extra": "^8.0.0",
     "@types/jest": "^24.0.18",
     "fs-extra": "^8.1.0",
@@ -28,5 +28,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

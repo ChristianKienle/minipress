@@ -1,6 +1,6 @@
 {
   "name": "@minipress/head-element",
-  "version": "0.1.1-alpha.23",
+  "version": "0.1.1-alpha.24",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "private": false,
   "dependencies": {
-    "@minipress/code-gen": "^0.1.1-alpha.23"
+    "@minipress/code-gen": "^0.1.1-alpha.24"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
@@ -21,5 +21,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

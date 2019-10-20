@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-head",
-  "version": "0.1.1-alpha.19",
+  "version": "0.1.1-alpha.24",
   "description": "",
   "main": "src/index.js",
   "scripts": {},
@@ -14,5 +14,5 @@
     "src/**/*"
   ],
   "license": "ISC",
-  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

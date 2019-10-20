@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-built-in-components",
-  "version": "0.1.1-alpha.23",
+  "version": "0.1.1-alpha.24",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -25,8 +25,8 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@minipress/eslint-config-client": "^0.1.1-alpha.19",
-    "@minipress/types": "^0.1.1-alpha.23",
+    "@minipress/eslint-config-client": "^0.1.1-alpha.24",
+    "@minipress/types": "^0.1.1-alpha.24",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
@@ -44,5 +44,5 @@
     "vue-template-compiler": "^2.6.10",
     "vuex": "^3.1.1"
   },
-  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

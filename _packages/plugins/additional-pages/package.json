@@ -1,11 +1,11 @@
 {
   "name": "@minipress/plugin-additional-pages",
-  "version": "0.1.1-alpha.23",
+  "version": "0.1.1-alpha.24",
   "description": "",
   "main": "src/index.js",
   "scripts": {},
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.23"
+    "@minipress/types": "^0.1.1-alpha.24"
   },
   "files": [
     "src/**/*"
@@ -17,5 +17,5 @@
     "access": "public"
   },
   "license": "ISC",
-  "gitHead": "6834ae276f728eaa582327af54c3ebebbab92ada"
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }
