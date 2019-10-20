@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-features",
-  "version": "0.1.1-alpha.24",
+  "version": "0.1.1-alpha.25",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -20,11 +20,11 @@
     "!.DS_Store"
   ],
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.24",
-    "@minipress/plugin-additional-pages": "^0.1.1-alpha.24",
-    "@minipress/plugin-clean-urls": "^0.1.1-alpha.24",
-    "@minipress/plugin-component-documentation": "^0.1.1-alpha.24",
-    "@minipress/theme-docs": "^0.1.1-alpha.24"
+    "@minipress/minipress": "^0.1.1-alpha.25",
+    "@minipress/plugin-additional-pages": "^0.1.1-alpha.25",
+    "@minipress/plugin-clean-urls": "^0.1.1-alpha.25",
+    "@minipress/plugin-component-documentation": "^0.1.1-alpha.25",
+    "@minipress/theme-docs": "^0.1.1-alpha.25"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

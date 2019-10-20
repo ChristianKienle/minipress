@@ -1,6 +1,6 @@
 {
   "name": "@minipress/docs",
-  "version": "0.1.1-alpha.24",
+  "version": "0.1.1-alpha.25",
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
@@ -29,17 +29,17 @@
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.24",
-    "@minipress/plugin-clean-urls": "^0.1.1-alpha.24",
-    "@minipress/plugin-component-documentation": "^0.1.1-alpha.24",
-    "@minipress/plugin-components": "^0.1.1-alpha.24",
-    "@minipress/plugin-deploy-to-gh-pages": "^0.1.1-alpha.24",
-    "@minipress/plugin-head": "^0.1.1-alpha.24",
-    "@minipress/plugin-last-modified": "^0.1.1-alpha.24",
-    "@minipress/plugin-package-json": "^0.1.1-alpha.24",
-    "@minipress/plugin-pages": "^0.1.1-alpha.24",
-    "@minipress/plugin-summary-container": "^0.1.1-alpha.24",
-    "@minipress/theme-docs": "^0.1.1-alpha.24"
+    "@minipress/minipress": "^0.1.1-alpha.25",
+    "@minipress/plugin-clean-urls": "^0.1.1-alpha.25",
+    "@minipress/plugin-component-documentation": "^0.1.1-alpha.25",
+    "@minipress/plugin-components": "^0.1.1-alpha.25",
+    "@minipress/plugin-deploy-to-gh-pages": "^0.1.1-alpha.25",
+    "@minipress/plugin-head": "^0.1.1-alpha.25",
+    "@minipress/plugin-last-modified": "^0.1.1-alpha.25",
+    "@minipress/plugin-package-json": "^0.1.1-alpha.25",
+    "@minipress/plugin-pages": "^0.1.1-alpha.25",
+    "@minipress/plugin-summary-container": "^0.1.1-alpha.25",
+    "@minipress/theme-docs": "^0.1.1-alpha.25"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

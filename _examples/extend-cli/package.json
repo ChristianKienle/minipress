@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-extend-cli",
-  "version": "0.1.1-alpha.24",
+  "version": "0.1.1-alpha.25",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@minipress/minipress": "^0.1.1-alpha.24"
+    "@minipress/minipress": "^0.1.1-alpha.25"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }
