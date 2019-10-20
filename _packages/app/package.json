@@ -1,6 +1,6 @@
 {
   "name": "@minipress/app",
-  "version": "0.1.1-alpha.23",
+  "version": "0.1.1-alpha.24",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
-    "@minipress/eslint-config-client": "^0.1.1-alpha.19",
+    "@minipress/eslint-config-client": "^0.1.1-alpha.24",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
