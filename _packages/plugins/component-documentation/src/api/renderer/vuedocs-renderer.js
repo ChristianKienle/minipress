@@ -102,14 +102,11 @@ const renderComputedProps = (computed) => {
     return ''
   }
   const md = new CreateMarkdown()
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderDivWithScopedClass('Computed', 'computed-props-heading'))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(computed.map(renderComputed), { wrap: true })
-    .nl()
-    .nl()
+    .nl(2)
   return renderWithScopedClass('__computed-props', md.tokens)
 }
 
@@ -119,14 +116,11 @@ const renderMethods = (methods = []) => {
     return ''
   }
   const md = new CreateMarkdown()
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderDivWithScopedClass('Methods', 'methods-heading'))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(methods.map(renderMethod), { wrap: true })
-    .nl()
-    .nl()
+    .nl(2)
   return renderWithScopedClass('__methods', md.tokens)
 }
 
@@ -138,8 +132,7 @@ const renderMethod = method => {
     .lines(method.describe, { wrap: true })
   if ((method.argumentsDesc || []).length > 0) {
     md
-      .nl()
-      .nl()
+      .nl(2)
       .strong('Arguments:')
       .nl()
     const args = (method.argumentsDesc || []).map(arg => `- ${arg}`)
@@ -165,11 +158,9 @@ const renderSlots = slots => {
     return ''
   }
   const md = new CreateMarkdown()
-    .nl()
-    .nl()
+    .nl(2)
   renderDivWithScopedClass('Slots', 'slots-heading')
-    .nl()
-    .nl()
+    .nl(2)
     .raw(slots.map(renderSlot), { wrap: true })
   return renderWithScopedClass('__slots', md.tokens)
 }
@@ -182,15 +173,12 @@ const renderEvents = events => {
     return ''
   }
   const md = new CreateMarkdown()
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderDivWithScopedClass('Events', 'events-heading'))
-    .nl()
-    .nl()
+    .nl(2)
   events.forEach(event => md.raw(renderEvent(event), { wrap: true }))
   md
-    .nl()
-    .nl()
+    .nl(2)
   return renderWithScopedClass('__events', md.tokens)
 }
 
@@ -200,14 +188,11 @@ const renderProps = (props = []) => {
     return ''
   }
   const md = new CreateMarkdown()
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderDivWithScopedClass('Props', 'props-heading'))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(props.map(renderProp), { wrap: true })
-    .nl()
-    .nl()
+    .nl(2)
   return renderWithScopedClass('__props', md.tokens)
 }
 
@@ -217,26 +202,19 @@ const render = componentApi => {
   assert(typeof componentApi === 'object')
   const md = new CreateMarkdown()
     .raw('<div class="component-documentation">')
-    .nl()
-    .nl()
+    .nl(2)
     .lines(getDescription(componentApi), { wrap: true })
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderProps(componentApi.props))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderSlots(componentApi.slots))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderEvents(componentApi.events))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderMethods(componentApi.methods))
-    .nl()
-    .nl()
+    .nl(2)
     .raw(renderComputedProps(componentApi.computed || []))
-    .nl()
-    .nl()
+    .nl(2)
     .raw('</div>')
   if (md == null) {
     throw Error(`Unable to render API for component ${componentApi} because 'renderMarkdown' returned 'null'.`)

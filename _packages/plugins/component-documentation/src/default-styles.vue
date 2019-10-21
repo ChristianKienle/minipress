@@ -16,7 +16,7 @@
   &__prop
   &__event
   &__method
-  &__compzted
+  &__computed
   &__slot
     margin-bottom 1rem
     &-name
@@ -30,7 +30,7 @@
   &__computed-props
   &__methods
   &__slots
-    margin-bottom 2rem
+    margin-bottom 0rem
     p
       margin 0
   &__props-heading
@@ -43,6 +43,4 @@
     font-size: $heading[font-size]
     margin-top: $heading[margin].top
     margin-bottom: $heading[margin].bottom
-
-
 </style>

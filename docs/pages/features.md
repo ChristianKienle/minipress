@@ -91,3 +91,7 @@ export default {
 }
 </script>
 ```
+
+## Customize & Extend
+
+You can extend *miniPress* by [writing plugins](./plugins-and-themes/index.md).

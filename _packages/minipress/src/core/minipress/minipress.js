@@ -206,6 +206,7 @@ class Minipress {
     await this.hooks.emitSiteData.promise(siteData)
     return siteData
   }
+
   /**
    * @param {'client' | 'server'} type
    */

@@ -8,9 +8,7 @@ if (process.env.NODE_ENV === 'development') {
   require('./dev-client').createDevClient()
 }
 
-router.onReady(() => {
-  app.$mount('#app')
-})
+router.onReady(() => { app.$mount('#app') })
 
 if (module.hot) {
   const createTempPath = name => `./${__MINIPRESS_TEMP_DIR__}/${name}/index.js`

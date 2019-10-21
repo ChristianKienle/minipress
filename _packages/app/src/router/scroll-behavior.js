@@ -1,4 +1,6 @@
 // @ts-check
+// The vast majority of this file is from nuxt.js (https://github.com/nuxt/nuxt.js)
+// Thanks!
 
 export default scrollBus => (to, from, savedPosition) => {
   // if the returned position is falsy or an empty object,
@@ -44,9 +46,6 @@ export default scrollBus => (to, from, savedPosition) => {
       fulfill()
     } else {
       fulfill()
-      // debugger
-      // scrollBus.$once('trigger-scroll', fulfill)
-      // router.app.$once('trigger-scroll', fulfill)
     }
   })
 }

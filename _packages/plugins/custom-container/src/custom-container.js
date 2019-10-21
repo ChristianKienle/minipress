@@ -21,7 +21,6 @@ module.exports = (md, options) => {
   const validate = params => {
     const p = params.trim()
     return p === type ||  p.match(TYPE_RE);
-    // return params.trim().match(/^tip\s+(.*)$/);
   }
   const render = (tokens, idx) => {
     const typeAndTitle = tokens[idx].info.trim()

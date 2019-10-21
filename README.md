@@ -2,6 +2,9 @@
 
 <h2 align="center">👉 <a href="https://christiankienle.github.io/minipress/">Documentation</a> 👈</h2>
 
+<div align="center">
+<img width="125" height="283" src="docs/pages/gfx/minipress-boy@2x.png" />
+</div>
 
 ## Working with this Repository
 

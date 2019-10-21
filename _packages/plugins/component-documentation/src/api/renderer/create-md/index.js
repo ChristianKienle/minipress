@@ -46,8 +46,8 @@ class CreateMarkdown {
     return this.add(Heading({ level, text: title }));
   }
 
-  nl() {
-    return this.add(Newline());
+  nl(count = 1) {
+    return this.add(Newline(count));
   }
 
   /** @param {string} text */
@@ -63,8 +63,10 @@ class CreateMarkdown {
     return this.add(InlineCode(text, { defaultValue }));
   }
 
-  /** @param {string | CreateMarkdown | CreateMarkdown[]} raw */
-  /** @param {{wrap: boolean}} options */
+  /**
+   * @param {string | CreateMarkdown | CreateMarkdown[]} raw
+   * @param {{wrap: boolean}} options
+   */
   raw(raw, { wrap } = { wrap: false }) {
     if(Array.isArray(raw)) {
       raw.forEach(md => this.raw(md, { wrap }));

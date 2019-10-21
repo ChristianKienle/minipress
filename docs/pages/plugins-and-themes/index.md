@@ -521,6 +521,13 @@ Called right before a webpack config is requested. This allows you to modify to 
 
 Called in order to get a webpack configuration.
 
+#### `configureRequestServer`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `server`: The HTTP server instance.
+
+Called in order to configure a server instance that will serve *miniPress*.
+
 #### `getHead`
 - Hook Type: `AsyncSeriesHook`
 - Arguments:
