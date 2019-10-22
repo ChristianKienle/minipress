@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-layouts",
-  "version": "0.1.1-alpha.26",
+  "version": "0.2.0",
   "description": "my beautiful plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "globby": "^10.0.1"
   },
   "devDependencies": {
-    "@minipress/types": "^0.1.1-alpha.26"
+    "@minipress/types": "^0.2.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

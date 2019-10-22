@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-summary-container",
-  "version": "0.1.1-alpha.26",
+  "version": "0.2.0",
   "description": "my extraordinary plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/custom-container": "^0.1.1-alpha.26"
+    "@minipress/custom-container": "^0.2.0"
   },
   "devDependencies": {
     "@minipress/types": "*",
