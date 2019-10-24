@@ -83,7 +83,7 @@ If you want to learn more about plugins you should head over to the [Plugins Gui
 `apply` is a function that is invoked by *miniPress* once – relatively early on. Within your implementation of `apply` you have access to the *miniPress*-instance. The *miniPress*-instance allows you to do a lot. Again: Please refer to the [Plugins Guide](./plugins-and-themes/index.md) for more details.
 
 ### plugins
-`plugins` allows you to configure *miniPress* plugins.
+The `plugins`-option allows you to add and configure [*miniPress* plugins](./plugins-and-themes/index.md).
 
 #### Example
 The example below shows a `minipress.config.js`-file which installes an already existing plugin:
@@ -91,9 +91,81 @@ The example below shows a `minipress.config.js`-file which installes an already 
 ```js
 module.exports = {
   plugins: [
-    ['@minipress/plugin-last-modified' /*, options */]
+    '@minipress/plugin-last-modified'
   ]
 }
 ```
 
-This installs the `@minipress/plugin-last-modified`-plugin which basically simply adds a last modified date to each page.
+The configuration above tells *miniPress* to use the plugin `@minipress/plugin-last-modified`.
+
+::: tip
+The `@minipress/plugin-last-modified`-plugin simply makes the last modified date available on each page. You can learn more about this and other available plugins by going to the [Plugins- and Themes-Guide](./plugins-and-themes/index.md).
+:::
+
+#### Alternative Formats and Options
+
+##### Setting Options
+Plugins can be added and configured in several different ways. The example above used the package name of the plugin and nothing else. However, some plugins can be configured by specifying certain options. A plugin that expects you to specify options is the `@minipress/theme-docs`-plugin.
+
+
+```js {highlightLines:['1-5', 11]}
+const Options = {
+  navbar: {
+    items: [ { text: 'Home', link: '/' } ]
+  }
+}
+
+module.exports = {
+  plugins: [
+    [
+      '@minipress/theme-docs',
+      Options
+    ]
+  ]
+}
+```
+
+If a plugin requires options you have to wrap the plugin and options in an array (just like above).
+
+###### Using `require(…)`
+In all previous examples we always referred to plugins by using their package name. Under the hood *miniPress* will try to resolve the name in order to get the module which exports the plugin. You can also resolve the plugin ahead of time by using `resolve(…)`:
+
+```js {highlightLines:[1, 6]}
+const ThemeDocs = require('@minipress/theme-docs')
+const Options = {}
+module.exports = {
+  plugins: [
+    [
+      ThemeDocs,
+      Options
+    ]
+  ]
+}
+```
+
+::: tip
+You can also `require(…)` relative paths. This allows you to have your own plugins in the same package. No need to publish it on NPM if you don't want to.
+:::
+
+###### Inline Plugin
+You can also define a plugin *inline*:
+
+```js {highlightLines:['1-6', 13]}
+const MyPlugin = {
+  async apply(minipress, options) {
+    // My Plugin Implementation goes here
+    console.log(options) // logs: { hello: 'world' }
+  }
+}
+
+const Options = { hello: 'world' }
+
+module.exports = {
+  plugins: [
+    [
+      MyPlugin,
+      Options
+    ]
+  ]
+}
+```

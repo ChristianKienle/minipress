@@ -35,15 +35,15 @@ const headFn = (head, url, minipress) => {
 
 module.exports = {
   plugins: [
-    ['@minipress/plugin-serve-static'],
+    '@minipress/plugin-serve-static',
     ['@minipress/theme-docs', themeConfig],
-    ['@minipress/plugin-summary-container'],
-    [require('@minipress/plugin-component-documentation')],
-    [require('@minipress/plugin-deploy-to-gh-pages')],
+    '@minipress/plugin-summary-container',
+    '@minipress/plugin-component-documentation',
+    '@minipress/plugin-deploy-to-gh-pages',
     ['@minipress/plugin-head', headFn],
-    ['@minipress/plugin-last-modified'],
-    ['@minipress/plugin-clean-urls'],
-    ['@minipress/plugin-package-json']
+    '@minipress/plugin-last-modified',
+    '@minipress/plugin-clean-urls',
+    '@minipress/plugin-package-json'
   ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
   apply(minipress) { }

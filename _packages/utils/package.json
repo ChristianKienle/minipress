@@ -8,7 +8,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest .",
+    "test": "jest --clearCache && jest .",
     "typecheck": "tsc --project ."
   },
   "files": [

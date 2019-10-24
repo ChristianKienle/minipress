@@ -50,48 +50,58 @@ const resolvePlugin = ({ id, options }) => {
 }
 
 /**
- * @param {_ConfigPlugin} plugin
+ * @param {ConfigPlugin} pluginFromConfig
  * @returns {ConfigExecutablePlugin}
  */
-const normalizePlugin = ([plugin, options]) => {
+const normalizePlugin = pluginFromConfig => {
+  const _pluginFromConfig = _normalizePlugin(pluginFromConfig)
+  if (pluginFromConfig == null) {
+    throw Error('plugin cannot be null/undefined')
+  }
+
+  const [plugin, options] = _pluginFromConfig
   if (typeof plugin === 'string') {
     return resolvePlugin({
       id: plugin,
       options
     })
+  } else {
+    return makeExecutable(plugin, options)
   }
-  return makeExecutable(plugin, options)
 }
 
 /**
- * @param {ConfigPlugin} plugin
+ * @param {ConfigPlugin} pluginFromConfig
  * @returns {_ConfigPlugin}
  */
-const _normalizePlugin = plugin => {
-  if (Array.isArray(plugin) === false) {
-    throw Error('plugin invalid')
+const _normalizePlugin = pluginFromConfig => {
+  if (pluginFromConfig == null) {
+    throw Error('plugin cannot be null/undefined')
   }
 
-  if (plugin.length === 0) {
-    throw Error('invalid plugin')
+  if (Array.isArray(pluginFromConfig)) {
+    if (pluginFromConfig.length === 0) {
+      throw Error('invalid plugin: expected a module name or resolved module')
+    }
+    const [plugin, options] = pluginFromConfig
+    if (typeof plugin === 'string' || typeof plugin === 'object') {
+      return [plugin, options]
+    } else {
+      throw Error('plugin should be a string (module) or an object')
+    }
   }
-
-  const [rawPlugin, options] = plugin
-  if (rawPlugin == null) {
-    throw Error('invalid plugin')
-  }
-  return [rawPlugin, options]
+  return [pluginFromConfig]
 }
 
 /**
  * @param {ConfigPlugin[]} [plugins=[]]
  * @returns {ConfigPlugin[]}
  */
-const normalizePlugins = (plugins = []) => plugins.map(_normalizePlugin)
+const normalizePlugins = (plugins = []) => plugins.map(normalizePlugin)
 
 /**
  * @param {ResolvedPlugin} plugin
- * @param {any} options
+ * @param {any=} options
  * @returns {ConfigExecutablePlugin}
  */
 const makeExecutable = (plugin, options) => {
@@ -104,7 +114,10 @@ const makeExecutable = (plugin, options) => {
     throw Error(`Plugin ${name} could be sealed because it does not have an apply function.`)
   }
 
-  /** @param {import('./../../core/minipress')} minipress */
+  /**
+   * @param {import('@minipress/types').MinipressI} minipress
+   * @returns {import('@hapi/joi').Schema}
+   */
   let _optionsSchema = minipress => minipress.joi.any()
   if (optionsSchema != null) {
     if (typeof optionsSchema !== 'function') {

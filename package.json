@@ -7,7 +7,7 @@
   "homepage": "https://christiankienle.github.io/minipress/",
   "scripts": {
     "typecheck": "lerna run typecheck --no-bail",
-    "test": "lerna run test",
+    "test": "lerna run test --concurrency 1",
     "check-dependencies": "npm outdated && lerna exec --no-bail -- npm outdated",
     "publish": "lerna publish prerelease",
     "gh-pages": "node _support/gh-pages",

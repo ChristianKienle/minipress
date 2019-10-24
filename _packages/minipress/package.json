@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "jest .",
+    "test": "jest --clearCache && jest .",
     "typecheck": "tsc --project ."
   },
   "bin": {

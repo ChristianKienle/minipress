@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest ."
+    "test": "jest --clearCache && jest ."
   },
   "files": [
     "src/**/*.js"

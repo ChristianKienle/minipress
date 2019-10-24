@@ -48,8 +48,4 @@ module.exports = class Cli {
     this.cac.help()
     return this
   }
-
-  // cli.option('--config <file>', 'specify a config file', {
-  //   'default': resolve(Process.cwd(), 'minipress.config.js')
-  // })
 }
