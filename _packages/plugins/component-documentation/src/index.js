@@ -7,7 +7,7 @@ const { devalue } = require('@minipress/utils')
 const MarkdownRenderer = require('@minipress/markdown')
 const markdownRenderer = new MarkdownRenderer()
 const fs = require('fs')
-
+markdownRenderer.init()
 /**
  * @type {import('./types').Plugin}
  */

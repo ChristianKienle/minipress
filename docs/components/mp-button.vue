@@ -1,8 +1,5 @@
 <template>
-  <a v-if="isExternal" class="mp-button" :href="to" :class="classes"
-    ><slot
-  /></a>
-  <MiniLink v-else class="mp-button" :to="to_" :class="classes"
+  <MiniLink class="mp-button" :to="to_" :class="classes"
     ><slot
   /></MiniLink>
 </template>

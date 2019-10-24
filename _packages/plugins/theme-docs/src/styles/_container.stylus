@@ -1,4 +1,4 @@
-make-container($base-color, $text-color = darken($base-color, 60%), $bg-color = lighten($base-color, 70%))
+make-container($base-color, $text-color = darken($base-color, 80%), $bg-color = lighten($base-color, 70%))
   background-color $bg-color
   border-radius 4px 4px
   border-left 8px solid $base-color

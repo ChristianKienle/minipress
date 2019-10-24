@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MiniLink renders external links as anchor 1`] = `<a href="https://example.org" target="_blank" rel="noopener noreferrer"></a>`;
+
+exports[`MiniLink renders internal links as router-link 1`] = `<router-link-stub to="/"></router-link-stub>`;

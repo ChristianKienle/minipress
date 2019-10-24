@@ -1,8 +1,6 @@
 <template>
   <div class="mp-nav__item">
-    <a target="_blank" class="mp-nav__item__link" :href="link" v-if="linkIsExternal">{{ text }}</a>
     <MiniLink
-    v-else
       class="mp-nav__item__link"
       :to="link"
       exact-active-class="mp-nav__item__link--active"
@@ -23,11 +21,6 @@ export default {
     text: {
       type: String,
       default: () => []
-    }
-  },
-  computed: {
-    linkIsExternal() {
-      return /^https?:/.test(this.link)
     }
   }
 };

@@ -1,5 +1,12 @@
 @require './_config.stylus'
 
+:root
+  --color-code-blue-100: lighten(#287BFF, 40%)
+  --color-code-red #ffa8a8
+  --color-code-red-100 #ff5874
+  --color-code-teal #24ffc2
+  --color-code-gray #aaaaaa
+
 $minpressCodeBorderRadius = 8px
 
 code[class*="language-"]::-webkit-scrollbar
@@ -10,27 +17,32 @@ code[class*="language-"]::-webkit-scrollbar
 pre[class*="language-"]::-webkit-scrollbar
   display none
 
+pre[class*="language-"]
+  code[class*="language-"]
+    color var(--color-code-blue-100)
+    -webkit-font-smoothing auto
+
 code[class*="language-"],
 pre[class*="language-"]
-  scrollbar-width: none
-  overflow auto
-  color white
-  font-family: Consolas, monaco, monospace !important;
-  text-align left
-  white-space pre
-  word-spacing normal
-  word-break normal
-  word-wrap normal
-  line-height 1.5
-  font-weight 600
   -moz-tab-size 4
-  -o-tab-size 4
-  tab-size 4
-  -webkit-hyphens none
   -ms-hyphens none
-  hyphens none
+  -o-tab-size 4
+  -webkit-hyphens none
   background transparent
   color white
+  color white
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight 400 !important
+  hyphens none
+  line-height 1.5
+  overflow auto
+  scrollbar-width: none
+  tab-size 4
+  text-align left
+  white-space pre
+  word-break normal
+  word-spacing normal
+  word-wrap normal
 
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection,
@@ -58,7 +70,7 @@ pre[class*="language-"] ::selection
   overflow hidden
   margin 2rem 0;
   color: white
-  background-color $code-accent-color
+  background-color darken($code-accent-color, 30%)
   border-radius $minpressCodeBorderRadius
 .minipress-highlight:before
   background rgba(201, 167, 255, 0.2)
@@ -128,11 +140,10 @@ pre[class*="language-"] ::selection
       content counter(linenumber)
       color #999
       display block
-
 .token.cdata,
 .token.comment,
 .token.prolog
-  color #637777
+  color var(--color-code-gray)
   font-style italic
 
 .token
@@ -142,9 +153,9 @@ pre[class*="language-"] ::selection
     color rgba(239, 83, 80, 0.56)
     font-style italic
   &.boolean
-    color #ff5874
+    color var(--color-code-red-100)
   &.number
-    color #f78c6c
+    color var(--color-code-red)
   &.italic
     font-style italic
 
@@ -158,13 +169,13 @@ pre[class*="language-"] ::selection
 .token.keyword,
 .token.operator,
 .token.tag
-  color rgb(255, 131, 131)
+  color lighten(rgb(255, 131, 131), 30%)
 
 .token.builtin,
 .token.char,
 .token.constant,
 .token.function
-  color #82aaff
+  color #B7DBFF
 
 .token.doctype,
 .token.selector
@@ -179,7 +190,7 @@ pre[class*="language-"] ::selection
 .token.entity,
 .token.string,
 .token.url
-  color #00c58e
+  color lighten(#00c58e, 30%)
 
 .token.atrule,
 .token.attr-value,
@@ -191,6 +202,6 @@ pre[class*="language-"] ::selection
 .token.variable
   color #d6deeb
 
-.token.bold,
-.token.important
-  font-weight 700
+.token.bold
+  color var(--color-code-red)
+  font-weight 900
