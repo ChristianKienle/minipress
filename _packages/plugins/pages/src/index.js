@@ -4,9 +4,6 @@ const getPagesInDir = require('./get-pages-in-dir')
 const { Watcher } = require('@minipress/utils')
 const PLUGIN = '@minipress/plugin-pages'
 
-const dirFromOptions = options => {
-  if (options == null) { }
-}
 /**
 * @type {import('./../../plugin').Plugin}
 */

@@ -314,6 +314,10 @@ class Minipress {
     })
 
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
+      this.hooks.emitPages.tapPromise('builtin:pages:emitPages', async () => {
+        await this.pages.emit()
+      })
+
       this.hooks.onCreatePage.tapPromise('minipress-prepare', async page => {
         await this.pages._emitPage(page)
       })
@@ -505,9 +509,7 @@ class Minipress {
     this.log.info(`Using publicUrl: ${this.config.build.base}`)
     await this.hooks.beforeRun.promise()
 
-    this.hooks.emitPages.tapPromise('builtin:pages:emitPages', async () => {
-      await this.pages.emit()
-    })
+
 
     this.emitComponents()
     const defaultThemePath = require.resolve('@minipress/theme-default/package.json')

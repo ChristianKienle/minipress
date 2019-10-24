@@ -2,14 +2,11 @@
 const { join } = require('path')
 const EventEmitter = require('events')
 const globby = require('globby')
-const { createPageKey, relativePathToUrlPath } = require('@minipress/utils')
+const { Watcher, createPageKey, relativePathToUrlPath } = require('@minipress/utils')
+
+const { WatcherEvent } = Watcher
 
 const PAGES_GLOBS = ['**/*.md', '**/*.vue', '!node_modules/**']
-const EVENTS = Object.freeze({
-  added: 'added',
-  removed: 'removed',
-  changed: 'changed'
-})
 
 /** @typedef {import('@minipress/types').Page} Page */
 /** @typedef {import('@minipress/types').File} File */
@@ -48,7 +45,7 @@ class PagesProvider {
 
   /** @param {Listener} listener */
   onAdded(listener) {
-    this.emitter.on('added', listener)
+    this.emitter.on(WatcherEvent.ADDED, listener)
     return this
   }
 

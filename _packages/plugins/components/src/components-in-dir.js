@@ -1,28 +1,52 @@
 // @ts-check
-const Path = require('path')
-const { resolve } = Path
+const { resolve } = require('path')
 const EventEmitter = require('events')
-const chokidar = require('chokidar')
-const camelize = require('./camelize')
+const { camelize, Watcher } = require('@minipress/utils')
 const GLOBS = ['**/*.vue', '!node_modules/**']
-const EVENTS = Object.freeze({
-  added: 'mp:component:added',
-  removed: 'mp:component:removed',
-  changed: 'mp:component:changed',
-  ready: 'mp:components:ready'
-})
+const globby = require('globby')
+const { WatcherEvent } = Watcher
+const nameForContext = require('./name-for-context')
 
 /** @typedef {import('./types').Component} Component */
 /** @typedef {import('./types').Components} Components */
+/** @typedef {import('./types').GetComponentName} GetComponentName */
 /** @typedef {import('./types')._Components} _Components */
 /** @typedef {import('./types').ComponentPath} ComponentPath */
 /** @typedef {import('./types').ComponentNameContext} ComponentNameContext */
+/** @typedef {import('@minipress/utils/watcher').WatcherI} WatcherI */
+/** @typedef {(component: Component)=>void} Listener */
+
+/**
+ * @typedef {object} Options
+ * @prop {WatcherI=} watcher
+ * @prop {string} components
+ * @prop {GetComponentName} getComponentName
+ */
 
 class ComponentsProvider {
-  /** @param {string} componentsDir */
-  constructor(componentsDir) {
-    this.componentsDir = componentsDir
+  /** @param {Options} options */
+  constructor({ components, watcher, getComponentName }) {
+    this.componentsDir = components
+    this.watcher = watcher
     this.emitter = new EventEmitter()
+    this._getComponentName = getComponentName
+  }
+
+  /**
+   * @returns {Promise<Component[]>}
+   */
+  async getComponents() {
+    const { componentsDir, watcher, emitter } = this
+    const relativePaths = await globby(GLOBS, { cwd: componentsDir })
+    const initial = relativePaths.map(relative => this.filePathToComponent(relative))
+    if (watcher != null) {
+      watcher.on((event, path) => {
+        const component = this.filePathToComponent(path)
+        emitter.emit(event, component)
+      })
+      setTimeout(() => watcher.resume())
+    }
+    return initial
   }
 
   /**
@@ -43,36 +67,22 @@ class ComponentsProvider {
     this.emitter.removeAllListeners()
   }
 
+  /** @param {Listener} listener */
   onAdded(listener) {
-    const { emitter } = this
-    const event = EVENTS.added
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(WatcherEvent.ADDED, listener)
+    return this
   }
 
-  onReady(listener) {
-    const { emitter } = this
-    const event = EVENTS.ready
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
-  }
-
+  /** @param {Listener} listener */
   onRemoved(listener) {
-    const { emitter } = this
-    const event = EVENTS.removed
-    const off = () => emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(WatcherEvent.REMOVED, listener)
+    return this
   }
 
+  /** @param {Listener} listener */
   onChanged(listener) {
-    const { emitter } = this
-    const event = EVENTS.changed
-    const off = () => this.emitter.off(event, listener)
-    emitter.on(event, listener)
-    return off
+    this.emitter.on(WatcherEvent.CHANGED, listener)
+    return this
   }
 
   /**
@@ -95,69 +105,17 @@ class ComponentsProvider {
     return this.pathToComponent(path)
   }
 
-  /** @returns {Promise<Component[]>} */
-  resume() {
-    const { emitter } = this
-
-    /** @type {Map<string, Component>} */
-    const components = new Map()
-    return new Promise(resolvePromise => {
-      let isReady = false
-
-      this.watcher = chokidar.watch(GLOBS, {
-        ignored: /(^|[\/\\])\../,
-        persistent: true,
-        cwd: this.componentsDir
-      }).on('all', (event, path) => {
-        if (event === 'add') {
-          const component = this.filePathToComponent(path)
-          components.set(path, component)
-          isReady && emitter.emit(EVENTS.added, component)
-        }
-        if (event === 'unlink') {
-          const component = this.filePathToComponent(path)
-          components.delete(path)
-          isReady && emitter.emit(EVENTS.removed, component)
-        }
-        if (event === 'change') {
-          const component = this.filePathToComponent(path)
-          components.set(path, component)
-          isReady && emitter.emit(EVENTS.changed, component)
-        }
-      })
-        .on('ready', () => {
-          isReady = true
-          emitter.emit(EVENTS.ready, components.values())
-          resolvePromise(Array.from(components.values()))
-        })
-    })
+  /**
+   * @param {ComponentNameContext} context
+   */
+  nameForComponent(context) {
+    const defaultName = nameForContext(context)
+    return this._getComponentName(context, defaultName)
   }
-
-  /** @param {ComponentNameContext} context */
-  nameForComponent({ path }) {
-    const { relative } = path
-    if (relative == null) {
-      throw Error('Error')
-    }
-    const parsed = Path.parse(relative)
-    const formatted = Path.format({
-      dir: parsed.dir,
-      name: parsed.name
-    })
-    const components = formatted.split(/\/|\\/g).map(camelize)
-    return components.join('-')
-  }
-
-  // .map(w => w.replace(/./, m => m.toUpperCase()))
-  // .join()
-  // }
-
-  // return formatted.split(Path.sep).join('--')
-  // }
 }
 
 /**
- * @param {string} componentsDir
+ * @param {Options} options
  * @returns {_Components}
  */
-module.exports = componentsDir => new ComponentsProvider(componentsDir)
+module.exports = options => new ComponentsProvider(options)
