@@ -31,7 +31,7 @@
     "features:gen:debug": "cd _examples/features && npm run gen:debug"
   },
   "devDependencies": {
-    "eslint": "6.1.0",
+    "eslint": "6.5.1",
     "lerna": "^3.16.4",
     "lerna-update-wizard": "^0.16.0"
   }
