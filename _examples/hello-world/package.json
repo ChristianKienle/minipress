@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-hello-world",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "main": "index.js",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.2.0",
+    "@minipress/minipress": "^0.2.1",
     "@minipress/plugin-additional-pages": "^0.2.0",
     "@minipress/plugin-pages": "^0.2.0",
     "@minipress/theme-default": "^0.2.0"

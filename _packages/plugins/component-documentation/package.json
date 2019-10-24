@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-component-documentation",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "my mathematical plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",

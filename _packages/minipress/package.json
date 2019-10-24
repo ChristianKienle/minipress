@@ -1,6 +1,6 @@
 {
   "name": "@minipress/minipress",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "src/index.js",
   "license": "MIT",
   "private": false,
@@ -31,7 +31,7 @@
     "@minipress/head-element": "^0.2.0",
     "@minipress/log": "^0.2.0",
     "@minipress/plugin-alias": "^0.2.0",
-    "@minipress/plugin-built-in-components": "^0.2.0",
+    "@minipress/plugin-built-in-components": "^0.2.1",
     "@minipress/plugin-command-dev": "^0.2.0",
     "@minipress/plugin-command-generate": "^0.2.0",
     "@minipress/plugin-command-serve": "^0.2.0",
