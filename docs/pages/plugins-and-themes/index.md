@@ -401,6 +401,54 @@ As you can see, there are two options to play with:
 - `dir`: An absolute path to a directory that will be served statically.
 - `as`: How the contents of `dir` should be served. The options above will make everything in `__dirname/static` available under `/static`.
 
+### component-demo
+The `@minipress/plugin-component-demo`-plugin allows you to render *live* demos of your components. This plugin also makes it easy to display the code for your demos.
+
+**Installation**
+
+```sh
+npm install @minipress/plugin-component-demo --save
+```
+
+**Configuration**
+
+```js
+module.exports = {
+  plugis: ['@minipress/plugin-component-demo']
+}
+```
+
+A story is simply a `*.vue`-file which demos one of your components. By default every `*.vue`-file inside `cwd/.stories` will be made available automatically.
+
+#### Writing a Demo
+
+Simply create a `*.vue`-file (somewhere) inside the `.demos`-directory:
+
+**.demos/my-fancy-component/default.vue**
+
+```markup
+<template>
+  <div>
+    <MyFancyComponent propA="test" />
+  </div>
+</template>
+```
+
+Now you can use the `Demo`-component to render the demo:
+
+```md
+## My Fancy Component Demo
+
+<Demo name="MyFancyComponent-Default" />
+```
+
+`Demo` will render something like this:
+
+<Demo name="MyFancyComponent-Default" />
+
+
+
+
 ## Avaiable Themes
 
 ### `@minipress/theme-default`

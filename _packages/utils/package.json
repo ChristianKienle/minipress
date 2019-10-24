@@ -23,10 +23,13 @@
     "chokidar": "^3.2.2",
     "devalue": "^2.0.0",
     "fs-extra": "^8.1.0",
-    "hash-sum": "^2.0.0"
+    "hash-sum": "^2.0.0",
+    "globby": "^10.0.1",
+    "slugify": "^1.3.5"
   },
   "types": "index.d.ts",
   "devDependencies": {
+    "@types/globby": "^9.1.0",
     "@types/chokidar": "^2.1.3",
     "@types/fs-extra": "^8.0.1",
     "@types/hapi__joi": "^16.0.1",

@@ -1,7 +1,5 @@
 // @ts-check
 const loaderUtils = require('loader-utils')
-// const codeGen = require('@minipress/code-gen')
-// const devalue = require('devalue')
 const { fromCode, renderer } = require('./api')
 const { devalue } = require('@minipress/utils')
 const MarkdownRenderer = require('@minipress/markdown')
@@ -44,46 +42,9 @@ module.exports = async function load(source, map) {
   <div>${html}</div>
   </template>
   <script>
-  export default {
-    // functional: true,
-    // render(h, ctx) {
-    //   const parserResult = ${parserResult}
-    //   const props = {
-    //     parserResult
-    //   }
-    //   return h('VueseComponentApi', { props })
-    // }
-  }
+  export default {}
   </script>
   `
   callback(/* error */ null, code, map)
   return
-
-
-  // // const [options, error] = normalizeOptions(loaderUtils.getOptions(this))
-  // // if (error != null || options == null) {
-  // //   callback(error)
-  // //   return
-  // // }
-  // const pageKey = String(source).trim()
-  // const page = options.minipress.pages.get(pageKey)
-  // if (page == null) {
-  //   throw Error('page not found')
-  // }
-
-
-
-  // // @ts-ignore
-  // const serializedPage = devalue(options.minipress.pages.makePageAvailableToClient(page))
-
-  // const code = codeGen.js(() => `
-  // export default function(Component) {
-  //   var beforeCreate = Component.options.beforeCreate || []
-  //   Component.options.beforeCreate = [function() {
-  //     var page = ${serializedPage}
-  //     this.$page = page
-  //   }].concat(beforeCreate)
-  // }`)
-  // callback(/* error */ null, code, map)
-  // return
 }

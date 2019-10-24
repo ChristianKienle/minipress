@@ -76,6 +76,10 @@
       "name": "plugin/component-documentation",
       "path": "_packages/plugins/component-documentation"
     },
+		{
+      "name": "plugin/component-demo",
+      "path": "_packages/plugins/component-demo"
+    },
     {
       "name": "theme/default",
       "path": "_packages/plugins/theme-default"

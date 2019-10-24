@@ -147,6 +147,7 @@ const renderMethod = method => {
 const renderSlot = slot => {
   const md = renderDivWithScopedClass(slot.name, 'slot-name').nl()
   if (slot.scoped) {
+    // TODO: Remove this
     md.raw(`<fd-badge filled>scoped</fd-badge>`).nl()
   }
   md.lines([slot.describe], { wrap: true }).nl()

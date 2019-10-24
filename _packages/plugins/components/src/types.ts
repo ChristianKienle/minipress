@@ -1,6 +1,11 @@
 
 // Components
-export type Components = string | ComponentNameByPath
+interface ComponentsConfig {
+  components: string | ComponentNameByPath
+  getComponentName?: GetComponentName
+}
+
+export type Components = string | ComponentsConfig
 
 export type ComponentNameByPath = { [name: string]: string }
 export interface ComponentPath {
@@ -17,14 +22,18 @@ export type ComponentNameContext = {
   path: ComponentPath;
 }
 
-export type ComponentNameFn = (context: ComponentNameContext) => string;
+export type GetComponentName = (context: ComponentNameContext, defaultName: string) => string;
+
 type ComponentsListener = (component: Component) => void
+
 export interface _Components {
-  onAdded(listener: ComponentsListener): Off
-  onRemoved(listener: ComponentsListener): Off
-  onChanged(listener: ComponentsListener): Off
-  onReady(listener: (components: Component[]) => void): Off
-  resume(): Promise<Component[]>
+  onAdded(listener: ComponentsListener): this
+  onRemoved(listener: ComponentsListener): this
+  onChanged(listener: ComponentsListener): this
+  getComponents(): Promise<Component[]>
   close(): void
 }
-type Off = () => void
+import { Plugin as _Plugin } from './../../plugin'
+
+export type Options = Components
+export type Plugin = _Plugin<Options>
