@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - lts/*
+script:
+  - npm install   # install the bare minimum
+  - npm run bs        # install everything (lerna action)
+  - npm run test
+  - npm run docs:gen  # generate static build of docs
