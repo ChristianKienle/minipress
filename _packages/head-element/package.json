@@ -1,6 +1,6 @@
 {
   "name": "@minipress/head-element",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "private": false,
   "dependencies": {
-    "@minipress/code-gen": "^0.3.0"
+    "@minipress/code-gen": "^0.4.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

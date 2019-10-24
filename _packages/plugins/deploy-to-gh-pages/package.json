@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-deploy-to-gh-pages",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "my cool plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "gh-pages": "^2.1.1"
   },
   "devDependencies": {
-    "@minipress/types": "^0.3.0"
+    "@minipress/types": "^0.4.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }
