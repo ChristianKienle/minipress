@@ -47,7 +47,7 @@ export default {
   line-height 60px
   &__sub
     font-size 40px
-    color #38b2ac
+    color darken(#38b2ac, 20%)
     display block
     line-height 60px
 </style>
