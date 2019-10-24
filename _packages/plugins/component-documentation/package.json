@@ -9,7 +9,7 @@
     "src/types.ts"
   ],
   "scripts": {
-    "test": "jest ."
+    "test": "jest --clearCache && jest ."
   },
   "private": false,
   "publishConfig": {

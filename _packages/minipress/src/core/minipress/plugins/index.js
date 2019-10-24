@@ -9,15 +9,12 @@ module.exports = class Plugins {
     this._all = []
   }
 
-  /**
-   * @param {string} id
-   * @param {any=} options
-   */
-  use(id, options) {
-    this._all.push(normalizePlugin([id, options]))
+  /** @param {import('@minipress/types').ConfigPlugin} plugin */
+  use(plugin) {
+    this._all.push(normalizePlugin(plugin))
   }
 
-  /** @param {import('./../minipress')} minipress */
+  /** @param {import('@minipress/types').MinipressI} minipress */
   applyPlugins(minipress) {
     return Promise.all(this._all.map(plugin => plugin.apply(minipress)))
   }

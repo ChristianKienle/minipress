@@ -310,7 +310,7 @@ class Minipress {
     this.use(require('@minipress/plugin-command-serve'))
     // Plugins from Config
     this.config.plugins.forEach(plugin => {
-      this.use(...plugin)
+      this.use(plugin)
     })
 
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
@@ -396,12 +396,9 @@ class Minipress {
     this.emitContentComponents()
   }
 
-  /**
-   * @param {string | any} id
-   * @param {any=} options
-   */
-  use(id, options) {
-    this.plugins.use(id, options)
+  /** @param {import('@minipress/types').ConfigPlugin} plugin */
+  use(plugin) {
+    this.plugins.use(plugin)
   }
 
   applyPlugins() {

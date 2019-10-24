@@ -9,7 +9,7 @@ type IdOrResolvedPlugin = string | ResolvedPlugin
 
 // A plugin as provided by the user in the config.
 // Potentially invalid.
-export type Plugin<Options = any> = Partial<_Plugin<Options>>
+export type Plugin<Options = any> = IdOrResolvedPlugin | Partial<_Plugin<Options>>
 
 // A normalized plugin as provided by the user in the config.
 // Semantically correct but could still be invalid (unable

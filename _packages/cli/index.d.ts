@@ -1,2 +1,4 @@
 import Cli from './src/index'
-export default Cli;
+type _Cli = typeof Cli
+export default _Cli
+

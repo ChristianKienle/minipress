@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest ."
+    "test": "jest --clearCache && jest ."
   },
   "private": false,
   "dependencies": {
