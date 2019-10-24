@@ -37,6 +37,7 @@ module.exports = {
   plugins: [
     '@minipress/plugin-serve-static',
     ['@minipress/theme-docs', themeConfig],
+    '@minipress/plugin-component-demo',
     '@minipress/plugin-summary-container',
     '@minipress/plugin-component-documentation',
     '@minipress/plugin-deploy-to-gh-pages',

@@ -3,6 +3,7 @@ import { ComponentsI } from './components'
 import * as Logger from '@minipress/log/index'
 import Joi from '@hapi/joi'
 import Cli from '@minipress/cli'
+import { Page, EmittablePage } from './../page'
 
 interface Hooks {
 
@@ -17,7 +18,10 @@ export interface MinipressI {
   readonly hooks: Hooks
   readonly components: ComponentsI
   readonly globalComponents: ComponentsI
-  readonly cli: InstanceType<typeof Cli>
+  readonly cli: InstanceType<Cli>
+
+  // Public API
+  addPage(page: Page): Promise<EmittablePage>
 
   dev(options: {
     watch?: boolean

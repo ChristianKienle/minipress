@@ -36,6 +36,7 @@
     "@minipress/minipress": "^0.4.0",
     "@minipress/plugin-clean-urls": "^0.4.0",
     "@minipress/plugin-component-documentation": "^0.4.0",
+    "@minipress/plugin-component-demo": "^0.4.0",
     "@minipress/plugin-components": "^0.4.0",
     "@minipress/plugin-deploy-to-gh-pages": "^0.4.0",
     "@minipress/plugin-head": "^0.4.0",

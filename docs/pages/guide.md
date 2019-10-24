@@ -1,4 +1,5 @@
 # Guide
+
 *miniPress* is a very simple and minimalistic implementation of a subset of VuePress/Saber.
 
 ::: info

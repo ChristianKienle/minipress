@@ -7,6 +7,10 @@ const devalue = require('devalue')
 const Watcher = require('./watcher')
 const getPkgJson = require('./get-pkg-json')
 const removeTrailingSlash = require('./remove-trailing-slash')
+const camelize = require('./camelize')
+const slugify = require('slugify').default
+const globby = require('./globby')
+const pathToComponentName = require('./path-to-component-name')
 
 module.exports = {
   createPageKey,
@@ -20,5 +24,15 @@ module.exports = {
   devalue:  /** @type { (value: any) => string } */ (devalue),
   Watcher,
   getPkgJson,
-  removeTrailingSlash
+  removeTrailingSlash,
+  camelize,
+  /**
+   * @param {string} input
+   * @returns {string}
+   */
+  slugify(input) {
+    return slugify(input)
+  },
+  globby,
+  pathToComponentName
 }

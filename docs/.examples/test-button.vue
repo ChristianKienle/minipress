@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div>Props</div>
-  </div>
+  <button>i am a test</button>
 </template>
 
 <script>
@@ -9,7 +7,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>

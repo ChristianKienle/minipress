@@ -9,6 +9,7 @@ const EVENTS = Object.freeze({
 /** @typedef {import('./types')._Components} _Components */
 /** @typedef {import('./types').ComponentPath} ComponentPath */
 /** @typedef {import('./types').ComponentNameContext} ComponentNameContext */
+/** @typedef {(component: Component)=>void} Listener */
 
 class ComponentsInMapping {
   /**
@@ -19,38 +20,25 @@ class ComponentsInMapping {
     this.events = new EventEmitter()
   }
 
-  close() {
+  close() {}
 
-  }
-
-  /** @param {any} _ */
+  /** @param {Listener} _ */
   onAdded(_) {
-    return this.off
+    return this
   }
 
-  off() { }
-
-  /** @param {any} listener */
-  onReady(listener) {
-    const { events } = this
-    const event = EVENTS.ready
-    const off = () => this.events.off(event, listener)
-    events.on(event, listener)
-    return off
-  }
-
-  /** @param {any} _ */
+  /** @param {Listener} _ */
   onRemoved(_) {
-    return this.off
+    return this
   }
 
-  /** @param {any} _ */
+  /** @param {Listener} _ */
   onChanged(_) {
-    return this.off
+    return this
   }
 
   /** @returns {Promise<Component[]>} */
-  async resume() {
+  async getComponents() {
     /** @type {Map<string, Component>} */
     const componentsByPath = new Map()
     Object.entries(this.components).forEach(([name, path]) => {
@@ -62,8 +50,6 @@ class ComponentsInMapping {
       })
     })
     const componentsValues = Array.from(componentsByPath.values())
-
-    this.events.emit(EVENTS.ready, componentsValues)
     return componentsValues
   }
 
