@@ -29,6 +29,8 @@ const headFn = (head, url, minipress) => {
     .meta('msapplication-TileColor', '#da532c')
     .meta('msapplication-config', withBase('browserconfig.xml'))
     .meta('theme-color', '#ffffff')
+    .title('miniPress')
+    .description('miniPress – static site generator')
 }
 
 module.exports = {

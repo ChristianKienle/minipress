@@ -1,9 +1,5 @@
 <template>
-  <button
-    v-on="$listeners"
-    class="button"
-    style="width: 20px; height: 20px; margin-right: 10px;"
-  >
+  <button v-on="$listeners" class="button">
     <BurgerIcon :aria-pressed="pressed"/>
   </button>
 </template>
@@ -28,4 +24,7 @@ export default {
   border-radius 0px
   outline none
   cursor pointer
+  width 20px
+  height 20px
+  margin-right 10px
 </style>

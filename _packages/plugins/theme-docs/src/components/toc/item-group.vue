@@ -20,7 +20,6 @@
 <script>
 import MpItem from './item.vue'
 import MpItemLink from './link.vue'
-
 export default {
   components: {
     MpItem, MpItemLink
@@ -52,9 +51,12 @@ export default {
     }
   },
   mounted() {
-    this.setupObserverIfPossible();
+    const { $route } = this
+    if($route != null) {
+      this.currentHash = $route.hash
+    }
+    this.setupObserverIfPossible()
   },
-
   beforeDestroy() {
     this.disconnectObserverIfPossible();
   },
