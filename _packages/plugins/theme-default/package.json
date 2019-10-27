@@ -1,6 +1,6 @@
 {
   "name": "@minipress/theme-default",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
     "src/**/*"
   ],
   "devDependencies": {
-    "@minipress/eslint-config-client": "^0.4.0",
+    "@minipress/eslint-config-client": "^0.5.0",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-jest": "^3.11.0",
