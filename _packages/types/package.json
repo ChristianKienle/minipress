@@ -1,6 +1,6 @@
 {
   "name": "@minipress/types",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "files": [
     "types/**/*.d.ts"
   ],
@@ -9,8 +9,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@minipress/cli": "^0.5.0",
-    "@minipress/log": "^0.5.0",
+    "@minipress/cli": "^0.6.0",
+    "@minipress/log": "^0.6.0",
     "@types/hapi__joi": "^16.0.1",
     "@types/joi": "^14.3.3",
     "webpack-chain": "^6.0.0"
