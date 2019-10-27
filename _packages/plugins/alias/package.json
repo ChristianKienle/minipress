@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-alias",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "my fabulous plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "main": "src/index.js",
   "devDependencies": {
-    "@minipress/types": "^0.5.0"
+    "@minipress/types": "^0.6.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }
