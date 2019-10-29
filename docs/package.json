@@ -45,7 +45,9 @@
     "@minipress/plugin-pages": "^0.7.0",
     "@minipress/plugin-serve-static": "^0.7.0",
     "@minipress/plugin-summary-container": "^0.7.0",
-    "@minipress/theme-docs": "^0.7.0"
+    "@minipress/theme-docs": "^0.7.0",
+    "@minipress/plugin-blog": "^0.7.0",
+    "@minipress/plugin-excerpt": "^0.7.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

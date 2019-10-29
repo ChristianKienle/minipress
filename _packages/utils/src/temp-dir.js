@@ -1,15 +1,33 @@
-// @ts-check
-const { resolve, parse } = require('path')
-const { pathExistsSync, readFileSync, emptyDirSync, writeFileSync, mkdirSync, openSync, fstatSync } = require('fs-extra')
+const { tmpdir } = require('os')
+const { sep, resolve, parse } = require('path')
+const fs = require('fs-extra')
+const { readFileSync, pathExistsSync, writeFileSync, emptyDirSync, openSync } = fs
 
-/**
- * @typedef {object} Options
- * @prop {string} path
- */
+const createPath = () => fs.mkdtempSync(`${tmpdir()}${sep}`)
+
 module.exports = class TempDir {
+  /**
+   * @typedef {object} Options
+   * @prop {string=} path
+   */
+
   /** @param {Options} options */
-  constructor({ path }) {
-    this.path = path
+  constructor({ path } = { path: createPath() }) {
+    this.path = path || createPath()
+    this.isClean = false
+  }
+
+  cleanup() {
+    if (this.isClean) {
+      return
+    }
+    const tempDir = this._ensureTempDir()
+    if (tempDir == null) {
+      return
+    }
+    emptyDirSync(tempDir)
+    fs.rmdirSync(this.path)
+    this.isClean = true
   }
 
   tempPath() {
@@ -17,11 +35,7 @@ module.exports = class TempDir {
   }
 
   clean() {
-    const tempDir = this._ensureTempDir()
-    if (tempDir == null) {
-      return
-    }
-    emptyDirSync(tempDir)
+    this.cleanup()
   }
 
   /**
@@ -92,16 +106,8 @@ module.exports = class TempDir {
 
   /** @param {string} dir */
   _ensureDirectory(dir) {
-    try {
-      const fd = openSync(dir, 'r')
-      const stat = fstatSync(fd)
-      if (stat.isDirectory()) {
-        return dir
-      }
-    } catch (err) {
-      mkdirSync(dir, { recursive: true })
-      return dir
-    }
+    fs.ensureDirSync(dir)
+    return dir
   }
 
   _ensureTempDir() {

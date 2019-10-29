@@ -11,8 +11,11 @@ const camelize = require('./camelize')
 const slugify = require('slugify').default
 const globby = require('./globby')
 const pathToComponentName = require('./path-to-component-name')
+const TempDir = require('./temp-dir')
 
 module.exports = {
+  TempDir,
+  createTempDir: () => new TempDir(),
   createPageKey,
   // Use this to create a hash that represents the 'value' of a page.
   // Currently we simply use 'createPageKey' to do this.

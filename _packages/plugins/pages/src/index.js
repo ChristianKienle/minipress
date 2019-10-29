@@ -27,9 +27,8 @@ module.exports = {
       if (minipress.watch) {
         const addOrChange = async page => {
           const _page = await minipress.addPage(page)
-          await minipress.hooks.onCreatePage.promise(_page)
           await minipress.getSiteData()
-          await minipress.hooks.emitPages.promise()
+          await minipress.hooks.emitPages.promise(minipress.pages)
           await minipress.hooks.emitRoutes.promise()
         }
         pages
@@ -53,7 +52,7 @@ module.exports = {
           if(_page != null) {
             await minipress.hooks.onRemovePage.promise(_page)
             await minipress.getSiteData()
-            await minipress.hooks.emitPages.promise()
+            await minipress.hooks.emitPages.promise(minipress.pages)
             await minipress.hooks.emitRoutes.promise()
           }
         })
@@ -63,7 +62,7 @@ module.exports = {
       await Promise.all(initialPages.map(page => minipress.addPage(page)))
 
       await minipress.getSiteData()
-      await minipress.hooks.emitPages.promise()
+      await minipress.hooks.emitPages.promise(minipress.pages)
       await minipress.hooks.emitRoutes.promise()
     })
   }

@@ -1,12 +1,14 @@
 // @ts-check
-
+const { join } = require('path')
+const PLUGIN = '@minipress/docs'
 const themeConfig = {
   navbar: {
     items: [
       { text: 'Guide', link: '/guide' },
       { text: 'Configuration', link: '/configuration' },
       { text: 'Features', link: '/features' },
-      { text: 'Plugins & Themes', link: '/plugins-and-themes/' },
+      { text: 'Plugins', link: '/plugins-and-themes/' },
+      { text: 'Blog', link: '/blog/' },
       { text: 'GitHub', link: 'https://github.com/ChristianKienle/minipress' },
     ]
   }
@@ -39,6 +41,7 @@ module.exports = {
     ['@minipress/theme-docs', themeConfig],
     '@minipress/plugin-component-demo',
     '@minipress/plugin-summary-container',
+    '@minipress/plugin-blog',
     '@minipress/plugin-component-documentation',
     '@minipress/plugin-deploy-to-gh-pages',
     ['@minipress/plugin-head', headFn],
@@ -47,5 +50,13 @@ module.exports = {
     '@minipress/plugin-package-json'
   ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
-  apply(minipress) { }
+  apply(minipress) {
+    minipress.hooks.registerGlobalComponents.tapPromise(PLUGIN, async () => {
+      minipress.globalComponents.register('DocsGlobalStyles', join(__dirname, 'styles', 'global.vue'))
+    })
+
+    minipress.hooks.registerComponents.tapPromise(PLUGIN, async components => {
+      components.register('MpSampleButton', join(__dirname, 'components', 'mp-sample-button.vue'))
+    })
+  }
 }

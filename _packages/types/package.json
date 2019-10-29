@@ -11,8 +11,9 @@
   "devDependencies": {
     "@minipress/cli": "^0.7.0",
     "@minipress/log": "^0.7.0",
+    "@minipress/markdown": "^0.6.0",
+    "@types/tapable": "^1.0.4",
     "@types/hapi__joi": "^16.0.1",
-    "@types/joi": "^14.3.3",
     "webpack-chain": "^6.0.0"
   },
   "types": "types/index.d.ts",

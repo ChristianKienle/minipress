@@ -8,8 +8,6 @@
 import MpMain from "./../components/main.vue";
 export default {
   components: { MpMain },
-  props: ['page']
-};
+  props: ['page'],
+}
 </script>
-
-

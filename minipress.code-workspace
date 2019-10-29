@@ -104,6 +104,14 @@
       "name": "plugin/last-modified",
       "path": "_packages/plugins/last-modified"
     },
+		{
+			"name": "plugin/excerpt",
+			"path": "_packages/plugins/excerpt"
+		},
+		{
+			"name": "plugin/blog",
+			"path": "_packages/plugins/blog"
+		},
     {
       "name": "plugin/components",
       "path": "_packages/plugins/components"
@@ -144,6 +152,10 @@
       "name": "plugin/format-markdown",
       "path": "_packages/plugins/format-markdown"
     },
+		{
+			"name": "examples/blog",
+			"path": "_examples/blog"
+		},
     {
       "name": "examples/hello-world",
       "path": "_examples/hello-world"

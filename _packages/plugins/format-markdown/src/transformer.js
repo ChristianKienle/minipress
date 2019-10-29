@@ -1,6 +1,7 @@
 // @ts-check
 const codeGen = require('@minipress/code-gen')
 const Renderer = require('@minipress/markdown')
+const { devalue } = require('@minipress/utils')
 
 /** @typedef {import('@minipress/types').Page} Page */
 
@@ -13,7 +14,7 @@ class Transformer {
   async getContentComponent(page) {
     const result = codeGen.vue(c => `
     <template>
-      <div class="page-content">${page.content}</div>
+      <div>${page.content}</div>
     </template>
     <script>
 
@@ -47,6 +48,13 @@ class Transformer {
         <div class="page-content">${page.content}</div>
       </MiniLayout>
     </template>
+    <script>
+    export default {
+      beforeCreate() {
+        this.$page = ${devalue(page)}
+      }
+    }
+    </script>
     `)
     return result
   }

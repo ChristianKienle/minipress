@@ -62,7 +62,7 @@ const isVirtualPage = page => {
 
 /**
  * @typedef NormalizeOptions
- * @prop {import('./../../temp-dir')} tempDir
+ * @prop {import('@minipress/utils/src/temp-dir')} tempDir
  * @prop {import('./../../transformers')} transformers
  * @prop {import('./../../content-components')} contentComponents
  *
@@ -77,7 +77,6 @@ const normalizePage = async (page = {}, {
 }) => {
   const file = normalizeFile(page.file)
   let key = page.key
-
   const regularPath = normalizeRegularPath({ regularPath: page.regularPath, file: file })
   const content = page.content || getContent(file) || ''
   const contentType = normalizeContentType({ ...page, file })
@@ -111,7 +110,7 @@ const normalizePage = async (page = {}, {
   enhanceWellKnownProperty('path', ProcessablePage)
   enhanceWellKnownProperty('layout', ProcessablePage)
 
-  if (key == null && file.absolute != null) {
+  if (ProcessablePage.key == null && file.absolute != null) {
     key = createPageKey(file.absolute)
     ProcessablePage.key = key
   }

@@ -1,5 +1,4 @@
 // @ts-check
-const TempDir = require('./temp-dir')
 const Components = require('./components')
 const Layouts = require('./layouts')
 const Plugins = require('./plugins')
@@ -14,7 +13,7 @@ const DynamicModules = require('./dynamic-modules')
 const AppEnhancers = require('./app-enhancers')
 const PageTransformers = require('./page-transformers')
 const { VueRenderer } = require('./../../vue-renderer')
-const { setNodeEnv } = require('@minipress/utils')
+const { setNodeEnv, TempDir } = require('@minipress/utils')
 const Joi = require('@hapi/joi')
 const {
   createBaseConfig,
@@ -29,6 +28,7 @@ const normalizeConfig = require('./../../config')
 
 /**
  * @typedef {import('@minipress/types').Page} Page
+ * @typedef {import('@minipress/types').PagesI} PagesI
  * @typedef {object} Options
  * @prop {import('@minipress/types')._Config} config
  * @prop {import('@minipress/log')} log
@@ -72,14 +72,22 @@ class Minipress {
       emitDynamicModules: new AsyncSeriesHook(),
       registerAppEnhancers: new AsyncSeriesHook(),
       registerAliases: new AsyncSeriesHook(),
-      registerComponents: new AsyncSeriesHook(),
+      // Called when components will be registered.
+      // Arguments:
+      // - components: Instance of Components (ComponentsI)
+      registerComponents: new AsyncSeriesHook(['components']),
       registerGlobalComponents: new AsyncSeriesHook(),
+      // A transformer is responsible for handling files of a specific content type (e.g.: vue or markdown-files)
       registerTransformers: new AsyncSeriesHook(),
+      // A page transformer is able to transform a page
+      // after it has already been normalized and processed by the "regular transformers" (see above)
+      registerPageTransformers: new AsyncSeriesHook(),
       registerContentComponents: new AsyncSeriesHook(),
       emitContentComponents: new AsyncSeriesHook(),
       registerLayouts: new AsyncSeriesHook(),
       extendCli: new AsyncSeriesHook(),
-      emitPages: new AsyncSeriesHook(),
+      // Instance of Pages
+      emitPages: new AsyncSeriesHook(['pages']),
       emitRoutes: new AsyncSeriesHook(),
       mutatePages: new AsyncSeriesHook(['mutations']),
       configureRequestServer: new AsyncSeriesHook(['server']),
@@ -101,6 +109,18 @@ class Minipress {
       // hooks – but well – this is our best bet.
       afterPlugins: new AsyncSeriesHook()
     }
+
+    // TODO: Make configurable
+    if(process.env.MP_LOG_HOOKS === 'true') {
+      Object.entries(this.hooks).forEach(([name, hook]) => {
+        hook.intercept({
+          call: () => {
+            this.log.debug('call hook %s', name)
+          }
+        })
+      })
+    }
+
     this.plugins = new Plugins()
     this.config = config
     this._config = normalizeConfig()
@@ -123,7 +143,7 @@ class Minipress {
     this.vueRenderer = new VueRenderer(this)
     this.hooks.afterPlugins.tapPromise('minipress-ctor', async () => {
       this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
-        const pages = this.pages.values()//.map(page => page)
+        const pages = this.pages.values()
         const _siteData = {
           pages: pages.map(page => this.pages.makePageAvailableToClient(page)),
           ...siteData,
@@ -186,7 +206,9 @@ class Minipress {
 
   /** @param {Page} page */
   async addPage(page) {
-    return await this.pages.createPage(page)
+    const _page = await this.pages.createPage(page)
+    await this.hooks.onCreatePage.promise(_page)
+    return _page
   }
 
   /** @param {string} key */
@@ -315,8 +337,8 @@ class Minipress {
     })
 
     this.hooks.afterPlugins.tapPromise('minipress-prepare', async () => {
-      this.hooks.emitPages.tapPromise('builtin:pages:emitPages', async () => {
-        await this.pages.emit()
+      this.hooks.emitPages.tapPromise('builtin:pages:emitPages', async pages => {
+        await pages.emit()
       })
 
       this.hooks.onCreatePage.tapPromise('minipress-prepare', async page => {
@@ -361,6 +383,8 @@ class Minipress {
 
     // Give plugins a chance to register transformers
     await this.hooks.registerTransformers.promise()
+    // Give plugins a chance to register page-level transformers
+    await this.hooks.registerPageTransformers.promise()
 
     await this._enableUniversalPageLoaderSupport()
     this.pages.createAlias()
@@ -394,7 +418,7 @@ class Minipress {
     await this.hooks.emitDynamicModules.promise()
 
     await this.hooks.registerAliases.promise()
-    await this.hooks.registerComponents.promise()
+    await this.hooks.registerComponents.promise(this.components)
     await this.hooks.registerContentComponents.promise()
 
     this.emitComponents()
@@ -524,7 +548,7 @@ class Minipress {
     await this.hooks.registerContentComponents.promise()
     await this.hooks.emitContentComponents.promise()
     this.emitContentComponents()
-    await this.hooks.emitPages.promise()
+    await this.hooks.emitPages.promise(this.pages)
     await this.getSiteData()
   }
 

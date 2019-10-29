@@ -11,6 +11,112 @@ From a technical point of view plugins and themes are identical.
 ## Available Plugins
 There are a couple of built-in plugins.
 
+
+### blog
+This plugin helps you to build a custom blog.
+
+**Installation**
+
+```sh
+npm install @minipress/plugin-blog --save
+```
+
+**Configuration**
+
+```js
+module.exports = {
+  plugins: ['@minipress/plugin-blog']
+}
+```
+
+**Usage**
+You create a post by adding a markdown file inside your `.posts`-directory. A post is a almost normal markdown page.
+
+::: warn
+Make sure that your posts have a frontmatter `title`-attribute.
+:::
+
+Here is a *hello world*-post:
+
+```md
+---
+title: Hello World
+---
+
+Hello Blog!
+
+<!-- more -->
+
+I am the **actual** content of the post.
+Using the `more`-comment is optional.
+```
+
+The **blog**-plugin will add a `posts`-attribute to `$minipress.site`. You can use this attribute to create a list of your posts.
+
+**Options**
+
+`@minipress/plugin-blog` can be configured in case the defaults don't work for you.
+
+- `posts` – default: `$cwd/.posts`: Absolute path to a directory which contains your posts.
+- `path` – default: `/blog/`: Path (with trailing and leading `/`) under which your blog will be available. A value of `/blog/` means that *miniPress* expects your blog posts to be available at `https://your-host.tld/$build.base/blog/$post`.
+- `comparePosts`: A function which compares two posts. This is used to sort your posts. The default `comparePosts`-function orderes your posts by date.
+
+### excerpt
+`@minipress/plugin-excerpt` extracts excerpts and makes them available as components that can be rendered everywhere.
+
+::: tip
+`@minipress/plugin-excerpt` is usually only used indirectly because it is already preconfiguered once you are using `@minipress/plugin-blog`. In case you are curious or just want to use `@minipress/plugin-excerpt` directly read ahead.
+:::
+
+**Installation**
+```sh
+npm install @minipress/plugin-excerpt --save
+```
+
+**Configuration**
+```js
+module.exports = {
+  plugins: [
+    ['@minipress/plugin-excerpt']
+  ]
+}
+```
+
+**Usage**
+With the **excerpt**-pluing installed you can now create excerpts like this:
+
+```md {highlightLines: [5]}
+# My Page
+
+I am part of the excerpt.
+
+<!-- more -->
+
+The main content goes here.
+```
+
+Everything before `<!-- more -->` is considered part of the *excerpt* and everything after `<!-- more -->` is considered to be part of the main content.
+
+The **excerpt**-pluing makes the excerpt available on the page-object. You can access the excerpt of the current page with
+<code v-pre>{{ $minipress.page.excerpt }}</code>.
+
+::: warn
+Using <code v-pre>{{ $minipress.page.excerpt }}</code> on a page will output the rendered excerpt as text. If you want to display the rendered excerpt you should use the `Excerpt`-component.
+:::
+
+**The `Excerpt`-Component**
+You can display the rendered excerpt of any page by using the `Excerpt`-component. This component is automatically installed by the **excerpt**-pluing. By default, `Excerpt` will render the excerpt of the current page. You can use the `ofPageWithKey`-prop to render the excerpt of any page:
+
+```md
+Rendered excerpt of page with *key* `plugins--excerpt-sample`:
+
+<Excerpt ofPageWithKey="plugins--excerpt-sample" />
+```
+
+::: summary Show Rendered Excerpt
+<Excerpt ofPageWithKey="plugins--excerpt-sample" />
+:::
+
 ### clean-urls
 
 **Installation**
@@ -497,7 +603,6 @@ module.exports = {
   ]
 }
 ```
-
 
 #### Additional Features
 `@minipress/theme-docs` also comes with a couple of additional features.

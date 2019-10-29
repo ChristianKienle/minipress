@@ -1,0 +1,27 @@
+{
+  "name": "@minipress/example-blog",
+  "version": "0.7.0",
+  "private": false,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress dev",
+    "dev": "minipress dev",
+    "serve": "minipress serve",
+    "gen": "minipress generate",
+    "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
+  },
+  "files": [
+    "src/**/*",
+    "!public/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@minipress/minipress": "^0.7.0",
+    "@minipress/plugin-blog": "^0.7.0",
+    "@minipress/theme-default": "^0.7.0"
+  },
+  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+}

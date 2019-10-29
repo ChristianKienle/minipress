@@ -14,20 +14,15 @@ const transformer = {
             return h(PageComponent, { props })
           }
         }
-        return h('div', {
-          class: 'page-content',
-        },
-        [h(PageComponent, { props })])
+        return h('div', {}, [h(PageComponent, { props })])
       }
     }
     </script>
     `)
     return result
   },
-  async parse(page) {
-  },
-  async transform(page) {
-  },
+  async parse(page) {},
+  async transform(page) {},
   async getPageComponent(page) {
     return codeGen.vue(c => `
     <script>

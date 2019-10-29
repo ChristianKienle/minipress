@@ -49,6 +49,10 @@ module.exports = async function load(source, map) {
     throw Error(`Unable to find page with key '${pageKey}'`)
   }
 
+  if(process.env.MP_LOG_LOADER === 'true') {
+    minipress.log.debug(`universal loader – ${JSON.stringify({pageKey, contentOnly })}`)
+  }
+
   const _contentOnly = contentOnly === 'true' || contentOnly === true
 
   const transformer = minipress.transformers.get(page.contentType)

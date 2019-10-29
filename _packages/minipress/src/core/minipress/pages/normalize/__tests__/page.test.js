@@ -3,42 +3,19 @@
 const { normalizePage } = require('./../')
 const Transformers = require('./../../../transformers')
 const ContentComponents = require('./../../../content-components')
-const TempDir = require('./../../../temp-dir')
-const fs = require('fs-extra')
-const OS = require('os')
-const nanoid = require('nanoid')
+const { createTempDir } = require('@minipress/utils')
+const MarkdownTransformer = require('@minipress/plugin-format-markdown/src/transformer')
 const { join } = require('path')
 
-const createTempDir = () => {
-  const path = join(OS.tmpdir(), nanoid())
-  fs.mkdirSync(path)
-  let cleaned = false
-  const cleanup = () => {
-    if (cleaned === false) {
-      fs.removeSync(path)
-    }
-    cleaned = true
-  }
-  const tempDir = new TempDir({ path })
-  return {
-    tempDir,
-    cleanup
-  }
-}
-
-const MarkdownTransformer = require('@minipress/plugin-format-markdown/src/transformer')
-
 describe('normalize page', () => {
-  let { tempDir, cleanup } = createTempDir()
+  let tempDir = createTempDir()
   beforeEach(() => {
-    cleanup()
-    const dir = createTempDir()
-    tempDir = dir.tempDir
-    cleanup = dir.cleanup
+    tempDir.cleanup()
+    tempDir = createTempDir()
   })
 
   afterEach(() => {
-    cleanup()
+    tempDir.cleanup()
   })
 
   it('virtual page causes content component to be created', async () => {
@@ -74,13 +51,34 @@ describe('normalize page', () => {
       transformers, contentComponents, tempDir
     })
 
-    // expect(contentComponents.get(page.key)).toMatchObject(page)
     expect(_page).toMatchObject({
       content: '<h1 id=\"hi\"><router-link class=\"header-anchor\" to=\"#hi\" aria-hidden=\"true\">#</router-link> hi</h1>\n',
       contentType,
       key: 'mykey',
       path: '/path',
       layout: 'custom'
+    })
+  })
+
+  it('layout/key/path is read from frontmatter of file on disk', async () => {
+    const absolutePath = join(__dirname, 'fixtures', 'page-with-key.md')
+    const page = {
+      file: {
+        absolute: absolutePath
+      }
+    }
+
+    const transformers = new Transformers()
+    transformers.set('md', MarkdownTransformer())
+    const contentComponents = new ContentComponents()
+    const _page = await normalizePage(page, {
+      transformers, contentComponents, tempDir
+    })
+
+    expect(_page).toMatchObject({
+      content: '<p>hello world</p>\n',
+      contentType: 'md',
+      key: 'page-key'
     })
   })
 })

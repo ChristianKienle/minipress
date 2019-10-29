@@ -2,7 +2,7 @@
 const WebpackChain = require('webpack-chain')
 const Webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const path = require('path')
+const Path = require('path')
 const CSSExtractPlugin = require('mini-css-extract-plugin')
 const define = require('./../utils/webpack/define')
 const WebpackBar = require('webpackbar')
@@ -19,21 +19,21 @@ const createBabelOptions = () => ({
   plugins: [
     require.resolve('@babel/plugin-syntax-dynamic-import'),
     [require('@babel/plugin-transform-runtime').default,
-      {
-        corejs: false,
-        helpers: false,
-        regenerator: true,
-        // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
-        // We should turn this on once the lowest version of Node LTS
-        // supports ES Modules.
-        useESModules: false,
-        // Undocumented option that lets us encapsulate our runtime, ensuring
-        // the correct version is used
-        // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
-        absoluteRuntime: path.dirname(
-          require.resolve('@babel/runtime/package.json')
-        )
-      }]
+    {
+      corejs: false,
+      helpers: false,
+      regenerator: true,
+      // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
+      // We should turn this on once the lowest version of Node LTS
+      // supports ES Modules.
+      useESModules: false,
+      // Undocumented option that lets us encapsulate our runtime, ensuring
+      // the correct version is used
+      // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
+      absoluteRuntime: Path.dirname(
+        require.resolve('@babel/runtime/package.json')
+      )
+    }]
   ]
 })
 
@@ -45,12 +45,24 @@ const createBabelOptions = () => ({
 
 /** @param {Options} options */
 module.exports = function createBase({ isServer, minipressConfig }) {
+  // @ts-ignore
+  const getModulePaths = () => module.paths.concat([Path.join(minipressConfig.cwd, 'node_modules')])
+
   // eslint-disable-next-line no-use-before-define
   const modulePaths = getModulePaths()
   const isProd = process.env.NODE_ENV === 'production'
   const isDev = !isProd
   const mode = isProd ? 'production' : 'development'
   const config = new WebpackChain()
+  const ownModulesDir = Path.join(
+    Path.dirname(require.resolve('vue/package')),
+    '..'
+  )
+  config.resolve.modules.add('node_modules').add(ownModulesDir)
+  config.resolveLoader.modules.add('node_modules').add(ownModulesDir)
+  const appModules = Path.join(minipressConfig.cwd, 'node_modules')
+  config.resolve.modules.add(appModules)
+  config.resolveLoader.modules.add(appModules)
 
   config.mode(mode).end()
   config.stats('errors-only').end()
@@ -179,7 +191,7 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .use(Webpack.DefinePlugin, [{}])
     .end()
 
-  const tempDir = path.relative(minipressConfig.cwd, minipressConfig.tempDir)
+  const tempDir = Path.relative(minipressConfig.cwd, minipressConfig.tempDir)
   define(config)
     .set('process.env.NODE_ENV')
     .to(mode)
@@ -197,11 +209,11 @@ module.exports = function createBase({ isServer, minipressConfig }) {
 
   const webpackbarName = isServer ? 'server' : 'client'
   const webpackbarColor = isServer ? 'magenta' : 'teal'
-  config.plugin('webpackbar').use(WebpackBar, [{ color: webpackbarColor, name: webpackbarName }])
+  const barOptions = {
+    name: webpackbarName,
+    color: webpackbarColor,
+    compiledIn: false
+  }
+  config.plugin('webpackbar').use(WebpackBar, [barOptions])
   return config
-}
-
-function getModulePaths() {
-  // @ts-ignore
-  return module.paths.concat([path.resolve(process.cwd(), 'node_modules')])
 }

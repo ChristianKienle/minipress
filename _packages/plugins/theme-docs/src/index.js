@@ -84,6 +84,7 @@ module.exports = {
         minipress.components.register(id, path)
       }
       register('MiniFlexItem', 'flex-item.vue')
+      register('MpMain', 'main.vue')
       register('MiniFlex', 'flex.vue')
       register('MiniTip', 'containers/tip.vue')
       register('MiniInfo', 'containers/info.vue')

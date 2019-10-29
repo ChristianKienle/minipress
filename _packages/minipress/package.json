@@ -90,6 +90,7 @@
     "webpackbar": "^4.0.0"
   },
   "devDependencies": {
+    "@minipress/test-utils": "^0.7.0",
     "@minipress/eslint-config-node": "^0.7.0",
     "@minipress/types": "^0.7.0",
     "@types/fs-extra": "^8.0.1",
