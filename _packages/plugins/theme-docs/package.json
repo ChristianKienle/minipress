@@ -24,6 +24,7 @@
     "@minipress/custom-container": "^0.6.0"
   },
   "devDependencies": {
+    "@minipress/types": "^0.6.0",
     "@minipress/eslint-config-client": "^0.6.0",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
