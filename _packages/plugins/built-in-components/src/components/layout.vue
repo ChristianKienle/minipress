@@ -1,7 +1,7 @@
 <script>
 // A component that renders a registered layout given it's name.
 /** @type {import('vue').FunctionalComponentOptions} */
-export default {
+const Layout = {
   name: "MiniLayout",
   functional: true,
   props: {
@@ -22,7 +22,11 @@ export default {
     const children = h("div", {}, [
       scopedSlots.default != null ? scopedSlots.default(attrs.props) : slots().default
     ]);
-    return h(`mp-layout-${name}`, {...attrs}, [children]);
+    const _props = {
+      page: $page
+    }
+    return h(`mp-layout-${name}`, { ...attrs, props: _props }, [children]);
   }
 }
+export default Layout
 </script>

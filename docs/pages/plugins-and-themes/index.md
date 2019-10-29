@@ -500,7 +500,10 @@ module.exports = {
 
 
 #### Additional Features
-`@minipress/theme-docs` also comes with a couple of additional features. There are three custom containers you can choose from:
+`@minipress/theme-docs` also comes with a couple of additional features.
+
+##### Containers
+There are three custom containers you can choose from:
 
 ::: tip
 Tips is a tip container.
@@ -517,12 +520,28 @@ Tips is an error container.
 Use `:::error` to display error messages or highly important information.
 :::
 
+##### Layouts
 The *docs*-theme also comes with a second layout: `hero`. You can see this layout in action by going to the [landing page](/).
 
 It also includes two useful components:
 
 - `MiniFlex`: Can be used to render a flex box.
 - `MiniFlexItem`: Use this component inside `MiniFlex` to add content to your flex box.
+
+##### Sidebar
+You can control the visibility of the sidebar either by setting the layout:
+- Layout `hero`: Does __not__ render a sidebar
+- Layout `default`: Does render a sidebar
+
+The sidebar can also be controlled by using frontmatter:
+
+```md {highlightLines: [2]}
+---
+sidebar: false
+---
+
+# My Page
+```
 
 ## Writing a Plugin or Theme
 

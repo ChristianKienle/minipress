@@ -6,7 +6,7 @@
           style="align-items: center; justify-content: center; display: flex;"
         >
           <MpSideNavButton
-            v-if="showSidebar"
+            v-if="showSidebar_"
             @click="toggleSidebar"
             :pressed="sidebarOpen"
             class="mp-main-sidebar-button"
@@ -37,7 +37,7 @@
       </div>
       <div class="mp-layout__container" :class="layoutContainerClasses">
         <div class="mp-main__content" :style="layoutContainerStyles">
-          <slot  />
+          <slot />
         </div>
       </div>
     </div>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+// @ts-nocheck
 import MpNav from "./nav.vue";
 import MpLeftBar from "./left-bar.vue";
 import MpLogo from "./logo.vue";
@@ -64,7 +65,7 @@ export default {
     },
     themeConfig: {
       type: Object,
-      default: () => ({ navbar: { items: [] }})
+      default: () => ({ navbar: { items: [] } })
     },
     page: {
       type: Object,
@@ -81,9 +82,8 @@ export default {
     };
   },
   methods: {
-    toggleSidebar(openOverride) {
-      this.sidebarOpen =
-        typeof openOverride === "boolean" ? openOverride : !this.sidebarOpen;
+    toggleSidebar(forceOpen) {
+      this.sidebarOpen = (forceOpen != null && typeof forceOpen === "boolean") ? forceOpen : !this.sidebarOpen;
     },
     onTouchStart({ changedTouches }) {
       const [touch] = changedTouches;
@@ -109,17 +109,23 @@ export default {
     }
   },
   computed: {
+    showSidebar_() {
+      const { page, showSidebar } = this
+      const { frontmatter = {}} = page
+      const { sidebar } = frontmatter
+      return sidebar == null ? showSidebar : sidebar
+    },
     navbarItems() {
       return this.themeConfig.navbar.items;
     },
     classes() {
       return {
-        "mp-docs-theme__sidebar--open": this.sidebarOpen && this.showSidebar
+        "mp-docs-theme__sidebar--open": this.sidebarOpen && this.showSidebar_
       };
     },
     sidebarClasses() {
       return {
-        "mp-sidebar--disabled": !this.showSidebar
+        "mp-sidebar--disabled": !this.showSidebar_
       };
     },
     layoutContainerStyles() {
@@ -129,21 +135,19 @@ export default {
     },
     layoutContainerClasses() {
       return {
-        "mp-layout__container--with-sidebar": this.showSidebar,
-        "mp-layout__container--without-sidebar": !this.showSidebar
+        "mp-layout__container--with-sidebar": this.showSidebar_,
+        "mp-layout__container--without-sidebar": !this.showSidebar_
       };
     },
     $_headings() {
       return (this.page.headings || []).filter(isNotTitleHeading);
     },
     $_titleHeading() {
-      const titleHeadings = (this.page.headings || []).filter(
-        isTitleHeading
-      );
+      const titleHeadings = (this.page.headings || []).filter(isTitleHeading);
       return titleHeadings.length > 0 ? titleHeadings[0] : null;
     }
   }
-};
+}
 </script>
 
 <style lang="stylus">
