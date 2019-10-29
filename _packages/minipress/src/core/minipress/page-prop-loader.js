@@ -2,7 +2,7 @@
 const loaderUtils = require('loader-utils')
 const codeGen = require('@minipress/code-gen')
 const normalizeOptions = require('./../minipress/universal-page-loader/normalize-options')
-const devalue = require('devalue')
+const { devalue } = require('@minipress/utils')
 
 /** @type {import("webpack").loader.Loader} */
 module.exports = async function load(source, map) {
