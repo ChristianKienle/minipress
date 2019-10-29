@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-summary-container",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "my extraordinary plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -15,10 +15,10 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/custom-container": "^0.6.0"
+    "@minipress/custom-container": "^0.7.0"
   },
   "devDependencies": {
-    "@minipress/types": "^0.6.0",
+    "@minipress/types": "^0.7.0",
     "@types/webpack-env": "^1.14.1",
     "vue": "^2.6.10"
   },
