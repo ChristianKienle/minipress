@@ -1,0 +1,19 @@
+{
+  "name": "@minipress/test-utils",
+  "version": "0.7.0",
+  "description": "",
+  "files": [
+    "src/**/*.js",
+    "types/**/*.d.ts"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  },
+  "typings": "types/index.d.ts"
+}

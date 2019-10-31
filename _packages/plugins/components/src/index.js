@@ -3,13 +3,11 @@ const normalize = require('./normalize')
 const PLUGIN = '@minipress/plugin-components'
 const { Watcher } = require('@minipress/utils')
 
-/**
- * @type {import('./types').Plugin}
- */
+/** @type {import('./types').Plugin} */
 module.exports = {
   async apply(minipress, options) {
-    const { log } = minipress
-    minipress.hooks.registerComponents.tapPromise(PLUGIN, async () => {
+    const { log, hooks } = minipress
+    hooks.registerComponents.tapPromise(PLUGIN, async () => {
       let watcher;
       const normalizeOptions = {
         components: options,

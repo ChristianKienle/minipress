@@ -156,6 +156,10 @@
       "name": "examples/extend-cli",
       "path": "_examples/extend-cli"
     },
+		{
+			"name": "examples/component-library",
+			"path": "_examples/component-library"
+		},
     {
       "name": "support/eslint-config-node",
       "path": "_support/eslint-config-node"
@@ -171,6 +175,10 @@
     {
       "name": "support/type-check",
       "path": "_support/type-check"
+    },
+		{
+      "name": "support/test-utils",
+      "path": "_support/test-utils"
     },
     {
       "name": "tools/create-minipress-plugin",

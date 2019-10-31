@@ -1,5 +1,4 @@
 // @ts-check
-const nodeExternals = require('webpack-node-externals')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 const entryPointPath = require.resolve('@minipress/app/src/entry-server')
 
@@ -33,11 +32,9 @@ const createServer = (config, { dest, minipressConfig }) => {
     .end()
 
   config
-    .externals(
-      nodeExternals({
-        whitelist: [/\.css$/, '@minipress/built-in-components']
-      })
-    ).end()
+    .target('node')
+    .externals([/^(vue|vue-router)$/])
+    .end()
 
   config
     .plugin('vue-server')

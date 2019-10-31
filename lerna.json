@@ -1,6 +1,6 @@
 {
   "packages": [
-    "_examples/*",
+    "_examples/**",
     "_packages/**",
     "_support/*",
     "docs",

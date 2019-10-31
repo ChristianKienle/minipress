@@ -213,13 +213,14 @@ class Minipress {
   async getWebpackConfig(type) {
     const { config } = this
     const { dest } = config
-    const baseOptions = {
+    const options = {
       dest,
       isServer: type === 'server',
       minipressConfig: this.config
     }
-    const base = createBaseConfig(baseOptions)
-    const chain = type === 'server' ? createServerConfig(base, baseOptions) : createClientConfig(base, baseOptions)
+    const createBase = () => createBaseConfig(options)
+
+    const chain = type === 'server' ? createServerConfig(createBase(), options) : createClientConfig(createBase(), options)
 
     // Inform our plugins about the chain
     await this.hooks.chainWebpack.promise(chain, type)
@@ -508,8 +509,6 @@ class Minipress {
   async run() {
     this.log.info(`Using publicUrl: ${this.config.build.base}`)
     await this.hooks.beforeRun.promise()
-
-
 
     this.emitComponents()
     const defaultThemePath = require.resolve('@minipress/theme-default/package.json')

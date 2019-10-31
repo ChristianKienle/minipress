@@ -79,6 +79,7 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .path(minipressConfig.dest)
     .filename('assets/js/[name].js')
     .end()
+
   config.module.rule('js').test(/\.js$/).exclude.add(/node_modules/).add(/\.vue\.js/)
     .end()
 
@@ -101,6 +102,8 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     })
 
   // Resolve dependencies
+  config.resolve.symlinks(true)
+
   config.resolve.modules.add('node_modules')
 
   // Complicated CSS Support

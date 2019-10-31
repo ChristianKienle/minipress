@@ -1,11 +1,11 @@
 // @ts-check
 const { resolve } = require('path')
 const EventEmitter = require('events')
-const { camelize, Watcher } = require('@minipress/utils')
+const { camelize, Watcher, globby } = require('@minipress/utils')
 const GLOBS = ['**/*.vue', '!node_modules/**']
-const globby = require('globby')
 const { WatcherEvent } = Watcher
 const nameForContext = require('./name-for-context')
+const fs = require('fs-extra')
 
 /** @typedef {import('./types').Component} Component */
 /** @typedef {import('./types').Components} Components */
@@ -37,8 +37,11 @@ class ComponentsProvider {
    */
   async getComponents() {
     const { componentsDir, watcher, emitter } = this
-    const relativePaths = await globby(GLOBS, { cwd: componentsDir })
-    const initial = relativePaths.map(relative => this.filePathToComponent(relative))
+    if((await fs.pathExists(componentsDir)) === false) {
+      return []
+    }
+    const paths = await globby(GLOBS, { cwd: componentsDir })
+    const initialComponents = paths.map(path => this.pathToComponent(path))
     if (watcher != null) {
       watcher.on((event, path) => {
         const component = this.filePathToComponent(path)
@@ -46,7 +49,7 @@ class ComponentsProvider {
       })
       setTimeout(() => watcher.resume())
     }
-    return initial
+    return initialComponents
   }
 
   /**

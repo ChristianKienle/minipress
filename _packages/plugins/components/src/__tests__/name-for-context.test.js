@@ -17,4 +17,3 @@ describe('nameForContext', () => {
     expect(nameFor(makeContext('world.vue'))).toEqual('World')
   })
 })
-
