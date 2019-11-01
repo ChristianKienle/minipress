@@ -97,15 +97,15 @@ module.exports = class VueRenderer {
   async generatePage({ page, renderer, outDir }) {
     const { path } = page
     if (path == null) {
-      this.log.debug(`Cannot generate page ${stringify(page.file)} – path is null.`)
+      this.log.debug(`Skipping ${stringify(page.file)} – path not set.`)
       return
     }
     const outputPath = getPageOutputFilepath(page, { outDir })
     if (outputPath == null) {
-      this.log.debug(`Cannot generate page ${stringify(page.file)} – outputPath could not be determined.`)
+      this.log.debug(`Skipping ${stringify(page.file)} – outputPath not available.`)
       return
     }
-    this.log.info(`${path} → ${outputPath}…`)
+    this.log.success(`${path}`)
     const context = await this.createContext(path)
     const markup = await renderer.renderToString(context)
     const html = markup.replace('<div data-server-rendered="true">', '<div data-server-rendered="true" id="app">')

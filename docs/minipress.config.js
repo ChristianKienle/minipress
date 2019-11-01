@@ -1,6 +1,8 @@
 // @ts-check
 const { join } = require('path')
 const PLUGIN = '@minipress/docs'
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 const themeConfig = {
   navbar: {
     items: [
@@ -51,6 +53,20 @@ module.exports = {
   ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
   apply(minipress) {
+    minipress.hooks.chainWebpack.tapPromise(PLUGIN, async (config, type) => {
+      if(type === 'client') {
+        config
+        .plugin('webpack-bundle-analyzer')
+        .use(BundleAnalyzerPlugin)
+        .tap(() => [{
+          reportFilename: `client.html`,
+          analyzerMode: 'static',
+          openAnalyzer: false
+        }])
+        .end()
+      }
+    })
+
     minipress.hooks.registerGlobalComponents.tapPromise(PLUGIN, async () => {
       minipress.globalComponents.register('DocsGlobalStyles', join(__dirname, 'styles', 'global.vue'))
     })
