@@ -78,7 +78,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 <a name="lists"/>
 
-## Lists `hihi`
+## Lists
 
 (In this example, leading and trailing spaces are shown with with dots: ⋅)
 

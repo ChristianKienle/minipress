@@ -6,7 +6,7 @@ describe('hi', () => {
   it('do', () => {
     const md = createMd()
     md.use(tip)
-    const html = md.render('\n\n::: tip bla\nhihi\n:::\n\n')
+    const html = md.render('\n\n::: tip bla\ntest\n:::\n\n')
     expect(html).toMatchSnapshot()
 
   })
