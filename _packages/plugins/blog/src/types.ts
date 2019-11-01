@@ -3,7 +3,7 @@ import { Plugin as PluginType, Page } from '@minipress/types'
 export type PostsCompareFunction = (p1: Page, p2: Page) => number
 
 interface Options {
-  posts: string // defaults to '.posts'
+  posts: string // defaults to 'posts'
   path: string // defaults to '/blog/
   comparePosts: PostsCompareFunction // uses a sensible sort function by default
 }

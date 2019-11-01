@@ -30,7 +30,7 @@ module.exports = {
 ```
 
 **Usage**
-You create a post by adding a markdown file inside your `.posts`-directory. A post is a almost normal markdown page.
+You create a post by adding a markdown file inside your `posts`-directory. A post is a almost normal markdown page.
 
 ::: warn
 Make sure that your posts have a frontmatter `title`-attribute.
@@ -57,7 +57,7 @@ The **blog**-plugin will add a `posts`-attribute to `$minipress.site`. You can u
 
 `@minipress/plugin-blog` can be configured in case the defaults don't work for you.
 
-- `posts` – default: `$cwd/.posts`: Absolute path to a directory which contains your posts.
+- `posts` – default: `$cwd/posts`: Absolute path to a directory which contains your posts.
 - `path` – default: `/blog/`: Path (with trailing and leading `/`) under which your blog will be available. A value of `/blog/` means that *miniPress* expects your blog posts to be available at `https://your-host.tld/$build.base/blog/$post`.
 - `comparePosts`: A function which compares two posts. This is used to sort your posts. The default `comparePosts`-function orderes your posts by date.
 

@@ -5,7 +5,7 @@ date: 2019-11-01
 layout: post
 ---
 
-As of today, **miniPress* v0.8.0 is available. This release has a lot of bug fixes and two new features:
+As of today, *miniPress* v0.8.0 is available. This release has a lot of bug fixes and two new features:
 
 - Blog Plugin: This plugin allows you to easily build your own blog. Isn't that cool?
 - Excerpts: Easily create and render excerpts.

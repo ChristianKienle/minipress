@@ -59,7 +59,7 @@ module.exports = {
     })
   },
   optionsSchema({ joi, config }) {
-    const posts = join(config.cwd, '.posts')
+    const posts = join(config.cwd, 'posts')
     const path = '/blog/'
     return joi.object({
       posts: joi.string().default(posts),
