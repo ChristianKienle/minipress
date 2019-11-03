@@ -5,9 +5,10 @@ const log = require('@minipress/log')
 const Path = require('path')
 const { resolve } = Path
 const fs = require('fs')
-const normalizeConfig = require('./../config')
 const Cli = require('@minipress/cli')
 const { setNodeEnv } = require('@minipress/utils')
+const Config = require('@minipress/config')
+const normalizeConfig = Config.normalize.normalizeConfig
 
 const loadConfig = configOptionValue => {
   if (configOptionValue == null) {

@@ -6,7 +6,7 @@
  * @typedef {import('@minipress/types').ConfigExecutablePlugin} ConfigExecutablePlugin
  */
 const { dirname } = require('path')
-const nanoid = require('nanoid')
+const { nanoid } = require('@minipress/utils')
 
 /** @param {string} id */
 const isRelative = id => id.startsWith('.')
@@ -141,7 +141,7 @@ const makeExecutable = (plugin, options) => {
     apply: async minipress => {
       const validator = createValidator(minipress)
       const validOptions = validator()
-      apply(minipress, validOptions)
+      await apply(minipress, validOptions)
     }
   }
 }

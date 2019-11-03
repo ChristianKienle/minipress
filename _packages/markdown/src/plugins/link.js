@@ -11,7 +11,7 @@ module.exports = (md, { externalAttrs }) => {
   function toRouterLink(token, link, relativePath) {
     link[0] = ':to'
     const to = pathForRelativeFile({ href: link[1], currentRelativePagePath: `/${relativePath}` })
-    link[1] = `$minipress.pageLink(${stringify(decodeURI(to))})`
+    link[1] = `$minipress.pageLink('${decodeURI(to)}')`
     return Object.create(token, {
       tag: { value: 'MiniLink' }
     })

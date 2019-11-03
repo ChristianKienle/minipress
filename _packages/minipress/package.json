@@ -10,6 +10,7 @@
   "files": [
     "src/**/*.js"
   ],
+  "typings": "index.d.ts",
   "scripts": {
     "lint": "eslint .",
     "test": "jest --clearCache && jest .",
@@ -27,6 +28,7 @@
     "@hapi/joi": "^16.1.7",
     "@minipress/app": "^0.8.0",
     "@minipress/cli": "^0.8.0",
+    "@minipress/config": "^0.8.0",
     "@minipress/code-gen": "^0.8.0",
     "@minipress/head-element": "^0.8.0",
     "@minipress/log": "^0.8.0",

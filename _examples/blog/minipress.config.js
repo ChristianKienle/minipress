@@ -5,6 +5,5 @@ module.exports = {
     '@minipress/theme-default',
     '@minipress/plugin-blog'
   ],
-  apply(minipress) {
-  }
+  async apply(minipress) {}
 }

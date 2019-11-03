@@ -1,4 +1,4 @@
 import Cli from './src/index'
-type _Cli = typeof Cli
-export default _Cli
+declare const cli: typeof Cli
+export = cli;
 

@@ -36,7 +36,7 @@ module.exports = {
     })
   },
 
-  apply(minipress, options) {
+  async apply(minipress, options) {
     CustomContainer.apply(minipress, {
       type: 'tip',
       defaultTitle: 'TIP',

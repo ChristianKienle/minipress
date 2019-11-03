@@ -7,7 +7,7 @@ module.exports = {
   optionsSchema({ joi }) {
     return joi.func().required()
   },
-  apply(minipress, generateAdditionalPages) {
+  async apply(minipress, generateAdditionalPages) {
     const { joi, log } = minipress
     const fileSchema = joi.object({
       relative: joi.string(),
