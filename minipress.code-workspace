@@ -24,6 +24,10 @@
       "name": "code-gen",
       "path": "_packages/code-gen"
     },
+		{
+      "name": "config",
+      "path": "_packages/config"
+    },
     {
       "name": "utils",
       "path": "_packages/utils"
@@ -172,6 +176,10 @@
 			"name": "examples/component-library",
 			"path": "_examples/component-library"
 		},
+		{
+			"name": "examples/using-the-api",
+			"path": "_examples/using-the-api"
+		},
     {
       "name": "support/eslint-config-node",
       "path": "_support/eslint-config-node"
@@ -180,17 +188,13 @@
       "name": "support/eslint-config-client",
       "path": "_support/eslint-config-client"
     },
-    {
-      "name": "support/gh-pages",
-      "path": "_support/gh-pages"
-    },
-    {
-      "name": "support/type-check",
-      "path": "_support/type-check"
-    },
 		{
       "name": "support/test-utils",
       "path": "_support/test-utils"
+    },
+		{
+      "name": "support/system-tests",
+      "path": "_support/system-tests"
     },
     {
       "name": "tools/create-minipress-plugin",

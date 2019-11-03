@@ -116,7 +116,7 @@ const normalizePage = async (page = {}, {
   }
 
   if (isVirtualPage(page)) {
-    const absolutePath = tempDir.writeTemp(`virtual-pages/${page.key}.${page.contentType || 'md'}`, page.content)
+    const absolutePath = tempDir.writeTemp(`virtual-pages/${ProcessablePage.key}.${ProcessablePage.contentType || 'md'}`, ProcessablePage.content)
     file.absolute = absolutePath
     contentComponents.register(page.key, { id: page.key, absolutePath })
   }

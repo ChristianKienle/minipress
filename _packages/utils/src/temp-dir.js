@@ -1,5 +1,5 @@
 const { tmpdir } = require('os')
-const { sep, resolve, parse } = require('path')
+const { dirname, sep, resolve, parse } = require('path')
 const fs = require('fs-extra')
 const { readFileSync, pathExistsSync, writeFileSync, emptyDirSync, openSync } = fs
 
@@ -26,7 +26,6 @@ module.exports = class TempDir {
       return
     }
     emptyDirSync(tempDir)
-    fs.rmdirSync(this.path)
     this.isClean = true
   }
 
@@ -47,6 +46,7 @@ module.exports = class TempDir {
     if (path == null) {
       throw Error(`Unable to write temporary file '${path}' because temporary directory could not be determined. This is a serious error. We can't proceed.`)
     }
+    this._ensureDirectory(dirname(path))
     writeFileSync(path, content, 'utf-8')
     return path
   }

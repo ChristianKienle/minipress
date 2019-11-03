@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
-  apply(minipress) {
+  async apply(minipress) {
     minipress.pageTransformers.add(async page => {
       if (page._filePath != null) {
         const stats = await fs.stat(page._filePath)

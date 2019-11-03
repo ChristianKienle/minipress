@@ -12,8 +12,10 @@ const slugify = require('slugify').default
 const globby = require('./globby')
 const pathToComponentName = require('./path-to-component-name')
 const TempDir = require('./temp-dir')
+const nanoid = require('nanoid')
 
 module.exports = {
+  nanoid,
   TempDir,
   createTempDir: () => new TempDir(),
   createPageKey,

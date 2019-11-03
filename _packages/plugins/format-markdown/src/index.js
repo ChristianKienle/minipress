@@ -12,7 +12,7 @@ const createTransformer = require('./transformer')
 
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
-  apply(minipress) {
+  async apply(minipress) {
     const transformer = createTransformer()
     const renderer = transformer.renderer
 

@@ -1,7 +1,7 @@
 // @ts-check
 
 module.exports = {
-  apply(minipress, options) {
+  async apply(minipress, options) {
 
   }
 }

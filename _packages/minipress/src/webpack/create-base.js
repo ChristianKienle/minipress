@@ -6,6 +6,7 @@ const Path = require('path')
 const CSSExtractPlugin = require('mini-css-extract-plugin')
 const define = require('./../utils/webpack/define')
 const WebpackBar = require('webpackbar')
+const LogErrorsPlugin = require('./plugins/log-errors-plugin')
 
 const createBabelOptions = () => ({
   // do not pick local project babel config (.babelrc)
@@ -54,6 +55,8 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   const isDev = !isProd
   const mode = isProd ? 'production' : 'development'
   const config = new WebpackChain()
+  config.plugin('log-errors').use(LogErrorsPlugin)
+
   const ownModulesDir = Path.join(
     Path.dirname(require.resolve('vue/package')),
     '..'

@@ -5,7 +5,7 @@ const PLUGIN = '@minipress/plugin-clean-urls'
 
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
-  apply(minipress, options = {}) {
+  async apply(minipress, options = {}) {
     const {
       normalSuffix = '',
       indexSuffix = '/',

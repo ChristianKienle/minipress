@@ -24,7 +24,8 @@ const http = require('http')
 const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
 const helmet = require('helmet')
-const normalizeConfig = require('./../../config')
+const Config = require('@minipress/config')
+const normalizeConfig = Config.normalize.normalizeConfig
 
 /**
  * @typedef {import('@minipress/types').Page} Page
@@ -39,6 +40,8 @@ class Minipress {
    * @param {Options} options
    */
   constructor({ config, log, cli }) {
+    this.pluginsPrepared = false
+
     this.hooks = {
       // Called right at the start of the run(…)-method
       beforeRun: new AsyncSeriesHook(),
@@ -157,6 +160,12 @@ class Minipress {
         })
 
     this.hooks.afterPlugins.tapPromise('minipress-ctor', async () => {
+      this.hooks.initialPages.tapPromise('minipress-ctor-pages', async () => {
+        await this.getSiteData()
+        await this.hooks.emitPages.promise(this.pages)
+        await this.hooks.emitRoutes.promise()
+      })
+
       this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
         const pages = this.pages.values()
         const _siteData = {
@@ -331,6 +340,9 @@ class Minipress {
   // You can use miniPress directly (by using its API) or by using the CLI.
   // You can extend the cli via plugins. Not every command registered will want to call prepare() – which does a lot. This is why those two things are seperated.
   async preparePlugins() {
+    // We have to clean very early – otherwise everything we did in config.apply(…) will be deleted again. Yucks!
+    this.cleanTempDir()
+
     // Register the built-in-components (Content, Link, …)
     this.use(require('@minipress/plugin-built-in-components'))
     // Register default Theme
@@ -380,6 +392,10 @@ class Minipress {
     })
 
     // Give minipress.config.js a chance to do something
+    // Calling apply(…) before any plugins are actually registered
+    // means that anything added via plugins (support for markdown, vue, …)
+    // won't work within your apply(…) method.
+    // This is why you should always write a plugin instead of using apply(…).
     await this.config.apply(this)
 
     // tell everyone that we are about to apply all plugins
@@ -389,12 +405,21 @@ class Minipress {
 
     // Ask everyone to extend the CLI
     await this.hooks.extendCli.promise()
+
+    // Mark as prepared
+    this.pluginsPrepared = true
+  }
+
+  _assertThatPluginsArePrepared() {
+    if(this.pluginsPrepared === false) {
+      throw Error('You have to call \'preparePlugins()\' once before you interact with the miniPress API.')
+    }
   }
 
   // Everything that needs to be done exactly once goes into prepare(…)
   // This method expects preparePlugins to be called first
   async prepare() {
-    this.cleanTempDir()
+    this._assertThatPluginsArePrepared()
 
     // Give plugins a chance to register transformers
     await this.hooks.registerTransformers.promise()
@@ -546,6 +571,8 @@ class Minipress {
    * @prop {boolean} watch
    */
   async run() {
+    this._assertThatPluginsArePrepared()
+
     this.log.info(`Using publicUrl: ${this.config.build.base}`)
     await this.hooks.beforeRun.promise()
 

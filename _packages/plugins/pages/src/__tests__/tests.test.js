@@ -3,22 +3,20 @@ const getPagesInDir = require('./../get-pages-in-dir')
 const { join } = require('path')
 const fs = require('fs-extra')
 const os = require('os')
-const { Watcher } = require('@minipress/utils')
+const { Watcher, createTempDir } = require('@minipress/utils')
 const { createVirtualWatcher } = Watcher
 
 class PagesContainer {
   constructor() {
-    this.root = fs.mkdtempSync(join(os.tmpdir(), 'plugin-pages-test-'))
-    this.isClean = false
+    this.tempDir = createTempDir()
   }
 
   cleanup() {
-    if (this.isClean) {
-      return
-    }
-    fs.emptyDirSync(this.root)
-    fs.removeSync(this.root)
-    this.isClean = true
+    this.tempDir.cleanup()
+  }
+
+  get root() {
+    return this.tempDir.path
   }
 
   /**
@@ -45,7 +43,7 @@ class PagesContainer {
    * @param {string} relativePath
    */
   absolutePathFor(relativePath) {
-    return join(this.root, relativePath)
+    return join(this.tempDir.path, relativePath)
   }
 }
 

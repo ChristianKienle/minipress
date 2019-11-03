@@ -1,11 +1,10 @@
 // @ts-check
-const Path = require('path')
-const express = require('express')
-const serveStatic = require('serve-static')
 const PLUGIN = '@minipress/plugin-command-serve'
+const serve = require('./serve')
 
 /** @type {import('./types').Plugin} */
 module.exports = {
+  serve,
   async apply(minipress) {
     minipress.hooks.extendCli.tapPromise(PLUGIN, async () => {
       const { log, config, cli } = minipress
@@ -19,20 +18,8 @@ module.exports = {
           'default': config.port
         })
         .action(async ({ port, dir }) => {
-          try {
-            log.info(`base: ${build.base}`)
-            const app = express()
-            app.use(build.base, serveStatic(Path.resolve(dir)))
-            const listener = app.listen(port, () => {
-              const addr = listener.address()
-              if (typeof addr !== 'object' || addr == null) {
-                throw Error('invalid address')
-              }
-              log.info(`minipress is running on http://${addr.address}:${addr.port}`)
-            })
-          } catch (err) {
-            log.error('Error during serve', err)
-          }
+          const result = await serve(config, { port, dir })
+          log.info(`minipress is running on ${result.url}`)
         })
     })
   }

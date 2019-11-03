@@ -12,7 +12,7 @@ const Transformer = require('./transformer')
 
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
-  apply(minipress) {
+  async apply(minipress) {
     minipress.hooks.registerTransformers.tapPromise(ID, async () => {
       minipress.transformers.set('vue', Transformer)
     })

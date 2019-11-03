@@ -11,7 +11,7 @@ module.exports = {
     const defaultPath = Path.join(config.cwd, 'package.json')
     return joi.string().default(defaultPath)
   },
-  apply(minipress, pkgFile) {
+  async apply(minipress, pkgFile) {
     minipress.hooks.configureSiteData.tapPromise(PLUGIN, async siteData => {
       const { log } = minipress
       const pkg = await fs.readJSON(pkgFile)
@@ -25,35 +25,6 @@ module.exports = {
       }
       log.info(`Found package.json at '${pkgFile}'`)
       siteData.pkg = pkg
-
-      // // const pkgFile = Path.join(dir, 'package.json')
-      // // const cwd = minipress.config.cwd
-      // let dir = cwd
-      // let abort = false
-      // while (abort === false) {
-      //   const pkgFile = Path.join(dir, 'package.json')
-      //   try {
-      //     const pkg = fs.readJSON(pkgFile)
-      //     // if (exists === false) {
-      //     //   dir = Path.join(dir, '..')
-      //     //   continue
-      //     // }
-      //     // await fs.access(pkgFile, fs.constants.R_OK)
-      //     // const pkg = await fs.readJSON(pkgFile)
-      //     if (pkg == null) {
-      //       abort = true
-      //       continue
-      //     }
-      //     if (typeof pkg !== 'object') {
-      //       abort = true
-      //       continue
-      //     }
-      //     log.info(`Found package.json at '${pkgFile}'`)
-      //     siteData.pkg = pkg
-      //   } catch (error) {
-      //     abort = true
-      //   }
-      // }
     })
   }
 }

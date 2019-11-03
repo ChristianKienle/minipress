@@ -52,7 +52,7 @@ module.exports = {
     '@minipress/plugin-package-json'
   ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
-  apply(minipress) {
+  async apply(minipress) {
     minipress.hooks.chainWebpack.tapPromise(PLUGIN, async (config, type) => {
       if(type === 'client') {
         config
