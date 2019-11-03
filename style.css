@@ -864,6 +864,45 @@ table th:first-child {
   margin-bottom: 20px;
 }
 
+
+.title[data-v-37421e47] {
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  line-height: 1.9rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #666;
+  padding-bottom: 10px;
+}
+.title a[data-v-37421e47] {
+  color: #666;
+}
+
+
+.date[data-v-3c478a6a] {
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: 600;
+}
+
+
+/* .mp-blog-posts {
+  background-color: red;
+  margin-top: 2rem;
+}
+.mp-blog-posts__post {
+  background-color: yellow;
+}
+.mp-blog-posts__title {
+  font-size: 2rem;
+}
+.mp-blog-posts__excerpt {
+
+} */
+
 /*
 Markup Example:
 <div class="sc-container">
@@ -982,6 +1021,14 @@ Markup Example:
 }
 
 
+.button[data-v-4c4f9367] {
+  border: 0;
+  padding: 0.2rem 0.5rem;
+  background-color: rgb(215, 255, 177);
+  color: rgb(58, 87, 31);
+}
+
+
 .icon.outbound {
   color: #aaa;
   display: inline-block;
@@ -1017,6 +1064,45 @@ Markup Example:
 .mp-button[data-v-02382e18]:hover {
   background: #007e82;
   color: #fff;
+}
+
+
+.follow[data-v-6b1c8f62] {
+  background-color: rgb(235, 250, 255);
+  padding: 0.5rem 1rem;
+  border-radius: 15px 15px;
+  height: 30px;
+  vertical-align: middle;
+}
+.follow a[data-v-6b1c8f62] {
+  line-height: 30px;
+}
+.follow a[data-v-6b1c8f62], .twitter-logo[data-v-6b1c8f62] {
+  vertical-align: top;
+  height: 30px;
+  display: inline-block;
+}
+
+
+.hero[data-v-ec3f7320] {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(236, 236, 236);
+  margin-bottom: 100px;
+}
+.hero-title[data-v-ec3f7320] {
+  font-size: 3rem;
+  color: black;
+}
+
+
+.posts[data-v-6f309161] {
+  margin-left: auto;
+  margin-right: auto;
+}
+.post[data-v-6f309161] {
+  margin-bottom: 4rem;
 }
 
 .mp-flex__item {
