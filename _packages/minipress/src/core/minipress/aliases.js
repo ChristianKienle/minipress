@@ -8,19 +8,15 @@ const addAlias = (name, path) =>
   config => config.resolve.alias.set(name, path)
 
 module.exports = class Aliases {
-  /** @param {import('./minipress')} minipress */
-  constructor(minipress) {
+  constructor() {
     /** @type {Map.<string, string>} */
     this.byName = new Map() // maps name to path
-    minipress
-      .hooks
-      .chainWebpack
-      .tapPromise('aliases',
-        /** @param {import('webpack-chain')} config */
-        async config => {
-          const aliases = Array.from(this.byName.entries())
-          aliases.forEach(([name, path]) => addAlias(name, path)(config))
-        })
+  }
+
+  /** @param {import('webpack-chain')} config */
+  addToConfig(config) {
+    const aliases = Array.from(this.byName.entries())
+    aliases.forEach(([name, path]) => addAlias(name, path)(config))
   }
 
   /**

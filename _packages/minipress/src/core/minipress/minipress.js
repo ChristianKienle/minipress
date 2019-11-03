@@ -111,7 +111,7 @@ class Minipress {
     }
 
     // TODO: Make configurable
-    if(process.env.MP_LOG_HOOKS === 'true') {
+    if (process.env.MP_LOG_HOOKS === 'true') {
       Object.entries(this.hooks).forEach(([name, hook]) => {
         hook.intercept({
           call: () => {
@@ -133,14 +133,29 @@ class Minipress {
     this.contentComponents = new ContentComponents()
     this.layouts = new Layouts()
     this.transformers = new Transformers()
-    this.pages = new Pages(this)
-    this.aliases = new Aliases(this)
+    this.pageTransformers = new PageTransformers()
+    this.aliases = new Aliases()
+    this.pages = new Pages({
+      aliases: this.aliases,
+      pageTransformers: this.pageTransformers,
+      transformers: this.transformers,
+      tempDir: this.tempDir,
+      contentComponents: this.contentComponents
+    })
     this.dynamicModules = new DynamicModules(this)
     this.appEnhancers = new AppEnhancers(this)
     this.watch = true
-    this.pageTransformers = new PageTransformers()
     this.aliases.register('#minipress/site-data', this.tempDir.resolveTemp('site-data/index.js'))
     this.vueRenderer = new VueRenderer(this)
+
+    this.hooks
+      .chainWebpack
+      .tapPromise('@minipress/internal-plugin-aliases',
+        /** @param {import('webpack-chain')} config */
+        async config => {
+          this.aliases.addToConfig(config)
+        })
+
     this.hooks.afterPlugins.tapPromise('minipress-ctor', async () => {
       this.hooks.emitSiteData.tapPromise('minipress', async siteData => {
         const pages = this.pages.values()
