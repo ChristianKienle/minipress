@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-serve-static",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "my cool plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -14,12 +14,12 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/utils": "^0.7.0",
+    "@minipress/utils": "^0.8.0",
     "fs-extra": "^8.1.0",
     "serve-static": "^1.14.1"
   },
   "devDependencies": {
-    "@minipress/types": "^0.7.0",
+    "@minipress/types": "^0.8.0",
     "@types/fs-extra": "^8.0.1"
   }
 }

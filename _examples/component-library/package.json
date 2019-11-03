@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-component-library",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": false,
   "main": "index.js",
   "license": "MIT",
@@ -19,8 +19,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@zeit-ui/vue": "^2.0.0-alpha.0",
-    "@minipress/minipress": "^0.7.0",
-    "@minipress/example-my-component-library": "^0.7.0"
+    "@minipress/example-my-component-library": "^0.8.0",
+    "@minipress/minipress": "^0.8.0",
+    "@zeit-ui/vue": "^2.0.0-alpha.0"
   }
 }
