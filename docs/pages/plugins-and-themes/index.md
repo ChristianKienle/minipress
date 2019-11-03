@@ -594,7 +594,8 @@ const ThemeOptions = {
       { text: 'Guide', link: '/guide/' },
       { text: 'About', link: '/about/' },
     ]
-  }
+  },
+  logo: 'my Logo Text'
 }
 
 module.exports = {

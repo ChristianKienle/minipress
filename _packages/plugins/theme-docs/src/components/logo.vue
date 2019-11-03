@@ -1,11 +1,21 @@
 <template>
   <span class="logo">
-    <span class="logo__mini">mini</span><span>Press</span>
+    <span v-if="prefix != null" class="logo__prefix">{{ prefix }}</span><span v-if="suffix != null">{{ suffix }}</span>
+    <span v-if="prefix == null && suffix == null">{{ text }}</span>
   </span>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    suffix: String,
+    prefix: String,
+    text: {
+      type: String,
+      default: ''
+    }
+  }
+}
 </script>
 
 <style lang="stylus">
@@ -13,7 +23,7 @@ export default {}
 .logo
   color $logo-color
   font-weight 400
-  &__mini
+  &__prefix
     padding-left 0.1rem
     padding-right 0.1rem
     padding-top 0.3rem
