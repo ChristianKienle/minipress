@@ -3,10 +3,12 @@ const WebpackChain = require('webpack-chain')
 const Webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const Path = require('path')
-const CSSExtractPlugin = require('mini-css-extract-plugin')
 const define = require('./../utils/webpack/define')
 const WebpackBar = require('webpackbar')
 const LogErrorsPlugin = require('./plugins/log-errors-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const createBabelOptions = () => ({
   // do not pick local project babel config (.babelrc)
@@ -56,6 +58,17 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   const mode = isProd ? 'production' : 'development'
   const config = new WebpackChain()
   config.plugin('log-errors').use(LogErrorsPlugin)
+
+  if(isProd) {
+    config.optimization.minimizer('js').use(TerserJSPlugin, [{}])
+    config.optimization.minimizer('css').use(OptimizeCSSAssetsPlugin, [{}])
+
+    const extractCssOptions = {
+      filename: 'styles.css'
+    }
+
+    config.plugin('extract-css').use(MiniCssExtractPlugin, [extractCssOptions])
+  }
 
   const ownModulesDir = Path.join(
     Path.dirname(require.resolve('vue/package')),
@@ -131,7 +144,7 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     function applyLoaders(rule) {
       if (!isServer) {
         if (isProd) {
-          rule.use('extract-css-loader').loader(CSSExtractPlugin.loader)
+          rule.use('extract-css-loader').loader(MiniCssExtractPlugin.loader)
         } else {
           rule.use('vue-style-loader').loader('vue-style-loader')
         }
@@ -180,7 +193,7 @@ module.exports = function createBase({ isServer, minipressConfig }) {
 
   config
     .plugin('extract-css-plugin')
-    .use(CSSExtractPlugin)
+    .use(MiniCssExtractPlugin)
     .tap(() => [{ filename: 'style.css' }])
     .end()
 
