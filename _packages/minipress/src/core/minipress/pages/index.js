@@ -6,7 +6,6 @@ const hash = require('hash-sum')
  * @typedef {import('@minipress/types').Page} Page
  * @typedef {import('@minipress/types').ProcessablePage} ProcessablePage
  * @typedef {import('@minipress/types').EmittablePage} EmittablePage
- * @typedef {import('./../minipress')} Minipress
  */
 
 // A new Pages Implementation:
@@ -41,22 +40,38 @@ const hash = require('hash-sum')
 // - use the best transformer in order to:
 //     - parse the page: extract metadata
 //     - transform the page: actually generate the HTML we need
-
+/**
+ * @typedef {object} Options
+ * @prop {import('./../page-transformers')} pageTransformers
+ * @prop {import('./../transformers')} transformers
+ * @prop {import('@minipress/utils/src/temp-dir')} tempDir
+ * @prop {import('../aliases')} aliases
+ * @prop {import('../content-components')} contentComponents
+ */
 module.exports = class Pages {
   /**
-  * @param {Minipress} minipress
+  * @param {Options} options
   */
-  constructor(minipress) {
-    this.minipress = minipress
+  constructor({
+    aliases,
+    contentComponents,
+    pageTransformers,
+    transformers,
+    tempDir
+  }) {
+    this.aliases = aliases
+    this.contentComponents = contentComponents
+    this.pageTransformers = pageTransformers
+    this.transformers = transformers
+    this.tempDir = tempDir
     /** @type {Map<string, EmittablePage>} */
     this.pages = new Map()
   }
 
   createAlias() {
-    const { minipress } = this
-    const { tempDir } = minipress
-    this.minipress.aliases.register('#minipress/pages', tempDir.resolveTemp('pages'))
-    this.minipress.aliases.register('#minipress/virtual-pages', tempDir.resolveTemp('virtual-pages'))
+    const { tempDir, aliases } = this
+    aliases.register('#minipress/pages', tempDir.resolveTemp('pages'))
+    aliases.register('#minipress/virtual-pages', tempDir.resolveTemp('virtual-pages'))
   }
 
   /**
@@ -76,14 +91,13 @@ module.exports = class Pages {
    * @param {EmittablePage} page
    */
   resolveInternalMinipressPagePath(page) {
-    return this.minipress.tempDir.resolveTemp(`pages/${page.key}.minipresspage`)
+    return this.tempDir.resolveTemp(`pages/${page.key}.minipresspage`)
   }
   /**
    * @param {EmittablePage} page
    */
   _emitPage(page) {
-    const { minipress } = this
-    const { tempDir } = minipress
+    const { tempDir } = this
     const pageHash = hash(page)
     const path = `pages/${page.key}.minipresspage`
     if(tempDir.existsSync(path)) {
@@ -97,12 +111,13 @@ module.exports = class Pages {
 
   /** @param {Page} page */
   async normalizePage(page) {
+    const { pageTransformers, transformers, contentComponents, tempDir } = this
     const ProcessablePage = await normalizePage(page, {
-      transformers: this.minipress.transformers,
-      contentComponents: this.minipress.contentComponents,
-      tempDir: this.minipress.tempDir
+      transformers,
+      contentComponents,
+      tempDir
     })
-    await this.minipress.pageTransformers.transform(ProcessablePage)
+    await pageTransformers.transform(ProcessablePage)
     return ProcessablePage
   }
 
