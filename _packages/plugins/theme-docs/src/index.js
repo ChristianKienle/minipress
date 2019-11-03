@@ -5,8 +5,25 @@ const CustomContainer = require('@minipress/custom-container')
 const PLUGIN = '@minipress/theme-docs'
 /** @type {import('./../../plugin').Plugin} */
 module.exports = {
-  optionsSchema({joi}) {
+  optionsSchema({ joi }) {
+    const defaultLogo = {
+      text: {
+        prefix: 'mini',
+        suffix: 'Press'
+      }
+    }
+    const logoSchema = joi.alternatives().try(
+      joi.string().default('miniPress'),
+      joi.object({
+        text: joi.object({
+          prefix: joi.string().default('mini').required(),
+          suffix: joi.string().default('Press').required()
+        })
+      })
+    ).default(defaultLogo)
+
     return joi.object({
+      logo: logoSchema,
       navbar: joi.object({
         items: joi.array().items(joi.object({
           text: joi.string().default('text undefined'),
@@ -14,11 +31,11 @@ module.exports = {
         })).default([])
       })
     }).default({
-      navbar: {
-        items: []
-      }
+      navbar: { items: [] },
+      logo: defaultLogo
     })
   },
+
   apply(minipress, options) {
     CustomContainer.apply(minipress, {
       type: 'tip',

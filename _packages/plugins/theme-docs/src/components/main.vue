@@ -18,7 +18,8 @@
               exact-active-class=""
               to="/"
             >
-              <MpLogo />
+              <MpLogo v-if="useTextOnlyLogo_" :text="logoConfig_"/>
+              <MpLogo v-else :prefix="logoConfig_.text.prefix" :suffix="logoConfig_.text.suffix" />
             </router-link>
           </div>
         </div>
@@ -109,6 +110,12 @@ export default {
     }
   },
   computed: {
+    logoConfig_() {
+      return this.themeConfig.logo
+    },
+    useTextOnlyLogo_() {
+      return typeof this.logoConfig_ === 'string'
+    },
     showSidebar_() {
       const { page, showSidebar } = this
       const { frontmatter = {}} = page
