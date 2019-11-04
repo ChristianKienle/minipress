@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-component-documentation",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "my mathematical plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/create-element": "^0.8.0",
+    "@minipress/create-element": "^0.8.5",
     "@minipress/custom-container": "^0.8.1",
     "@minipress/markdown": "^0.8.1",
     "@minipress/plugin-components": "^0.8.1",

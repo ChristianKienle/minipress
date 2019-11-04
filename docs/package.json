@@ -1,6 +1,6 @@
 {
   "name": "@minipress/docs",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
@@ -37,7 +37,7 @@
     "@minipress/plugin-blog": "^0.8.1",
     "@minipress/plugin-clean-urls": "^0.8.1",
     "@minipress/plugin-component-demo": "^0.8.3",
-    "@minipress/plugin-component-documentation": "^0.8.4",
+    "@minipress/plugin-component-documentation": "^0.8.5",
     "@minipress/plugin-components": "^0.8.1",
     "@minipress/plugin-deploy-to-gh-pages": "^0.8.1",
     "@minipress/plugin-excerpt": "^0.8.1",

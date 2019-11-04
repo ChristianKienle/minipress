@@ -1,6 +1,6 @@
 {
   "name": "@minipress/create-element",
-  "version": "0.8.0",
+  "version": "0.8.5",
   "description": "",
   "main": "src/index.js",
   "types": "index.d.ts",
@@ -8,7 +8,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["src/index.js", "src/v-node.js", "index.d.ts", "src/v-node-types.ts"],
+  "files": [
+    "src/index.js",
+    "src/v-node.js",
+    "index.d.ts",
+    "src/v-node-types.ts"
+  ],
   "typings": "index.d.ts",
   "keywords": [],
   "author": "",
@@ -17,9 +22,9 @@
     "stringify-attributes": "^2.0.0"
   },
   "devDependencies": {
-    "jest": "^24.9.0",
     "@types/jest": "^24.0.21",
-    "@types/stringify-attributes": "^2.0.0"
+    "@types/stringify-attributes": "^2.0.0",
+    "jest": "^24.9.0"
   },
   "scripts": {
     "test": "jest --clearCache && jest ."
