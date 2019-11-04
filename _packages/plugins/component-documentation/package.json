@@ -18,6 +18,7 @@
   },
   "main": "src/index.js",
   "dependencies": {
+    "@minipress/create-element": "^0.8.0",
     "@minipress/custom-container": "^0.8.1",
     "@minipress/markdown": "^0.8.1",
     "@minipress/plugin-components": "^0.8.1",

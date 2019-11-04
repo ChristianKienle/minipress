@@ -26,6 +26,10 @@ export default {
       type: [String, Number],
       required: true,
       validator () {}
+    },
+    count: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -35,6 +39,13 @@ export default {
       // Fire when the form is cleared
       // @arg The argument is a boolean value representing xxx
       this.$emit('onclear', true)
+    },
+    // @vuese
+    // Used to increment the counter
+    increment() {
+      // Fire when the counter should be incremented
+      // @arg The argument is the new value of the counter
+      this.$emit('update:count', this.count + 1)
     }
   }
 }

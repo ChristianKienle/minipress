@@ -1,5 +1,6 @@
 // @ts-check
 /* eslint-env node */
+const createElement = require('@minipress/create-element')
 
 const Nothing = () => () => "";
 
