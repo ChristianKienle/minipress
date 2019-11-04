@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-features",
-  "version": "0.8.1",
+  "version": "0.8.4",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -23,7 +23,7 @@
     "@minipress/minipress": "^0.8.1",
     "@minipress/plugin-additional-pages": "^0.8.1",
     "@minipress/plugin-clean-urls": "^0.8.1",
-    "@minipress/plugin-component-documentation": "^0.8.1",
+    "@minipress/plugin-component-documentation": "^0.8.4",
     "@minipress/theme-docs": "^0.8.1"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
