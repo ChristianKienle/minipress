@@ -2,6 +2,7 @@
 /* eslint-env node */
 const assert = require('assert').strict
 const CreateMarkdown = require('./create-md')
+const createElement = require('@minipress/create-element')
 
 const classPrefix = 'component-documentation'
 /**
@@ -29,7 +30,12 @@ const getDescription = result => {
  * @param {string} text
  */
 const renderHeading = (level, text) => {
-  return new CreateMarkdown().raw(`<div class="component-documentation__title component-documentation__title--${level}">${text}</div>`)
+  const attrs = {
+    class: `component-documentation__title component-documentation__title--${level}`
+  }
+  const textNode = createElement(null, {}, [], text)
+  const raw = createElement('div', { attrs }, [textNode], null).render()
+  return new CreateMarkdown().raw(raw)
 }
 
 /**
@@ -82,7 +88,7 @@ const renderEvent = event => {
     .lines(event.describe, { wrap: true })
     .nl()
   if (event.isSync) {
-    md.raw(`<fd-badge filled>syncs ${event.syncProp}</fd-badge>`).nl()
+    md.raw(`<span style="color=blue;">syncs ${event.syncProp}</span>`).nl()
   }
   md.nl()
     .strong('Arguments:')
@@ -148,7 +154,7 @@ const renderSlot = slot => {
   const md = renderDivWithScopedClass(slot.name, 'slot-name').nl()
   if (slot.scoped) {
     // TODO: Remove this
-    md.raw(`<fd-badge filled>scoped</fd-badge>`).nl()
+    md.raw(`<span style="color: blue;">scoped</span>`).nl()
   }
   md.lines([slot.describe], { wrap: true }).nl()
   return md
