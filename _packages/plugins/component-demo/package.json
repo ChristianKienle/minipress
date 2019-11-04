@@ -6,6 +6,7 @@
   "license": "MIT",
   "files": [
     "src/**/*.js",
+    "src/**/*.vue",
     "src/types.ts"
   ],
   "scripts": {},
