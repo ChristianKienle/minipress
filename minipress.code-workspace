@@ -40,6 +40,10 @@
       "name": "head-element",
       "path": "_packages/head-element"
     },
+		{
+      "name": "create-element",
+      "path": "_packages/create-element"
+    },
     {
       "name": "markdown",
       "path": "_packages/markdown"
