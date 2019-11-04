@@ -1,6 +1,6 @@
 {
   "name": "@minipress/docs",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
@@ -30,24 +30,24 @@
   },
   "devDependencies": {
     "@minipress/head-element": "^0.8.0",
-    "@minipress/types": "^0.8.0"
+    "@minipress/types": "^0.8.1"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.8.0",
-    "@minipress/plugin-blog": "^0.8.0",
-    "@minipress/plugin-clean-urls": "^0.8.0",
-    "@minipress/plugin-component-demo": "^0.8.0",
-    "@minipress/plugin-component-documentation": "^0.8.0",
-    "@minipress/plugin-components": "^0.8.0",
-    "@minipress/plugin-deploy-to-gh-pages": "^0.8.0",
-    "@minipress/plugin-excerpt": "^0.8.0",
-    "@minipress/plugin-head": "^0.8.0",
-    "@minipress/plugin-last-modified": "^0.8.0",
-    "@minipress/plugin-package-json": "^0.8.0",
-    "@minipress/plugin-pages": "^0.8.0",
-    "@minipress/plugin-serve-static": "^0.8.0",
-    "@minipress/plugin-summary-container": "^0.8.0",
-    "@minipress/theme-docs": "^0.8.0",
+    "@minipress/minipress": "^0.8.1",
+    "@minipress/plugin-blog": "^0.8.1",
+    "@minipress/plugin-clean-urls": "^0.8.1",
+    "@minipress/plugin-component-demo": "^0.8.1",
+    "@minipress/plugin-component-documentation": "^0.8.1",
+    "@minipress/plugin-components": "^0.8.1",
+    "@minipress/plugin-deploy-to-gh-pages": "^0.8.1",
+    "@minipress/plugin-excerpt": "^0.8.1",
+    "@minipress/plugin-head": "^0.8.1",
+    "@minipress/plugin-last-modified": "^0.8.1",
+    "@minipress/plugin-package-json": "^0.8.1",
+    "@minipress/plugin-pages": "^0.8.1",
+    "@minipress/plugin-serve-static": "^0.8.1",
+    "@minipress/plugin-summary-container": "^0.8.1",
+    "@minipress/theme-docs": "^0.8.1",
     "webpack-bundle-analyzer": "^3.6.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"

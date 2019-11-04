@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-command-dev",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "my cool plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -14,7 +14,7 @@
   ],
   "main": "src/index.js",
   "devDependencies": {
-    "@minipress/types": "^0.8.0"
+    "@minipress/types": "^0.8.1"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }

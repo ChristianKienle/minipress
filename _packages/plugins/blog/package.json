@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-blog",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "my cool plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -18,14 +18,14 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/plugin-excerpt": "^0.8.0",
-    "@minipress/plugin-pages": "^0.8.0",
-    "@minipress/utils": "^0.8.0"
+    "@minipress/plugin-excerpt": "^0.8.1",
+    "@minipress/plugin-pages": "^0.8.1",
+    "@minipress/utils": "^0.8.1"
   },
   "devDependencies": {
     "@minipress/eslint-config-node": "^0.8.0",
-    "@minipress/markdown": "^0.8.0",
-    "@minipress/types": "^0.8.0",
+    "@minipress/markdown": "^0.8.1",
+    "@minipress/types": "^0.8.1",
     "@types/jest": "^24.0.18",
     "eslint": "^6.6.0",
     "jest": "^24.9.0"
