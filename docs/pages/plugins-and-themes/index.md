@@ -524,13 +524,13 @@ module.exports = {
 }
 ```
 
-A story is simply a `*.vue`-file which demos one of your components. By default every `*.vue`-file inside `cwd/.stories` will be made available automatically.
+A demo is a `*.vue`-file which demos one of your components. By default every `*.vue`-file inside `cwd/demos` will be made available as a demo automatically.
 
 #### Writing a Demo
 
-Simply create a `*.vue`-file (somewhere) inside the `.demos`-directory:
+Simply create a `*.vue`-file (somewhere) inside the `demos`-directory:
 
-**.demos/my-fancy-component/default.vue**
+**demos/my-fancy-component/default.vue**
 
 ```markup
 <template>
@@ -551,9 +551,6 @@ Now you can use the `Demo`-component to render the demo:
 `Demo` will render something like this:
 
 <Demo name="MyFancyComponent-Default" />
-
-
-
 
 ## Avaiable Themes
 

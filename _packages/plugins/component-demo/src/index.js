@@ -41,7 +41,7 @@ module.exports = {
   },
 
   optionsSchema({ config, joi }) {
-    const defaultDir = join(config.cwd, '.demos')
+    const defaultDir = join(config.cwd, 'demos')
     return joi.object({
       dir: joi.string().default(defaultDir)
     }).default({ dir: defaultDir })
