@@ -148,6 +148,10 @@
       "name": "plugin/package-json",
       "path": "_packages/plugins/package-json"
     },
+		{
+			"name": "plugin/webpack-performance",
+			"path": "_packages/plugins/webpack-performance"
+		},
     {
       "name": "plugin/layouts",
       "path": "_packages/plugins/layouts"

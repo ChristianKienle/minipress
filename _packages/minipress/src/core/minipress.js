@@ -3,7 +3,7 @@ const Components = require('./components')
 const Layouts = require('./layouts')
 const Plugins = require('./plugins')
 const Path = require('path')
-const { AsyncSeriesHook } = require('tapable')
+const { AsyncSeriesHook, AsyncSeriesWaterfallHook } = require('tapable')
 const codeGen = require('@minipress/code-gen')
 const createRoutes = require('./create-routes')
 const Transformers = require('./transformers')
@@ -53,7 +53,7 @@ class Minipress {
       chainWebpack: new AsyncSeriesHook(['chain', 'type']),
       // config: A webpack config object
       // type: either 'client' or 'server'
-      getWebpackConfig: new AsyncSeriesHook(['config', 'type']),
+      getWebpackConfig: new AsyncSeriesWaterfallHook(['config', 'type']),
 
       // Called during the render process (vue-renderer)
       // This is called multiple times so it should not take a lot of time to compute
@@ -273,8 +273,8 @@ class Minipress {
 
     // Now create the actual webpack config and inform all plugins
     const webpackConfig = chain.toConfig()
-    await this.hooks.getWebpackConfig.promise(webpackConfig, type)
-    return webpackConfig
+    const modifiedConfig = await this.hooks.getWebpackConfig.promise(webpackConfig, type)
+    return modifiedConfig
   }
 
   /**

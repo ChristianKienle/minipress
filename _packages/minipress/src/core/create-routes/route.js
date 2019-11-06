@@ -37,7 +37,7 @@ module.exports = class Route {
     return `${componentPath}${hasKnownContentType ? `?${qs.stringify(params)}` : ''}`
   }
 
-  /** @param {{contentOnly: boolean}} options */
+  /** @param {{contentOnly: boolean }} options */
   importCode({ contentOnly = false }) {
     const importPath = this.importPath({ contentOnly })
     const chunkName = `page--${this.meta.$page.key}`

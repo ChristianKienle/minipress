@@ -25,14 +25,6 @@ module.exports = {
     const componentDocumentationForContainer = createComponentDocumentationForContainer(minipress, { markdownRenderer, renderer: _renderer })
 
     await CustomContainerPlugin.apply(minipress, componentDocumentationForContainer)
-
-    minipress.hooks.vuePreloaders.tapPromise(PLUGIN, async preloaders => {
-      preloaders.push({
-        use: 'vuese-loader',
-        loader: require.resolve('./vuese-loader'),
-        options: {}
-      })
-    })
   },
 
   optionsSchema({ config, joi }) {

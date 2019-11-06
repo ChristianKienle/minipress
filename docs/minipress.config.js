@@ -49,7 +49,8 @@ module.exports = {
     ['@minipress/plugin-head', headFn],
     '@minipress/plugin-last-modified',
     '@minipress/plugin-clean-urls',
-    '@minipress/plugin-package-json'
+    '@minipress/plugin-package-json',
+    ['@minipress/plugin-webpack-performance', { enabled: false }]
   ],
   /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
   async apply(minipress) {

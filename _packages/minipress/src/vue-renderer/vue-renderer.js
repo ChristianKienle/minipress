@@ -35,7 +35,7 @@ const minifyHtml = html => htmlMinifier(html, {
 /** @typedef {import('@minipress/types').EmittablePage} EmittablePage */
 
 module.exports = class VueRenderer {
-  /** @param{import('./../core/minipress/minipress')} minipress */
+  /** @param{import('./../core/minipress')} minipress */
   constructor(minipress) {
     this.renderer = null
     this.minipress = minipress
@@ -54,7 +54,6 @@ module.exports = class VueRenderer {
       .title('')
       .description('')
     await this.minipress.hooks.getHead.promise(head, url, this.minipress)
-
     return {
       url,
       head: head.renderToString()
@@ -246,7 +245,6 @@ module.exports = class VueRenderer {
         this.log.info(`Rendering page ${url}`)
         const context = await this.createContext(url)
         const markup = await renderer.renderToString(context)
-
         const html = markup.replace('<div data-server-rendered="true">', '<div data-server-rendered="true" id="app">')
         const minifiedHtml = minifyHtml(html)
         res.setHeader('content-type', 'text/html')

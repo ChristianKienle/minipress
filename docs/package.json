@@ -39,6 +39,7 @@
     "@minipress/plugin-component-demo": "^0.9.0",
     "@minipress/plugin-component-documentation": "^0.9.0",
     "@minipress/plugin-components": "^0.9.0",
+    "@minipress/plugin-webpack-performance": "^0.9.0",
     "@minipress/plugin-deploy-to-gh-pages": "^0.9.0",
     "@minipress/plugin-excerpt": "^0.9.0",
     "@minipress/plugin-head": "^0.9.0",
