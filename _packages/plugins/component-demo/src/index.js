@@ -3,6 +3,7 @@ const PLUGIN = "@minipress/plugin-component-demo"
 const { join, parse, format } = require('path')
 const { globby, camelize, pathToComponentName } = require('@minipress/utils')
 const fs = require('fs-extra')
+
 /**
  * @type {import('./types').Plugin}
  */
@@ -30,7 +31,7 @@ module.exports = {
         let content = ''
         content += '``` markup\n'
         content += source
-        content += '```\n'
+        content += '\n```'
         await minipress.addPage({
           content,
           key,
