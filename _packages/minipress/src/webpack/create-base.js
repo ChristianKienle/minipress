@@ -192,12 +192,6 @@ module.exports = function createBase({ isServer, minipressConfig }) {
     .end()
 
   config
-    .plugin('extract-css-plugin')
-    .use(MiniCssExtractPlugin)
-    .tap(() => [{ filename: 'style.css' }])
-    .end()
-
-  config
     .plugin('vue')
     .use(VueLoaderPlugin)
     .end()
