@@ -1,6 +1,6 @@
 {
   "name": "@minipress/theme-docs",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve demo",
@@ -21,11 +21,11 @@
     "src/**/*"
   ],
   "dependencies": {
-    "@minipress/custom-container": "^0.8.1"
+    "@minipress/custom-container": "^0.9.0"
   },
   "devDependencies": {
-    "@minipress/eslint-config-client": "^0.8.0",
-    "@minipress/types": "^0.8.1",
+    "@minipress/eslint-config-client": "^0.9.0",
+    "@minipress/types": "^0.9.0",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
     "@vue/cli-plugin-unit-jest": "^4.0.5",
