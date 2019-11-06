@@ -5,8 +5,8 @@
  * @typedef {import('@minipress/types').Page} Page
  * @typedef {import('@minipress/types').ProcessablePage} ProcessablePage
  * @typedef {import('@minipress/types').EmittablePage} EmittablePage
- * @typedef {import('./../minipress/minipress')} Minipress
- * @typedef {import('./../minipress/transformers/transformers')} Transformers
+ * @typedef {import('./minipress')} Minipress
+ * @typedef {import('./transformers/transformers')} Transformers
  */
 
 /**

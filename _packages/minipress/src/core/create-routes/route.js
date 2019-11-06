@@ -2,7 +2,7 @@
 const codeGen = require('@minipress/code-gen')
 const qs = require('querystring')
 
-/** @typedef {import('./../../types').PageMeta} PageMeta */
+/** @typedef {import('./../types').PageMeta} PageMeta */
 
 module.exports = class Route {
   /**

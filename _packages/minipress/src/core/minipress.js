@@ -12,14 +12,14 @@ const Aliases = require('./aliases')
 const DynamicModules = require('./dynamic-modules')
 const AppEnhancers = require('./app-enhancers')
 const PageTransformers = require('./page-transformers')
-const { VueRenderer } = require('./../../vue-renderer')
+const { VueRenderer } = require('./../vue-renderer')
 const { setNodeEnv, TempDir } = require('@minipress/utils')
 const Joi = require('@hapi/joi')
 const {
   createBaseConfig,
   createServerConfig,
   createClientConfig
-} = require('./../../webpack')
+} = require('./../webpack')
 const http = require('http')
 const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
