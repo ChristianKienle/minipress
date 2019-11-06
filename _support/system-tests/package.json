@@ -1,6 +1,6 @@
 {
   "name": "@minipress/system-tests",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "",
   "files": [
     "src/**/*.js",
@@ -19,7 +19,7 @@
     "@minipress/cli": "^0.9.0",
     "@minipress/config": "^0.9.0",
     "@minipress/log": "^0.9.0",
-    "@minipress/minipress": "^0.9.0",
+    "@minipress/minipress": "^0.9.1",
     "@minipress/plugin-command-serve": "^0.9.0",
     "@minipress/test-utils": "^0.9.0",
     "@types/fs-extra": "^8.0.1",
