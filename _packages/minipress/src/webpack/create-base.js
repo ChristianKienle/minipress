@@ -111,15 +111,6 @@ module.exports = function createBase({ isServer, minipressConfig }) {
   config.module.rule('js').test(/\.js$/).exclude.add(/node_modules/).add(/\.vue\.js/)
     .end()
 
-  // TODO: Where is this from?
-  config
-    .module
-    .rule('js')
-    .use('babel-loader')
-    .loader('babel-loader')
-    .options(createBabelOptions())
-    .end()
-
   config.module
     .rule('font')
     .test(/\.(eot|otf|ttf|woff|woff2)(\?.*)?$/)

@@ -33,7 +33,13 @@
     "features:debug": "cd _examples/features && npm run dev:debug",
     "features:gen": "cd _examples/features && npm run gen",
     "features:serve": "cd _examples/features && npm run serve",
-    "features:gen:debug": "cd _examples/features && npm run gen:debug"
+    "features:gen:debug": "cd _examples/features && npm run gen:debug",
+    "perftest": "cd _examples/performance-test && npm run dev",
+    "perftest:debug": "cd _examples/performance-test && npm run dev:debug",
+    "perftest:gen": "cd _examples/performance-test && npm run gen",
+    "perftest:serve": "cd _examples/performance-test && npm run serve",
+    "perftest:gen:debug": "cd _examples/performance-test && npm run gen:debug"
+
   },
   "devDependencies": {
     "eslint": "6.5.1",

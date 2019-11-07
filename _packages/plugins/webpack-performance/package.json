@@ -6,7 +6,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest --clearCache && jest .",
     "lint": "eslint -c .eslintrc.js src/**/*.js"
   },
   "publishConfig": {
