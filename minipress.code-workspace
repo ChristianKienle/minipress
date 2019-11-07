@@ -181,6 +181,10 @@
       "path": "_examples/extend-cli"
     },
 		{
+      "name": "examples/performance-test",
+      "path": "_examples/performance-test"
+    },
+		{
 			"name": "examples/component-library",
 			"path": "_examples/component-library"
 		},

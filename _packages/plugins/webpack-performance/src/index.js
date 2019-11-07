@@ -1,6 +1,5 @@
 // @ts-check
 const PLUGIN = '@minipress/plugin-webpack-performance'
-const { join } = require('path')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const smp = new SpeedMeasurePlugin()
 
@@ -8,8 +7,8 @@ const smp = new SpeedMeasurePlugin()
 module.exports = {
   name: PLUGIN,
   async apply(minipress, options) {
-    minipress.hooks.getWebpackConfig.tapPromise(PLUGIN, async config => {
-      if(options.enabled) {
+    minipress.hooks.getWebpackConfig.tapPromise(PLUGIN, async (config, type) => {
+      if(options.enabled && type === 'server') {
         return smp.wrap(config)
       }
       return config
