@@ -1,5 +1,5 @@
 {
-  "name": "@minipress/markdown",
+  "name": "@minipress/markdown-chain",
   "version": "0.9.0",
   "description": "",
   "main": "src/index.js",
@@ -7,9 +7,10 @@
     "test": "jest --clearCache && jest ."
   },
   "files": [
-    "src/**/*.js"
+    "src/**/*.js",
+    "index.d.ts"
   ],
-  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -17,17 +18,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@minipress/utils": "^0.9.0",
-    "gray-matter": "^4.0.2",
-    "prismjs": "^1.17.1",
-    "saber-markdown": "^0.1.4",
-    "slugo": "^0.3.1"
+  "peerDependencies": {
+    "@minipress/markdown": "^0.9.0"
   },
   "devDependencies": {
+    "@minipress/markdown": "^0.9.0",
     "@types/markdown-it": "^0.0.9",
     "@types/jest": "^24.0.20",
     "jest": "^24.9.0"
-  },
-  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+  }
 }

@@ -5,7 +5,7 @@ const RE = /\s*{([^}]+)}/
 const parseOptions = require('./parse-options')
 const normalizeOptions = require('./normalize-options')
 const renderMask = require('./render-mask')
-
+const highlightFn = require('./highlight')
 const generateLineNumbers = code =>
   `<span aria-hidden="true" class="minipress-highlight-line-numbers">${
     code
@@ -21,6 +21,8 @@ module.exports = (
     lineNumbers = false
   } = {}
 ) => {
+  md.options.highlight = highlightFn
+
   const renderPreWrapper = ({
     preWrapperAttrs,
     preAttrs,

@@ -6,7 +6,7 @@ const defaultRenderAfter = () => '</MiniTip>'
 
 /**
  * @param {import('markdown-it')} md
- * @param {import('./types').Options} options
+ * @param {import('./../types').Options} options
  */
 module.exports = (md, options) => {
   const {

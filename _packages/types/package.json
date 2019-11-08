@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@minipress/cli": "^0.9.0",
+    "@minipress/markdown-chain": "^0.9.0",
     "@minipress/log": "^0.9.0",
-    "@minipress/markdown": "^0.6.0",
     "@types/hapi__joi": "^16.0.1",
     "@types/tapable": "^1.0.4",
     "webpack-chain": "^6.0.0"

@@ -1,2 +1,2 @@
-const Minipress = require('./core/minipress/minipress')
+const Minipress = require('./core/minipress')
 module.exports = Minipress

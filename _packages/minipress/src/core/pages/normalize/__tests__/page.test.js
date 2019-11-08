@@ -33,7 +33,11 @@ describe('normalize page', () => {
     })
 
     expect(contentComponents.get(_page.key)).toBeDefined()
-    expect(_page).toMatchObject(_page)
+    expect(_page).toMatchObject({
+      content: '<h1>hi</h1>\n',
+      contentType: 'md',
+      key: 'virtual'
+    })
   })
 
   it('layout/key/path is read from frontmatter', async () => {
@@ -52,7 +56,7 @@ describe('normalize page', () => {
     })
 
     expect(_page).toMatchObject({
-      content: '<h1 id=\"hi\"><router-link class=\"header-anchor\" to=\"#hi\" aria-hidden=\"true\">#</router-link> hi</h1>\n',
+      content: '<h1>hi</h1>\n',
       contentType,
       key: 'mykey',
       path: '/path',

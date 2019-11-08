@@ -21,8 +21,9 @@ module.exports = (md, { externalAttrs }) => {
 
   // eslint-disable-next-line camelcase
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-    const { page } = env
-    const relativePath = page.file.relative
+    const { page = {} } = env
+    const { file = {} } = page
+    const relativePath = file.relative || '/'
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('href')
     if (hrefIndex >= 0) {

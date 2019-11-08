@@ -681,7 +681,7 @@ This hook is called right at the start the `run(…)`–method. Almost every CLI
   - `chain`: An instance of [webpack-chain.Config](https://github.com/neutrinojs/webpack-chain)
   - `type`: Either `server` or `client`
 
-Called right before a webpack config is requested. This allows you to modify to webpack chain before it is used to create the actual config object.
+Called right before a webpack config is requested. This allows you to modify the webpack chain before it is used to create the actual config object.
 
 #### `getWebpackConfig`
 - Hook Type: `AsyncSeriesHook`
@@ -690,6 +690,13 @@ Called right before a webpack config is requested. This allows you to modify to 
   - `type`: Either `server` or `client`
 
 Called in order to get a webpack configuration.
+
+#### `chainMarkdown`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `chain`: An instance of `@minipress/markdown-chain`.
+
+Called right before a markdown renderer is requested. This allows you to modify markdown chain before it is used to create the actual markdown renderer.
 
 #### `configureRequestServer`
 - Hook Type: `AsyncSeriesHook`

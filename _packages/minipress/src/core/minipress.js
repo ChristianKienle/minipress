@@ -25,6 +25,7 @@ const PageMutations = require('./page-mutations')
 const ContentComponents = require('./content-components')
 const helmet = require('helmet')
 const Config = require('@minipress/config')
+const MarkdownChain = require('@minipress/markdown-chain')
 const normalizeConfig = Config.normalize.normalizeConfig
 
 /**
@@ -100,6 +101,8 @@ class Minipress {
       onRemovePage: new AsyncSeriesHook(['page']),
       // This is called once multiple pages have been created.
       onCreatePages: new AsyncSeriesHook([]),
+      // Called with an instance of @minipress/markdown-chain
+      chainMarkdown: new AsyncSeriesHook(['chain']),
       configureMarkdownRenderer: new AsyncSeriesHook(['markdownRenderer']),
       // called before plugins are applied
       // applying a plugin simply calls its 'apply(…)'-function
@@ -252,6 +255,12 @@ class Minipress {
     await this.hooks.emitSiteData.promise(siteData)
     return siteData
   }
+
+  // async getMarkdownRenderer() {
+  //   const chain = new MarkdownChain()
+  //   await this.hooks.chainMarkdown.promise([chain])
+  //   return chain.toMarkdown()
+  // }
 
   /**
    * @param {'client' | 'server'} type
@@ -411,7 +420,7 @@ class Minipress {
   }
 
   _assertThatPluginsArePrepared() {
-    if(this.pluginsPrepared === false) {
+    if (this.pluginsPrepared === false) {
       throw Error('You have to call \'preparePlugins()\' once before you interact with the miniPress API.')
     }
   }
