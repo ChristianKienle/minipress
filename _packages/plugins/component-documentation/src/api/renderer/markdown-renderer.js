@@ -19,21 +19,6 @@ const getDescription = result => {
   return componentDesc.default
 }
 
-// /**
-//  * @param {string} text
-//  * @param {string=} cssClass
-//  */
-// const renderDivWithScopedClass = (text, cssClass) => {
-//   const scopedClass = cssClass == null ? 'component-documentation' : `component-documentation__${cssClass}`
-//   return new CreateMarkdown().raw(`<div class="${scopedClass}">${text}</div>`)
-// }
-
-// const renderWithScopedClass = (cssClass, children = []) => {
-//   const scopedClass = createScopedClass(cssClass)
-//   const attrs = { class: scopedClass }
-//   return new CreateMarkdown().div({ attrs }, children)
-// }
-
 /** @param {PropsResult} prop */
 const renderProp = prop => {
   return createMd()

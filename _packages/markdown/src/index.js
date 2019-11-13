@@ -22,27 +22,6 @@ module.exports = class Renderer {
   }
 
   init() {
-    // const {
-    //   Link,
-    //   Headings,
-    //   Highlight,
-    //   TaskList,
-    //   FixHeadings
-    // } = Plugins
-
-    // this.md
-    //   .use(FixHeadings)
-    //   .use(Headings)
-    //   .use(Highlight)
-    //   .use(Link, [{
-    //     externalAttrs: {
-    //       target: '_blank',
-    //       rel: 'noopener noreferrer'
-    //     }
-    //   }])
-    //   .use(TaskList, [{
-    //     disabled: false
-    //   }])
     return this
   }
 

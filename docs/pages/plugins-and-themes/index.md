@@ -193,7 +193,7 @@ npm install @minipress/plugin-package-json --save
 
 ```js
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-package-json']
   ]
 }
@@ -465,7 +465,7 @@ npm install @minipress/plugin-serve-static --save
 
 ```js
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-serve-static']
   ]
 }
@@ -493,7 +493,7 @@ In case you have special needs you can pass options to `'@minipress/plugin-serve
 ```js
 const { join } = require('path')
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-serve-static', {
       as: '/static',
       dir: join(__dirname, 'static')
@@ -520,7 +520,7 @@ npm install @minipress/plugin-component-demo --save
 
 ```js
 module.exports = {
-  plugis: ['@minipress/plugin-component-demo']
+  plugins: ['@minipress/plugin-component-demo']
 }
 ```
 

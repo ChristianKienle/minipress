@@ -256,12 +256,6 @@ class Minipress {
     return siteData
   }
 
-  // async getMarkdownRenderer() {
-  //   const chain = new MarkdownChain()
-  //   await this.hooks.chainMarkdown.promise([chain])
-  //   return chain.toMarkdown()
-  // }
-
   /**
    * @param {'client' | 'server'} type
    */
