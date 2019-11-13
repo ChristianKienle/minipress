@@ -44,7 +44,7 @@ module.exports = {
     '@minipress/plugin-component-demo',
     '@minipress/plugin-summary-container',
     '@minipress/plugin-blog',
-    '@minipress/plugin-component-documentation',
+    ['@minipress/plugin-component-documentation', { renderer: 'markdown'}],
     '@minipress/plugin-deploy-to-gh-pages',
     ['@minipress/plugin-head', headFn],
     '@minipress/plugin-last-modified',
@@ -52,7 +52,7 @@ module.exports = {
     '@minipress/plugin-package-json',
     ['@minipress/plugin-webpack-performance', { enabled: false }]
   ],
-  /** @param {import('@minipress/minipress/src/core/minipress/minipress')} minipress */
+  /** @param {import('@minipress/minipress/src/core/minipress')} minipress */
   async apply(minipress) {
     minipress.hooks.chainWebpack.tapPromise(PLUGIN, async (config, type) => {
       if(type === 'client') {

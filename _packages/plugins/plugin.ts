@@ -1,4 +1,4 @@
-import Minipress from './../minipress/src/core/minipress/minipress'
+import Minipress from './../minipress/src/core/minipress'
 import { Joi } from './../../_packages/types'
 
 export interface Plugin<Options = any> {

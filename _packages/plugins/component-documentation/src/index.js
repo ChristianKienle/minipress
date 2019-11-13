@@ -20,7 +20,19 @@ module.exports = {
       minipress.globalComponents.register('minipress-component-documentation-styles', join(__dirname, 'default-styles.vue'))
     })
 
-    const _renderer = options.renderer === 'minipress-markdown' ? renderer.VueDocs : renderer.Vuese
+    const _renderer = (() => {
+      switch(options.renderer) {
+        case 'markdown': {
+          return renderer.Markdown
+        }
+        case 'minipress-markdown': {
+          return renderer.Default
+        }
+        case 'vuese-markdown': {
+          return renderer.Vuese
+        }
+      }
+    })()
 
     const componentDocumentationForContainer = createComponentDocumentationForContainer(minipress, { markdownRenderer, renderer: _renderer })
 
@@ -30,7 +42,7 @@ module.exports = {
   optionsSchema({ config, joi }) {
     const defaultRenderer = 'minipress-markdown'
     return joi.object({
-      renderer: joi.string().allow('vuese-markdown', defaultRenderer).default(defaultRenderer)
+      renderer: joi.string().allow('markdown', 'vuese-markdown', defaultRenderer).default(defaultRenderer)
     }).default({
       renderer: defaultRenderer
     })

@@ -6,13 +6,14 @@ const CustomContainer = require('./custom-container')
 const defaultRenderBefore = () => '<div>\n'
 const defaultRenderAfter = () => '<div>\n'
 
-/** @type {import('./../../plugin').Plugin} */
+/** @type {import('./types').Plugin} */
 module.exports = {
   async apply(minipress, options) {
     const { log } = minipress
-    minipress.hooks.configureMarkdownRenderer.tapPromise(PLUGIN, async renderer => {
+    minipress.hooks.chainMarkdown.tapPromise(PLUGIN, async chain => {
       log.info(`Using custom container: ${JSON.stringify(options)}`)
-      renderer.use(CustomContainer, options)
+      const markdownPluginName = `${PLUGIN}--${options.type}`
+      chain.plugin(markdownPluginName).use(CustomContainer, [options]).before('headings')
     })
   },
 

@@ -193,7 +193,7 @@ npm install @minipress/plugin-package-json --save
 
 ```js
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-package-json']
   ]
 }
@@ -465,7 +465,7 @@ npm install @minipress/plugin-serve-static --save
 
 ```js
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-serve-static']
   ]
 }
@@ -493,7 +493,7 @@ In case you have special needs you can pass options to `'@minipress/plugin-serve
 ```js
 const { join } = require('path')
 module.exports = {
-  plugis: [
+  plugins: [
     ['@minipress/plugin-serve-static', {
       as: '/static',
       dir: join(__dirname, 'static')
@@ -520,7 +520,7 @@ npm install @minipress/plugin-component-demo --save
 
 ```js
 module.exports = {
-  plugis: ['@minipress/plugin-component-demo']
+  plugins: ['@minipress/plugin-component-demo']
 }
 ```
 
@@ -681,7 +681,7 @@ This hook is called right at the start the `run(…)`–method. Almost every CLI
   - `chain`: An instance of [webpack-chain.Config](https://github.com/neutrinojs/webpack-chain)
   - `type`: Either `server` or `client`
 
-Called right before a webpack config is requested. This allows you to modify to webpack chain before it is used to create the actual config object.
+Called right before a webpack config is requested. This allows you to modify the webpack chain before it is used to create the actual config object.
 
 #### `getWebpackConfig`
 - Hook Type: `AsyncSeriesHook`
@@ -690,6 +690,13 @@ Called right before a webpack config is requested. This allows you to modify to 
   - `type`: Either `server` or `client`
 
 Called in order to get a webpack configuration.
+
+#### `chainMarkdown`
+- Hook Type: `AsyncSeriesHook`
+- Arguments:
+  - `chain`: An instance of `@minipress/markdown-chain`.
+
+Called right before a markdown renderer is requested. This allows you to modify markdown chain before it is used to create the actual markdown renderer.
 
 #### `configureRequestServer`
 - Hook Type: `AsyncSeriesHook`

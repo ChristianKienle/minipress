@@ -6,8 +6,8 @@ const { devalue } = require('@minipress/utils')
 /** @typedef {import('@minipress/types').Page} Page */
 
 class Transformer {
-  constructor() {
-    this.renderer = new Renderer()
+  constructor(renderer = new Renderer()) {
+    this.renderer = renderer
     this.renderer.init()
   }
 

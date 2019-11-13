@@ -7,10 +7,10 @@ import Joi from '@hapi/joi'
 import Cli from '@minipress/cli'
 import { Page, EmittablePage } from './../page'
 import { AsyncSeriesHook } from 'tapable'
-import MarkdownRenderer from '@minipress/markdown'
+import MarkdownChain from '@minipress/markdown-chain'
 
 interface Hooks {
-  readonly configureMarkdownRenderer: AsyncSeriesHook<InstanceType<typeof MarkdownRenderer>>
+  readonly chainMarkdown: AsyncSeriesHook<InstanceType<typeof MarkdownChain>>
   readonly configureSiteData: AsyncSeriesHook<object>
   readonly registerComponents: AsyncSeriesHook<ComponentsI>
   readonly emitPages: AsyncSeriesHook<PagesI>

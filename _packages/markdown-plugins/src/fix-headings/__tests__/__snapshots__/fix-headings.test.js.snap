@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fix Headings Plugin in combination with the headings plugin works 1`] = `
+"<h1 id=\\"title\\"><router-link class=\\"header-anchor\\" to=\\"#title\\" aria-hidden=\\"true\\">#</router-link> Title</h1>
+<h2 id=\\"chapter-1\\"><router-link class=\\"header-anchor\\" to=\\"#chapter-1\\" aria-hidden=\\"true\\">#</router-link> Chapter 1</h2>
+<h3 id=\\"partial-1\\"><router-link class=\\"header-anchor\\" to=\\"#partial-1\\" aria-hidden=\\"true\\">#</router-link> Partial 1</h3>
+<h2 id=\\"chapter-2\\"><router-link class=\\"header-anchor\\" to=\\"#chapter-2\\" aria-hidden=\\"true\\">#</router-link> Chapter 2</h2>
+<h3 id=\\"partial-2\\"><router-link class=\\"header-anchor\\" to=\\"#partial-2\\" aria-hidden=\\"true\\">#</router-link> Partial 2</h3>
+"
+`;

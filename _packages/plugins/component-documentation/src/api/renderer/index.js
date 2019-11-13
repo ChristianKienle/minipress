@@ -1,7 +1,8 @@
 // @ts-check
 /* eslint-env node */
 
-const VueDocs = require('./vuedocs-renderer')
+const Default = require('./vuedocs-renderer')
 const Vuese = require('./vuese-renderer')
+const Markdown = require('./markdown-renderer')
 
-module.exports = { VueDocs, Vuese }
+module.exports = { Default, Vuese, Markdown }

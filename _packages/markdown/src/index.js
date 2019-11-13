@@ -3,33 +3,26 @@ const createMd = require('./create-md')
 const {
   frontmatter: { extract: extractFrontmatter }
 } = require('./utils')
-const plugins = require('./plugins')
 const SaberMarkdown = require('saber-markdown')
+const createDefaultOptions = require('./create-default-options')
 
 module.exports = class Renderer {
-  constructor() {
-    this.md = createMd()
+
+  constructor(options = createDefaultOptions()) {
+    this.md = createMd(options)
   }
 
-  use(plugin, options) {
-    this.md.use(plugin, options)
+  /**
+  * @param {import('./types').MarkdownItPlugin} plugin
+  * @param {any[]} args
+  */
+  use(plugin, args = []) {
+    this.md.use(plugin, args)
     return this
   }
 
   init() {
-    const { containers, link, headings, highlight: highlightPlugin, taskList } = plugins
-    this.md
-    .use(headings)
-    .use(highlightPlugin)
-    .use(link, {
-      externalAttrs: {
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      }
-    })
-    .use(taskList, {
-      disabled: false
-    })
+    return this
   }
 
   /**

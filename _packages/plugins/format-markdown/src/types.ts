@@ -1,7 +1,5 @@
 import { Plugin as PluginType } from '@minipress/types'
 
-interface Options {
-  renderer: 'markdown' | 'vuese-markdown' | 'minipress-markdown',
-}
+type Options = any
 
 export type Plugin = PluginType<Options>

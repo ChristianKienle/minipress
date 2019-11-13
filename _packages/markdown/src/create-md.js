@@ -1,31 +1,28 @@
 // @ts-check
 const { highlight } = require('./utils')
 const SaberMarkdown = require('saber-markdown')
+const createDefaultOptions = require('./create-default-options')
 
 class MarkdownRenderer {
-  /**
-   * @param {object} [env={}]
-   */
+  /** @param {object} [env={}] */
   static prepareEnv(env = {}) {
     const { Token } = env
-    if(Token == null) {
+    if (Token == null) {
       // @ts-ignore
       env.Token = SaberMarkdown.Token
     }
   }
 
-  constructor() {
-    this.md = new SaberMarkdown({
-      highlight,
-      typographer: true,
-      preset: 'default',
-      breaks: false,
-      html: true
-    })
+  constructor(options = createDefaultOptions()) {
+    this.md = new SaberMarkdown(options)
   }
 
-  use(plugin, options) {
-    this.md.use(plugin, options)
+  /**
+   * @param {import('./types').MarkdownItPlugin} plugin
+   * @param {any[]} args
+   */
+  use(plugin, args = []) {
+    this.md.use(plugin, ...args)
     return this
   }
 
@@ -40,4 +37,4 @@ class MarkdownRenderer {
   }
 
 }
-module.exports = () => new MarkdownRenderer()
+module.exports = (options = createDefaultOptions()) => new MarkdownRenderer(options)

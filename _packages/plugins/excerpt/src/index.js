@@ -15,8 +15,8 @@ module.exports = {
     })
 
     // Install the excerpt-markdown plugin
-    minipress.hooks.configureMarkdownRenderer.tapPromise(PLUGIN, async renderer => {
-      renderer.use(ExcerptPlugin)
+    minipress.hooks.chainMarkdown.tapPromise(PLUGIN, async chain => {
+      chain.plugin(PLUGIN).use(ExcerptPlugin)
     })
 
     // For each page with an excerpt we create a virtual page with the excerpt
