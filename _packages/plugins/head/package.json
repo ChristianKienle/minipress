@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-head",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {},
@@ -8,8 +8,8 @@
   "author": "",
   "private": false,
   "devDependencies": {
-    "@minipress/head-element": "^0.9.0",
-    "@minipress/types": "^0.9.0"
+    "@minipress/head-element": "^0.10.0",
+    "@minipress/types": "^0.10.0"
   },
   "publishConfig": {
     "access": "public"

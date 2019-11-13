@@ -1,6 +1,6 @@
 {
   "name": "@minipress/markdown-chain",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -22,9 +22,9 @@
     "@minipress/markdown": "^0.9.0"
   },
   "devDependencies": {
-    "@minipress/markdown": "^0.9.0",
-    "@types/markdown-it": "^0.0.9",
+    "@minipress/markdown": "^0.10.0",
     "@types/jest": "^24.0.20",
+    "@types/markdown-it": "^0.0.9",
     "jest": "^24.9.0"
   }
 }

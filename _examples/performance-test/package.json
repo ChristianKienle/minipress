@@ -1,6 +1,6 @@
 {
   "name": "@minipress/example-performance-test",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "private": false,
   "main": "index.js",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.9.1",
-    "@minipress/plugin-webpack-performance": "^0.9.1"
+    "@minipress/minipress": "^0.10.0",
+    "@minipress/plugin-webpack-performance": "^0.10.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@minipress/example-my-component-library",
   "license": "MIT",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "private": false,
   "main": "src/index.js",
   "publishConfig": {

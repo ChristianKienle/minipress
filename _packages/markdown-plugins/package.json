@@ -1,6 +1,6 @@
 {
   "name": "@minipress/markdown-plugins",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -19,17 +19,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@minipress/utils": "^0.9.0",
+    "@minipress/utils": "^0.10.0",
     "gray-matter": "^4.0.2",
-    "prismjs": "^1.17.1",
     "markdown-it-container": "^2.0.0",
+    "prismjs": "^1.17.1",
     "saber-markdown": "^0.1.4",
     "slugo": "^0.3.1"
   },
   "devDependencies": {
-    "@types/markdown-it": "^0.0.9",
-    "@minipress/markdown": "^0.9.0",
+    "@minipress/markdown": "^0.10.0",
     "@types/jest": "^24.0.20",
+    "@types/markdown-it": "^0.0.9",
     "jest": "^24.9.0"
   }
 }

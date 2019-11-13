@@ -1,6 +1,6 @@
 {
   "name": "@minipress/docs",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "",
   "main": "src/index.js",
   "homepage": "https://christiankienle.github.io/minipress/",
@@ -29,26 +29,26 @@
     "gen:debug": "node --inspect-brk --no-lazy ./node_modules/.bin/minipress generate"
   },
   "devDependencies": {
-    "@minipress/head-element": "^0.9.0",
-    "@minipress/types": "^0.9.0"
+    "@minipress/head-element": "^0.10.0",
+    "@minipress/types": "^0.10.0"
   },
   "dependencies": {
-    "@minipress/minipress": "^0.9.1",
-    "@minipress/plugin-blog": "^0.9.0",
-    "@minipress/plugin-clean-urls": "^0.9.0",
-    "@minipress/plugin-component-demo": "^0.9.0",
-    "@minipress/plugin-component-documentation": "^0.9.1",
-    "@minipress/plugin-components": "^0.9.0",
-    "@minipress/plugin-deploy-to-gh-pages": "^0.9.0",
-    "@minipress/plugin-excerpt": "^0.9.0",
-    "@minipress/plugin-head": "^0.9.0",
-    "@minipress/plugin-last-modified": "^0.9.0",
-    "@minipress/plugin-package-json": "^0.9.0",
-    "@minipress/plugin-pages": "^0.9.0",
-    "@minipress/plugin-serve-static": "^0.9.0",
-    "@minipress/plugin-summary-container": "^0.9.0",
-    "@minipress/plugin-webpack-performance": "^0.9.1",
-    "@minipress/theme-docs": "^0.9.0",
+    "@minipress/minipress": "^0.10.0",
+    "@minipress/plugin-blog": "^0.10.0",
+    "@minipress/plugin-clean-urls": "^0.10.0",
+    "@minipress/plugin-component-demo": "^0.10.0",
+    "@minipress/plugin-component-documentation": "^0.10.0",
+    "@minipress/plugin-components": "^0.10.0",
+    "@minipress/plugin-deploy-to-gh-pages": "^0.10.0",
+    "@minipress/plugin-excerpt": "^0.10.0",
+    "@minipress/plugin-head": "^0.10.0",
+    "@minipress/plugin-last-modified": "^0.10.0",
+    "@minipress/plugin-package-json": "^0.10.0",
+    "@minipress/plugin-pages": "^0.10.0",
+    "@minipress/plugin-serve-static": "^0.10.0",
+    "@minipress/plugin-summary-container": "^0.10.0",
+    "@minipress/plugin-webpack-performance": "^0.10.0",
+    "@minipress/theme-docs": "^0.10.0",
     "webpack-bundle-analyzer": "^3.6.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"

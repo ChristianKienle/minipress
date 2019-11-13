@@ -1,6 +1,6 @@
 {
   "name": "@minipress/system-tests",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "",
   "files": [
     "src/**/*.js",
@@ -16,12 +16,12 @@
   "main": "src/index.js",
   "license": "MIT",
   "devDependencies": {
-    "@minipress/cli": "^0.9.0",
-    "@minipress/config": "^0.9.0",
-    "@minipress/log": "^0.9.0",
-    "@minipress/minipress": "^0.9.1",
-    "@minipress/plugin-command-serve": "^0.9.0",
-    "@minipress/test-utils": "^0.9.0",
+    "@minipress/cli": "^0.10.0",
+    "@minipress/config": "^0.10.0",
+    "@minipress/log": "^0.10.0",
+    "@minipress/minipress": "^0.10.0",
+    "@minipress/plugin-command-serve": "^0.10.0",
+    "@minipress/test-utils": "^0.10.0",
     "@types/fs-extra": "^8.0.1",
     "@types/jest": "^24.0.21",
     "fs-extra": "^8.1.0",

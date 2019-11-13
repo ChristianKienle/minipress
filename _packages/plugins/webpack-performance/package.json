@@ -1,6 +1,6 @@
 {
   "name": "@minipress/plugin-webpack-performance",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "my cool plugin",
   "author": "kienle.christian@icloud.com",
   "license": "MIT",
@@ -17,12 +17,12 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "@minipress/utils": "^0.9.0",
+    "@minipress/utils": "^0.10.0",
     "speed-measure-webpack-plugin": "^1.3.1"
   },
   "devDependencies": {
-    "@minipress/eslint-config-node": "^0.9.0",
-    "@minipress/types": "^0.9.0",
+    "@minipress/eslint-config-node": "^0.10.0",
+    "@minipress/types": "^0.10.0",
     "@types/jest": "^24.0.18",
     "eslint": "^6.6.0",
     "jest": "^24.9.0"
