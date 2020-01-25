@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - lts/*
 script:
-  - npm install   # install the bare minimum
-  - npm run bs        # install everything (lerna action)
-  - npm run test
-  - npm run docs:gen  # generate static build of docs
+  - yarn install   # install the bare minimum
+  - yarn test
+  - yarn docs:gen  # generate static build of docs

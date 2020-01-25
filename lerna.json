@@ -7,7 +7,8 @@
     "snappy-apps/**"
   ],
   "parallel": false,
-  "npmClient": "npm",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "version": "0.10.0",
   "concurrency": 1
 }
