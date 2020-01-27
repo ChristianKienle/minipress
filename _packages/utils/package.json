@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^16.1.7",
+    "@hapi/joi": "^17.1.0",
     "chokidar": "^3.2.2",
     "devalue": "^2.0.0",
     "fs-extra": "^8.1.0",
