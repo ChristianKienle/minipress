@@ -19,7 +19,7 @@
   "devDependencies": {
     "@minipress/markdown": "^0.10.0",
     "@minipress/types": "^0.10.0",
-    "@types/jest": "^24.0.21",
+    "@types/jest": "^25.2.2",
     "jest": "^24.9.0"
   }
 }
