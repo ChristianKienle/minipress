@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "@minipress/types": "^0.10.0",
-    "@types/hapi__joi": "^16.0.2"
+    "@types/hapi__joi": "^17.1.2"
   }
 }
