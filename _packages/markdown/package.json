@@ -25,7 +25,7 @@
     "slugo": "^0.3.1"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.20",
+    "@types/jest": "^26.0.0",
     "@types/markdown-it": "^0.0.9",
     "jest": "^24.9.0"
   },
