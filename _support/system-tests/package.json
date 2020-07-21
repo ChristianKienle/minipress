@@ -23,7 +23,7 @@
     "@minipress/plugin-command-serve": "^0.10.0",
     "@minipress/test-utils": "^0.10.0",
     "@types/fs-extra": "^8.0.1",
-    "@types/jest": "^24.0.21",
+    "@types/jest": "^26.0.5",
     "fs-extra": "^8.1.0",
     "jest": "^24.9.0",
     "open": "^7.0.0"
