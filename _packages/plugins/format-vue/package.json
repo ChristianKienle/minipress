@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@minipress/types": "^0.10.0",
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^26.0.12",
     "jest": "^24.9.0"
   },
   "files": [
