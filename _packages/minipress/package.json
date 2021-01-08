@@ -25,7 +25,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "@hapi/joi": "^16.1.7",
+    "@hapi/joi": "^17.1.1",
     "@minipress/app": "^0.10.0",
     "@minipress/cli": "^0.10.0",
     "@minipress/code-gen": "^0.10.0",
