@@ -40,7 +40,6 @@
     "perftest:gen": "cd _examples/performance-test && npm run gen",
     "perftest:serve": "cd _examples/performance-test && npm run serve",
     "perftest:gen:debug": "cd _examples/performance-test && npm run gen:debug"
-
   },
   "devDependencies": {
     "eslint": "6.5.1",
