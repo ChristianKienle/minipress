@@ -1,31 +1,26 @@
 {
-  "name": "@minipress/plugin-components",
-  "version": "0.10.0",
-  "description": "",
-  "scripts": {
-    "test": "jest --clearCache && jest ."
-  },
-  "main": "src/index.js",
-  "dependencies": {
-    "@minipress/utils": "^0.10.0",
-    "fs-extra": "^8.1.0"
-  },
-  "devDependencies": {
-    "@minipress/test-utils": "^0.10.0",
-    "@minipress/types": "^0.10.0",
-    "@types/fs-extra": "^8.0.1",
-    "@types/jest": "^24.0.19",
-    "jest": "^24.9.0"
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "src/**/*"
-  ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
+	"name": "@minipress/plugin-components",
+	"version": "0.10.0",
+	"description": "",
+	"main": "src/index.js",
+	"dependencies": {
+    "fs-extra": "^8.1.0",
+    "@minipress/utils": "^0.10.0"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^8.0.1",
+		"@types/jest": "^24.0.19",
+		"jest": "^24.9.0"
+	},
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
 }
