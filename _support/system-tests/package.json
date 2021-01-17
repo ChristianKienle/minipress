@@ -1,23 +1,32 @@
 {
-	"name": "@minipress/system-tests",
-	"version": "0.10.0",
-	"description": "",
-	"files": [
-		"src/**/*.js",
-		"types/**/*.d.ts"
-	],
-	"private": false,
-	"publishConfig": {
-		"access": "public"
-	},
-	"main": "src/index.js",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/fs-extra": "^8.0.1",
-		"@types/jest": "^26.0.20",
-		"fs-extra": "^8.1.0",
-		"jest": "^24.9.0",
-		"open": "^7.0.0"
-	},
-	"typings": "types/index.d.ts"
+  "name": "@minipress/system-tests",
+  "version": "0.10.0",
+  "description": "",
+  "files": [
+    "src/**/*.js",
+    "types/**/*.d.ts"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --clearCache && jest . --testTimeout 60000"
+  },
+  "main": "src/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@minipress/cli": "^0.10.0",
+    "@minipress/config": "^0.10.0",
+    "@minipress/log": "^0.10.0",
+    "@minipress/minipress": "^0.10.0",
+    "@minipress/plugin-command-serve": "^0.10.0",
+    "@minipress/test-utils": "^0.10.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/jest": "^26.0.20",
+    "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
+    "open": "^7.0.0"
+  },
+  "typings": "types/index.d.ts"
 }
