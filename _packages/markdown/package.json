@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
-    "@types/markdown-it": "^0.0.9",
+    "@types/markdown-it": "^12.0.1",
     "jest": "^24.9.0"
   },
   "gitHead": "c14733c38e9095a558c6a329bdce220b8b6bf95d"
