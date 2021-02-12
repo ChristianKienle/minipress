@@ -16,7 +16,7 @@
   ],
   "devDependencies": {
     "@minipress/types": "^0.10.0",
-    "@types/fs-extra": "^8.0.1",
+    "@types/fs-extra": "^9.0.7",
     "@types/jest": "^26.0.20",
     "fs-extra": "^8.1.0",
     "jest": "^24.9.0"

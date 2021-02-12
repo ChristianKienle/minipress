@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@minipress/types": "^0.10.0",
-    "@types/fs-extra": "^8.0.1"
+    "@types/fs-extra": "^9.0.7"
   },
   "files": [
     "src/**/*"
