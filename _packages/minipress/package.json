@@ -101,7 +101,7 @@
     "@types/prettier": "^1.18.2",
     "@types/serve-static": "^1.13.3",
     "@types/webpack": "^4.39.0",
-    "@types/webpack-dev-middleware": "^2.0.3",
+    "@types/webpack-dev-middleware": "^5.0.1",
     "@types/webpack-hot-middleware": "^2.16.5",
     "eslint": "^6.5.1",
     "eslint-plugin-jest": "^24.1.3",
