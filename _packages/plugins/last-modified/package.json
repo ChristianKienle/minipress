@@ -15,7 +15,7 @@
     "src/**/*"
   ],
   "devDependencies": {
-    "@types/fs-extra": "^8.0.1"
+    "@types/fs-extra": "^9.0.12"
   },
   "keywords": [],
   "author": "",
